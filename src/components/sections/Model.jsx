@@ -31,7 +31,7 @@ export default function Model() {
   return (
     <section
       id="model"
-      className="relative h-screen flex flex-col justify-center overflow-hidden bg-hub-dark"
+      className="relative min-h-screen lg:h-screen flex flex-col justify-center overflow-x-hidden lg:overflow-hidden bg-hub-dark"
     >
       <div className="absolute inset-0 bg-grid opacity-40" />
       <div
@@ -39,14 +39,14 @@ export default function Model() {
         style={{ background: 'radial-gradient(ellipse 60% 50% at 100% 50%, rgba(74,144,217,0.07) 0%, transparent 65%)' }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 w-full pt-24 pb-8">
+      <div className="relative max-w-7xl mx-auto px-5 sm:px-8 xl:px-12 w-full pt-20 lg:pt-24 pb-8 lg:pb-12">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-10"
+          className="mb-8 lg:mb-12"
         >
           <div className="flex items-center gap-3 mb-4">
             <span className="w-8 h-px bg-hub-gold" />
@@ -55,7 +55,7 @@ export default function Model() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-3">
             <h2
               className="font-display text-white leading-none tracking-wide"
-              style={{ fontSize: 'clamp(2rem, 4.5vw, 3.8rem)' }}
+              style={{ fontSize: 'clamp(2rem, 4.5vw, 4.5rem)' }}
             >
               NUESTRO MODELO<br />
               <span
@@ -69,7 +69,7 @@ export default function Model() {
                 DE NEGOCIO
               </span>
             </h2>
-            <p className="text-hub-muted text-sm max-w-sm leading-relaxed">
+            <p className="text-hub-muted text-sm lg:text-base max-w-sm leading-relaxed">
               Capital privado + infraestructura real + empresas ocupantes =
               retorno previsible en dólares.
             </p>
@@ -77,7 +77,7 @@ export default function Model() {
         </motion.div>
 
         {/* Steps grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 xl:gap-6 mb-8 lg:mb-10">
           {steps.map((step, i) => (
             <motion.div
               key={step.num}
@@ -85,15 +85,15 @@ export default function Model() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group relative border border-hub-gold/10 bg-hub-black/50 hover:border-hub-gold/25 hover:bg-hub-black/70 transition-all duration-300 p-5"
+              className="group relative border border-hub-gold/10 bg-hub-black/50 hover:border-hub-gold/25 hover:bg-hub-black/70 transition-all duration-300 p-5 xl:p-7"
             >
               {/* Step number */}
               <div className="flex items-center gap-3 mb-3">
                 <span className="font-display text-hub-gold/40 text-3xl leading-none">{step.num}</span>
                 <span className="text-hub-gold text-xl">{step.icon}</span>
               </div>
-              <h3 className="font-display text-white text-xl leading-tight tracking-wide mb-2">{step.title}</h3>
-              <p className="text-hub-muted text-xs leading-relaxed">{step.desc}</p>
+              <h3 className="font-display text-white text-xl xl:text-2xl leading-tight tracking-wide mb-2">{step.title}</h3>
+              <p className="text-hub-muted text-xs lg:text-sm leading-relaxed">{step.desc}</p>
 
               {/* Connecting arrow — hide on last */}
               {i < steps.length - 1 && (
@@ -111,9 +111,9 @@ export default function Model() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="grid lg:grid-cols-2 gap-3"
+          className="grid lg:grid-cols-2 gap-3 lg:gap-5"
         >
-          <div className="flex items-center gap-4 p-4 border border-hub-gold/15 bg-gradient-to-r from-hub-gold/5 to-transparent hover:border-hub-gold/30 transition-all duration-300">
+          <div className="flex items-center gap-4 p-4 lg:p-5 border border-hub-gold/15 bg-gradient-to-r from-hub-gold/5 to-transparent hover:border-hub-gold/30 transition-all duration-300">
             <div className="w-9 h-9 bg-hub-gold/10 border border-hub-gold/25 flex items-center justify-center shrink-0">
               <span className="text-hub-gold font-bold text-sm">$</span>
             </div>
@@ -123,7 +123,7 @@ export default function Model() {
             </div>
             <a href="#investors" className="text-hub-gold text-xs font-medium shrink-0 hover:underline">Ver →</a>
           </div>
-          <div className="flex items-center gap-4 p-4 border border-hub-steel/15 bg-gradient-to-r from-hub-steel/5 to-transparent hover:border-hub-steel/30 transition-all duration-300">
+          <div className="flex items-center gap-4 p-4 lg:p-5 border border-hub-steel/15 bg-gradient-to-r from-hub-steel/5 to-transparent hover:border-hub-steel/30 transition-all duration-300">
             <div className="w-9 h-9 bg-hub-steel/10 border border-hub-steel/25 flex items-center justify-center shrink-0">
               <span className="text-hub-steel font-bold text-sm">⬡</span>
             </div>

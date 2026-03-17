@@ -58,17 +58,29 @@ export default function MendozaMap({ projects, activeId, onHover, onSelect }) {
         return (
           <div
             key={p.id}
-            className="absolute"
-            style={{ left: `${pos.left}%`, top: `${pos.top}%`, transform: 'translate(-50%, -50%)' }}
+            className="absolute cursor-pointer"
+            style={{
+              left: `${pos.left}%`,
+              top: `${pos.top}%`,
+              transform: 'translate(-50%, -50%)',
+              // Tap target 44×44px mínimo recomendado por Apple/Google
+              width: 44,
+              height: 44,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              touchAction: 'manipulation',
+            }}
             onMouseEnter={() => onHover(p.id)}
             onMouseLeave={() => onHover(null)}
             onClick={() => onSelect(p.id)}
+            onTouchEnd={(e) => { e.preventDefault(); onSelect(p.id) }}
           >
             {/* Pulso animado */}
             {isActive && (
               <motion.span
                 className="absolute rounded-full border"
-                style={{ borderColor: color, inset: '-8px' }}
+                style={{ borderColor: color, inset: 10 }}
                 initial={{ opacity: 0.8, scale: 0.5 }}
                 animate={{ opacity: 0, scale: 2.5 }}
                 transition={{ duration: 1.4, repeat: Infinity, ease: 'easeOut' }}
@@ -77,17 +89,18 @@ export default function MendozaMap({ projects, activeId, onHover, onSelect }) {
 
             {/* Anillo exterior */}
             <span
-              className="absolute rounded-full border transition-all duration-250 cursor-pointer"
+              className="absolute rounded-full border transition-all duration-250"
               style={{
                 borderColor: color,
-                inset: isActive ? '-6px' : '-3px',
+                width: isActive ? 22 : 16,
+                height: isActive ? 22 : 16,
                 opacity: isActive ? 0.9 : 0.4,
               }}
             />
 
             {/* Punto central */}
             <span
-              className="relative block rounded-full cursor-pointer transition-all duration-250"
+              className="relative block rounded-full transition-all duration-250"
               style={{
                 width: isActive ? 10 : 7,
                 height: isActive ? 10 : 7,
@@ -97,12 +110,12 @@ export default function MendozaMap({ projects, activeId, onHover, onSelect }) {
               }}
             />
 
-            {/* Label */}
+            {/* Label — posicionado a 8px del borde del punto, no del contenedor */}
             <span
               className={`absolute whitespace-nowrap text-[9px] font-display tracking-wide transition-opacity duration-250 pointer-events-none ${colorClass}`}
               style={{
-                left: pos.left > 60 ? 'auto' : '140%',
-                right: pos.left > 60 ? '140%' : 'auto',
+                left: pos.left > 60 ? 'auto' : 'calc(50% + 10px)',
+                right: pos.left > 60 ? 'calc(50% + 10px)' : 'auto',
                 top: '50%',
                 transform: 'translateY(-50%)',
                 opacity: isActive ? 1 : 0.35,

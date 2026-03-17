@@ -36,7 +36,7 @@ export default function ForCompanies() {
   return (
     <section
       id="companies"
-      className="h-screen bg-hub-black relative overflow-hidden flex flex-col pt-20"
+      className="min-h-screen lg:h-screen bg-hub-black relative overflow-x-hidden lg:overflow-hidden flex flex-col pt-16 lg:pt-20"
     >
       <div className="absolute inset-0 bg-grid opacity-20" />
       <div
@@ -44,7 +44,7 @@ export default function ForCompanies() {
         style={{ background: 'radial-gradient(ellipse 55% 55% at 15% 60%, rgba(74,144,217,0.06) 0%, transparent 65%)' }}
       />
 
-      <div className="relative flex flex-col flex-1 max-w-7xl mx-auto px-6 w-full py-6 min-h-0 gap-5">
+      <div className="relative flex flex-col flex-1 max-w-7xl mx-auto px-5 sm:px-8 xl:px-12 w-full py-5 lg:py-6 xl:py-8 min-h-0 gap-4 lg:gap-5 xl:gap-6">
 
         {/* ── Header ─────────────────────────────────── */}
         <motion.div
@@ -89,12 +89,12 @@ export default function ForCompanies() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="grid grid-cols-4 gap-2 shrink-0"
+              className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3 shrink-0"
             >
-              {specs.map((s, i) => (
+              {specs.map((s) => (
                 <div
                   key={s.label}
-                  className="border border-hub-steel/15 bg-hub-dark/40 px-3 py-3 flex flex-col justify-between hover:border-hub-steel/35 hover:bg-hub-dark/60 transition-all duration-200"
+                  className="border border-hub-steel/15 bg-hub-dark/40 px-3 py-3 lg:px-4 lg:py-4 xl:px-5 xl:py-5 flex flex-col justify-between hover:border-hub-steel/35 hover:bg-hub-dark/60 transition-all duration-200"
                 >
                   <span
                     className="font-display text-hub-steel leading-none"
@@ -102,7 +102,7 @@ export default function ForCompanies() {
                   >
                     {s.value}
                   </span>
-                  <span className="text-hub-muted text-xs mt-1 leading-snug whitespace-pre-line">{s.label}</span>
+                  <span className="text-hub-muted text-xs lg:text-sm mt-1 leading-snug whitespace-pre-line">{s.label}</span>
                 </div>
               ))}
             </motion.div>
@@ -112,12 +112,12 @@ export default function ForCompanies() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.18 }}
-              className="border border-hub-steel/10 bg-hub-dark/25 p-4 shrink-0"
+              className="border border-hub-steel/10 bg-hub-dark/25 p-4 lg:p-5 shrink-0"
             >
               <p className="text-hub-muted text-xs font-semibold tracking-widest uppercase mb-3">Servicios incluidos</p>
-              <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-2 lg:gap-y-3">
                 {services.map((s) => (
-                  <span key={s} className="flex items-center gap-2 text-white/70 text-xs">
+                  <span key={s} className="flex items-center gap-2 text-white/70 text-xs lg:text-sm">
                     <span className="w-px h-3 bg-hub-steel/50 shrink-0" />
                     {s}
                   </span>
@@ -130,7 +130,7 @@ export default function ForCompanies() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="flex-1 min-h-0 border border-hub-steel/10 bg-hub-dark/25 p-4 flex flex-col"
+              className="flex-1 min-h-0 border border-hub-steel/10 bg-hub-dark/25 p-4 lg:p-5 flex flex-col"
             >
               <p className="text-hub-muted text-xs font-semibold tracking-widest uppercase mb-3 shrink-0">Sectores</p>
               <div className="flex flex-wrap gap-2">
@@ -140,7 +140,7 @@ export default function ForCompanies() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3, delay: i * 0.05 + 0.3 }}
-                    className="px-3 py-1 border border-hub-steel/20 text-hub-muted text-xs tracking-wide hover:border-hub-steel/50 hover:text-hub-steel transition-all duration-200 cursor-default"
+                    className="px-3 py-1 lg:px-4 border border-hub-steel/20 text-hub-muted text-xs lg:text-sm tracking-wide hover:border-hub-steel/50 hover:text-hub-steel transition-all duration-200 cursor-default"
                   >
                     {s}
                   </motion.span>
@@ -155,23 +155,23 @@ export default function ForCompanies() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.55, delay: 0.2 }}
-            className="flex flex-col lg:w-72 xl:w-80 shrink-0 gap-3"
+            className="flex flex-col lg:w-72 xl:w-96 shrink-0 gap-3 lg:gap-4"
           >
             <p className="text-hub-muted text-xs font-semibold tracking-widest uppercase shrink-0">Modalidades</p>
 
-            <div className="flex flex-col gap-2 flex-1">
+            <div className="flex flex-col gap-2 lg:gap-3 flex-1">
               {contracts.map((c, i) => (
                 <motion.div
                   key={c.type}
                   initial={{ opacity: 0, x: 12 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.4, delay: i * 0.07 + 0.25 }}
-                  className="flex gap-3 p-3 border border-hub-steel/10 bg-hub-dark/30 hover:border-hub-steel/30 hover:bg-hub-dark/50 transition-all duration-200 group"
+                  className="flex gap-3 p-3 lg:p-4 border border-hub-steel/10 bg-hub-dark/30 hover:border-hub-steel/30 hover:bg-hub-dark/50 transition-all duration-200 group"
                 >
                   <span className="w-1 shrink-0 bg-hub-steel/30 group-hover:bg-hub-steel/70 transition-colors" />
                   <div>
-                    <p className="text-white text-xs font-semibold mb-0.5">{c.type}</p>
-                    <p className="text-hub-muted text-xs leading-relaxed">{c.desc}</p>
+                    <p className="text-white text-xs lg:text-sm font-semibold mb-0.5">{c.type}</p>
+                    <p className="text-hub-muted text-xs lg:text-sm leading-relaxed">{c.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -181,13 +181,13 @@ export default function ForCompanies() {
             <div className="flex gap-2 shrink-0">
               <a
                 href="#contact"
-                className="flex-1 py-2 text-center bg-hub-steel text-white text-xs font-semibold tracking-wider uppercase hover:brightness-110 transition-all duration-200"
+                className="flex-1 py-2 lg:py-3 text-center bg-hub-steel text-white text-xs lg:text-sm font-semibold tracking-wider uppercase hover:brightness-110 transition-all duration-200"
               >
                 Consultar
               </a>
               <a
                 href="#projects"
-                className="flex-1 py-2 text-center border border-hub-steel/30 text-hub-steel text-xs font-semibold tracking-wider uppercase hover:bg-hub-steel/10 hover:border-hub-steel/60 transition-all duration-200"
+                className="flex-1 py-2 lg:py-3 text-center border border-hub-steel/30 text-hub-steel text-xs lg:text-sm font-semibold tracking-wider uppercase hover:bg-hub-steel/10 hover:border-hub-steel/60 transition-all duration-200"
               >
                 Ver parques →
               </a>

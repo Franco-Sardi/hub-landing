@@ -68,8 +68,8 @@ function Stat({ value, suffix, prefix = '', label, sublabel, delay }) {
           </span>
         )}
       </div>
-      <div className="text-white text-xs font-semibold tracking-widest uppercase mb-1">{label}</div>
-      {sublabel && <div className="text-hub-muted text-xs tracking-wide">{sublabel}</div>}
+      <div className="text-white text-xs lg:text-sm font-semibold tracking-widest uppercase mb-1">{label}</div>
+      {sublabel && <div className="text-hub-muted text-xs lg:text-sm tracking-wide">{sublabel}</div>}
     </motion.div>
   )
 }
@@ -78,7 +78,7 @@ export default function Stats() {
   return (
     <section
       id="stats"
-      className="relative h-screen flex flex-col overflow-hidden bg-hub-dark"
+      className="relative h-auto lg:h-screen flex flex-col overflow-x-hidden lg:overflow-hidden bg-hub-dark"
     >
       {/* Background */}
       <div className="absolute inset-0 bg-grid opacity-50" />
@@ -96,13 +96,13 @@ export default function Stats() {
       </div>
 
       {/* Content — pushed below navbar with pt */}
-      <div className="relative z-10 flex flex-col items-center justify-center flex-1 pt-20 px-6">
+      <div className="relative z-10 flex flex-col items-center justify-center pt-16 lg:pt-20 lg:flex-1 pb-10 lg:pb-0 px-5 sm:px-8 xl:px-12">
         {/* Eyebrow */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-3 mb-12 lg:mb-16"
+          className="flex items-center gap-3 mb-8 lg:mb-16"
         >
           <span className="w-10 h-px bg-hub-gold/50" />
           <span className="text-hub-gold text-xs font-semibold tracking-[0.35em] uppercase">HUB en Números</span>
@@ -110,7 +110,7 @@ export default function Stats() {
         </motion.div>
 
         {/* 4 stats — 2 cols on mobile, 4 on desktop, with dividers */}
-        <div className="w-full max-w-5xl grid grid-cols-2 lg:grid-cols-4">
+        <div className="w-full max-w-5xl xl:max-w-6xl grid grid-cols-2 lg:grid-cols-4">
           {/* Stats */}
           {[
             { value: 6,      suffix: '',    label: 'Parques',    sublabel: 'En todo el país',   delay: 0    },
@@ -120,7 +120,7 @@ export default function Stats() {
           ].map((s, i) => (
             <div
               key={s.label}
-              className={`px-4 py-6 lg:px-8 ${
+              className={`px-4 py-6 lg:px-8 xl:px-12 xl:py-10 ${
                 i < 3 ? 'border-r border-hub-gold/10' : ''
               } ${i >= 2 ? 'border-t border-hub-gold/10 lg:border-t-0' : ''}`}
             >

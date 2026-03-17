@@ -11,12 +11,18 @@ function Lightbox({ images, index, onClose, onPrev, onNext }) {
       if (e.key === 'ArrowLeft') onPrev()
     }
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    // Freeze body scroll so fixed overlay stays put on mobile
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prev
+    }
   }, [onClose, onNext, onPrev])
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/92"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/92 overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -120,10 +126,10 @@ export default function ProjectDetail() {
   const nextImage = useCallback(() => setLightbox((i) => (i + 1) % gallery.length), [gallery.length])
 
   return (
-    <div className="bg-hub-black min-h-screen font-body">
+    <div className="bg-hub-black min-h-screen font-body overflow-x-hidden">
 
       {/* ── Hero ──────────────────────────────────────────────────── */}
-      <div className="relative h-[70vh] overflow-hidden">
+      <div className="relative h-[50vh] sm:h-[70vh] overflow-hidden">
         <motion.img
           src={project.image}
           alt={project.name}
@@ -181,7 +187,7 @@ export default function ProjectDetail() {
       </div>
 
       {/* ── Content ───────────────────────────────────────────────── */}
-      <div className="max-w-5xl mx-auto px-8 py-16">
+      <div className="max-w-5xl mx-auto px-4 sm:px-8 py-10 sm:py-16">
         <div className="grid lg:grid-cols-3 gap-12">
 
           {/* Main content */}
@@ -218,7 +224,7 @@ export default function ProjectDetail() {
 
               {/* Gallery */}
               <h2 className="font-display text-white text-2xl tracking-wide mb-4">GALERÍA</h2>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {gallery.slice(0, 3).map((src, i) => (
                   <motion.div
                     key={src}

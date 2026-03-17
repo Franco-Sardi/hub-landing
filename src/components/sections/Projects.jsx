@@ -28,11 +28,89 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="h-screen bg-hub-black relative overflow-hidden flex flex-col pt-20"
+      className="min-h-screen lg:h-screen bg-hub-black relative overflow-x-hidden lg:overflow-hidden flex flex-col pt-16 lg:pt-20"
     >
       <div className="absolute inset-0 bg-grid opacity-20" />
 
-      <div className="relative flex flex-1 max-w-7xl mx-auto px-6 w-full py-4 gap-5 min-h-0">
+      {/* ── Mobile layout ──────────────────────────────────────── */}
+      <div className="lg:hidden relative px-4 pt-4 pb-8 flex flex-col gap-4">
+        <div className="flex items-center gap-2 mb-1">
+          <span className="w-6 h-px bg-hub-gold" />
+          <span className="text-hub-gold text-xs font-semibold tracking-[0.3em] uppercase">HUB · Proyectos</span>
+        </div>
+        <h2 className="font-display text-white leading-none tracking-wide text-3xl mb-2">
+          MENDOZA,{' '}
+          <span style={{
+            background: 'linear-gradient(135deg, #c9a84c 0%, #e2c06a 100%)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+          }}>ARGENTINA</span>
+        </h2>
+
+        {/* Mapa mobile — altura fija para que el SVG se vea */}
+        <div className="relative border border-hub-gold/15 bg-hub-dark/30" style={{ height: 280 }}>
+          <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-hub-gold/25 pointer-events-none" />
+          <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-hub-gold/25 pointer-events-none" />
+          <div className="absolute bottom-2 left-2 w-3 h-3 border-b border-l border-hub-gold/25 pointer-events-none" />
+          <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-hub-gold/25 pointer-events-none" />
+          <MendozaMap
+            projects={projects}
+            activeId={activeId}
+            onHover={handleHover}
+            onSelect={handleSelect}
+          />
+        </div>
+
+        {/* Leyenda */}
+        <div className="flex items-center gap-4 -mt-1">
+          <span className="flex items-center gap-1.5 text-xs text-hub-muted">
+            <span className="w-1.5 h-1.5 rounded-full bg-hub-gold" />En Desarrollo
+          </span>
+          <span className="flex items-center gap-1.5 text-xs text-hub-muted">
+            <span className="w-1.5 h-1.5 rounded-full bg-hub-steel" />Próximamente
+          </span>
+        </div>
+
+        {projects.map((project) => {
+          const st = statusStyle[project.statusColor]
+          const isMobileActive = lockedId === project.id
+          return (
+            <Link
+              key={project.id}
+              to={`/proyecto/${project.id}`}
+              className={`relative overflow-hidden border bg-hub-dark/30 transition-all duration-300 ${
+                isMobileActive
+                  ? project.statusColor === 'gold' ? 'border-hub-gold/60' : 'border-hub-steel/60'
+                  : 'border-hub-gold/10'
+              }`}
+            >
+              <div className="relative h-40 overflow-hidden">
+                <img src={project.image} alt={project.name} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-hub-black/90 via-hub-black/30 to-transparent" />
+                <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2">
+                  <div>
+                    <span className={`text-xs font-semibold tracking-wider uppercase px-2 py-0.5 border ${st.badge}`}>
+                      {project.status}
+                    </span>
+                    <h3 className="font-display text-white text-xl leading-tight tracking-wide mt-1">
+                      {project.name.toUpperCase()}
+                    </h3>
+                  </div>
+                  <span className="text-hub-gold font-semibold text-sm shrink-0">{project.area} m²</span>
+                </div>
+              </div>
+              <div className="px-3 py-2 flex items-center justify-between">
+                <span className="text-hub-muted text-xs">📍 {project.location}</span>
+                <span className={`text-xs font-semibold tracking-widest uppercase ${project.statusColor === 'gold' ? 'text-hub-gold' : 'text-hub-steel'}`}>
+                  Ver parque →
+                </span>
+              </div>
+            </Link>
+          )
+        })}
+      </div>
+
+      {/* ── Desktop layout ─────────────────────────────────────── */}
+      <div className="hidden lg:flex flex-1 max-w-7xl mx-auto px-6 w-full py-4 gap-5 min-h-0">
 
         {/* ── Left: Mendoza Map ─────────────────────────────────── */}
         <div className="hidden lg:flex flex-col shrink-0" style={{ width: '40%' }}>
@@ -236,7 +314,7 @@ export default function Projects() {
           </div>
         </div>
 
-      </div>
+      </div>{/* end desktop layout */}
     </section>
   )
 }

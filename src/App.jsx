@@ -111,10 +111,21 @@ function SectionDots({ page, goTo }) {
   )
 }
 
+// ─── Mobile detection ────────────────────────────────────────────────────────
+function useIsMobile() {
+  const [m, setM] = useState(() => window.innerWidth < 1024)
+  useEffect(() => {
+    const h = () => setM(window.innerWidth < 1024)
+    window.addEventListener('resize', h)
+    return () => window.removeEventListener('resize', h)
+  }, [])
+  return m
+}
+
 // ─── App ─────────────────────────────────────────────────────────────────────
 const PAGES = [Hero, Stats, About, Model, Projects, ForInvestors, ForCompanies, Contact]
 
-function Landing() {
+function DesktopLanding() {
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     document.documentElement.style.overflow = 'hidden'
@@ -151,6 +162,36 @@ function Landing() {
       </div>
     </div>
   )
+}
+
+function MobileLanding() {
+  useEffect(() => {
+    document.body.style.overflow = ''
+    document.documentElement.style.overflow = ''
+  }, [])
+
+  const scrollTo = useCallback((page) => {
+    const id = SECTIONS[page]?.id
+    const el = id ? document.getElementById(id) : null
+    if (!el) return
+    const navHeight = 64
+    const top = el.getBoundingClientRect().top + window.scrollY - navHeight
+    window.scrollTo({ top, behavior: 'smooth' })
+  }, [])
+
+  return (
+    <div className="bg-hub-black font-body">
+      <Navbar currentPage={-1} goTo={scrollTo} />
+      {PAGES.map((Section, i) => (
+        <Section key={i} />
+      ))}
+    </div>
+  )
+}
+
+function Landing() {
+  const isMobile = useIsMobile()
+  return isMobile ? <MobileLanding /> : <DesktopLanding />
 }
 
 export default function App() {

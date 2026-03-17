@@ -26,7 +26,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-hub-black"
+      className="relative h-auto lg:h-screen flex flex-col items-center justify-start lg:justify-center overflow-hidden bg-hub-black pt-20 pb-10 lg:pt-0 lg:pb-0"
     >
       {/* Photo carousel */}
       <AnimatePresence mode="sync">
@@ -81,7 +81,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-16 lg:pt-0">
+      <div className="relative z-10 max-w-5xl xl:max-w-6xl mx-auto px-5 sm:px-8 text-center">
         <motion.div {...fadeUp(0)} className="flex items-center justify-center gap-3 mb-6">
           <span className="w-10 h-px bg-hub-gold/70" />
           <span className="font-body text-hub-gold text-xs font-semibold tracking-[0.35em] uppercase">

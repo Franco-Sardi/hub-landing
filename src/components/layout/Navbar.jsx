@@ -22,10 +22,10 @@ export default function Navbar({ currentPage = 0, goTo = () => {} }) {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? 'bg-hub-black/95 backdrop-blur-md border-b border-hub-gold/20 shadow-lg shadow-black/40'
-          : 'bg-transparent'
+          : 'bg-hub-black/80 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16 lg:h-20">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 xl:px-12 flex items-center justify-between h-16 lg:h-20">
         {/* Logo */}
         <button onClick={() => goTo(0)} className="flex items-center gap-3 group">
           <div className="w-8 h-8 bg-hub-gold flex items-center justify-center">

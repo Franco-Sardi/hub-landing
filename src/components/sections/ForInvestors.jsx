@@ -28,7 +28,7 @@ export default function ForInvestors() {
   return (
     <section
       id="investors"
-      className="relative h-screen flex flex-col overflow-hidden bg-hub-dark"
+      className="relative min-h-screen lg:h-screen flex flex-col overflow-x-hidden lg:overflow-hidden bg-hub-dark"
     >
       {/* Background */}
       <div className="absolute inset-0 bg-grid opacity-30" />
@@ -49,8 +49,8 @@ export default function ForInvestors() {
         >HUB</span>
       </div>
 
-      <div className="relative z-10 flex flex-col justify-center flex-1 pt-20 max-w-7xl mx-auto px-6 w-full">
-        <div className="grid lg:grid-cols-2 gap-8 items-center h-full py-6">
+      <div className="relative z-10 flex flex-col justify-center flex-1 pt-16 lg:pt-20 max-w-7xl mx-auto px-5 sm:px-8 xl:px-12 w-full">
+        <div className="grid lg:grid-cols-2 gap-8 xl:gap-14 items-start lg:items-center py-6 lg:h-full">
 
           {/* Left: pitch */}
           <div className="flex flex-col justify-center">
@@ -68,7 +68,7 @@ export default function ForInvestors() {
               {/* Headline */}
               <h2
                 className="font-display text-white leading-none tracking-wide mb-4"
-                style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
+                style={{ fontSize: 'clamp(2rem, 4vw, 4.2rem)' }}
               >
                 EL DINERO QUE<br />
                 <span style={{
@@ -79,26 +79,26 @@ export default function ForInvestors() {
                 </span>
               </h2>
 
-              <p className="text-hub-muted text-sm leading-relaxed mb-6 max-w-md">
+              <p className="text-hub-muted text-sm lg:text-base leading-relaxed mb-6 max-w-md">
                 Mientras las empresas más grandes de Argentina operan en nuestros parques,
                 vos percibís un retorno predecible, en dólares, respaldado por activos
                 industriales reales. Sin bolsa, sin cripto, sin sorpresas.
               </p>
 
               {/* 4 pillars — compact grid */}
-              <div className="grid grid-cols-2 gap-2.5">
+              <div className="grid grid-cols-2 gap-2.5 lg:gap-3 xl:gap-4">
                 {pillars.map((p, i) => (
                   <motion.div
                     key={p.title}
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
-                    className="flex gap-2.5 p-3 border border-hub-gold/10 bg-hub-black/40 hover:border-hub-gold/25 transition-all duration-300 group"
+                    className="flex gap-2.5 p-3 lg:p-4 xl:p-5 border border-hub-gold/10 bg-hub-black/40 hover:border-hub-gold/25 transition-all duration-300 group"
                   >
                     <span className="text-hub-gold text-base shrink-0 mt-0.5 group-hover:scale-110 transition-transform">{p.icon}</span>
                     <div>
-                      <h3 className="text-white font-semibold text-xs mb-0.5">{p.title}</h3>
-                      <p className="text-hub-muted text-xs leading-relaxed">{p.desc}</p>
+                      <h3 className="text-white font-semibold text-xs lg:text-sm mb-0.5">{p.title}</h3>
+                      <p className="text-hub-muted text-xs lg:text-sm leading-relaxed">{p.desc}</p>
                     </div>
                   </motion.div>
                 ))}

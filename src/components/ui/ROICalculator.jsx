@@ -39,69 +39,66 @@ export default function ROICalculator() {
 
   return (
     <div className="bg-hub-black/60 border border-hub-gold/15 p-4">
-      {/* Top row: amount + term */}
-      <div className="grid grid-cols-2 gap-3 mb-4">
-        {/* Amount */}
-        <div>
-          <label className="block text-hub-muted text-xs tracking-widest uppercase mb-1.5">Inversión (USD)</label>
-          <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-hub-gold font-semibold text-sm">$</span>
-            <input
-              type="text"
-              value={amount.toLocaleString('es-AR')}
-              onChange={(e) => {
-                const v = parseInt(e.target.value.replace(/\D/g, ''), 10)
-                if (!isNaN(v)) setAmount(Math.min(Math.max(v, 1000), 5000000))
-              }}
-              className="w-full bg-hub-dark border border-hub-gold/20 text-white pl-7 pr-3 py-2 text-sm font-semibold focus:outline-none focus:border-hub-gold/50 transition-colors"
-            />
-          </div>
+      {/* Inversión */}
+      <div className="mb-3">
+        <label className="block text-hub-muted text-xs tracking-widest uppercase mb-1.5">Inversión (USD)</label>
+        <div className="relative">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-hub-gold font-semibold text-sm">$</span>
           <input
-            type="range" min={5000} max={1000000} step={5000} value={amount}
-            onChange={(e) => setAmount(Number(e.target.value))}
-            className="w-full mt-1.5 cursor-pointer"
-            style={{ accentColor: '#c9a84c' }}
+            type="text"
+            value={amount.toLocaleString('es-AR')}
+            onChange={(e) => {
+              const v = parseInt(e.target.value.replace(/\D/g, ''), 10)
+              if (!isNaN(v)) setAmount(Math.min(Math.max(v, 1000), 5000000))
+            }}
+            className="w-full bg-hub-dark border border-hub-gold/20 text-white pl-7 pr-3 py-2 text-sm font-semibold focus:outline-none focus:border-hub-gold/50 transition-colors"
           />
         </div>
+        <input
+          type="range" min={5000} max={1000000} step={5000} value={amount}
+          onChange={(e) => setAmount(Number(e.target.value))}
+          className="w-full mt-1.5 cursor-pointer"
+          style={{ accentColor: '#c9a84c' }}
+        />
+      </div>
 
-        {/* Term */}
-        <div>
-          <label className="block text-hub-muted text-xs tracking-widest uppercase mb-1.5">Plazo</label>
-          <div className="flex gap-1.5">
-            {TERMS.map((t) => (
-              <button key={t}
-                onClick={() => setTerm(t)}
-                className={`flex-1 py-2 font-display text-xl tracking-wide transition-all duration-200 ${
-                  term === t
-                    ? 'bg-hub-gold text-hub-black'
-                    : 'border border-hub-gold/20 text-hub-muted hover:border-hub-gold/40 hover:text-white'
-                }`}
-              >
-                {t}a
-              </button>
-            ))}
-          </div>
-
-          {/* Summary numbers */}
-          <div className="grid grid-cols-3 gap-1 mt-1.5">
-            {[
-              { label: 'x año', val: annualRet },
-              { label: 'ganado', val: totalReturn },
-              { label: 'final', val: final, highlight: true },
-            ].map(({ label, val, highlight }) => (
-              <div key={label} className={`text-center py-1.5 border ${
-                highlight ? 'border-hub-gold/30 bg-hub-gold/10' : 'border-hub-gold/10'
-              }`}>
-                <p className="text-hub-gold font-display text-sm leading-none">{fmt(val)}</p>
-                <p className="text-hub-subtle text-xs mt-0.5">{label}</p>
-              </div>
-            ))}
-          </div>
+      {/* Plazo */}
+      <div className="mb-3">
+        <label className="block text-hub-muted text-xs tracking-widest uppercase mb-1.5">Plazo</label>
+        <div className="flex gap-1.5">
+          {TERMS.map((t) => (
+            <button key={t}
+              onClick={() => setTerm(t)}
+              className={`flex-1 py-2 font-display text-xl tracking-wide transition-all duration-200 ${
+                term === t
+                  ? 'bg-hub-gold text-hub-black'
+                  : 'border border-hub-gold/20 text-hub-muted hover:border-hub-gold/40 hover:text-white'
+              }`}
+            >
+              {t}a
+            </button>
+          ))}
         </div>
       </div>
 
+      {/* Resumen — ancho completo */}
+      <div className="grid grid-cols-3 gap-1.5 mb-4">
+        {[
+          { label: 'Por año', val: annualRet },
+          { label: 'Ganado', val: totalReturn },
+          { label: 'Total final', val: final, highlight: true },
+        ].map(({ label, val, highlight }) => (
+          <div key={label} className={`text-center py-2 border ${
+            highlight ? 'border-hub-gold/30 bg-hub-gold/10' : 'border-hub-gold/10'
+          }`}>
+            <p className="text-hub-gold font-display text-sm leading-none">{fmt(val)}</p>
+            <p className="text-hub-subtle text-xs mt-1">{label}</p>
+          </div>
+        ))}
+      </div>
+
       {/* Chart */}
-      <div className="h-44">
+      <div className="h-36 sm:h-44">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
             <defs>
