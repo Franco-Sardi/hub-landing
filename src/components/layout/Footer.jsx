@@ -2,76 +2,105 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-hub-darker border-t border-hub-gold/15">
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-          {/* Brand */}
-          <div className="md:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-hub-gold flex items-center justify-center">
-                <span className="font-display text-hub-black text-lg leading-none">H</span>
+    <footer className="bg-hub-darker border-t border-hub-azure/15 relative">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 xl:px-12">
+
+        {/* ── Mobile: compact ── */}
+        <div className="lg:hidden py-6">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 bg-hub-electric flex items-center justify-center">
+                <span className="font-display text-white text-xs leading-none">H</span>
               </div>
-              <span className="font-display text-2xl tracking-widest text-white">HUB</span>
+              <span className="font-display text-lg tracking-widest text-white">HUB</span>
             </div>
-            <p className="text-hub-muted text-sm leading-relaxed">
-              Infraestructura industrial de clase mundial para el futuro productivo de Argentina.
-            </p>
-          </div>
-
-          {/* Proyectos */}
-          <div>
-            <h4 className="font-display text-hub-gold tracking-widest text-sm mb-4">PROYECTOS</h4>
-            <ul className="space-y-2">
-              {['HUB Córdoba Norte', 'HUB Rosario Logístico', 'HUB Buenos Aires Sur', 'HUB Mendoza', 'HUB Tucumán', 'HUB Patagonia'].map(p => (
-                <li key={p}>
-                  <a href="#projects" className="text-hub-muted text-sm hover:text-white transition-colors">{p}</a>
-                </li>
+            <div className="flex gap-2">
+              {['LinkedIn', 'Instagram'].map((s) => (
+                <a key={s} href="#" className="text-[9px] text-hub-muted/50 border border-hub-azure/15 px-2 py-0.5 tracking-widest uppercase">{s}</a>
               ))}
-            </ul>
+            </div>
           </div>
-
-          {/* Servicios */}
-          <div>
-            <h4 className="font-display text-hub-gold tracking-widest text-sm mb-4">SERVICIOS</h4>
-            <ul className="space-y-2">
-              {['Para Inversores', 'Para Empresas', 'Alquiler de Espacios', 'Desarrollo a medida', 'Consultoría'].map(s => (
-                <li key={s}>
-                  <a href="#contact" className="text-hub-muted text-sm hover:text-white transition-colors">{s}</a>
-                </li>
-              ))}
-            </ul>
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-hub-muted/50 text-[10px] mb-3">
+            <span>contacto@hubindustriales.com</span>
+            <span>+54 261 000-0000</span>
+            <span>Mendoza, Argentina</span>
           </div>
-
-          {/* Contacto */}
-          <div>
-            <h4 className="font-display text-hub-gold tracking-widest text-sm mb-4">CONTACTO</h4>
-            <ul className="space-y-2 text-hub-muted text-sm">
-              <li>contacto@hubparquesindustriales.com</li>
-              <li>+54 (351) 000-0000</li>
-              <li>Córdoba, Argentina</li>
-            </ul>
-            <div className="flex gap-3 mt-4">
-              {['LI', 'TW', 'IG'].map(social => (
-                <a
-                  key={social}
-                  href="#"
-                  className="w-8 h-8 border border-hub-gold/30 flex items-center justify-center text-hub-muted text-xs hover:border-hub-gold hover:text-hub-gold transition-all"
-                >
-                  {social}
-                </a>
-              ))}
+          <div className="border-t border-hub-azure/10 pt-3 flex items-center justify-between">
+            <span className="text-white/15 text-[10px]">© {year} HUB Parques Industriales</span>
+            <div className="flex gap-4">
+              <a href="#" className="text-white/15 text-[10px]">Términos</a>
+              <a href="#" className="text-white/15 text-[10px]">Privacidad</a>
             </div>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="border-t border-hub-gold/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-hub-subtle text-xs">
-            © {year} HUB Parques Industriales. Todos los derechos reservados.
-          </p>
-          <div className="flex gap-6">
-            <a href="#" className="text-hub-subtle text-xs hover:text-hub-muted transition-colors">Términos y Condiciones</a>
-            <a href="#" className="text-hub-subtle text-xs hover:text-hub-muted transition-colors">Política de Privacidad</a>
+        {/* ── Desktop: full grid ── */}
+        <div className="hidden lg:block py-12">
+          <div className="grid grid-cols-4 gap-10 mb-10">
+            {/* Brand */}
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-7 h-7 bg-hub-electric flex items-center justify-center">
+                  <span className="font-display text-white text-sm leading-none">H</span>
+                </div>
+                <span className="font-display text-xl tracking-widest text-white">HUB</span>
+              </div>
+              <p className="text-hub-muted text-xs leading-relaxed max-w-xs">
+                Infraestructura industrial de clase mundial para el futuro productivo de Argentina.
+              </p>
+            </div>
+
+            {/* Navegación */}
+            <div>
+              <h4 className="text-hub-muted text-[10px] font-semibold tracking-widest uppercase mb-3">Navegación</h4>
+              <ul className="space-y-1.5">
+                {['Nosotros', 'Modelo', 'Proyectos', 'Empresas', 'Contacto'].map((link) => (
+                  <li key={link}>
+                    <a href={`#${link.toLowerCase()}`} className="text-hub-muted/70 text-xs hover:text-hub-bright transition-colors">{link}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Servicios */}
+            <div>
+              <h4 className="text-hub-muted text-[10px] font-semibold tracking-widest uppercase mb-3">Servicios</h4>
+              <ul className="space-y-1.5">
+                {['Alquiler industrial', 'Compra de módulos', 'Lease-back', 'Build-to-suit', 'Inversión en USD'].map((s) => (
+                  <li key={s}><span className="text-hub-muted/70 text-xs">{s}</span></li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contacto */}
+            <div>
+              <h4 className="text-hub-muted text-[10px] font-semibold tracking-widest uppercase mb-3">Contacto</h4>
+              <ul className="space-y-1.5 text-hub-muted/70 text-xs">
+                <li>contacto@hubindustriales.com</li>
+                <li>+54 261 000-0000</li>
+                <li>Mendoza, Argentina</li>
+              </ul>
+              <div className="flex gap-2 mt-3">
+                {['LinkedIn', 'Instagram'].map((social) => (
+                  <a key={social} href="#"
+                    className="text-[10px] text-hub-muted/50 border border-hub-azure/15 px-2.5 py-1 tracking-widest uppercase hover:border-hub-electric/40 hover:text-hub-bright transition-all duration-200"
+                  >{social}</a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="border-t border-hub-azure/10 pt-5 flex justify-between items-center">
+            <div className="flex items-center gap-3">
+              <span className="text-hub-muted/20 text-[10px] font-mono tracking-[0.2em]">LAT -32.89° · LON -68.84°</span>
+              <span className="w-px h-3 bg-hub-azure/15" />
+              <span className="text-white/15 text-[10px]">© {year} HUB Parques Industriales · Mendoza</span>
+            </div>
+            <div className="flex gap-5">
+              <a href="#" className="text-white/15 text-[10px] hover:text-white/35 transition-colors">Términos</a>
+              <a href="#" className="text-white/15 text-[10px] hover:text-white/35 transition-colors">Privacidad</a>
+            </div>
           </div>
         </div>
       </div>

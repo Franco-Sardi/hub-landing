@@ -73,7 +73,7 @@ function Lightbox({ images, index, onClose, onPrev, onNext }) {
       {/* Contador */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
         {images.map((_, i) => (
-          <span key={i} className={`block w-1.5 h-1.5 rounded-full transition-colors ${i === index ? 'bg-hub-gold' : 'bg-white/25'}`} />
+          <span key={i} className={`block w-1.5 h-1.5 rounded-full transition-colors ${i === index ? 'bg-hub-electric' : 'bg-white/25'}`} />
         ))}
       </div>
     </motion.div>
@@ -81,7 +81,7 @@ function Lightbox({ images, index, onClose, onPrev, onNext }) {
 }
 
 const statusStyle = {
-  gold:  { badge: 'bg-hub-gold/15 text-hub-gold border-hub-gold/30', cta: 'bg-hub-gold text-hub-black hover:bg-hub-gold-light' },
+  gold:  { badge: 'bg-hub-electric/15 text-hub-electric border-hub-electric/30', cta: 'bg-hub-electric text-white hover:bg-hub-bright' },
   steel: { badge: 'bg-hub-steel/15 text-hub-steel border-hub-steel/30', cta: 'bg-hub-steel text-white hover:bg-hub-steel-light' },
 }
 
@@ -112,7 +112,7 @@ export default function ProjectDetail() {
     return (
       <div className="h-screen bg-hub-black flex flex-col items-center justify-center gap-4">
         <p className="text-hub-muted font-display text-2xl tracking-widest">PARQUE NO ENCONTRADO</p>
-        <Link to="/" className="text-hub-gold text-sm hover:underline">← Volver al inicio</Link>
+        <Link to="/" className="text-hub-electric text-sm hover:underline">← Volver al inicio</Link>
       </div>
     )
   }
@@ -164,8 +164,8 @@ export default function ProjectDetail() {
           transition={{ duration: 0.7, delay: 0.3 }}
         >
           <div className="flex items-center gap-3 mb-3">
-            <span className="w-8 h-px bg-hub-gold" />
-            <span className="text-hub-gold text-xs font-semibold tracking-[0.3em] uppercase">HUB · Parque Industrial</span>
+            <span className="w-8 h-px bg-hub-electric" />
+            <span className="text-hub-electric text-xs font-semibold tracking-[0.3em] uppercase">HUB · Parque Industrial</span>
             <span className={`text-xs font-semibold tracking-wider uppercase px-2 py-0.5 border ${s.badge}`}>
               {project.status}
             </span>
@@ -179,7 +179,7 @@ export default function ProjectDetail() {
           <p className="text-hub-muted text-sm flex items-center gap-2">
             <span>📍</span> {project.location}
             <span className="w-px h-4 bg-hub-subtle" />
-            <span className="text-hub-gold font-semibold">{project.area} m²</span>
+            <span className="text-hub-electric font-semibold">{project.area} m²</span>
             <span className="w-px h-4 bg-hub-subtle" />
             <span>{project.units}</span>
           </p>
@@ -204,8 +204,8 @@ export default function ProjectDetail() {
               <h2 className="font-display text-white text-2xl tracking-wide mb-4">INFRAESTRUCTURA</h2>
               <div className="grid grid-cols-2 gap-3 mb-8">
                 {project.features.map((f) => (
-                  <div key={f} className="flex items-center gap-3 p-3 border border-hub-gold/12 bg-hub-dark/30">
-                    <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${project.statusColor === 'gold' ? 'bg-hub-gold' : 'bg-hub-steel'}`} />
+                  <div key={f} className="flex items-center gap-3 p-3 border border-hub-electric/12 bg-hub-dark/30">
+                    <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${project.statusColor === 'gold' ? 'bg-hub-electric' : 'bg-hub-steel'}`} />
                     <span className="text-white text-sm">{f}</span>
                   </div>
                 ))}
@@ -215,7 +215,7 @@ export default function ProjectDetail() {
                   'Oficinas y SUM',
                   'Estacionamiento',
                 ].map((f) => (
-                  <div key={f} className="flex items-center gap-3 p-3 border border-hub-gold/8 bg-hub-dark/20">
+                  <div key={f} className="flex items-center gap-3 p-3 border border-hub-electric/8 bg-hub-dark/20">
                     <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-hub-subtle" />
                     <span className="text-hub-muted text-sm">{f}</span>
                   </div>
@@ -228,7 +228,7 @@ export default function ProjectDetail() {
                 {gallery.slice(0, 3).map((src, i) => (
                   <motion.div
                     key={src}
-                    className="aspect-video overflow-hidden border border-hub-gold/10 cursor-zoom-in relative group"
+                    className="aspect-video overflow-hidden border border-hub-electric/10 cursor-zoom-in relative group"
                     initial={{ opacity: 0, scale: 0.97 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4, delay: 0.6 + i * 0.08 }}
@@ -256,7 +256,7 @@ export default function ProjectDetail() {
             transition={{ duration: 0.6, delay: 0.5 }}
           >
             {/* Specs */}
-            <div className="border border-hub-gold/15 bg-hub-dark/40 p-5">
+            <div className="border border-hub-electric/15 bg-hub-dark/40 p-5">
               <p className="text-hub-muted text-xs font-semibold tracking-widest uppercase mb-4">Especificaciones</p>
               <div className="space-y-3">
                 {[
@@ -276,11 +276,11 @@ export default function ProjectDetail() {
             </div>
 
             {/* Contracts */}
-            <div className="border border-hub-gold/10 bg-hub-dark/30 p-5">
+            <div className="border border-hub-electric/10 bg-hub-dark/30 p-5">
               <p className="text-hub-muted text-xs font-semibold tracking-widest uppercase mb-3">Modalidades</p>
               {['Alquiler', 'Compra', 'Build-to-suit'].map((m) => (
-                <div key={m} className="flex items-center gap-2 py-1.5 border-b border-hub-gold/8 last:border-0">
-                  <span className={`w-1 h-1 rounded-full ${project.statusColor === 'gold' ? 'bg-hub-gold' : 'bg-hub-steel'}`} />
+                <div key={m} className="flex items-center gap-2 py-1.5 border-b border-hub-electric/8 last:border-0">
+                  <span className={`w-1 h-1 rounded-full ${project.statusColor === 'gold' ? 'bg-hub-electric' : 'bg-hub-steel'}`} />
                   <span className="text-white text-sm">{m}</span>
                 </div>
               ))}
@@ -296,14 +296,14 @@ export default function ProjectDetail() {
               </a>
               <Link
                 to="/"
-                className="py-3 text-center border border-hub-gold/20 text-hub-muted text-xs font-semibold tracking-widest uppercase hover:border-hub-gold/40 hover:text-white transition-all duration-200"
+                className="py-3 text-center border border-hub-electric/20 text-hub-muted text-xs font-semibold tracking-widest uppercase hover:border-hub-electric/40 hover:text-white transition-all duration-200"
               >
                 ← Ver todos los parques
               </Link>
             </div>
 
             {/* Other projects */}
-            <div className="border border-hub-gold/8 bg-hub-dark/20 p-4">
+            <div className="border border-hub-electric/8 bg-hub-dark/20 p-4">
               <p className="text-hub-muted text-xs font-semibold tracking-widest uppercase mb-3">Otros Parques</p>
               <div className="space-y-2">
                 {projects.filter((p) => p.id !== project.id).slice(0, 3).map((p) => (
@@ -312,13 +312,13 @@ export default function ProjectDetail() {
                     to={`/proyecto/${p.id}`}
                     className="flex items-center gap-2 group"
                   >
-                    <span className="font-display text-hub-gold/30 text-sm group-hover:text-hub-gold/70 transition-colors">
+                    <span className="font-display text-hub-electric/30 text-sm group-hover:text-hub-electric/70 transition-colors">
                       {String(p.id).padStart(2, '0')}
                     </span>
                     <span className="text-hub-muted text-xs group-hover:text-white transition-colors truncate">
                       {p.name}
                     </span>
-                    <span className="ml-auto text-hub-subtle text-xs group-hover:text-hub-gold transition-colors">→</span>
+                    <span className="ml-auto text-hub-subtle text-xs group-hover:text-hub-electric transition-colors">→</span>
                   </Link>
                 ))}
               </div>
@@ -329,10 +329,10 @@ export default function ProjectDetail() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-hub-gold/10 mt-8">
+      <footer className="border-t border-hub-electric/10 mt-8">
         <div className="max-w-5xl mx-auto px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <div className="w-5 h-5 bg-hub-gold flex items-center justify-center">
+            <div className="w-5 h-5 bg-hub-electric flex items-center justify-center">
               <span className="font-display text-hub-black text-xs leading-none">H</span>
             </div>
             <span className="font-display text-hub-muted text-sm tracking-widest">HUB</span>
@@ -340,7 +340,7 @@ export default function ProjectDetail() {
           </div>
           <div className="flex items-center gap-4">
             <Link to="/" className="text-hub-subtle text-xs hover:text-hub-muted transition-colors">← Inicio</Link>
-            <a href="/#contact" className="text-hub-gold text-xs hover:underline">Contacto</a>
+            <a href="/#contact" className="text-hub-electric text-xs hover:underline">Contacto</a>
           </div>
         </div>
       </footer>

@@ -5,7 +5,7 @@ import { projects } from '../../data/projects'
 import MendozaMap from '../ui/MendozaMap'
 
 const statusStyle = {
-  gold:  { badge: 'bg-hub-gold/15 text-hub-gold border-hub-gold/30',   bar: 'bg-hub-gold' },
+  gold:  { badge: 'bg-hub-electric/15 text-hub-electric border-hub-electric/30',   bar: 'bg-hub-electric' },
   steel: { badge: 'bg-hub-steel/15 text-hub-steel border-hub-steel/30', bar: 'bg-hub-steel' },
 }
 
@@ -28,30 +28,30 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="min-h-screen lg:h-screen bg-hub-black relative overflow-x-hidden lg:overflow-hidden flex flex-col pt-16 lg:pt-20"
+      className="lg:min-h-dvh bg-hub-black relative overflow-hidden flex flex-col py-10 lg:py-4"
     >
       <div className="absolute inset-0 bg-grid opacity-20" />
 
       {/* ── Mobile layout ──────────────────────────────────────── */}
       <div className="lg:hidden relative px-4 pt-4 pb-8 flex flex-col gap-4">
         <div className="flex items-center gap-2 mb-1">
-          <span className="w-6 h-px bg-hub-gold" />
-          <span className="text-hub-gold text-xs font-semibold tracking-[0.3em] uppercase">HUB · Proyectos</span>
+          <span className="w-6 h-px bg-hub-electric" />
+          <span className="text-hub-electric text-xs font-semibold tracking-[0.3em] uppercase">HUB · Proyectos</span>
         </div>
         <h2 className="font-display text-white leading-none tracking-wide text-3xl mb-2">
           MENDOZA,{' '}
           <span style={{
-            background: 'linear-gradient(135deg, #c9a84c 0%, #e2c06a 100%)',
+            background: 'linear-gradient(135deg, #4a87f5 0%, #6aa3ff 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
           }}>ARGENTINA</span>
         </h2>
 
         {/* Mapa mobile — altura fija para que el SVG se vea */}
-        <div className="relative border border-hub-gold/15 bg-hub-dark/30" style={{ height: 280 }}>
-          <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-hub-gold/25 pointer-events-none" />
-          <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-hub-gold/25 pointer-events-none" />
-          <div className="absolute bottom-2 left-2 w-3 h-3 border-b border-l border-hub-gold/25 pointer-events-none" />
-          <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-hub-gold/25 pointer-events-none" />
+        <div className="relative border border-hub-electric/15 bg-hub-dark/30" style={{ height: 280 }}>
+          <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-hub-electric/25 pointer-events-none" />
+          <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-hub-electric/25 pointer-events-none" />
+          <div className="absolute bottom-2 left-2 w-3 h-3 border-b border-l border-hub-electric/25 pointer-events-none" />
+          <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-hub-electric/25 pointer-events-none" />
           <MendozaMap
             projects={projects}
             activeId={activeId}
@@ -63,7 +63,7 @@ export default function Projects() {
         {/* Leyenda */}
         <div className="flex items-center gap-4 -mt-1">
           <span className="flex items-center gap-1.5 text-xs text-hub-muted">
-            <span className="w-1.5 h-1.5 rounded-full bg-hub-gold" />En Desarrollo
+            <span className="w-1.5 h-1.5 rounded-full bg-hub-electric" />En Desarrollo
           </span>
           <span className="flex items-center gap-1.5 text-xs text-hub-muted">
             <span className="w-1.5 h-1.5 rounded-full bg-hub-steel" />Próximamente
@@ -79,8 +79,8 @@ export default function Projects() {
               to={`/proyecto/${project.id}`}
               className={`relative overflow-hidden border bg-hub-dark/30 transition-all duration-300 ${
                 isMobileActive
-                  ? project.statusColor === 'gold' ? 'border-hub-gold/60' : 'border-hub-steel/60'
-                  : 'border-hub-gold/10'
+                  ? project.statusColor === 'gold' ? 'border-hub-electric/60' : 'border-hub-steel/60'
+                  : 'border-hub-electric/10'
               }`}
             >
               <div className="relative h-40 overflow-hidden">
@@ -95,12 +95,12 @@ export default function Projects() {
                       {project.name.toUpperCase()}
                     </h3>
                   </div>
-                  <span className="text-hub-gold font-semibold text-sm shrink-0">{project.area} m²</span>
+                  <span className="text-hub-electric font-semibold text-sm shrink-0">{project.area} m²</span>
                 </div>
               </div>
               <div className="px-3 py-2 flex items-center justify-between">
                 <span className="text-hub-muted text-xs">📍 {project.location}</span>
-                <span className={`text-xs font-semibold tracking-widest uppercase ${project.statusColor === 'gold' ? 'text-hub-gold' : 'text-hub-steel'}`}>
+                <span className={`text-xs font-semibold tracking-widest uppercase ${project.statusColor === 'gold' ? 'text-hub-electric' : 'text-hub-steel'}`}>
                   Ver parque →
                 </span>
               </div>
@@ -110,37 +110,50 @@ export default function Projects() {
       </div>
 
       {/* ── Desktop layout ─────────────────────────────────────── */}
-      <div className="hidden lg:flex flex-1 max-w-7xl mx-auto px-6 w-full py-4 gap-5 min-h-0">
+      <div className="hidden lg:flex flex-col flex-1 max-w-7xl mx-auto px-6 w-full py-4 min-h-0">
 
-        {/* ── Left: Mendoza Map ─────────────────────────────────── */}
-        <div className="hidden lg:flex flex-col shrink-0" style={{ width: '40%' }}>
-          {/* Header */}
-          <div className="mb-3 shrink-0">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="w-6 h-px bg-hub-gold" />
-              <span className="text-hub-gold text-xs font-semibold tracking-[0.3em] uppercase">HUB · Proyectos</span>
-            </div>
+        {/* Section header — spans full width above both columns */}
+        <div className="mb-3 shrink-0">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="w-6 h-px bg-hub-electric" />
+            <span className="text-hub-electric text-xs font-semibold tracking-[0.3em] uppercase">HUB · Proyectos</span>
+          </div>
+          <div className="flex items-end justify-between">
             <h2
               className="font-display text-white leading-none tracking-wide"
               style={{ fontSize: 'clamp(1.6rem, 2.5vw, 2.4rem)' }}
             >
               MENDOZA,{' '}
               <span style={{
-                background: 'linear-gradient(135deg, #c9a84c 0%, #e2c06a 100%)',
+                background: 'linear-gradient(135deg, #4a87f5 0%, #6aa3ff 100%)',
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
               }}>
                 ARGENTINA
               </span>
             </h2>
+            <div className="flex items-center gap-4">
+              <span className="flex items-center gap-1.5 text-xs text-hub-muted">
+                <span className="w-1.5 h-1.5 rounded-full bg-hub-electric" />En Desarrollo
+              </span>
+              <span className="flex items-center gap-1.5 text-xs text-hub-muted">
+                <span className="w-1.5 h-1.5 rounded-full bg-hub-steel" />Próximamente
+              </span>
+            </div>
           </div>
+        </div>
 
-          {/* Map container */}
-          <div className="flex-1 min-h-0 border border-hub-gold/15 bg-hub-dark/30 relative overflow-hidden p-3">
+        {/* Two columns — map and content start at the same height */}
+        <div className="flex flex-1 min-h-0 gap-5">
+
+        {/* ── Left: Mendoza Map ─────────────────────────────────── */}
+        <div className="flex flex-col shrink-0" style={{ width: '40%' }}>
+          {/* Map container — fills entire left column */}
+          <div className="flex-1 min-h-0 border border-hub-electric/15 bg-hub-dark/30 relative overflow-hidden p-3">
             {/* Corner accents */}
-            <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-hub-gold/25 pointer-events-none" />
-            <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-hub-gold/25 pointer-events-none" />
-            <div className="absolute bottom-2 left-2 w-3 h-3 border-b border-l border-hub-gold/25 pointer-events-none" />
-            <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-hub-gold/25 pointer-events-none" />
+            <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-hub-electric/25 pointer-events-none" />
+            <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-hub-electric/25 pointer-events-none" />
+            <div className="absolute bottom-2 left-2 w-3 h-3 border-b border-l border-hub-electric/25 pointer-events-none" />
+            <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-hub-electric/25 pointer-events-none" />
 
             <MendozaMap
               projects={projects}
@@ -149,23 +162,13 @@ export default function Projects() {
               onSelect={handleSelect}
             />
           </div>
-
-          {/* Legend */}
-          <div className="flex items-center gap-4 mt-2 shrink-0">
-            <span className="flex items-center gap-1.5 text-xs text-hub-muted">
-              <span className="w-1.5 h-1.5 rounded-full bg-hub-gold" />En Desarrollo
-            </span>
-            <span className="flex items-center gap-1.5 text-xs text-hub-muted">
-              <span className="w-1.5 h-1.5 rounded-full bg-hub-steel" />Próximamente
-            </span>
-          </div>
         </div>
 
         {/* ── Right: Image preview + project list ───────────────── */}
         <div className="flex flex-col flex-1 min-h-0 min-w-0 gap-3">
 
           {/* Image preview */}
-          <div className="relative shrink-0 overflow-hidden border border-hub-gold/15"
+          <div className="relative shrink-0 overflow-hidden border border-hub-electric/15"
             style={{ height: '38%' }}
           >
             <AnimatePresence mode="wait">
@@ -210,7 +213,7 @@ export default function Projects() {
                       {active.name.toUpperCase()}
                     </h3>
                     <p className="text-hub-muted text-xs mt-0.5 flex items-center gap-1">
-                      <span className="text-hub-gold">📍</span> {active.location}
+                      <span className="text-hub-electric">📍</span> {active.location}
                     </p>
                   </div>
 
@@ -218,7 +221,7 @@ export default function Projects() {
                     to={`/proyecto/${active.id}`}
                     className={`shrink-0 px-4 py-2 text-xs font-semibold tracking-widest uppercase transition-all duration-200 ${
                       active.statusColor === 'gold'
-                        ? 'bg-hub-gold text-hub-black hover:bg-hub-gold-light'
+                        ? 'bg-hub-electric text-white hover:bg-hub-bright'
                         : 'border border-hub-steel/50 text-hub-steel hover:bg-hub-steel/10'
                     }`}
                   >
@@ -239,7 +242,6 @@ export default function Projects() {
           {/* Project list */}
           <div
             className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-1.5 no-scrollbar"
-            onWheel={(e) => e.stopPropagation()}
           >
             {projects.map((project, i) => {
               const st = statusStyle[project.statusColor]
@@ -249,31 +251,32 @@ export default function Projects() {
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0, x: 16 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.35, delay: i * 0.05 }}
                   onMouseEnter={() => handleHover(project.id)}
                   onMouseLeave={() => handleHover(null)}
                   onClick={() => handleSelect(project.id)}
                   className={`group relative flex items-center gap-3 px-3 py-2 border transition-all duration-250 cursor-pointer ${
                     isActive
-                      ? 'border-hub-gold/35 bg-hub-dark/60'
-                      : 'border-hub-gold/8 bg-hub-dark/20 hover:border-hub-gold/20 hover:bg-hub-dark/40'
+                      ? 'border-hub-electric/35 bg-hub-dark/60'
+                      : 'border-hub-electric/8 bg-hub-dark/20 hover:border-hub-electric/20 hover:bg-hub-dark/40'
                   }`}
                 >
                   {/* Active bar */}
                   <div className={`absolute left-0 top-0 bottom-0 w-0.5 transition-opacity duration-200 ${st.bar} ${isActive ? 'opacity-100' : 'opacity-0'}`} />
                   {/* Lock indicator */}
-                  {isLocked && <div className="absolute right-2 top-1.5 w-1 h-1 rounded-full bg-hub-gold/60" />}
+                  {isLocked && <div className="absolute right-2 top-1.5 w-1 h-1 rounded-full bg-hub-electric/60" />}
 
                   {/* Number */}
-                  <span className={`font-display text-xl leading-none w-7 shrink-0 transition-colors ${isActive ? 'text-hub-gold/70' : 'text-hub-gold/20'}`}>
+                  <span className={`font-display text-xl leading-none w-7 shrink-0 transition-colors ${isActive ? 'text-hub-electric/70' : 'text-hub-electric/20'}`}>
                     {String(project.id).padStart(2, '0')}
                   </span>
 
                   {/* Name + location */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className={`font-display text-sm leading-tight tracking-wide truncate transition-colors ${isActive ? 'text-hub-gold-light' : 'text-white group-hover:text-hub-gold-light'}`}>
+                      <span className={`font-display text-sm leading-tight tracking-wide truncate transition-colors ${isActive ? 'text-hub-bright' : 'text-white group-hover:text-hub-bright'}`}>
                         {project.name}
                       </span>
                       <span className={`text-xs font-semibold tracking-wide uppercase px-1.5 py-0.5 border shrink-0 ${st.badge}`}>
@@ -283,7 +286,7 @@ export default function Projects() {
                     <div className="flex items-center gap-2 mt-0.5">
                       <span className="text-hub-muted text-xs truncate">{project.location}</span>
                       <span className="w-px h-3 bg-hub-subtle/30 shrink-0" />
-                      <span className={`text-xs font-medium shrink-0 ${project.statusColor === 'gold' ? 'text-hub-gold/70' : 'text-hub-steel/70'}`}>
+                      <span className={`text-xs font-medium shrink-0 ${project.statusColor === 'gold' ? 'text-hub-electric/70' : 'text-hub-steel/70'}`}>
                         {project.area} m²
                       </span>
                     </div>
@@ -301,7 +304,7 @@ export default function Projects() {
                     to={`/proyecto/${project.id}`}
                     className={`shrink-0 flex items-center gap-1 px-2 py-1 text-xs font-semibold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-all duration-200 border ${
                       project.statusColor === 'gold'
-                        ? 'border-hub-gold/50 text-hub-gold hover:bg-hub-gold hover:text-hub-black'
+                        ? 'border-hub-electric/50 text-hub-electric hover:bg-hub-electric hover:text-white'
                         : 'border-hub-steel/50 text-hub-steel hover:bg-hub-steel hover:text-white'
                     }`}
                     onClick={(e) => e.stopPropagation()}
@@ -314,6 +317,7 @@ export default function Projects() {
           </div>
         </div>
 
+        </div>{/* end two columns */}
       </div>{/* end desktop layout */}
     </section>
   )

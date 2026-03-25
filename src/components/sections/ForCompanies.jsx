@@ -1,199 +1,190 @@
 import { motion } from 'framer-motion'
 
 const specs = [
-  { value: '18 m',    label: 'Altura\nlibre' },
-  { value: '5 t/m²',  label: 'Carga\nde piso' },
-  { value: '380 V',   label: 'Energía\ntrifásica' },
-  { value: '40 t',    label: 'Acceso\ncamiones' },
+  { value: '18 m',   label: 'Altura libre' },
+  { value: '5 t/m²', label: 'Carga de piso' },
+  { value: '380 V',  label: 'Energía trifásica' },
+  { value: '40 t',   label: 'Acceso camiones' },
 ]
 
-const sectors = [
-  'E-commerce & Retail',
-  'Logística & Transporte',
-  'Manufactura',
-  'Agroalimentos',
-  'Pharma & Salud',
-  'Energía & Minería',
+const reasons = [
+  { num: '01', title: 'Instalate en días, no en meses', desc: 'Infraestructura lista. Sin obra, sin permisos, sin riesgos.' },
+  { num: '02', title: 'Contratos que se adaptan a vos', desc: 'Alquiler desde 1 año, compra directa, lease-back o build-to-suit.' },
+  { num: '03', title: 'Ubicaciones estratégicas', desc: 'Acceso directo a RN 7, RN 40, aeropuerto y paso cordillerano.' },
 ]
+
+const sectors = ['E-commerce', 'Logística', 'Manufactura', 'Agroalimentos', 'Pharma', 'Minería', 'Energía', 'Retail']
+
+const services = ['Seguridad 24/7 · CCTV', 'Fibra óptica', 'Playa maniobras 50 m', 'Oficinas integradas', 'Control de acceso', 'Mantenimiento']
 
 const contracts = [
-  { type: 'Alquiler',   desc: 'Desde 1 año en USD, renovable.' },
-  { type: 'Compra',     desc: 'Módulos o naves completas.' },
-  { type: 'Lease-back', desc: 'Vendé y seguí operando en el mismo espacio.' },
-  { type: 'BTS',        desc: 'Build-to-suit a medida de tu operación.' },
-]
-
-const services = [
-  'Seguridad 24/7',
-  'Fibra óptica',
-  'Playa de maniobras',
-  'Oficinas integradas',
-  'Mantenimiento incluido',
-  'Control de acceso',
+  { type: 'Alquiler',   desc: 'Desde 1 año en USD' },
+  { type: 'Compra',     desc: 'Módulos o naves' },
+  { type: 'Lease-back', desc: 'Vendé y seguí operando' },
+  { type: 'BTS',        desc: 'Build-to-suit' },
 ]
 
 export default function ForCompanies() {
   return (
-    <section
-      id="companies"
-      className="min-h-screen lg:h-screen bg-hub-black relative overflow-x-hidden lg:overflow-hidden flex flex-col pt-16 lg:pt-20"
-    >
-      <div className="absolute inset-0 bg-grid opacity-20" />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 55% 55% at 15% 60%, rgba(74,144,217,0.06) 0%, transparent 65%)' }}
-      />
+    <section id="companies" className="relative lg:min-h-dvh flex flex-col overflow-hidden bg-hub-dark py-10 lg:py-0">
+      {/* Background layers */}
+      <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse 60% 50% at 80% 20%, rgba(13,63,165,0.12) 0%, transparent 60%)' }} />
+      <div className="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-hub-azure/30 to-transparent" />
 
-      <div className="relative flex flex-col flex-1 max-w-7xl mx-auto px-5 sm:px-8 xl:px-12 w-full py-5 lg:py-6 xl:py-8 min-h-0 gap-4 lg:gap-5 xl:gap-6">
+      {/* ── Main content ── */}
+      <div className="relative flex flex-col justify-center flex-1 max-w-7xl mx-auto px-5 sm:px-8 xl:px-12 w-full py-10 lg:py-8">
 
-        {/* ── Header ─────────────────────────────────── */}
+        {/* Header row */}
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
-          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 shrink-0"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-6 lg:mb-8"
         >
-          <div>
-            <div className="flex items-center gap-3 mb-2">
-              <span className="w-8 h-px bg-hub-steel" />
-              <span className="text-hub-steel text-xs font-semibold tracking-[0.3em] uppercase">HUB · Para Empresas</span>
-            </div>
-            <h2
-              className="font-display text-white leading-none tracking-wide"
-              style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.8rem)' }}
-            >
-              INFRAESTRUCTURA{' '}
-              <span style={{
-                background: 'linear-gradient(135deg, #4a90d9 0%, #6aaae8 100%)',
-                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-              }}>
-                LISTA PARA OPERAR
-              </span>
-            </h2>
+          <div className="flex items-center gap-3 mb-3">
+            <span className="w-8 h-px bg-hub-electric" />
+            <span className="text-hub-bright text-xs font-semibold tracking-[0.3em] uppercase">HUB · Para Empresas</span>
           </div>
-          <p className="text-hub-muted text-sm max-w-xs shrink-0">
-            Instalate en días, no en meses. Sin obra, sin gestión, sin riesgos de construcción.
-          </p>
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-3">
+            <h2
+              className="font-display text-white leading-[0.90] tracking-wide"
+              style={{ fontSize: 'clamp(2rem, 4vw, 4rem)' }}
+            >
+              OPERÁ{' '}
+              <span className="text-gradient-electric">DESDE EL DÍA UNO</span>
+            </h2>
+            <p className="text-hub-muted text-sm max-w-xs leading-relaxed font-light shrink-0">
+              Sin obra. Sin permisos. Sin riesgos de construcción.
+            </p>
+          </div>
         </motion.div>
 
-        <div className="h-px bg-gradient-to-r from-hub-steel/40 via-hub-steel/15 to-transparent shrink-0" />
+        {/* ── Image strip + specs ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="relative mb-6 lg:mb-8"
+        >
+          <div className="relative h-40 lg:h-52 overflow-hidden">
+            <img
+              src="/assets/slide-2.jpg"
+              alt="HUB Parque Industrial"
+              className="w-full h-full object-cover"
+              style={{ filter: 'brightness(0.5) saturate(0.8)' }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-hub-dark/80 via-transparent to-hub-dark/60" />
+            <div className="absolute inset-0 bg-gradient-to-t from-hub-dark/70 to-transparent" />
 
-        {/* ── Body: 2 columnas ─────────────────────────────────── */}
-        <div className="flex flex-col lg:flex-row flex-1 min-h-0 gap-5">
-
-          {/* ── Columna izquierda ── */}
-          <div className="flex flex-col flex-1 min-h-0 gap-4">
-
-            {/* Specs — 4 en fila */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3 shrink-0"
-            >
-              {specs.map((s) => (
-                <div
-                  key={s.label}
-                  className="border border-hub-steel/15 bg-hub-dark/40 px-3 py-3 lg:px-4 lg:py-4 xl:px-5 xl:py-5 flex flex-col justify-between hover:border-hub-steel/35 hover:bg-hub-dark/60 transition-all duration-200"
-                >
-                  <span
-                    className="font-display text-hub-steel leading-none"
-                    style={{ fontSize: 'clamp(1.3rem, 2.2vw, 1.9rem)' }}
-                  >
-                    {s.value}
-                  </span>
-                  <span className="text-hub-muted text-xs lg:text-sm mt-1 leading-snug whitespace-pre-line">{s.label}</span>
+            {/* Specs overlay on image */}
+            <div className="absolute bottom-0 left-0 right-0 grid grid-cols-4 border-t border-hub-azure/25 bg-hub-black/50 backdrop-blur-sm">
+              {specs.map((s, i) => (
+                <div key={s.label} className={`flex flex-col items-center justify-center text-center py-2.5 lg:py-3 px-2 ${i < 3 ? 'border-r border-hub-azure/20' : ''}`}>
+                  <span className="font-display text-hub-bright leading-none" style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.3rem)' }}>{s.value}</span>
+                  <span className="text-hub-muted text-[9px] lg:text-[10px] mt-0.5">{s.label}</span>
                 </div>
               ))}
-            </motion.div>
+            </div>
 
-            {/* Servicios incluidos */}
+            {/* Corner accents */}
+            <div className="absolute top-3 left-3 w-4 h-4 border-t border-l border-hub-electric/30" />
+            <div className="absolute top-3 right-3 w-4 h-4 border-t border-r border-hub-electric/30" />
+          </div>
+        </motion.div>
+
+        {/* ── Two-column: reasons + services/contracts ── */}
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-10">
+
+          {/* Left: reasons */}
+          <div>
+            {reasons.map((r, i) => (
+              <motion.div
+                key={r.num}
+                initial={{ opacity: 0, x: -16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
+                className="flex gap-4 py-3 border-b border-hub-azure/15 last:border-0 group"
+              >
+                <span className="font-display text-hub-electric/20 text-3xl leading-none shrink-0 group-hover:text-hub-electric/45 transition-colors">{r.num}</span>
+                <div>
+                  <p className="text-white text-sm font-semibold mb-0.5 group-hover:text-hub-bright transition-colors">{r.title}</p>
+                  <p className="text-hub-muted text-xs leading-relaxed">{r.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+
+            {/* Sectors */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.18 }}
-              className="border border-hub-steel/10 bg-hub-dark/25 p-4 lg:p-5 shrink-0"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-4"
             >
-              <p className="text-hub-muted text-xs font-semibold tracking-widest uppercase mb-3">Servicios incluidos</p>
-              <div className="grid grid-cols-2 gap-x-4 gap-y-2 lg:gap-y-3">
-                {services.map((s) => (
-                  <span key={s} className="flex items-center gap-2 text-white/70 text-xs lg:text-sm">
-                    <span className="w-px h-3 bg-hub-steel/50 shrink-0" />
-                    {s}
-                  </span>
+              <p className="text-hub-muted text-[10px] tracking-widest uppercase mb-2">Sectores que operan en HUB</p>
+              <div className="flex flex-wrap gap-1.5">
+                {sectors.map((s) => (
+                  <span key={s} className="px-2.5 py-1 border border-hub-azure/25 text-hub-muted text-[10px] hover:border-hub-electric/40 hover:text-hub-bright transition-all duration-200 cursor-default">{s}</span>
                 ))}
               </div>
             </motion.div>
-
-            {/* Sectores */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.25 }}
-              className="flex-1 min-h-0 border border-hub-steel/10 bg-hub-dark/25 p-4 lg:p-5 flex flex-col"
-            >
-              <p className="text-hub-muted text-xs font-semibold tracking-widest uppercase mb-3 shrink-0">Sectores</p>
-              <div className="flex flex-wrap gap-2">
-                {sectors.map((s, i) => (
-                  <motion.span
-                    key={s}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: i * 0.05 + 0.3 }}
-                    className="px-3 py-1 lg:px-4 border border-hub-steel/20 text-hub-muted text-xs lg:text-sm tracking-wide hover:border-hub-steel/50 hover:text-hub-steel transition-all duration-200 cursor-default"
-                  >
-                    {s}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-
           </div>
 
-          {/* ── Columna derecha ── */}
+          {/* Right: services + contracts + CTAs */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.55, delay: 0.2 }}
-            className="flex flex-col lg:w-72 xl:w-96 shrink-0 gap-3 lg:gap-4"
+            initial={{ opacity: 0, x: 16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-col gap-5"
           >
-            <p className="text-hub-muted text-xs font-semibold tracking-widest uppercase shrink-0">Modalidades</p>
-
-            <div className="flex flex-col gap-2 lg:gap-3 flex-1">
-              {contracts.map((c, i) => (
-                <motion.div
-                  key={c.type}
-                  initial={{ opacity: 0, x: 12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: i * 0.07 + 0.25 }}
-                  className="flex gap-3 p-3 lg:p-4 border border-hub-steel/10 bg-hub-dark/30 hover:border-hub-steel/30 hover:bg-hub-dark/50 transition-all duration-200 group"
-                >
-                  <span className="w-1 shrink-0 bg-hub-steel/30 group-hover:bg-hub-steel/70 transition-colors" />
-                  <div>
-                    <p className="text-white text-xs lg:text-sm font-semibold mb-0.5">{c.type}</p>
-                    <p className="text-hub-muted text-xs lg:text-sm leading-relaxed">{c.desc}</p>
+            {/* Services */}
+            <div>
+              <p className="text-hub-muted text-[10px] font-semibold tracking-widest uppercase mb-2.5">Servicios incluidos</p>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+                {services.map((s) => (
+                  <div key={s} className="flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-hub-electric/50 shrink-0" />
+                    <span className="text-white/70 text-xs">{s}</span>
                   </div>
-                </motion.div>
-              ))}
+                ))}
+              </div>
+            </div>
+
+            {/* Contracts */}
+            <div>
+              <p className="text-hub-muted text-[10px] font-semibold tracking-widest uppercase mb-2.5">Modalidades de contratación</p>
+              <div className="grid grid-cols-2 gap-2">
+                {contracts.map((c) => (
+                  <div key={c.type} className="flex items-center gap-2 px-3 py-2 border border-hub-azure/15 bg-hub-midnight/30 hover:border-hub-electric/30 transition-colors group">
+                    <span className="w-0.5 h-full bg-hub-electric/25 shrink-0 group-hover:bg-hub-electric transition-colors" />
+                    <div>
+                      <span className="text-white text-xs font-semibold block">{c.type}</span>
+                      <span className="text-hub-muted text-[10px]">{c.desc}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* CTAs */}
-            <div className="flex gap-2 shrink-0">
-              <a
-                href="#contact"
-                className="flex-1 py-2 lg:py-3 text-center bg-hub-steel text-white text-xs lg:text-sm font-semibold tracking-wider uppercase hover:brightness-110 transition-all duration-200"
-              >
-                Consultar
+            <div className="flex gap-3 mt-1">
+              <a href="#contact"
+                className="px-6 py-2.5 bg-hub-electric text-white text-xs font-bold tracking-widest uppercase hover:bg-hub-bright transition-colors duration-200"
+                style={{ boxShadow: '0 0 24px rgba(30,92,212,0.2)' }}>
+                Consultar disponibilidad
               </a>
-              <a
-                href="#projects"
-                className="flex-1 py-2 lg:py-3 text-center border border-hub-steel/30 text-hub-steel text-xs lg:text-sm font-semibold tracking-wider uppercase hover:bg-hub-steel/10 hover:border-hub-steel/60 transition-all duration-200"
-              >
+              <a href="#projects"
+                className="px-5 py-2.5 border border-hub-electric/40 text-hub-bright text-xs font-semibold tracking-widest uppercase hover:bg-hub-electric/10 transition-all duration-200">
                 Ver parques →
               </a>
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>
