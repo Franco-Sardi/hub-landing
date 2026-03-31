@@ -52,7 +52,7 @@ function Stat({ value, suffix, label, sublabel, delay, index }) {
           <span
             className="font-display tabular-nums"
             style={{
-              fontSize: 'clamp(2.6rem, 4.5vw, 4.2rem)',
+              fontSize: 'clamp(2.2rem, 3.5vw, 3.5rem)',
               background: 'linear-gradient(135deg, #4a87f5 0%, #6aa3ff 50%, #4a87f5 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -86,10 +86,11 @@ function Stat({ value, suffix, label, sublabel, delay, index }) {
 }
 
 const STATS = [
-  { value: 6,      suffix: '',    label: 'Parques',    sublabel: 'En Mendoza',         delay: 0    },
-  { value: 285000, suffix: ' m²', label: 'Superficie', sublabel: 'Total disponible',   delay: 0.12 },
-  { value: 8,      suffix: '%',   label: 'ROI Anual',  sublabel: 'En dólares · base',  delay: 0.24 },
-  { value: 40,     suffix: '+',   label: 'Empresas',   sublabel: 'Proyectadas',         delay: 0.36 },
+  { value: 5,      suffix: '',     label: 'Parques',    sublabel: 'En Mendoza',               delay: 0    },
+  { value: 420000, suffix: ' mts', label: 'Terreno',    sublabel: 'Total disponible',          delay: 0.1  },
+  { value: 240000, suffix: ' m²',  label: 'Naves',      sublabel: 'Industriales inteligentes', delay: 0.2  },
+  { value: 8,      suffix: '%',    label: 'ROI Anual',  sublabel: 'En dólares · base',         delay: 0.3  },
+  { value: 40,     suffix: '+',    label: 'Empresas',   sublabel: 'Proyectadas',               delay: 0.4  },
 ]
 
 export default function Stats() {
@@ -113,7 +114,7 @@ export default function Stats() {
           className="font-display leading-none"
           style={{ fontSize: 'clamp(16rem, 40vw, 40rem)', color: 'transparent', WebkitTextStroke: '1px rgba(13,42,78,0.12)' }}
         >
-          6
+          5
         </span>
       </div>
 
@@ -134,12 +135,12 @@ export default function Stats() {
         </motion.div>
 
         {/* Stats grid */}
-        <div className="w-full max-w-5xl xl:max-w-6xl grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0">
+        <div className="w-full max-w-6xl xl:max-w-7xl grid grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-0">
           {STATS.map((s, i) => (
             <div
               key={s.label}
-              className={`px-4 py-4 lg:px-8 xl:px-12 ${
-                i < 3 ? 'lg:border-r lg:border-hub-azure/15' : ''
+              className={`px-3 py-4 lg:px-5 xl:px-8 ${
+                i < 4 ? 'lg:border-r lg:border-hub-azure/15' : ''
               } ${i >= 2 ? 'border-t border-hub-azure/10 pt-6 lg:border-t-0 lg:pt-4' : ''}`}
             >
               <Stat {...s} index={i} />

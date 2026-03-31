@@ -1,157 +1,116 @@
 import { motion } from 'framer-motion'
+import mapImg from '../../assets/mapa-dark.png'
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Posición de cada proyecto como % del tamaño del contenedor.
-// Calibrado sobre mendoza-outline.svg (viewBox 400×560).
-//
-// Para ajustar: hover el punto en el browser e inspeccionar con DevTools,
-// o recalcular con:  left% = (svgX / 400) * 100,  top% = (svgY / 560) * 100
-//
-// Fórmula geográfica para nuevos puntos:
-//   svgX = 35.25 + (70.62 - lon°W) × 79.6
-//   svgY = 56    + (lat°S - 31.97) × 79.6
-//   left% = svgX / 400 * 100
-//   top%  = svgY / 560 * 100
-// ─────────────────────────────────────────────────────────────────────────────
-// Posiciones reales (%) — los 4 del Gran Mendoza están separados visualmente
-// para que no se pisen, con una elipse que muestra que son la misma zona.
-const PROJECT_POSITIONS = {
-  1: { left: 39,   top: 15   },  // Las Heras      — spread arriba-izq
-  2: { left: 49,   top: 15   },  // Guaymallén     — spread arriba-der
-  3: { left: 35,   top: 23   },  // Luján de Cuyo  — spread abajo-izq
-  4: { left: 49,   top: 23   },  // Maipú          — spread abajo-der
-  5: { left: 55,   top: 25   },  // San Martín     — este
-  6: { left: 69,   top: 54.4 },  // General Alvear — sur
+// Posiciones calibradas por el usuario en modo debug
+// Color dorado para todos los marcadores
+const MARKER_COLOR = '#c9a84c'
+
+const PARK_POS = {
+  1: { left: 41.2, top: 55.2, label: 'ANCHORENA',      lx:  65, ly: -2  },
+  2: { left: 64.4, top: 53.3, label: 'SFDM ESTE',      lx:  12, ly: -30 },
+  3: { left: 72.0, top: 57.9, label: 'SFDM OESTE',     lx:  12, ly: -30 },
+  4: { left: 56.6, top: 50.8, label: 'RODRÍGUEZ PEÑA', lx:  65, ly: -2  },
+  5: { left: 41.9, top: 44.2, label: 'MALABIA',        lx: -70, ly: -2  },
 }
+
+export { MARKER_COLOR }
 
 export default function MendozaMap({ projects, activeId, onHover, onSelect }) {
   return (
-    // Outer wrapper — centers the inner map within the available space
-    <div className="w-full h-full flex items-center justify-center overflow-hidden select-none">
-      {/*
-        Inner container with the SVG's exact aspect ratio (400×560).
-        height: 100% fills the parent; aspect-ratio computes the width.
-        maxWidth: 100% prevents overflow if the parent is narrower than computed width.
-        This guarantees the image and all overlays occupy exactly the same rectangle,
-        so % positions for dots always align with the map regardless of viewport size.
-      */}
-      <div
-        style={{
-          position: 'relative',
-          height: '100%',
-          aspectRatio: '400 / 560',
-          maxWidth: '100%',
-          flexShrink: 0,
-        }}
-      >
-        {/* Map image — fills the aspect-ratio container exactly */}
-        <img
-          src="/assets/mendoza-outline.svg"
-          alt="Mendoza"
-          style={{
-            display: 'block',
-            width: '100%',
-            height: '100%',
-            filter: 'drop-shadow(0 4px 20px rgba(0,0,0,0.5))',
-          }}
-          draggable={false}
-        />
+    <div className="w-full relative" style={{ background: '#0b1520' }}>
+      <img
+        src={mapImg}
+        alt="Mapa red HUB Mendoza"
+        className="w-full h-auto block"
+        style={{ userSelect: 'none', pointerEvents: 'none' }}
+        draggable={false}
+      />
 
-        {/* Elipse Gran Mendoza */}
-        <div
-          className="absolute pointer-events-none"
-          style={{
-            left: '34%', top: '12%', width: '24%', height: '15%',
-            border: '1px dashed rgba(74,135,245,0.25)',
-            borderRadius: '50%',
-          }}
-        />
-        <span
-          className="absolute pointer-events-none text-hub-bright/25 font-display tracking-widest"
-          style={{ left: '33%', top: '9%', fontSize: '7px', letterSpacing: '0.15em' }}
-        >
-          GRAN MENDOZA
-        </span>
+      {projects.map((p) => {
+        const pos = PARK_POS[p.id]
+        if (!pos) return null
+        const isActive = activeId === p.id
+        const color = MARKER_COLOR
+        const isRight = pos.lx >= 0
 
-        {/* Puntos interactivos — posicionados en % sobre la imagen */}
-        {projects.map((p) => {
-          const pos = PROJECT_POSITIONS[p.id]
-          if (!pos) return null
-          const isActive = activeId === p.id
-          const color = p.statusColor === 'gold' ? '#4a87f5' : '#4a90d9'
-          const colorClass = p.statusColor === 'gold' ? 'text-hub-bright' : 'text-hub-steel'
+        return (
+          <div
+            key={p.id}
+            style={{
+              position: 'absolute',
+              left: `${pos.left}%`,
+              top: `${pos.top}%`,
+              transform: 'translate(-50%, -50%)',
+              zIndex: isActive ? 20 : 10,
+              cursor: 'pointer',
+            }}
+            onMouseEnter={() => onHover(p.id)}
+            onMouseLeave={() => onHover(null)}
+            onClick={() => onSelect(p.id)}
+            onTouchEnd={(e) => { e.preventDefault(); onSelect(p.id) }}
+          >
+            {isActive && (
+              <motion.div
+                className="absolute rounded-full"
+                style={{ inset: -10, border: `1.5px solid ${color}` }}
+                initial={{ opacity: 0.8, scale: 0.5 }}
+                animate={{ opacity: 0, scale: 2.5 }}
+                transition={{ duration: 1.4, repeat: Infinity, ease: 'easeOut' }}
+              />
+            )}
 
-          return (
             <div
-              key={p.id}
-              className="absolute cursor-pointer"
+              className="rounded-full transition-all duration-200"
               style={{
-                left: `${pos.left}%`,
-                top: `${pos.top}%`,
-                transform: 'translate(-50%, -50%)',
-                width: 44,
-                height: 44,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                touchAction: 'manipulation',
+                width: isActive ? 16 : 11,
+                height: isActive ? 16 : 11,
+                margin: isActive ? 0 : 2.5,
+                border: `2px solid ${isActive ? color : color + 'b3'}`,
+                background: isActive ? color : color + '73',
+                boxShadow: isActive ? `0 0 12px 3px ${color}b3` : 'none',
               }}
-              onMouseEnter={() => onHover(p.id)}
-              onMouseLeave={() => onHover(null)}
-              onClick={() => onSelect(p.id)}
-              onTouchEnd={(e) => { e.preventDefault(); onSelect(p.id) }}
+            />
+
+            <svg
+              style={{
+                position: 'absolute',
+                left: '50%', top: '50%',
+                overflow: 'visible',
+                pointerEvents: 'none',
+              }}
+              width="0" height="0"
             >
-              {/* Pulso animado */}
-              {isActive && (
-                <motion.span
-                  className="absolute rounded-full border"
-                  style={{ borderColor: color, inset: 10 }}
-                  initial={{ opacity: 0.8, scale: 0.5 }}
-                  animate={{ opacity: 0, scale: 2.5 }}
-                  transition={{ duration: 1.4, repeat: Infinity, ease: 'easeOut' }}
-                />
-              )}
-
-              {/* Anillo exterior */}
-              <span
-                className="absolute rounded-full border transition-all duration-250"
-                style={{
-                  borderColor: color,
-                  width: isActive ? 22 : 16,
-                  height: isActive ? 22 : 16,
-                  opacity: isActive ? 0.9 : 0.4,
-                }}
+              <line
+                x1="0" y1="0" x2={pos.lx} y2={pos.ly}
+                stroke={isActive ? color + 'b3' : color + '4d'}
+                strokeWidth="1" strokeDasharray="3,2"
               />
-
-              {/* Punto central */}
-              <span
-                className="relative block rounded-full transition-all duration-250"
-                style={{
-                  width: isActive ? 10 : 7,
-                  height: isActive ? 10 : 7,
-                  background: color,
-                  opacity: isActive ? 1 : 0.65,
-                  boxShadow: isActive ? `0 0 8px 2px ${color}` : 'none',
-                }}
+              <circle cx={pos.lx} cy={pos.ly} r="1.5"
+                fill={isActive ? color : color + '73'} />
+              <rect
+                x={isRight ? pos.lx + 4 : pos.lx - pos.label.length * 6.5 - 14}
+                y={pos.ly - 9}
+                width={pos.label.length * 6.5 + 10}
+                height="18" rx="2"
+                fill={isActive ? color + '30' : 'rgba(11,21,32,0.88)'}
+                stroke={isActive ? color + '80' : color + '30'}
+                strokeWidth="0.8"
               />
-
-              {/* Label */}
-              <span
-                className={`absolute whitespace-nowrap text-[9px] font-display tracking-wide transition-opacity duration-250 pointer-events-none ${colorClass}`}
-                style={{
-                  left: pos.left > 60 ? 'auto' : 'calc(50% + 10px)',
-                  right: pos.left > 60 ? 'calc(50% + 10px)' : 'auto',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  opacity: isActive ? 1 : 0.35,
-                }}
-              >
-                {p.location.split(',')[0].toUpperCase()}
-              </span>
-            </div>
-          )
-        })}
-      </div>
+              <text
+                x={isRight ? pos.lx + 9 : pos.lx - 9}
+                y={pos.ly + 1}
+                fill={isActive ? color : color + 'dd'}
+                fontSize="10"
+                fontFamily="'Bebas Neue', sans-serif"
+                letterSpacing="0.6"
+                textAnchor={isRight ? 'start' : 'end'}
+                dominantBaseline="middle"
+                style={{ filter: isActive ? `drop-shadow(0 0 3px ${color}99)` : 'none' }}
+              >{pos.label}</text>
+            </svg>
+          </div>
+        )
+      })}
     </div>
   )
 }

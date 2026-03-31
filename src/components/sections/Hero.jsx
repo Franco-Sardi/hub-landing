@@ -1,12 +1,18 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+import anchorenaImg from '../../assets/HUB MZA - Anchorena - Naves - 01.png'
+import sfdmEsteImg from '../../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B - RENDER.png'
+import sfdmOesteImg from '../../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS CONCEPTO - 2.png'
+import rodriguezPenaImg from '../../assets/CRP - PROYECTO NAVE LOGÍSTICA - RENDER AEREO.png'
+import malabiaImg from '../../assets/HUB MZA - MALABIA - RENDER AEREO.png'
+
 const slides = [
-  { id: 0, image: '/assets/slide-1.jpg', location: 'Las Heras, Gran Mendoza', area: '45.000 m²' },
-  { id: 1, image: '/assets/slide-2.jpg', location: 'Guaymallén, Gran Mendoza', area: '38.000 m²' },
-  { id: 2, image: '/assets/slide-3.jpg', location: 'Luján de Cuyo, Mendoza',  area: '52.000 m²' },
-  { id: 3, image: '/assets/slide-4.jpg', location: 'Maipú, Mendoza',          area: '33.000 m²' },
-  { id: 4, image: '/assets/slide-5.jpg', location: 'San Martín, Este Mendoza', area: '41.000 m²' },
+  { id: 0, image: anchorenaImg,      location: 'Luján de Cuyo, Mendoza',            area: '84.025 mts' },
+  { id: 1, image: sfdmEsteImg,       location: 'San Francisco del Monte, Mendoza',  area: '33.546 mts' },
+  { id: 2, image: sfdmOesteImg,      location: 'San Francisco del Monte, Mendoza',  area: '79.968 mts' },
+  { id: 3, image: rodriguezPenaImg,  location: 'Rodríguez Peña, Mendoza',           area: '107.086 mts' },
+  { id: 4, image: malabiaImg,        location: 'Luján de Cuyo, Mendoza',            area: '44.000 mts' },
 ]
 
 // Blueprint SVG grid overlay
@@ -181,8 +187,8 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="text-white/65 text-xs lg:text-lg max-w-xl mx-auto mb-4 lg:mb-7 leading-relaxed font-light"
         >
-          6 parques estratégicos en Mendoza. Rentabilidad en dólares
-          para inversores. Espacio llave en mano para empresas líderes.
+          5 parques estratégicos en Mendoza. Red de infraestructura
+          y servicios para tu empresa.
         </motion.p>
 
         {/* CTAs */}

@@ -1,33 +1,55 @@
 import { motion } from 'framer-motion'
 
+const categories = [
+  {
+    name: 'Iniciales',
+    badge: 'Etapa fundacional',
+    badgeDesc: 'Participación cerrada',
+    tags: ['Primer acceso', 'Condiciones exclusivas', 'Red fundadora'],
+    desc: 'Los primeros en confiar en el proyecto. Participaron desde la etapa fundacional de HUB con condiciones y acceso exclusivos.',
+    highlight: false,
+  },
+  {
+    name: 'Pioneros',
+    price: 'USD 560',
+    priceLabel: 'valor de cuota parte',
+    desc: 'Ingresá al proyecto con una cuota parte accesible y formá parte del crecimiento de la red HUB desde sus primeras etapas.',
+    highlight: false,
+  },
+  {
+    name: 'Inversores',
+    price: 'USD 780',
+    priceLabel: 'valor de cuota parte',
+    rate: '8% TNA',
+    desc: 'Generá un interés del 8% anual (TNA) desde tu aporte, hasta que el proyecto genere sus propios ingresos operativos.',
+    highlight: true,
+  },
+]
+
 const steps = [
   {
     num: '01',
-    title: 'Identificamos la Oportunidad',
-    desc: 'Análisis de corredores logísticos, demanda industrial y disponibilidad de tierra en zonas de alto potencial de Mendoza.',
+    title: 'Estructura fiduciaria',
+    desc: 'HUB MZA es el titular fiduciario de 6 fideicomisos, cada uno propietario de los inmuebles. Tu inversión está respaldada por activos reales.',
     side: 'left',
-    cta: { label: 'Ver parques →', href: '#projects' },
   },
   {
     num: '02',
-    title: 'Desarrollamos el Parque',
-    desc: 'Diseño, construcción y habilitación de infraestructura de clase mundial: naves, accesos, utilities y servicios industriales.',
+    title: 'Elegí tu categoría',
+    desc: 'Tres perfiles de participación: Iniciales, Pioneros y e Inversores. Cada uno con un valor de cuota parte y condiciones definidas.',
     side: 'right',
-    cta: null,
   },
   {
     num: '03',
-    title: 'Empresas Ocupantes',
-    desc: 'Grandes empresas alquilan o compran espacios para almacenamiento, distribución y manufactura, generando flujos sostenidos en dólares.',
+    title: 'Desarrollo y construcción',
+    desc: 'Diseñamos, construimos y habilitamos naves industriales Triple A con infraestructura de clase internacional en ubicaciones estratégicas.',
     side: 'left',
-    cta: null,
   },
   {
     num: '04',
-    title: 'Retorno a Inversores',
-    desc: 'Los flujos de renta se distribuyen periódicamente entre los inversores, respaldados por activos inmobiliarios reales y contratos de largo plazo.',
+    title: 'Retorno sobre tu inversión',
+    desc: 'Las empresas ocupantes generan flujos en dólares que se distribuyen entre los fiduciantes. Rentabilidad real respaldada por contratos.',
     side: 'right',
-    cta: { label: 'Consultar →', href: '#contact' },
   },
 ]
 
@@ -55,7 +77,7 @@ export default function Model() {
         >
           <div className="flex items-center gap-3 mb-3">
             <span className="w-8 h-px bg-hub-electric" />
-            <span className="text-hub-bright text-xs font-semibold tracking-[0.3em] uppercase">Cómo Funciona</span>
+            <span className="text-hub-bright text-xs font-semibold tracking-[0.3em] uppercase">Estructura de Negocio</span>
           </div>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-2">
             <h2
@@ -74,11 +96,91 @@ export default function Model() {
                 DE NEGOCIO
               </span>
             </h2>
-            <p className="text-hub-muted text-xs lg:text-sm max-w-xs leading-relaxed">
-              Capital privado + infraestructura real + empresas ocupantes =
-              retorno previsible en dólares.
+            <p className="text-hub-muted text-xs lg:text-sm max-w-sm leading-relaxed">
+              HUB MZA es el titular fiduciario de 6 fideicomisos propietarios de los inmuebles.
+              Tres categorías de participación para invertir.
             </p>
           </div>
+        </motion.div>
+
+        {/* ── Categories cards ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 lg:mb-10"
+        >
+          {categories.map((cat, i) => (
+            <motion.div
+              key={cat.name}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: 0.15 + i * 0.08 }}
+              className={`relative p-5 border transition-all duration-300 group flex flex-col ${
+                cat.highlight
+                  ? 'border-hub-electric/40 bg-gradient-to-b from-hub-electric/8 to-hub-midnight/40 hover:border-hub-electric/60'
+                  : 'border-hub-azure/15 bg-hub-midnight/40 hover:border-hub-azure/40'
+              }`}
+            >
+              {cat.highlight && (
+                <div className="absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-hub-electric to-transparent" />
+              )}
+
+              <p className="font-display text-white text-xl tracking-wide mb-3">{cat.name.toUpperCase()}</p>
+
+              {/* Iniciales — badge fundacional */}
+              {cat.badge && (
+                <div className="mb-3">
+                  <div className="flex items-center gap-2 mb-3 px-3 py-1.5 border border-hub-azure/25 bg-hub-midnight/60 w-fit">
+                    <span className="w-1.5 h-1.5 rounded-full bg-hub-bright/60 shrink-0" />
+                    <span className="font-display text-hub-muted text-sm leading-none tracking-wider">{cat.badge}</span>
+                  </div>
+                  <p className="text-hub-subtle text-[10px] tracking-widest uppercase mb-3">{cat.badgeDesc}</p>
+                  <div className="flex flex-col gap-1.5">
+                    {cat.tags.map((tag) => (
+                      <div key={tag} className="flex items-center gap-2">
+                        <span className="w-px h-3 bg-hub-azure/40 shrink-0" />
+                        <span className="text-hub-muted text-xs">{tag}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {cat.price && (
+                <div className="mb-3">
+                  <div className="flex items-baseline gap-2">
+                    <span
+                      className="font-display leading-none"
+                      style={{
+                        fontSize: 'clamp(1.4rem, 2.5vw, 2rem)',
+                        background: cat.highlight
+                          ? 'linear-gradient(135deg, #4a87f5 0%, #6aa3ff 100%)'
+                          : 'linear-gradient(135deg, #b7b9ba 0%, #e8e9ea 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                      }}
+                    >
+                      {cat.price}
+                    </span>
+                    <span className="text-hub-muted text-[10px] leading-tight">{cat.priceLabel}</span>
+                  </div>
+                </div>
+              )}
+
+              {cat.rate && (
+                <div className="flex items-center gap-2 mb-3 px-3 py-1.5 border border-hub-electric/25 bg-hub-electric/8 w-fit">
+                  <span className="font-display text-hub-bright text-base leading-none">{cat.rate}</span>
+                  <span className="text-hub-muted text-[10px]">de interés anual</span>
+                </div>
+              )}
+
+              <p className="text-hub-muted text-xs leading-relaxed mt-auto pt-2">{cat.desc}</p>
+            </motion.div>
+          ))}
         </motion.div>
 
         {/* ── Mobile: simple cards ─────────────── */}
@@ -135,15 +237,6 @@ export default function Model() {
                       {step.title}
                     </h3>
                     <p className="text-hub-muted text-xs lg:text-sm leading-relaxed">{step.desc}</p>
-
-                    {step.cta && (
-                      <a
-                        href={step.cta.href}
-                        className="inline-flex items-center gap-1.5 text-hub-electric text-xs tracking-widest uppercase mt-2 hover:gap-2.5 transition-all duration-200"
-                      >
-                        {step.cta.label}
-                      </a>
-                    )}
                   </div>
 
                   {/* Center node */}
@@ -187,20 +280,20 @@ export default function Model() {
               <span className="text-hub-electric font-bold text-xs">$</span>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white font-semibold text-xs lg:text-sm">Para Inversores — Retorno en dólares</p>
-              <p className="text-hub-muted text-xs truncate">Activos reales. Sin volatilidad financiera.</p>
+              <p className="text-white font-semibold text-xs lg:text-sm">Pioneros — Cuota parte USD 560</p>
+              <p className="text-hub-muted text-xs truncate">Ingresá desde las primeras etapas del proyecto.</p>
             </div>
-            <a href="#contact" className="text-hub-electric text-xs font-medium shrink-0 hover:underline">Ver →</a>
+            <a href="#contact" className="text-hub-electric text-xs font-medium shrink-0 hover:underline">Consultar →</a>
           </div>
-          <div className="flex items-center gap-3 p-3 lg:p-4 border border-hub-azure/15 bg-gradient-to-r from-hub-azure/5 to-transparent hover:border-hub-azure/30 transition-all duration-300">
-            <div className="w-7 h-7 border border-hub-azure/30 flex items-center justify-center shrink-0">
-              <span className="text-hub-azure-light font-bold text-xs">⬡</span>
+          <div className="flex items-center gap-3 p-3 lg:p-4 border border-hub-electric/15 bg-gradient-to-r from-hub-electric/5 to-transparent hover:border-hub-electric/30 transition-all duration-300">
+            <div className="w-7 h-7 border border-hub-electric/30 flex items-center justify-center shrink-0">
+              <span className="text-hub-electric font-bold text-xs">%</span>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white font-semibold text-xs lg:text-sm">Para Empresas — Espacio llave en mano</p>
-              <p className="text-hub-muted text-xs truncate">Flexible, estratégico, listo para operar.</p>
+              <p className="text-white font-semibold text-xs lg:text-sm">Inversores — Cuota parte USD 780 · 8% TNA</p>
+              <p className="text-hub-muted text-xs truncate">Interés anual en dólares hasta que el proyecto genere ingresos.</p>
             </div>
-            <a href="#companies" className="text-hub-azure-light text-xs font-medium shrink-0 hover:underline">Ver →</a>
+            <a href="#contact" className="text-hub-electric text-xs font-medium shrink-0 hover:underline">Consultar →</a>
           </div>
         </motion.div>
       </div>

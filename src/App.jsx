@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import Hero from './components/sections/Hero'
@@ -88,6 +88,7 @@ function SectionDots({ active, goTo }) {
 function Landing() {
   const containerRef = useRef(null)
   const active = useActiveSection(containerRef)
+  const location = useLocation()
 
   const goTo = useCallback((index) => {
     const id = SECTIONS[index]?.id
@@ -98,6 +99,17 @@ function Landing() {
     const top = el.offsetTop - navHeight
     container.scrollTo({ top, behavior: 'smooth' })
   }, [])
+
+  // Scroll a sección específica cuando se navega con hash (ej: /#contact)
+  useEffect(() => {
+    const hash = location.hash?.replace('#', '')
+    if (!hash || !containerRef.current) return
+    const timer = setTimeout(() => {
+      const idx = SECTIONS.findIndex(s => s.id === hash)
+      if (idx >= 0) goTo(idx)
+    }, 100)
+    return () => clearTimeout(timer)
+  }, [location, goTo])
 
   return (
     <div
@@ -127,7 +139,7 @@ function Landing() {
 export default function App() {
   return (
     <Routes>
-      <Route path="/proyecto/:id" element={<ProjectDetail />} />
+      <Route path="/proyecto/:slug" element={<ProjectDetail />} />
       <Route path="*" element={<Landing />} />
     </Routes>
   )

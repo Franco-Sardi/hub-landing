@@ -85,17 +85,31 @@ const statusStyle = {
   steel: { badge: 'bg-hub-steel/15 text-hub-steel border-hub-steel/30', cta: 'bg-hub-steel text-white hover:bg-hub-steel-light' },
 }
 
-// Slide images — reuse for gallery
-const GALLERY = [
-  '/assets/slide-2.jpg',
-  '/assets/slide-3.jpg',
-  '/assets/slide-4.jpg',
-  '/assets/slide-5.jpg',
-]
+// Per-project gallery images
+import anchorena01 from '../assets/HUB MZA - Anchorena - Naves - 01.png'
+import anchorena02 from '../assets/HUB MZA - Anchorena - Naves - 02.png'
+import anchorenaEdificio from '../assets/HUB MZA - Anchorena - Edificio - 01.png'
+import anchorenaPlanimetria from '../assets/HUB MZA - Anchorena - Planimetría.png'
+import sfdmRender from '../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B - RENDER.png'
+import sfdmPlanta from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS PLANTA.png'
+import sfdmConcepto from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS CONCEPTO - 2.png'
+import crpAereo from '../assets/CRP - PROYECTO NAVE LOGÍSTICA - RENDER AEREO.png'
+import crpZonificacion from '../assets/CRP - PROYECTO NAVE LOGÍSTICA - ZONIFICACIÓN- tipo D.png'
+import malabiaAereo from '../assets/HUB MZA - MALABIA - RENDER AEREO.png'
+import malabiaCentro1 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 01.png'
+import malabiaCentro2 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 02.png'
+
+const PROJECT_GALLERY = {
+  1: [anchorena01, anchorena02, anchorenaEdificio, anchorenaPlanimetria],
+  2: [sfdmRender, sfdmPlanta, sfdmConcepto],
+  3: [sfdmConcepto, sfdmRender, sfdmPlanta],
+  4: [crpAereo, crpZonificacion],
+  5: [malabiaAereo, malabiaCentro1, malabiaCentro2],
+}
 
 export default function ProjectDetail() {
-  const { id } = useParams()
-  const project = projects.find((p) => p.id === Number(id))
+  const { slug } = useParams()
+  const project = projects.find((p) => p.slug === slug)
 
   // Allow scrolling on detail pages (overrides Landing's overflow:hidden)
   useEffect(() => {
@@ -118,7 +132,7 @@ export default function ProjectDetail() {
   }
 
   const s = statusStyle[project.statusColor]
-  const gallery = GALLERY.filter((_, i) => i !== project.id % 4)
+  const gallery = PROJECT_GALLERY[project.id] || []
 
   const [lightbox, setLightbox] = useState(null) // index o null
   const closeLightbox = useCallback(() => setLightbox(null), [])
@@ -142,7 +156,7 @@ export default function ProjectDetail() {
 
         {/* Back button */}
         <Link
-          to="/"
+          to="/#projects"
           className="absolute top-8 left-8 flex items-center gap-2 text-white/70 hover:text-white text-sm font-medium tracking-wider transition-colors group"
         >
           <span className="w-8 h-px bg-white/40 group-hover:bg-white transition-colors" />
@@ -164,9 +178,9 @@ export default function ProjectDetail() {
           transition={{ duration: 0.7, delay: 0.3 }}
         >
           <div className="flex items-center gap-3 mb-3">
-            <span className="w-8 h-px bg-hub-electric" />
-            <span className="text-hub-electric text-xs font-semibold tracking-[0.3em] uppercase">HUB · Parque Industrial</span>
-            <span className={`text-xs font-semibold tracking-wider uppercase px-2 py-0.5 border ${s.badge}`}>
+            <span className="w-8 h-px bg-white" />
+            <span className="text-white text-xs font-bold tracking-[0.3em] uppercase" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>HUB · Parque Industrial</span>
+            <span className="text-xs font-bold tracking-wider uppercase px-2 py-0.5 border border-white/40 bg-black/50 text-white" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
               {project.status}
             </span>
           </div>
@@ -210,10 +224,10 @@ export default function ProjectDetail() {
                   </div>
                 ))}
                 {[
-                  'Seguridad y CCTV 24/7',
+                  'Energías renovables',
                   'Fibra óptica',
-                  'Oficinas y SUM',
-                  'Estacionamiento',
+                  'Reutilización de aguas',
+                  'Control consumo energía',
                 ].map((f) => (
                   <div key={f} className="flex items-center gap-3 p-3 border border-hub-electric/8 bg-hub-dark/20">
                     <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-hub-subtle" />
@@ -260,12 +274,12 @@ export default function ProjectDetail() {
               <p className="text-hub-muted text-xs font-semibold tracking-widest uppercase mb-4">Especificaciones</p>
               <div className="space-y-3">
                 {[
-                  { label: 'Superficie total', value: `${project.area} m²` },
-                  { label: 'Módulos',           value: project.units },
-                  { label: 'Altura libre',       value: '18 m' },
-                  { label: 'Carga de piso',      value: '5 t/m²' },
-                  { label: 'Energía',            value: '380V trifásica' },
-                  { label: 'Acceso camiones',    value: 'Hasta 40 t' },
+                  { label: 'Sup. terreno',  value: `${project.area} mts` },
+                  { label: 'Sup. naves',    value: `${project.areaNaves} m²` },
+                  { label: 'Módulos',       value: project.units },
+                  { label: 'Energía',       value: 'Trifásica' },
+                  { label: 'Iluminación',   value: 'LED' },
+                  { label: 'Pavimentos',    value: 'Industriales' },
                 ].map((item) => (
                   <div key={item.label} className="flex justify-between gap-2">
                     <span className="text-hub-muted text-xs">{item.label}</span>
@@ -288,15 +302,15 @@ export default function ProjectDetail() {
 
             {/* CTA */}
             <div className="flex flex-col gap-2">
-              <a
-                href="/#contact"
-                className={`py-3 text-center text-xs font-semibold tracking-widest uppercase transition-colors duration-200 ${s.cta}`}
+              <Link
+                to="/#contact"
+                className={`py-3 text-center text-xs font-semibold tracking-widest uppercase transition-colors duration-200 block ${s.cta}`}
               >
                 Consultar Disponibilidad
-              </a>
+              </Link>
               <Link
-                to="/"
-                className="py-3 text-center border border-hub-electric/20 text-hub-muted text-xs font-semibold tracking-widest uppercase hover:border-hub-electric/40 hover:text-white transition-all duration-200"
+                to="/#projects"
+                className="py-3 text-center border border-hub-electric/20 text-hub-muted text-xs font-semibold tracking-widest uppercase hover:border-hub-electric/40 hover:text-white transition-all duration-200 block"
               >
                 ← Ver todos los parques
               </Link>
@@ -309,7 +323,7 @@ export default function ProjectDetail() {
                 {projects.filter((p) => p.id !== project.id).slice(0, 3).map((p) => (
                   <Link
                     key={p.id}
-                    to={`/proyecto/${p.id}`}
+                    to={`/proyecto/${p.slug}`}
                     className="flex items-center gap-2 group"
                   >
                     <span className="font-display text-hub-electric/30 text-sm group-hover:text-hub-electric/70 transition-colors">

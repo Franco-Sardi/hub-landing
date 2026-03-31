@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { projects } from '../../data/projects'
-import MendozaMap from '../ui/MendozaMap'
+import MendozaMap, { MARKER_COLOR } from '../ui/MendozaMap'
 
 const statusStyle = {
   gold:  { badge: 'bg-hub-electric/15 text-hub-electric border-hub-electric/30',   bar: 'bg-hub-electric' },
@@ -46,8 +46,8 @@ export default function Projects() {
           }}>ARGENTINA</span>
         </h2>
 
-        {/* Mapa mobile — altura fija para que el SVG se vea */}
-        <div className="relative border border-hub-electric/15 bg-hub-dark/30" style={{ height: 280 }}>
+        {/* Mapa mobile */}
+        <div className="relative border border-hub-electric/15 bg-hub-dark/30 w-full">
           <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-hub-electric/25 pointer-events-none" />
           <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-hub-electric/25 pointer-events-none" />
           <div className="absolute bottom-2 left-2 w-3 h-3 border-b border-l border-hub-electric/25 pointer-events-none" />
@@ -76,7 +76,7 @@ export default function Projects() {
           return (
             <Link
               key={project.id}
-              to={`/proyecto/${project.id}`}
+              to={`/proyecto/${project.slug}`}
               className={`relative overflow-hidden border bg-hub-dark/30 transition-all duration-300 ${
                 isMobileActive
                   ? project.statusColor === 'gold' ? 'border-hub-electric/60' : 'border-hub-steel/60'
@@ -84,7 +84,7 @@ export default function Projects() {
               }`}
             >
               <div className="relative h-40 overflow-hidden">
-                <img src={project.image} alt={project.name} className="w-full h-full object-cover" />
+                <img src={project.image} alt={project.name} className="w-full h-full object-cover" style={{ transform: 'scale(0.85)' }} />
                 <div className="absolute inset-0 bg-gradient-to-t from-hub-black/90 via-hub-black/30 to-transparent" />
                 <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2">
                   <div>
@@ -146,7 +146,7 @@ export default function Projects() {
         <div className="flex flex-1 min-h-0 gap-5">
 
         {/* ── Left: Mendoza Map ─────────────────────────────────── */}
-        <div className="flex flex-col shrink-0" style={{ width: '40%' }}>
+        <div className="flex flex-col shrink-0" style={{ width: '55%' }}>
           {/* Map container — fills entire left column */}
           <div className="flex-1 min-h-0 border border-hub-electric/15 bg-hub-dark/30 relative overflow-hidden p-3">
             {/* Corner accents */}
@@ -164,19 +164,20 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* ── Right: Image preview + project list ───────────────── */}
-        <div className="flex flex-col flex-1 min-h-0 min-w-0 gap-3">
+        {/* ── Right: Preview + project list ───────────────── */}
+        <div className="flex flex-col flex-1 min-h-0 min-w-0 gap-2">
 
-          {/* Image preview */}
+          {/* Image preview — compacto */}
           <div className="relative shrink-0 overflow-hidden border border-hub-electric/15"
-            style={{ height: '38%' }}
+            style={{ height: '35%' }}
           >
             <AnimatePresence mode="wait">
               <motion.img
                 key={active.id}
                 src={active.image}
                 alt={active.name}
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover bg-hub-dark"
+                style={{ transform: 'scale(0.85)' }}
                 initial={{ opacity: 0, scale: 1.04 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
@@ -184,67 +185,47 @@ export default function Projects() {
               />
             </AnimatePresence>
 
-            {/* Overlay gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-hub-black/90 via-hub-black/30 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-r from-hub-black/50 to-transparent" />
 
-            {/* Project info overlay */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={`info-${active.id}`}
-                className="absolute bottom-0 left-0 right-0 p-4"
+                className="absolute bottom-0 left-0 right-0 p-3"
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="flex items-end justify-between gap-3">
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className={`text-xs font-semibold tracking-wider uppercase px-2 py-0.5 border ${s.badge}`}>
-                        {active.status}
-                      </span>
-                      <span className="text-hub-muted text-xs">{active.area} m²</span>
-                    </div>
-                    <h3
-                      className="font-display text-white leading-none tracking-wide"
-                      style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)' }}
-                    >
-                      {active.name.toUpperCase()}
-                    </h3>
-                    <p className="text-hub-muted text-xs mt-0.5 flex items-center gap-1">
-                      <span className="text-hub-electric">📍</span> {active.location}
-                    </p>
-                  </div>
-
+                <span className={`text-[10px] font-semibold tracking-wider uppercase px-1.5 py-0.5 border ${s.badge}`}>
+                  {active.status}
+                </span>
+                <h3 className="font-display text-white leading-none tracking-wide mt-1"
+                  style={{ fontSize: 'clamp(1.2rem, 2vw, 1.6rem)' }}>
+                  {active.name.toUpperCase()}
+                </h3>
+                <div className="flex items-center justify-between mt-1">
+                  <p className="text-hub-muted text-xs flex items-center gap-1">
+                    📍 {active.location} · {active.area} m²
+                  </p>
                   <Link
-                    to={`/proyecto/${active.id}`}
-                    className={`shrink-0 px-4 py-2 text-xs font-semibold tracking-widest uppercase transition-all duration-200 ${
-                      active.statusColor === 'gold'
-                        ? 'bg-hub-electric text-white hover:bg-hub-bright'
-                        : 'border border-hub-steel/50 text-hub-steel hover:bg-hub-steel/10'
-                    }`}
+                    to={`/proyecto/${active.slug}`}
+                    className="text-hub-electric text-xs font-semibold tracking-widest uppercase hover:text-hub-bright transition-colors"
                   >
-                    Ver Parque →
+                    Ver →
                   </Link>
                 </div>
               </motion.div>
             </AnimatePresence>
 
-            {/* Number watermark */}
-            <div className="absolute top-3 right-4 font-display text-white/8 leading-none select-none pointer-events-none"
-              style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}
-            >
+            <div className="absolute top-2 right-3 font-display text-white/8 leading-none select-none pointer-events-none"
+              style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
               {String(active.id).padStart(2, '0')}
             </div>
           </div>
 
-          {/* Project list */}
-          <div
-            className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-1.5 no-scrollbar"
-          >
+          {/* Project list — compacta */}
+          <div className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-1 no-scrollbar">
             {projects.map((project, i) => {
-              const st = statusStyle[project.statusColor]
               const isActive = activeId === project.id
               const isLocked = lockedId === project.id
               return (
@@ -257,52 +238,32 @@ export default function Projects() {
                   onMouseEnter={() => handleHover(project.id)}
                   onMouseLeave={() => handleHover(null)}
                   onClick={() => handleSelect(project.id)}
-                  className={`group relative flex items-center gap-3 px-3 py-2 border transition-all duration-250 cursor-pointer ${
+                  className={`group relative flex items-center gap-2 px-2.5 py-2 border transition-all duration-250 cursor-pointer ${
                     isActive
                       ? 'border-hub-electric/35 bg-hub-dark/60'
                       : 'border-hub-electric/8 bg-hub-dark/20 hover:border-hub-electric/20 hover:bg-hub-dark/40'
                   }`}
                 >
-                  {/* Active bar */}
-                  <div className={`absolute left-0 top-0 bottom-0 w-0.5 transition-opacity duration-200 ${st.bar} ${isActive ? 'opacity-100' : 'opacity-0'}`} />
-                  {/* Lock indicator */}
-                  {isLocked && <div className="absolute right-2 top-1.5 w-1 h-1 rounded-full bg-hub-electric/60" />}
+                  <div className="absolute left-0 top-0 bottom-0 w-0.5 transition-opacity duration-200"
+                    style={{ background: MARKER_COLOR, opacity: isActive ? 1 : 0 }} />
+                  {isLocked && <div className="absolute right-1.5 top-1.5 w-1 h-1 rounded-full" style={{ background: MARKER_COLOR }} />}
 
-                  {/* Number */}
-                  <span className={`font-display text-xl leading-none w-7 shrink-0 transition-colors ${isActive ? 'text-hub-electric/70' : 'text-hub-electric/20'}`}>
+                  <span className="font-display text-lg leading-none w-6 shrink-0 transition-colors"
+                    style={{ color: isActive ? MARKER_COLOR + 'b3' : MARKER_COLOR + '33' }}>
                     {String(project.id).padStart(2, '0')}
                   </span>
 
-                  {/* Name + location */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className={`font-display text-sm leading-tight tracking-wide truncate transition-colors ${isActive ? 'text-hub-bright' : 'text-white group-hover:text-hub-bright'}`}>
-                        {project.name}
-                      </span>
-                      <span className={`text-xs font-semibold tracking-wide uppercase px-1.5 py-0.5 border shrink-0 ${st.badge}`}>
-                        {project.status}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2 mt-0.5">
-                      <span className="text-hub-muted text-xs truncate">{project.location}</span>
-                      <span className="w-px h-3 bg-hub-subtle/30 shrink-0" />
-                      <span className={`text-xs font-medium shrink-0 ${project.statusColor === 'gold' ? 'text-hub-electric/70' : 'text-hub-steel/70'}`}>
-                        {project.area} m²
-                      </span>
-                    </div>
+                    <span className="font-display text-sm leading-tight tracking-wide truncate block transition-colors"
+                      style={{ color: isActive ? MARKER_COLOR : '#ffffff' }}>
+                      {project.name}
+                    </span>
+                    <span className="text-hub-muted text-xs truncate block">{project.location} · {project.area} m²</span>
                   </div>
 
-                  {/* Features — compact */}
-                  <div className="hidden xl:flex items-center gap-3 shrink-0">
-                    {project.features.slice(0, 2).map((f) => (
-                      <span key={f} className="text-hub-subtle text-xs">{f}</span>
-                    ))}
-                  </div>
-
-                  {/* Link arrow */}
                   <Link
-                    to={`/proyecto/${project.id}`}
-                    className={`shrink-0 flex items-center gap-1 px-2 py-1 text-xs font-semibold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-all duration-200 border ${
+                    to={`/proyecto/${project.slug}`}
+                    className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-semibold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-all duration-200 border ${
                       project.statusColor === 'gold'
                         ? 'border-hub-electric/50 text-hub-electric hover:bg-hub-electric hover:text-white'
                         : 'border-hub-steel/50 text-hub-steel hover:bg-hub-steel hover:text-white'

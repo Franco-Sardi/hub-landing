@@ -1,27 +1,43 @@
 import { motion } from 'framer-motion'
+import malabiaImg from '../../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 01.png'
 
 const specs = [
-  { value: '18 m',   label: 'Altura libre' },
-  { value: '5 t/m²', label: 'Carga de piso' },
-  { value: '380 V',  label: 'Energía trifásica' },
-  { value: '40 t',   label: 'Acceso camiones' },
+  { value: '1.000+', label: 'Módulos desde m²' },
+  { value: 'LED',    label: 'Iluminación' },
+  { value: '3F',     label: 'Energía trifásica' },
+  { value: 'AAA',    label: 'Naves Triple A' },
 ]
 
 const reasons = [
-  { num: '01', title: 'Instalate en días, no en meses', desc: 'Infraestructura lista. Sin obra, sin permisos, sin riesgos.' },
-  { num: '02', title: 'Contratos que se adaptan a vos', desc: 'Alquiler desde 1 año, compra directa, lease-back o build-to-suit.' },
-  { num: '03', title: 'Ubicaciones estratégicas', desc: 'Acceso directo a RN 7, RN 40, aeropuerto y paso cordillerano.' },
+  { num: '01', title: 'Recepción de mercadería', desc: 'Infraestructura diseñada para recibir, clasificar y distribuir mercadería de forma eficiente.' },
+  { num: '02', title: 'Almacenamiento flexible', desc: 'Módulos desde 1.000 m² que se adaptan a tu operación. Escalá sin límites.' },
+  { num: '03', title: 'Infraestructura operativa', desc: 'Playas de maniobras, docks de carga, tránsito segregado pesado/liviano, pavimentos industriales.' },
+  { num: '04', title: 'Operaciones de última milla', desc: 'Ubicaciones estratégicas sobre R7 y R40, conectando con Buenos Aires, Chile y todo Cuyo.' },
 ]
 
-const sectors = ['E-commerce', 'Logística', 'Manufactura', 'Agroalimentos', 'Pharma', 'Minería', 'Energía', 'Retail']
+const services = [
+  'Eficiencia operativa',
+  'Sustentabilidad',
+  'Flexibilidad de uso',
+  'Iluminación LED',
+  'Energía trifásica',
+  'Oficinas integradas',
+  'Pavimentos industriales',
+  'Fibra óptica',
+]
 
-const services = ['Seguridad 24/7 · CCTV', 'Fibra óptica', 'Playa maniobras 50 m', 'Oficinas integradas', 'Control de acceso', 'Mantenimiento']
+const sustainability = [
+  'Energías renovables',
+  'Control consumo de energía',
+  'Reutilización de aguas',
+  'Bike parking',
+  'Uso eficiente del agua potable',
+]
 
 const contracts = [
   { type: 'Alquiler',   desc: 'Desde 1 año en USD' },
-  { type: 'Compra',     desc: 'Módulos o naves' },
-  { type: 'Lease-back', desc: 'Vendé y seguí operando' },
-  { type: 'BTS',        desc: 'Build-to-suit' },
+  { type: 'Compra',     desc: 'Módulos o naves completas' },
+  { type: 'Build-to-suit', desc: 'A tu medida' },
 ]
 
 export default function ForCompanies() {
@@ -53,11 +69,11 @@ export default function ForCompanies() {
               className="font-display text-white leading-[0.90] tracking-wide"
               style={{ fontSize: 'clamp(2rem, 4vw, 4rem)' }}
             >
-              OPERÁ{' '}
-              <span className="text-gradient-electric">DESDE EL DÍA UNO</span>
+              UNA RED PENSADA{' '}
+              <span className="text-gradient-electric">PARA LA EFICIENCIA</span>
             </h2>
             <p className="text-hub-muted text-sm max-w-xs leading-relaxed font-light shrink-0">
-              Sin obra. Sin permisos. Sin riesgos de construcción.
+              Naves industriales Triple A diseñadas para optimizar la gestión, reducir costos y escalar tu operativa en Mendoza.
             </p>
           </div>
         </motion.div>
@@ -72,7 +88,7 @@ export default function ForCompanies() {
         >
           <div className="relative h-40 lg:h-52 overflow-hidden">
             <img
-              src="/assets/slide-2.jpg"
+              src={malabiaImg}
               alt="HUB Parque Industrial"
               className="w-full h-full object-cover"
               style={{ filter: 'brightness(0.5) saturate(0.8)' }}
@@ -118,7 +134,7 @@ export default function ForCompanies() {
               </motion.div>
             ))}
 
-            {/* Sectors */}
+            {/* Sustainability */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -126,9 +142,9 @@ export default function ForCompanies() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="mt-4"
             >
-              <p className="text-hub-muted text-[10px] tracking-widest uppercase mb-2">Sectores que operan en HUB</p>
+              <p className="text-hub-muted text-[10px] tracking-widest uppercase mb-2">Sustentabilidad</p>
               <div className="flex flex-wrap gap-1.5">
-                {sectors.map((s) => (
+                {sustainability.map((s) => (
                   <span key={s} className="px-2.5 py-1 border border-hub-azure/25 text-hub-muted text-[10px] hover:border-hub-electric/40 hover:text-hub-bright transition-all duration-200 cursor-default">{s}</span>
                 ))}
               </div>
@@ -159,7 +175,7 @@ export default function ForCompanies() {
             {/* Contracts */}
             <div>
               <p className="text-hub-muted text-[10px] font-semibold tracking-widest uppercase mb-2.5">Modalidades de contratación</p>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-3 gap-2">
                 {contracts.map((c) => (
                   <div key={c.type} className="flex items-center gap-2 px-3 py-2 border border-hub-azure/15 bg-hub-midnight/30 hover:border-hub-electric/30 transition-colors group">
                     <span className="w-0.5 h-full bg-hub-electric/25 shrink-0 group-hover:bg-hub-electric transition-colors" />
@@ -170,6 +186,13 @@ export default function ForCompanies() {
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* Key message */}
+            <div className="border border-hub-azure/20 bg-hub-midnight/30 p-4">
+              <p className="text-hub-muted text-xs leading-relaxed">
+                Cada HUB funciona de forma independiente, pero como parte de un <span className="text-white font-semibold">sistema integrado</span> que conecta puntos estratégicos de Mendoza para facilitar tu operación logística.
+              </p>
             </div>
 
             {/* CTAs */}
