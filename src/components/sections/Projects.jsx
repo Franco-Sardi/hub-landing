@@ -5,8 +5,8 @@ import { projects } from '../../data/projects'
 import MendozaMap, { MARKER_COLOR } from '../ui/MendozaMap'
 
 const statusStyle = {
-  gold:  { badge: 'bg-hub-electric/15 text-hub-electric border-hub-electric/30',   bar: 'bg-hub-electric' },
-  steel: { badge: 'bg-hub-steel/15 text-hub-steel border-hub-steel/30', bar: 'bg-hub-steel' },
+  gold:  { badge: 'bg-black/50 text-white border-white/40',   bar: 'bg-hub-electric' },
+  steel: { badge: 'bg-black/50 text-white border-white/40', bar: 'bg-hub-steel' },
 }
 
 export default function Projects() {
