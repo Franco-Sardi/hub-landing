@@ -5,19 +5,76 @@
 @layer base {
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* ── Light mode (default) — Gris neutro brochure ── */
   html, body {
-    background-color: #0e1a28;
-    color: #e8e9ea;
+    background-color: #E8E9EB;
+    color: #1C2535;
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* ── Dark mode — Navy profundo ── */
+  html.dark, html.dark body {
+    background-color: #0B1520;
+    color: #E8E9EA;
+  }
+
+  /* ── CSS variables — sistema de colores temático ── */
+  :root {
+    /* Light mode: gris neutro brochure */
+    --bg-primary:   #E8E9EB;
+    --bg-secondary: #DEDEDF;
+    --bg-card:      #EDEDEF;
+    --bg-card-alt:  #E3E4E6;
+    --text-primary: #1C2535;
+    --text-muted:   #3D4A5C;
+    --text-subtle:  #6A7585;
+    --text-accent:  #1E5CD4;
+    --border:       rgba(28,37,53,0.16);
+    --border-accent:rgba(28,37,53,0.30);
+    --nav-bg:             rgba(200,203,208,0.97);
+    --nav-border:         rgba(28,37,53,0.14);
+    --nav-text:           #1C2535;
+    --nav-text-dim:       rgba(28,37,53,0.45);
+    --nav-border-element: rgba(28,37,53,0.20);
+    /* Stats & decoraciones */
+    --stat-color:        #1C2535;
+    --grid-color:        rgba(28,37,53,0.06);
+    --stat-deco:         rgba(28,37,53,0.22);
+    --stat-deco-strong:  rgba(28,37,53,0.48);
+    --stat-deco-faint:   rgba(28,37,53,0.08);
+    --stat-deco-line:    rgba(28,37,53,0.24);
+  }
+  html.dark {
+    /* Dark mode: navy profundo */
+    --bg-primary:   #0b1520;
+    --bg-secondary: #0e1a28;
+    --bg-card:      rgba(14,26,40,0.65);
+    --bg-card-alt:  rgba(14,26,40,0.38);
+    --text-primary: #e8e9ea;
+    --text-muted:   #b7b9ba;
+    --text-subtle:  #3a4455;
+    --text-accent:  #4a87f5;
+    --border:       rgba(74,135,245,0.18);
+    --border-accent:rgba(74,135,245,0.32);
+    --nav-bg:             rgba(22,36,52,0.97);
+    --nav-border:         rgba(74,135,245,0.20);
+    --nav-text:           #e8e9ea;
+    --nav-text-dim:       rgba(232,233,234,0.45);
+    --nav-border-element: rgba(255,255,255,0.18);
+    --stat-color:        #e8e9ea;
+    --grid-color:        rgba(13,63,165,0.12);
+    --stat-deco:         rgba(74,135,245,0.25);
+    --stat-deco-strong:  rgba(74,135,245,0.50);
+    --stat-deco-faint:   rgba(74,135,245,0.08);
+    --stat-deco-line:    rgba(74,135,245,0.30);
+  }
+
   #root { min-height: 100%; }
 
-  /* ── Fluid design tokens ────────────────────────────────────────────── */
+  /* ── Fluid design tokens ─────────────────────────────────── */
   :root {
-    /* Typography scale */
     --fs-display: clamp(2.5rem, 5vw + 1rem, 6rem);
     --fs-h1: clamp(2rem, 3.5vw + 0.75rem, 4.5rem);
     --fs-h2: clamp(1.5rem, 2.5vw + 0.5rem, 3rem);
@@ -26,18 +83,14 @@
     --fs-body: clamp(1rem, 0.25vw + 0.9rem, 1.125rem);
     --fs-small: clamp(0.8rem, 0.15vw + 0.75rem, 0.9rem);
 
-    /* Spacing scale */
     --space-xs: clamp(0.5rem, 1vw, 0.75rem);
     --space-sm: clamp(0.75rem, 1.5vw, 1.25rem);
     --space-md: clamp(1.5rem, 3vw, 2.5rem);
     --space-lg: clamp(2.5rem, 5vw, 5rem);
     --space-xl: clamp(4rem, 8vw, 8rem);
 
-    /* Section padding */
     --section-py: clamp(3rem, 8vw, 8rem);
     --container-px: clamp(1.25rem, 3vw, 3rem);
-
-    /* Scroll snap padding for fixed navbar */
     --nav-height: 4rem;
   }
 
@@ -61,10 +114,59 @@
   }
   .bg-grid {
     background-image:
-      linear-gradient(rgba(13,63,165,0.10) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(13,63,165,0.10) 1px, transparent 1px);
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
     background-size: 40px 40px;
   }
+
+  /* ── Theme utilities (CSS variables — no dependen de Tailwind dark:) ── */
+  .bg-theme      { background-color: var(--bg-primary); }
+  .bg-theme-alt  { background-color: var(--bg-secondary); }
+  .bg-theme-card { background-color: var(--bg-card); }
+  .text-theme    { color: var(--text-primary); }
+  .text-theme-muted  { color: var(--text-muted); }
+  .text-theme-subtle { color: var(--text-subtle); }
+  .text-theme-accent { color: var(--text-accent); }
+  .border-theme  { border-color: var(--border); }
+  .border-theme-accent { border-color: var(--border-accent); }
+}
+
+/* ── Stats section — misma lógica que el resto, sin textura de papel ── */
+.stats-section {
+  background-color: var(--bg-primary);
+}
+
+/* ── Ghost "H" — marca de agua en secciones ── */
+.hub-bg-h {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hub-bg-h::before {
+  content: 'H';
+  font-family: 'Bebas Neue', cursive;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(4%);
+  font-size: clamp(18rem, 45vw, 52rem);
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--stat-deco-faint);
+  letter-spacing: -0.02em;
+  pointer-events: none;
+  user-select: none;
+  z-index: -1;
+  line-height: 1;
+}
+
+/* Select & option — theme-aware */
+select {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+}
+select option {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
 }
 
 /* Selection */
@@ -73,7 +175,7 @@
   color: #ffffff;
 }
 
-/* Scrollbar — thin, dark, unobtrusive */
+/* Scrollbar */
 html {
   scrollbar-width: thin;
   scrollbar-color: rgba(74,135,245,0.15) transparent;

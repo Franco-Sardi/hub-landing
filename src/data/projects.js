@@ -1,5 +1,5 @@
-import anchorenaImg from '../assets/anchorena.png'
-import sfdmEsteImg from '../assets/SanFranciscoEste.png'
+import anchorenaImg from '../assets/anchorena-planimetria-watercolor.png'
+import sfdmEsteImg from '../assets/SanFranciscoEste-wide.png'
 import sfdmOesteImg from '../assets/SanFranciscoOeste.png'
 import rodriguezPenaImg from '../assets/rodriguezpena.png'
 import malabiaImg from '../assets/malabia.png'
@@ -12,11 +12,12 @@ export const projects = [
     location: 'Luján de Cuyo, Mendoza',
     area: '84.025',
     areaNaves: '54.960',
-    units: '3 Naves industriales + Sector Comercial',
+    units: '3 Naves industriales + Edificio de Coworking',
     status: 'En desarrollo',
     statusColor: 'gold',
-    description: 'Sobre Acceso Sur, en el corredor logístico más dinámico de Mendoza. Conecta directamente con Ruta 40 hacia el sur y con el centro urbano de Luján de Cuyo. Diseñado con tránsito pesado y liviano segregado.',
+    description: 'Sobre Acceso Sur, en el corredor logístico más dinámico de Mendoza. Conecta directamente con Ruta 40 hacia el sur y con el centro urbano de Luján de Cuyo. Diseñado con tránsito pesado y liviano segregado. Incluye un edificio de coworking propio para las empresas del parque.',
     features: ['Acceso Sur directo', 'Playa de maniobras', 'Sector comercial', 'Tránsito segregado'],
+    coworkingBuilding: true,
     image: anchorenaImg,
   },
   {

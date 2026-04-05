@@ -138,45 +138,46 @@ export default function Hero() {
           <span className="w-6 lg:w-10 h-px bg-hub-electric/70" />
         </motion.div>
 
-        {/* Kinetic headline — each word from a different direction */}
+        {/* Kinetic headline — from brochure: RED DE INFRAESTRUCTURA Y SERVICIOS PARA TU EMPRESA */}
         <div
-          className="font-display text-white leading-[0.88] mb-3 lg:mb-6 overflow-hidden"
-          style={{ fontSize: 'clamp(2rem, 7vw, 6.5rem)' }}
+          className="font-display text-white leading-[0.9] mb-3 lg:mb-6 overflow-hidden"
+          style={{ fontSize: 'clamp(1.6rem, 5.2vw, 5rem)' }}
         >
           <div className="overflow-hidden">
             <motion.span
-              className="block tracking-wider"
+              className="block tracking-widest text-white/80"
               initial={{ y: '110%', opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              CONSTRUIMOS
+              RED DE INFRAESTRUCTURA
             </motion.span>
           </div>
           <div className="overflow-hidden">
             <motion.span
-              className="block tracking-wider"
+              className="block tracking-widest text-white/80"
               initial={{ y: '110%', opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.85, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Y SERVICIOS PARA
+            </motion.span>
+          </div>
+          <div className="overflow-hidden">
+            <motion.span
+              className="block tracking-widest"
+              initial={{ y: '110%', opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.85, delay: 0.34, ease: [0.16, 1, 0.3, 1] }}
               style={{
                 background: 'linear-gradient(135deg, #4a87f5 0%, #6aa3ff 45%, #4a87f5 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
+                fontSize: '1.18em',
               }}
             >
-              EL FUTURO
-            </motion.span>
-          </div>
-          <div className="overflow-hidden">
-            <motion.span
-              className="block tracking-wider text-white/90"
-              initial={{ y: '110%', opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.85, delay: 0.34, ease: [0.16, 1, 0.3, 1] }}
-            >
-              INDUSTRIAL
+              TU EMPRESA
             </motion.span>
           </div>
         </div>
@@ -185,10 +186,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="text-white/65 text-xs lg:text-lg max-w-xl mx-auto mb-4 lg:mb-7 leading-relaxed font-light"
+          className="text-white/60 text-xs lg:text-base max-w-xl mx-auto mb-4 lg:mb-7 leading-relaxed font-light tracking-wider"
         >
-          5 parques estratégicos en Mendoza. Red de infraestructura
-          y servicios para tu empresa.
+          420.000 mts de terreno · 240.000 mts² de naves industriales inteligentes
         </motion.p>
 
         {/* CTAs */}

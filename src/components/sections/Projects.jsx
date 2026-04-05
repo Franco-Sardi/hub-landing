@@ -3,10 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { projects } from '../../data/projects'
 import MendozaMap, { MARKER_COLOR } from '../ui/MendozaMap'
+import SectionFrame from '../ui/SectionFrame'
 
 const statusStyle = {
-  gold:  { badge: 'bg-black/50 text-white border-white/40',   bar: 'bg-hub-electric' },
-  steel: { badge: 'bg-black/50 text-white border-white/40', bar: 'bg-hub-steel' },
+  gold:  { badge: 'bg-hub-electric text-white border-hub-electric/60',   bar: 'bg-hub-electric' },
+  steel: { badge: 'bg-hub-steel/80 text-white border-hub-steel/60', bar: 'bg-hub-steel' },
 }
 
 export default function Projects() {
@@ -28,8 +29,9 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="lg:min-h-dvh bg-hub-black relative overflow-hidden flex flex-col py-10 lg:py-4"
+      className="hub-bg-h lg:min-h-dvh bg-theme relative overflow-hidden flex flex-col py-10 lg:py-4"
     >
+      <SectionFrame />
       <div className="absolute inset-0 bg-grid opacity-20" />
 
       {/* ── Mobile layout ──────────────────────────────────────── */}
@@ -38,7 +40,7 @@ export default function Projects() {
           <span className="w-6 h-px bg-hub-electric" />
           <span className="text-hub-electric text-xs font-semibold tracking-[0.3em] uppercase">HUB · Proyectos</span>
         </div>
-        <h2 className="font-display text-white leading-none tracking-wide text-3xl mb-2">
+        <h2 className="font-display text-theme leading-none tracking-wide text-3xl mb-2">
           MENDOZA,{' '}
           <span style={{
             background: 'linear-gradient(135deg, #4a87f5 0%, #6aa3ff 100%)',
@@ -62,10 +64,10 @@ export default function Projects() {
 
         {/* Leyenda */}
         <div className="flex items-center gap-4 -mt-1">
-          <span className="flex items-center gap-1.5 text-xs text-hub-muted">
+          <span className="flex items-center gap-1.5 text-xs text-theme-muted">
             <span className="w-1.5 h-1.5 rounded-full bg-hub-electric" />En Desarrollo
           </span>
-          <span className="flex items-center gap-1.5 text-xs text-hub-muted">
+          <span className="flex items-center gap-1.5 text-xs text-theme-muted">
             <span className="w-1.5 h-1.5 rounded-full bg-hub-steel" />Próximamente
           </span>
         </div>
@@ -77,11 +79,13 @@ export default function Projects() {
             <Link
               key={project.id}
               to={`/proyecto/${project.slug}`}
-              className={`relative overflow-hidden border bg-hub-dark/30 transition-all duration-300 ${
-                isMobileActive
-                  ? project.statusColor === 'gold' ? 'border-hub-electric/60' : 'border-hub-steel/60'
-                  : 'border-hub-electric/10'
-              }`}
+              className="relative overflow-hidden border transition-all duration-300"
+              style={{
+                borderColor: isMobileActive
+                  ? project.statusColor === 'gold' ? 'rgba(74,135,245,0.60)' : 'rgba(74,135,245,0.40)'
+                  : 'var(--border)',
+                backgroundColor: 'var(--bg-card)',
+              }}
             >
               <div className="relative h-40 overflow-hidden">
                 <img src={project.image} alt={project.name} className="w-full h-full object-cover" style={{ transform: 'scale(0.85)' }} />
@@ -99,7 +103,7 @@ export default function Projects() {
                 </div>
               </div>
               <div className="px-3 py-2 flex items-center justify-between">
-                <span className="text-hub-muted text-xs">📍 {project.location}</span>
+                <span className="text-theme-muted text-xs">📍 {project.location}</span>
                 <span className={`text-xs font-semibold tracking-widest uppercase ${project.statusColor === 'gold' ? 'text-hub-electric' : 'text-hub-steel'}`}>
                   Ver parque →
                 </span>
@@ -120,7 +124,7 @@ export default function Projects() {
           </div>
           <div className="flex items-end justify-between">
             <h2
-              className="font-display text-white leading-none tracking-wide"
+              className="font-display text-theme leading-none tracking-wide"
               style={{ fontSize: 'clamp(1.6rem, 2.5vw, 2.4rem)' }}
             >
               MENDOZA,{' '}
@@ -132,10 +136,10 @@ export default function Projects() {
               </span>
             </h2>
             <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1.5 text-xs text-hub-muted">
+              <span className="flex items-center gap-1.5 text-xs text-theme-muted">
                 <span className="w-1.5 h-1.5 rounded-full bg-hub-electric" />En Desarrollo
               </span>
-              <span className="flex items-center gap-1.5 text-xs text-hub-muted">
+              <span className="flex items-center gap-1.5 text-xs text-theme-muted">
                 <span className="w-1.5 h-1.5 rounded-full bg-hub-steel" />Próximamente
               </span>
             </div>
@@ -204,7 +208,7 @@ export default function Projects() {
                   {active.name.toUpperCase()}
                 </h3>
                 <div className="flex items-center justify-between mt-1">
-                  <p className="text-hub-muted text-xs flex items-center gap-1">
+                  <p className="text-theme-muted text-xs flex items-center gap-1">
                     📍 {active.location} · {active.area} m²
                   </p>
                   <Link
@@ -238,11 +242,11 @@ export default function Projects() {
                   onMouseEnter={() => handleHover(project.id)}
                   onMouseLeave={() => handleHover(null)}
                   onClick={() => handleSelect(project.id)}
-                  className={`group relative flex items-center gap-2 px-2.5 py-2 border transition-all duration-250 cursor-pointer ${
-                    isActive
-                      ? 'border-hub-electric/35 bg-hub-dark/60'
-                      : 'border-hub-electric/8 bg-hub-dark/20 hover:border-hub-electric/20 hover:bg-hub-dark/40'
-                  }`}
+                  className="group relative flex items-center gap-2 px-2.5 py-2 border transition-all duration-250 cursor-pointer"
+                  style={{
+                    borderColor: isActive ? 'rgba(74,135,245,0.35)' : 'var(--border)',
+                    backgroundColor: isActive ? 'var(--bg-card)' : 'var(--bg-card-alt)',
+                  }}
                 >
                   <div className="absolute left-0 top-0 bottom-0 w-0.5 transition-opacity duration-200"
                     style={{ background: MARKER_COLOR, opacity: isActive ? 1 : 0 }} />
@@ -255,10 +259,10 @@ export default function Projects() {
 
                   <div className="flex-1 min-w-0">
                     <span className="font-display text-sm leading-tight tracking-wide truncate block transition-colors"
-                      style={{ color: isActive ? MARKER_COLOR : '#ffffff' }}>
+                      style={{ color: isActive ? MARKER_COLOR : 'var(--text-primary)' }}>
                       {project.name}
                     </span>
-                    <span className="text-hub-muted text-xs truncate block">{project.location} · {project.area} m²</span>
+                    <span className="text-theme-muted text-xs truncate block">{project.location} · {project.area} m²</span>
                   </div>
 
                   <Link

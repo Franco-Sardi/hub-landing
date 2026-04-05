@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -35,6 +36,18 @@ export default {
           text:         '#e8e9ea',   // Primary text — near white
           muted:        '#b7b9ba',   // Secondary text (brochure gray)
           subtle:       '#525659',   // Tertiary text (brochure dark gray)
+
+          // ── Paper / carta antigua system ───────────────────────────────
+          paper:        '#f0ebe0',   // Fondo principal — papel cálido (Opción A)
+          parchment:    '#e4ddd0',   // Fondo secundario — pergamino
+          linen:        '#d4c8a0',   // Borders crema
+          sand:         '#c4b888',   // Borders más marcados, hover
+
+          // ── Ink — texto oscuro sobre papel ────────────────────────────
+          ink:          '#1c2535',   // Navy oscuro del brochure (texto principal)
+          sepia:        '#3d2e18',   // Marrón oscuro tinta alternativo
+          'ink-muted':  '#4a5568',   // Texto secundario sobre papel
+          'ink-faint':  '#7a8094',   // Texto muy sutil sobre papel
         }
       },
       fontFamily: {

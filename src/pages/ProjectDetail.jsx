@@ -85,11 +85,19 @@ const statusStyle = {
   steel: { badge: 'bg-hub-steel/15 text-hub-steel border-hub-steel/30', cta: 'bg-hub-steel text-white hover:bg-hub-steel-light' },
 }
 
-// Per-project gallery images
+// Per-project gallery images — Anchorena
 import anchorena01 from '../assets/HUB MZA - Anchorena - Naves - 01.png'
 import anchorena02 from '../assets/HUB MZA - Anchorena - Naves - 02.png'
-import anchorenaEdificio from '../assets/HUB MZA - Anchorena - Edificio - 01.png'
+import anchorenaEdificio from '../assets/anchorena-coworking-watercolor.png'
+import anchorenaEdificio02 from '../assets/HUB MZA - Anchorena - Edificio - 02.png'
 import anchorenaPlanimetria from '../assets/HUB MZA - Anchorena - Planimetría.png'
+// Style-transfer artistic renders (colores reales de las naves)
+import anchorenaStyle02 from '../assets/Anchorena 02_style_transfer02.png'
+import anchorenaStyle03 from '../assets/Anchorena 03_style_transfer01.png'
+import anchorenaStyle06a from '../assets/Anchorena 06_style_transfer01.png'
+import anchorenaStyle06b from '../assets/Anchorena 06_style_transfer02.png'
+import anchorenaStyle08 from '../assets/Anchorena 08_style_transfer01.png'
+import anchorenaStyle09 from '../assets/Anchorena 09_style_transfer01.png'
 import sfdmRender from '../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B - RENDER.png'
 import sfdmPlanta from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS PLANTA.png'
 import sfdmConcepto from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS CONCEPTO - 2.png'
@@ -100,7 +108,7 @@ import malabiaCentro1 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIA
 import malabiaCentro2 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 02.png'
 
 const PROJECT_GALLERY = {
-  1: [anchorena01, anchorena02, anchorenaEdificio, anchorenaPlanimetria],
+  1: [anchorenaStyle09, anchorenaStyle08, anchorenaStyle06a, anchorenaStyle06b, anchorenaStyle03, anchorenaStyle02, anchorena01, anchorena02, anchorenaEdificio, anchorenaEdificio02, anchorenaPlanimetria],
   2: [sfdmRender, sfdmPlanta, sfdmConcepto],
   3: [sfdmConcepto, sfdmRender, sfdmPlanta],
   4: [crpAereo, crpZonificacion],
@@ -140,7 +148,7 @@ export default function ProjectDetail() {
   const nextImage = useCallback(() => setLightbox((i) => (i + 1) % gallery.length), [gallery.length])
 
   return (
-    <div className="bg-hub-black min-h-screen font-body overflow-x-hidden">
+    <div className="bg-theme min-h-screen font-body overflow-x-hidden">
 
       {/* ── Hero ──────────────────────────────────────────────────── */}
       <div className="relative h-[50vh] sm:h-[70vh] overflow-hidden">
@@ -157,9 +165,9 @@ export default function ProjectDetail() {
         {/* Back button */}
         <Link
           to="/#projects"
-          className="absolute top-8 left-8 flex items-center gap-2 text-white/70 hover:text-white text-sm font-medium tracking-wider transition-colors group"
+          className="absolute top-8 left-8 flex items-center gap-2 text-white text-sm font-medium tracking-wider transition-all duration-200 group px-3 py-2 bg-black/50 backdrop-blur-sm hover:bg-black/70"
         >
-          <span className="w-8 h-px bg-white/40 group-hover:bg-white transition-colors" />
+          <span className="text-white/70 group-hover:text-white transition-colors">←</span>
           VOLVER
         </Link>
 
@@ -211,16 +219,36 @@ export default function ProjectDetail() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <h2 className="font-display text-white text-2xl tracking-wide mb-4">DESCRIPCIÓN</h2>
-              <p className="text-hub-muted leading-relaxed mb-8">{project.description}</p>
+              <h2 className="font-display text-theme text-2xl tracking-wide mb-4">DESCRIPCIÓN</h2>
+              <p className="text-theme-muted leading-relaxed mb-8">{project.description}</p>
+
+              {/* Coworking building — Anchorena only */}
+              {project.coworkingBuilding && (
+                <div className="mb-8 border overflow-hidden" style={{ borderColor: 'var(--border)' }}>
+                  <div className="relative overflow-hidden" style={{ maxHeight: '340px' }}>
+                    <img
+                      src={anchorenaEdificio}
+                      alt="Edificio de Coworking — HUB Anchorena"
+                      className="w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
+                      <p className="text-hub-bright text-[10px] font-semibold tracking-[0.3em] uppercase mb-1" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.9)' }}>Diferencial exclusivo</p>
+                      <h3 className="font-display text-white text-2xl tracking-wide leading-none" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.9)' }}>EDIFICIO DE COWORKING</h3>
+                      <p className="text-white text-sm mt-2 opacity-80" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>Espacios de trabajo profesional integrados al parque, disponibles para empresas inquilinas e inversores.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Features grid */}
-              <h2 className="font-display text-white text-2xl tracking-wide mb-4">INFRAESTRUCTURA</h2>
+              <h2 className="font-display text-theme text-2xl tracking-wide mb-4">INFRAESTRUCTURA</h2>
               <div className="grid grid-cols-2 gap-3 mb-8">
                 {project.features.map((f) => (
-                  <div key={f} className="flex items-center gap-3 p-3 border border-hub-electric/12 bg-hub-dark/30">
+                  <div key={f} className="flex items-center gap-3 p-3 border bg-theme-card"
+                    style={{ borderColor: 'var(--border-accent)' }}>
                     <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${project.statusColor === 'gold' ? 'bg-hub-electric' : 'bg-hub-steel'}`} />
-                    <span className="text-white text-sm">{f}</span>
+                    <span className="text-theme text-sm">{f}</span>
                   </div>
                 ))}
                 {[
@@ -229,17 +257,18 @@ export default function ProjectDetail() {
                   'Reutilización de aguas',
                   'Control consumo energía',
                 ].map((f) => (
-                  <div key={f} className="flex items-center gap-3 p-3 border border-hub-electric/8 bg-hub-dark/20">
-                    <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-hub-subtle" />
-                    <span className="text-hub-muted text-sm">{f}</span>
+                  <div key={f} className="flex items-center gap-3 p-3 border bg-theme-card"
+                    style={{ borderColor: 'var(--border)' }}>
+                    <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-theme-subtle" />
+                    <span className="text-theme-muted text-sm">{f}</span>
                   </div>
                 ))}
               </div>
 
               {/* Gallery */}
-              <h2 className="font-display text-white text-2xl tracking-wide mb-4">GALERÍA</h2>
+              <h2 className="font-display text-theme text-2xl tracking-wide mb-4">GALERÍA</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {gallery.slice(0, 3).map((src, i) => (
+                {gallery.map((src, i) => (
                   <motion.div
                     key={src}
                     className="aspect-video overflow-hidden border border-hub-electric/10 cursor-zoom-in relative group"
@@ -270,8 +299,8 @@ export default function ProjectDetail() {
             transition={{ duration: 0.6, delay: 0.5 }}
           >
             {/* Specs */}
-            <div className="border border-hub-electric/15 bg-hub-dark/40 p-5">
-              <p className="text-hub-muted text-xs font-semibold tracking-widest uppercase mb-4">Especificaciones</p>
+            <div className="border bg-theme-card p-5" style={{ borderColor: 'var(--border)' }}>
+              <p className="text-theme-muted text-xs font-semibold tracking-widest uppercase mb-4">Especificaciones</p>
               <div className="space-y-3">
                 {[
                   { label: 'Sup. terreno',  value: `${project.area} mts` },
@@ -281,21 +310,23 @@ export default function ProjectDetail() {
                   { label: 'Iluminación',   value: 'LED' },
                   { label: 'Pavimentos',    value: 'Industriales' },
                 ].map((item) => (
-                  <div key={item.label} className="flex justify-between gap-2">
-                    <span className="text-hub-muted text-xs">{item.label}</span>
-                    <span className="text-white text-xs font-medium text-right">{item.value}</span>
+                  <div key={item.label} className="flex justify-between gap-2 pb-2 border-b last:border-0 last:pb-0"
+                    style={{ borderColor: 'var(--border)' }}>
+                    <span className="text-theme-muted text-xs">{item.label}</span>
+                    <span className="text-theme text-xs font-semibold text-right">{item.value}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Contracts */}
-            <div className="border border-hub-electric/10 bg-hub-dark/30 p-5">
-              <p className="text-hub-muted text-xs font-semibold tracking-widest uppercase mb-3">Modalidades</p>
-              {['Alquiler', 'Compra', 'Build-to-suit'].map((m) => (
-                <div key={m} className="flex items-center gap-2 py-1.5 border-b border-hub-electric/8 last:border-0">
+            <div className="border bg-theme-card p-5" style={{ borderColor: 'var(--border)' }}>
+              <p className="text-theme-muted text-xs font-semibold tracking-widest uppercase mb-3">Modalidades</p>
+              {['Alquiler', 'Compra', 'Hecho a medida'].map((m) => (
+                <div key={m} className="flex items-center gap-2 py-1.5 border-b last:border-0"
+                  style={{ borderColor: 'var(--border)' }}>
                   <span className={`w-1 h-1 rounded-full ${project.statusColor === 'gold' ? 'bg-hub-electric' : 'bg-hub-steel'}`} />
-                  <span className="text-white text-sm">{m}</span>
+                  <span className="text-theme text-sm">{m}</span>
                 </div>
               ))}
             </div>
@@ -310,15 +341,16 @@ export default function ProjectDetail() {
               </Link>
               <Link
                 to="/#projects"
-                className="py-3 text-center border border-hub-electric/20 text-hub-muted text-xs font-semibold tracking-widest uppercase hover:border-hub-electric/40 hover:text-white transition-all duration-200 block"
+                className="py-3 text-center border text-xs font-semibold tracking-widest uppercase hover:border-hub-electric/40 hover:text-hub-electric transition-all duration-200 block"
+                style={{ borderColor: 'var(--border)', color: 'var(--text-muted)' }}
               >
                 ← Ver todos los parques
               </Link>
             </div>
 
             {/* Other projects */}
-            <div className="border border-hub-electric/8 bg-hub-dark/20 p-4">
-              <p className="text-hub-muted text-xs font-semibold tracking-widest uppercase mb-3">Otros Parques</p>
+            <div className="border bg-theme-card p-4" style={{ borderColor: 'var(--border)' }}>
+              <p className="text-theme-muted text-xs font-semibold tracking-widest uppercase mb-3">Otros Parques</p>
               <div className="space-y-2">
                 {projects.filter((p) => p.id !== project.id).slice(0, 3).map((p) => (
                   <Link
@@ -326,13 +358,13 @@ export default function ProjectDetail() {
                     to={`/proyecto/${p.slug}`}
                     className="flex items-center gap-2 group"
                   >
-                    <span className="font-display text-hub-electric/30 text-sm group-hover:text-hub-electric/70 transition-colors">
+                    <span className="font-display text-hub-electric/40 text-sm group-hover:text-hub-electric transition-colors">
                       {String(p.id).padStart(2, '0')}
                     </span>
-                    <span className="text-hub-muted text-xs group-hover:text-white transition-colors truncate">
+                    <span className="text-theme-muted text-xs group-hover:text-theme transition-colors truncate">
                       {p.name}
                     </span>
-                    <span className="ml-auto text-hub-subtle text-xs group-hover:text-hub-electric transition-colors">→</span>
+                    <span className="ml-auto text-theme-subtle text-xs group-hover:text-hub-electric transition-colors">→</span>
                   </Link>
                 ))}
               </div>
@@ -343,17 +375,18 @@ export default function ProjectDetail() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-hub-electric/10 mt-8">
+      <footer className="border-t mt-8" style={{ borderColor: 'var(--border)' }}>
         <div className="max-w-5xl mx-auto px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <div className="w-5 h-5 bg-hub-electric flex items-center justify-center">
-              <span className="font-display text-hub-black text-xs leading-none">H</span>
+            <div className="w-5 h-5 flex items-center justify-center"
+              style={{ backgroundColor: 'var(--text-primary)' }}>
+              <span className="font-display text-xs leading-none" style={{ color: 'var(--bg-primary)' }}>H</span>
             </div>
-            <span className="font-display text-hub-muted text-sm tracking-widest">HUB</span>
-            <span className="text-hub-subtle text-xs">© {new Date().getFullYear()} Parques Industriales</span>
+            <span className="font-display text-theme-muted text-sm tracking-widest">HUB</span>
+            <span className="text-theme-subtle text-xs">© {new Date().getFullYear()} Parques Industriales</span>
           </div>
           <div className="flex items-center gap-4">
-            <Link to="/" className="text-hub-subtle text-xs hover:text-hub-muted transition-colors">← Inicio</Link>
+            <Link to="/" className="text-theme-subtle text-xs hover:text-theme-muted transition-colors">← Inicio</Link>
             <a href="/#contact" className="text-hub-electric text-xs hover:underline">Contacto</a>
           </div>
         </div>
@@ -361,7 +394,7 @@ export default function ProjectDetail() {
       <AnimatePresence>
         {lightbox !== null && (
           <Lightbox
-            images={gallery.slice(0, 3)}
+            images={gallery}
             index={lightbox}
             onClose={closeLightbox}
             onPrev={prevImage}

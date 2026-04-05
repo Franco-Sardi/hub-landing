@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import SectionFrame from '../ui/SectionFrame'
 
 const categories = [
   {
@@ -57,8 +58,9 @@ export default function Model() {
   return (
     <section
       id="model"
-      className="relative lg:min-h-dvh flex flex-col justify-center overflow-hidden bg-hub-dark py-12 lg:py-0"
+      className="hub-bg-h relative lg:min-h-dvh flex flex-col justify-center overflow-hidden bg-theme py-12 lg:py-0"
     >
+      <SectionFrame />
       <div className="absolute inset-0 bg-grid opacity-35" />
       <div
         className="absolute inset-0 pointer-events-none"
@@ -77,11 +79,11 @@ export default function Model() {
         >
           <div className="flex items-center gap-3 mb-3">
             <span className="w-8 h-px bg-hub-electric" />
-            <span className="text-hub-bright text-xs font-semibold tracking-[0.3em] uppercase">Estructura de Negocio</span>
+            <span className="text-hub-electric dark:text-hub-bright text-xs font-semibold tracking-[0.3em] uppercase">Estructura de Negocio</span>
           </div>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-2">
             <h2
-              className="font-display text-white leading-none tracking-wide"
+              className="font-display text-theme leading-none tracking-wide"
               style={{ fontSize: 'clamp(1.9rem, 4vw, 4rem)' }}
             >
               NUESTRO MODELO{' '}
@@ -96,7 +98,7 @@ export default function Model() {
                 DE NEGOCIO
               </span>
             </h2>
-            <p className="text-hub-muted text-xs lg:text-sm max-w-sm leading-relaxed">
+            <p className="text-theme-muted text-xs lg:text-sm max-w-sm leading-relaxed">
               HUB MZA es el titular fiduciario de 6 fideicomisos propietarios de los inmuebles.
               Tres categorías de participación para invertir.
             </p>
@@ -120,29 +122,29 @@ export default function Model() {
               transition={{ duration: 0.45, delay: 0.15 + i * 0.08 }}
               className={`relative p-5 border transition-all duration-300 group flex flex-col ${
                 cat.highlight
-                  ? 'border-hub-electric/40 bg-gradient-to-b from-hub-electric/8 to-hub-midnight/40 hover:border-hub-electric/60'
-                  : 'border-hub-azure/15 bg-hub-midnight/40 hover:border-hub-azure/40'
+                  ? 'border-hub-electric/30 bg-theme-card hover:border-hub-electric/50'
+                  : 'border-theme bg-theme-card hover:border-theme-accent'
               }`}
             >
               {cat.highlight && (
                 <div className="absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-hub-electric to-transparent" />
               )}
 
-              <p className="font-display text-white text-xl tracking-wide mb-3">{cat.name.toUpperCase()}</p>
+              <p className="font-display text-theme text-xl tracking-wide mb-3">{cat.name.toUpperCase()}</p>
 
               {/* Iniciales — badge fundacional */}
               {cat.badge && (
                 <div className="mb-3">
-                  <div className="flex items-center gap-2 mb-3 px-3 py-1.5 border border-hub-azure/25 bg-hub-midnight/60 w-fit">
-                    <span className="w-1.5 h-1.5 rounded-full bg-hub-bright/60 shrink-0" />
-                    <span className="font-display text-hub-muted text-sm leading-none tracking-wider">{cat.badge}</span>
+                  <div className="flex items-center gap-2 mb-3 px-3 py-1.5 border border-theme bg-theme-alt w-fit">
+                    <span className="w-1.5 h-1.5 rounded-full bg-hub-electric/60 shrink-0" />
+                    <span className="font-display text-theme-muted text-sm leading-none tracking-wider">{cat.badge}</span>
                   </div>
-                  <p className="text-hub-subtle text-[10px] tracking-widest uppercase mb-3">{cat.badgeDesc}</p>
+                  <p className="text-theme-subtle text-[10px] tracking-widest uppercase mb-3">{cat.badgeDesc}</p>
                   <div className="flex flex-col gap-1.5">
                     {cat.tags.map((tag) => (
                       <div key={tag} className="flex items-center gap-2">
                         <span className="w-px h-3 bg-hub-azure/40 shrink-0" />
-                        <span className="text-hub-muted text-xs">{tag}</span>
+                        <span className="text-theme-muted text-xs">{tag}</span>
                       </div>
                     ))}
                   </div>
@@ -166,7 +168,7 @@ export default function Model() {
                     >
                       {cat.price}
                     </span>
-                    <span className="text-hub-muted text-[10px] leading-tight">{cat.priceLabel}</span>
+                    <span className="text-theme-muted text-[10px] leading-tight">{cat.priceLabel}</span>
                   </div>
                 </div>
               )}
@@ -174,11 +176,11 @@ export default function Model() {
               {cat.rate && (
                 <div className="flex items-center gap-2 mb-3 px-3 py-1.5 border border-hub-electric/25 bg-hub-electric/8 w-fit">
                   <span className="font-display text-hub-bright text-base leading-none">{cat.rate}</span>
-                  <span className="text-hub-muted text-[10px]">de interés anual</span>
+                  <span className="text-theme-muted text-[10px]">de interés anual</span>
                 </div>
               )}
 
-              <p className="text-hub-muted text-xs leading-relaxed mt-auto pt-2">{cat.desc}</p>
+              <p className="text-theme-muted text-xs leading-relaxed mt-auto pt-2">{cat.desc}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -192,7 +194,7 @@ export default function Model() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: i * 0.07 }}
-              className="flex gap-3 p-3.5 border border-hub-azure/15 bg-hub-midnight/40"
+              className="flex gap-3 p-3.5 border border-theme bg-theme-card"
             >
               <span
                 className="font-display text-hub-azure/20 leading-none shrink-0 select-none"
@@ -201,8 +203,8 @@ export default function Model() {
                 {step.num}
               </span>
               <div className="flex flex-col justify-center">
-                <h3 className="font-display text-white text-lg tracking-wide mb-0.5">{step.title}</h3>
-                <p className="text-hub-muted text-xs leading-relaxed">{step.desc}</p>
+                <h3 className="font-display text-theme text-lg tracking-wide mb-0.5">{step.title}</h3>
+                <p className="text-theme-muted text-xs leading-relaxed">{step.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -231,17 +233,17 @@ export default function Model() {
                   {/* Content block — 45% width */}
                   <div className={`w-[45%] py-4 ${isLeft ? 'pr-10 text-right' : 'pl-10 text-left'}`}>
                     <h3
-                      className="font-display text-white leading-tight tracking-wide mb-1.5"
+                      className="font-display text-theme leading-tight tracking-wide mb-1.5"
                       style={{ fontSize: 'clamp(1.1rem, 1.7vw, 1.6rem)' }}
                     >
                       {step.title}
                     </h3>
-                    <p className="text-hub-muted text-xs lg:text-sm leading-relaxed">{step.desc}</p>
+                    <p className="text-theme-muted text-xs lg:text-sm leading-relaxed">{step.desc}</p>
                   </div>
 
                   {/* Center node */}
                   <div className="absolute left-1/2 -translate-x-1/2 z-10">
-                    <div className="w-10 h-10 border border-hub-azure/40 bg-hub-dark flex items-center justify-center relative">
+                    <div className="w-10 h-10 border border-theme bg-theme-card flex items-center justify-center relative">
                       <div className="absolute inset-0 bg-hub-azure/8" />
                       <span className="font-display text-hub-azure-light text-base leading-none relative z-10">{step.num}</span>
                     </div>
@@ -280,8 +282,8 @@ export default function Model() {
               <span className="text-hub-electric font-bold text-xs">$</span>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white font-semibold text-xs lg:text-sm">Pioneros — Cuota parte USD 560</p>
-              <p className="text-hub-muted text-xs truncate">Ingresá desde las primeras etapas del proyecto.</p>
+              <p className="text-theme font-semibold text-xs lg:text-sm">Pioneros — Cuota parte USD 560</p>
+              <p className="text-theme-muted text-xs truncate">Ingresá desde las primeras etapas del proyecto.</p>
             </div>
             <a href="#contact" className="text-hub-electric text-xs font-medium shrink-0 hover:underline">Consultar →</a>
           </div>
@@ -290,8 +292,8 @@ export default function Model() {
               <span className="text-hub-electric font-bold text-xs">%</span>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white font-semibold text-xs lg:text-sm">Inversores — Cuota parte USD 780 · 8% TNA</p>
-              <p className="text-hub-muted text-xs truncate">Interés anual en dólares hasta que el proyecto genere ingresos.</p>
+              <p className="text-theme font-semibold text-xs lg:text-sm">Inversores — Cuota parte USD 780 · 8% TNA</p>
+              <p className="text-theme-muted text-xs truncate">Interés anual en dólares hasta que el proyecto genere ingresos.</p>
             </div>
             <a href="#contact" className="text-hub-electric text-xs font-medium shrink-0 hover:underline">Consultar →</a>
           </div>

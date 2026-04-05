@@ -18,7 +18,7 @@ function useCountUp(target, duration = 1600, start = false) {
   return value
 }
 
-function Stat({ value, suffix, label, sublabel, delay, index }) {
+function Stat({ value, suffix, label, sublabel, delay }) {
   const ref = useRef(null)
   const [on, setOn] = useState(false)
   const count = useCountUp(value, 1800, on)
@@ -37,49 +37,68 @@ function Stat({ value, suffix, label, sublabel, delay, index }) {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.65, delay }}
+      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
       className="flex items-stretch gap-0"
     >
-      {/* Azure left accent bar */}
-      <div className="w-0.5 shrink-0 bg-gradient-to-b from-hub-azure to-hub-azure-light/30 mr-5" />
+      {/* Barra lateral — degradado navy premium */}
+      <div
+        className="w-px shrink-0 mr-5"
+        style={{ background: 'linear-gradient(to bottom, transparent, var(--stat-deco-line) 30%, var(--stat-deco-line) 70%, transparent)' }}
+      />
 
-      <div className="flex flex-col justify-center">
-        {/* Number */}
-        <div className="flex items-end gap-1 leading-none mb-1.5">
+      <div className="flex flex-col justify-center gap-1">
+        {/* Número */}
+        <div className="flex items-end gap-1 leading-none">
           <span
             className="font-display tabular-nums"
             style={{
-              fontSize: 'clamp(2.2rem, 3.5vw, 3.5rem)',
-              background: 'linear-gradient(135deg, #4a87f5 0%, #6aa3ff 50%, #4a87f5 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
+              fontSize: 'clamp(2.4rem, 3.8vw, 4rem)',
               lineHeight: 1,
+              color: 'var(--stat-color)',
+              letterSpacing: '-0.01em',
             }}
           >
             {count.toLocaleString('es-AR')}
           </span>
           {suffix && (
             <span
-              className="font-display pb-1"
+              className="font-display pb-1.5"
               style={{
-                fontSize: 'clamp(0.9rem, 1.8vw, 1.5rem)',
-                background: 'linear-gradient(135deg, #4a87f5 0%, #6aa3ff 50%, #4a87f5 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
+                fontSize: 'clamp(0.85rem, 1.5vw, 1.2rem)',
                 lineHeight: 1,
+                color: 'var(--stat-color)',
+                opacity: 0.45,
+                letterSpacing: '0.05em',
               }}
             >
               {suffix}
             </span>
           )}
         </div>
-        <div className="text-white text-xs font-semibold tracking-[0.2em] uppercase mb-0.5">{label}</div>
-        {sublabel && <div className="text-hub-muted text-xs tracking-wide">{sublabel}</div>}
+
+        {/* Label principal */}
+        <div
+          className="font-display tracking-[0.3em] uppercase"
+          style={{ fontSize: 'clamp(0.65rem, 0.9vw, 0.78rem)', color: 'var(--stat-color)', opacity: 0.75 }}
+        >
+          {label}
+        </div>
+
+        {/* Sublabel — línea fina decorativa + texto */}
+        {sublabel && (
+          <div className="flex items-center gap-2 mt-0.5">
+            <div className="w-3 h-px" style={{ background: 'var(--stat-deco)' }} />
+            <span
+              className="font-body tracking-wider"
+              style={{ fontSize: '0.65rem', color: 'var(--stat-color)', opacity: 0.42, textTransform: 'uppercase', letterSpacing: '0.18em' }}
+            >
+              {sublabel}
+            </span>
+          </div>
+        )}
       </div>
     </motion.div>
   )
@@ -87,83 +106,133 @@ function Stat({ value, suffix, label, sublabel, delay, index }) {
 
 const STATS = [
   { value: 5,      suffix: '',     label: 'Parques',    sublabel: 'En Mendoza',               delay: 0    },
-  { value: 420000, suffix: ' mts', label: 'Terreno',    sublabel: 'Total disponible',          delay: 0.1  },
-  { value: 240000, suffix: ' m²',  label: 'Naves',      sublabel: 'Industriales inteligentes', delay: 0.2  },
-  { value: 8,      suffix: '%',    label: 'ROI Anual',  sublabel: 'En dólares · base',         delay: 0.3  },
-  { value: 40,     suffix: '+',    label: 'Empresas',   sublabel: 'Proyectadas',               delay: 0.4  },
+  { value: 420000, suffix: ' mts', label: 'Terreno',    sublabel: 'Total disponible',          delay: 0.12 },
+  { value: 240000, suffix: ' m²',  label: 'Naves',      sublabel: 'Industriales inteligentes', delay: 0.24 },
+  { value: 8,      suffix: '%',    label: 'ROI Anual',  sublabel: 'En dólares · base',         delay: 0.36 },
 ]
 
 export default function Stats() {
   return (
     <section
       id="stats"
-      className="relative lg:min-h-dvh flex flex-col overflow-hidden bg-hub-dark py-12 lg:py-0"
+      className="stats-section relative lg:min-h-dvh flex flex-col overflow-hidden py-12 lg:py-0"
     >
-      {/* Background */}
-      <div className="absolute inset-0 bg-grid opacity-60" />
+      {/* Ghost "H" — marca de agua de la identidad */}
       <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(13,42,78,0.18) 0%, transparent 70%)' }}
-      />
-      <div className="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-hub-azure/50 to-transparent" />
-      <div className="absolute bottom-0 w-full h-px bg-gradient-to-r from-transparent via-hub-azure/20 to-transparent" />
-
-      {/* Ghost "6" */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+        aria-hidden="true"
+      >
         <span
           className="font-display leading-none"
-          style={{ fontSize: 'clamp(16rem, 40vw, 40rem)', color: 'transparent', WebkitTextStroke: '1px rgba(13,42,78,0.12)' }}
+          style={{
+            fontSize: 'clamp(18rem, 45vw, 52rem)',
+            color: 'transparent',
+            WebkitTextStroke: '1.5px var(--stat-deco-faint)',
+            letterSpacing: '-0.02em',
+            transform: 'translateY(4%)',
+          }}
         >
-          5
+          H
         </span>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center flex-1 px-5 sm:px-8 xl:px-12">
+      {/* Marco interior — detalle premium */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          inset: 20,
+          border: '1px solid var(--stat-deco)',
+          zIndex: 1,
+        }}
+      />
+      {/* Esquinas marcadas */}
+      {[
+        { top: 14, left: 14 },
+        { top: 14, right: 14 },
+        { bottom: 14, left: 14 },
+        { bottom: 14, right: 14 },
+      ].map((pos, i) => (
+        <div
+          key={i}
+          className="absolute pointer-events-none"
+          style={{
+            ...pos,
+            width: 18,
+            height: 18,
+            borderTop:    pos.bottom === undefined ? '2px solid var(--stat-deco-strong)' : undefined,
+            borderBottom: pos.top    === undefined ? '2px solid var(--stat-deco-strong)' : undefined,
+            borderLeft:   pos.right  === undefined ? '2px solid var(--stat-deco-strong)' : undefined,
+            borderRight:  pos.left   === undefined ? '2px solid var(--stat-deco-strong)' : undefined,
+            zIndex: 2,
+          }}
+        />
+      ))}
 
-        {/* Eyebrow */}
+      {/* Contenido */}
+      <div className="relative z-10 flex flex-col items-center justify-center flex-1 px-8 sm:px-12 xl:px-16">
+
+        {/* Eyebrow — ornamento ◆ línea ◆ */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: -8 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-3 mb-10 lg:mb-16"
+          className="flex items-center gap-3 mb-12 lg:mb-20"
         >
-          <span className="w-10 h-px bg-hub-azure/70" />
-          <span className="text-hub-muted text-xs font-semibold tracking-[0.35em] uppercase">HUB en Números</span>
-          <span className="w-10 h-px bg-hub-azure/70" />
+          <div className="w-16 h-px" style={{ background: 'linear-gradient(to right, transparent, var(--stat-deco))' }} />
+          <svg width="6" height="6" viewBox="0 0 6 6">
+            <rect x="3" y="0" width="4.24" height="4.24" transform="rotate(45 3 3)" fill="var(--stat-deco-strong)" />
+          </svg>
+          <span
+            className="font-display tracking-[0.45em] uppercase"
+            style={{ fontSize: '0.72rem', color: 'var(--stat-color)', opacity: 0.6, letterSpacing: '0.45em' }}
+          >
+            HUB en Números
+          </span>
+          <svg width="6" height="6" viewBox="0 0 6 6">
+            <rect x="3" y="0" width="4.24" height="4.24" transform="rotate(45 3 3)" fill="var(--stat-deco-strong)" />
+          </svg>
+          <div className="w-16 h-px" style={{ background: 'linear-gradient(to left, transparent, var(--stat-deco))' }} />
         </motion.div>
 
-        {/* Stats grid */}
-        <div className="w-full max-w-6xl xl:max-w-7xl grid grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-0">
+        {/* Grid de stats */}
+        <div className="w-full max-w-6xl xl:max-w-7xl grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-0">
           {STATS.map((s, i) => (
             <div
               key={s.label}
-              className={`px-3 py-4 lg:px-5 xl:px-8 ${
-                i < 4 ? 'lg:border-r lg:border-hub-azure/15' : ''
-              } ${i >= 2 ? 'border-t border-hub-azure/10 pt-6 lg:border-t-0 lg:pt-4' : ''}`}
+              className={`px-4 py-2 lg:px-6 xl:px-10 ${i < 3 ? 'lg:border-r' : ''} ${i >= 2 ? 'border-t pt-8 lg:border-t-0 lg:pt-2' : ''}`}
+              style={{ borderColor: 'var(--stat-deco-faint)' }}
             >
-              <Stat {...s} index={i} />
+              <Stat {...s} />
             </div>
           ))}
         </div>
 
-        {/* Divider + tagline */}
+        {/* Divisor central ornamentado */}
         <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.7 }}
-          className="mt-12 lg:mt-16 w-full max-w-5xl h-px bg-gradient-to-r from-transparent via-hub-azure/30 to-transparent origin-left"
-        />
+          transition={{ duration: 1.1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-14 lg:mt-20 w-full max-w-4xl flex items-center gap-4 origin-center"
+        >
+          <div className="flex-1 h-px" style={{ background: 'linear-gradient(to right, transparent, var(--stat-deco))' }} />
+          <svg width="8" height="8" viewBox="0 0 8 8">
+            <rect x="4" y="0" width="5.66" height="5.66" transform="rotate(45 4 4)" fill="none" stroke="var(--stat-deco-line)" strokeWidth="1" />
+          </svg>
+          <div className="flex-1 h-px" style={{ background: 'linear-gradient(to left, transparent, var(--stat-deco))' }} />
+        </motion.div>
+
+        {/* Tagline */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="text-hub-muted/60 text-sm mt-5 tracking-wide text-center"
+          transition={{ duration: 0.7, delay: 0.9 }}
+          className="font-body text-center mt-5 tracking-[0.15em] uppercase"
+          style={{ fontSize: '0.68rem', color: 'var(--stat-color)', opacity: 0.38, maxWidth: '40ch' }}
         >
-          Infraestructura industrial de clase mundial en las principales zonas productivas de Mendoza.
+          Infraestructura industrial de clase mundial en las principales zonas industriales con conectividad óptima de Mendoza
         </motion.p>
       </div>
     </section>
