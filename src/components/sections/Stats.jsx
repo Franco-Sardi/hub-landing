@@ -81,8 +81,8 @@ function Stat({ value, suffix, label, sublabel, delay }) {
 
         {/* Label principal */}
         <div
-          className="font-display tracking-[0.3em] uppercase"
-          style={{ fontSize: 'clamp(0.65rem, 0.9vw, 0.78rem)', color: 'var(--stat-color)', opacity: 0.75 }}
+          className="font-display tracking-[0.25em] uppercase"
+          style={{ fontSize: 'clamp(0.72rem, 0.9vw, 0.78rem)', color: 'var(--stat-color)', opacity: 0.75 }}
         >
           {label}
         </div>
@@ -93,7 +93,7 @@ function Stat({ value, suffix, label, sublabel, delay }) {
             <div className="w-3 h-px" style={{ background: 'var(--stat-deco)' }} />
             <span
               className="font-body tracking-wider"
-              style={{ fontSize: '0.65rem', color: 'var(--stat-color)', opacity: 0.42, textTransform: 'uppercase', letterSpacing: '0.18em' }}
+              style={{ fontSize: '0.72rem', color: 'var(--stat-color)', opacity: 0.55, textTransform: 'uppercase', letterSpacing: '0.12em' }}
             >
               {sublabel}
             </span>
@@ -177,7 +177,7 @@ export default function Stats() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-3 mb-12 lg:mb-20"
+          className="flex items-center gap-3 mb-8 lg:mb-20"
         >
           <div className="w-16 h-px" style={{ background: 'linear-gradient(to right, transparent, var(--stat-deco))' }} />
           <svg width="6" height="6" viewBox="0 0 6 6">
@@ -196,11 +196,11 @@ export default function Stats() {
         </motion.div>
 
         {/* Grid de stats */}
-        <div className="w-full max-w-6xl xl:max-w-7xl grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-0">
+        <div className="w-full max-w-6xl xl:max-w-7xl grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 lg:gap-0">
           {STATS.map((s, i) => (
             <div
               key={s.label}
-              className={`px-4 py-2 lg:px-6 xl:px-10 ${i < 3 ? 'lg:border-r' : ''} ${i >= 2 ? 'border-t pt-8 lg:border-t-0 lg:pt-2' : ''}`}
+              className={`px-4 py-2 lg:px-6 xl:px-10 ${i < 3 ? 'lg:border-r' : ''} ${i < 2 ? 'border-b pb-6 lg:border-b-0 lg:pb-2' : ''}`}
               style={{ borderColor: 'var(--stat-deco-faint)' }}
             >
               <Stat {...s} />
@@ -214,7 +214,7 @@ export default function Stats() {
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-14 lg:mt-20 w-full max-w-4xl flex items-center gap-4 origin-center"
+          className="mt-8 lg:mt-20 w-full max-w-4xl flex items-center gap-4 origin-center"
         >
           <div className="flex-1 h-px" style={{ background: 'linear-gradient(to right, transparent, var(--stat-deco))' }} />
           <svg width="8" height="8" viewBox="0 0 8 8">

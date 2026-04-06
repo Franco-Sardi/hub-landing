@@ -49,7 +49,7 @@ export default function Projects() {
         </h2>
 
         {/* Mapa mobile */}
-        <div className="relative border border-hub-electric/15 bg-hub-dark/30 w-full">
+        <div className="relative border border-hub-electric/15 bg-hub-dark/30 w-full" style={{ minHeight: '300px' }}>
           <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-hub-electric/25 pointer-events-none" />
           <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-hub-electric/25 pointer-events-none" />
           <div className="absolute bottom-2 left-2 w-3 h-3 border-b border-l border-hub-electric/25 pointer-events-none" />
@@ -87,8 +87,8 @@ export default function Projects() {
                 backgroundColor: 'var(--bg-card)',
               }}
             >
-              <div className="relative h-40 overflow-hidden">
-                <img src={project.image} alt={project.name} className="w-full h-full object-cover" style={{ transform: 'scale(0.85)' }} />
+              <div className="relative h-44 overflow-hidden">
+                <img src={project.image} alt={project.name} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-hub-black/90 via-hub-black/30 to-transparent" />
                 <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2">
                   <div>
@@ -181,7 +181,6 @@ export default function Projects() {
                 src={active.image}
                 alt={active.name}
                 className="absolute inset-0 w-full h-full object-cover bg-hub-dark"
-                style={{ transform: 'scale(0.85)' }}
                 initial={{ opacity: 0, scale: 1.04 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}

@@ -99,11 +99,11 @@ export default function ForCompanies() {
             <div className="absolute inset-0 bg-gradient-to-t from-hub-dark/70 to-transparent" />
 
             {/* Specs overlay on image */}
-            <div className="absolute bottom-0 left-0 right-0 grid grid-cols-4 border-t border-hub-azure/25 bg-hub-black/50 backdrop-blur-sm">
+            <div className="absolute bottom-0 left-0 right-0 grid grid-cols-2 sm:grid-cols-4 border-t border-hub-azure/25 bg-hub-black/50 backdrop-blur-sm">
               {specs.map((s, i) => (
-                <div key={s.label} className={`flex flex-col items-center justify-center text-center py-2.5 lg:py-3 px-2 ${i < 3 ? 'border-r border-hub-azure/20' : ''}`}>
+                <div key={s.label} className={`flex flex-col items-center justify-center text-center py-2.5 lg:py-3 px-2 ${i % 2 === 0 && i !== specs.length - 1 ? 'border-r border-hub-azure/20' : ''} ${i < 2 ? 'sm:border-r border-b sm:border-b-0 border-hub-azure/20' : ''} ${i === 2 ? 'sm:border-r border-hub-azure/20' : ''}`}>
                   <span className="font-display text-hub-bright leading-none" style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.3rem)' }}>{s.value}</span>
-                  <span className="text-hub-muted text-[9px] lg:text-[10px] mt-0.5">{s.label}</span>
+                  <span className="text-hub-muted text-[10px] mt-0.5">{s.label}</span>
                 </div>
               ))}
             </div>
@@ -148,7 +148,7 @@ export default function ForCompanies() {
               <p className="text-theme-muted text-[10px] tracking-widest uppercase mb-2">Sustentabilidad</p>
               <div className="flex flex-wrap gap-1.5">
                 {sustainability.map((s) => (
-                  <span key={s} className="px-2.5 py-1 border border-theme text-theme-muted text-[10px] hover:border-hub-electric/40 hover:text-hub-bright transition-all duration-200 cursor-default">{s}</span>
+                  <span key={s} className="px-2.5 py-1.5 border border-theme text-theme-muted text-xs hover:border-hub-electric/40 hover:text-hub-bright transition-all duration-200 cursor-default">{s}</span>
                 ))}
               </div>
             </motion.div>
@@ -178,9 +178,9 @@ export default function ForCompanies() {
             {/* Contracts */}
             <div>
               <p className="text-theme-muted text-[10px] font-semibold tracking-widest uppercase mb-2.5">Modalidades de contratación</p>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 {contracts.map((c) => (
-                  <div key={c.type} className="flex items-center gap-2 px-3 py-2 border border-theme bg-theme-card hover:border-hub-electric/30 transition-colors group">
+                  <div key={c.type} className="flex items-center gap-2 px-3 py-2.5 border border-theme bg-theme-card hover:border-hub-electric/30 transition-colors group">
                     <span className="w-0.5 h-full bg-hub-electric/25 shrink-0 group-hover:bg-hub-electric transition-colors" />
                     <div>
                       <span className="text-theme text-xs font-semibold block">{c.type}</span>

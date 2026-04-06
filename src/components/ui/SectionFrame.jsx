@@ -8,16 +8,16 @@ const CORNERS = [
 export default function SectionFrame() {
   return (
     <>
-      {/* Borde interior */}
+      {/* Borde interior — solo desktop */}
       <div
-        className="absolute pointer-events-none"
+        className="absolute pointer-events-none hidden lg:block"
         style={{ inset: 20, border: '1px solid var(--stat-deco)', zIndex: 1 }}
       />
-      {/* Esquinas */}
+      {/* Esquinas — solo desktop */}
       {CORNERS.map((pos, i) => (
         <div
           key={i}
-          className="absolute pointer-events-none"
+          className="absolute pointer-events-none hidden lg:block"
           style={{
             ...pos,
             width: 18,

@@ -104,13 +104,13 @@ export default function Contact() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-4">
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <Field label="Nombre completo *" error={errors.name && 'Requerido'}
                     {...register('name', { required: true })} />
                   <Field label="Email *" type="email" error={errors.email && 'Email inválido'}
                     {...register('email', { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })} />
                 </div>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <Field label="Teléfono" type="tel" {...register('phone')} />
                   <Field label="Me interesa…" as="select" error={errors.interest && 'Requerido'}
                     {...register('interest', { required: true })}>
@@ -120,13 +120,13 @@ export default function Contact() {
                     <option value="both">Ambas opciones</option>
                   </Field>
                 </div>
-                <Field label="Mensaje (opcional)" as="textarea" rows={3} {...register('message')} />
-                <div className="flex items-center justify-between pt-2 gap-4">
-                  <span className="text-theme-muted/60 text-[10px] leading-relaxed hidden sm:block">
+                <Field label="Mensaje (opcional)" as="textarea" rows={4} {...register('message')} />
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-1">
+                  <span className="text-theme-muted/60 text-xs leading-relaxed">
                     Al enviar aceptás nuestra política de privacidad.
                   </span>
                   <button type="submit" disabled={isSubmitting}
-                    className="group flex items-center gap-2 px-8 py-3 bg-hub-electric text-white text-xs font-bold tracking-widest uppercase hover:bg-hub-bright transition-all duration-200 disabled:opacity-50 shrink-0"
+                    className="group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 bg-hub-electric text-white text-xs font-bold tracking-widest uppercase hover:bg-hub-bright transition-all duration-200 disabled:opacity-50 shrink-0"
                     style={{ boxShadow: '0 0 24px rgba(30,92,212,0.25)' }}>
                     {isSubmitting ? 'Enviando…' : (
                       <>Enviar consulta <span className="group-hover:translate-x-1 transition-transform duration-200 inline-block">→</span></>
@@ -145,18 +145,18 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.25 }}
             className="lg:col-span-2 flex flex-col gap-5 lg:border-l lg:pl-8" style={{ borderColor: 'var(--border)' }}
           >
-            {/* Contact details */}
-            <div className="flex flex-col gap-0">
+            {/* Contact details — grid on mobile for compact display */}
+            <div className="grid grid-cols-2 lg:grid-cols-1 gap-0">
               {[
                 { label: 'Email',    value: 'contacto@hubindustriales.com' },
                 { label: 'Tel',      value: '+54 261 000-0000' },
                 { label: 'Oficinas', value: 'Mendoza, Argentina' },
                 { label: 'Horario',  value: 'Lun–Vie 9–18 hs' },
               ].map((item, i) => (
-                <div key={item.label} className={`flex flex-col py-2.5 ${i < 3 ? 'border-b' : ''}`}
-                  style={i < 3 ? { borderColor: 'var(--border)' } : {}}>
+                <div key={item.label} className={`flex flex-col py-2.5 border-b lg:last:border-0`}
+                  style={{ borderColor: 'var(--border)' }}>
                   <span className="text-theme-subtle text-[10px] tracking-widest uppercase mb-0.5">{item.label}</span>
-                  <span className="text-theme text-sm">{item.value}</span>
+                  <span className="text-theme text-xs sm:text-sm break-words">{item.value}</span>
                 </div>
               ))}
             </div>

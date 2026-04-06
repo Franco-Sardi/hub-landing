@@ -101,7 +101,7 @@ export default function ForInvestors() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.45, delay: 0.2 + i * 0.1 }}
-                    className={`flex items-center gap-3 sm:gap-4 px-4 py-3.5 group transition-colors duration-200 ${
+                    className={`flex items-center gap-3 px-4 py-3.5 group transition-colors duration-200 ${
                       p.available ? 'hover:bg-hub-electric/5' : 'opacity-45'
                     } ${p.highlight ? 'bg-hub-electric/5' : ''} ${
                       i < investorProfiles.length - 1 ? 'border-b border-theme' : ''
@@ -113,7 +113,7 @@ export default function ForInvestors() {
                     }`} />
 
                     {/* Name */}
-                    <span className={`font-display text-base tracking-wider w-24 shrink-0 ${
+                    <span className={`font-display text-sm tracking-wider min-w-[5rem] shrink-0 ${
                       p.available ? 'text-theme' : 'text-theme-muted'
                     }`}>
                       {p.name}
@@ -121,7 +121,7 @@ export default function ForInvestors() {
 
                     {/* Cuota price */}
                     {p.cuota ? (
-                      <span className={`font-display text-lg leading-none shrink-0 ${
+                      <span className={`font-display text-base leading-none shrink-0 ${
                         p.highlight ? 'text-hub-bright' : 'text-hub-electric dark:text-hub-bright'
                       }`}>
                         {p.cuota}

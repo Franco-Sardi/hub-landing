@@ -196,18 +196,18 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-row items-center justify-center gap-2.5 lg:gap-4 mb-5 lg:mb-10"
+          className="flex flex-col sm:flex-row items-center justify-center gap-2.5 lg:gap-4 mb-5 lg:mb-10"
         >
           <a
             href="#contact"
-            className="group relative sm:w-auto px-6 py-2.5 lg:px-9 lg:py-3.5 bg-hub-electric text-white font-semibold text-[11px] tracking-widest uppercase overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(30,92,212,0.45)] text-center"
+            className="group relative w-full sm:w-auto px-6 py-3 lg:px-9 lg:py-3.5 bg-hub-electric text-white font-semibold text-xs tracking-widest uppercase overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(30,92,212,0.45)] text-center"
           >
             <span className="relative z-10">Invertí con HUB</span>
             <div className="absolute inset-0 bg-hub-bright translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
           </a>
           <a
             href="#companies"
-            className="sm:w-auto px-6 py-2.5 lg:px-9 lg:py-3.5 border border-hub-azure text-white font-semibold text-[11px] tracking-widest uppercase backdrop-blur-sm hover:border-hub-azure-light hover:bg-hub-azure/15 transition-all duration-300 text-center"
+            className="w-full sm:w-auto px-6 py-3 lg:px-9 lg:py-3.5 border border-hub-azure text-white font-semibold text-xs tracking-widest uppercase backdrop-blur-sm hover:border-hub-azure-light hover:bg-hub-azure/15 transition-all duration-300 text-center"
           >
             Sumá tu Empresa
           </a>

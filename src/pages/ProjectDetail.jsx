@@ -165,7 +165,7 @@ export default function ProjectDetail() {
         {/* Back button */}
         <Link
           to="/#projects"
-          className="absolute top-8 left-8 flex items-center gap-2 text-white text-sm font-medium tracking-wider transition-all duration-200 group px-3 py-2 bg-black/50 backdrop-blur-sm hover:bg-black/70"
+          className="absolute top-4 sm:top-8 left-4 sm:left-8 flex items-center gap-2 text-white text-sm font-medium tracking-wider transition-all duration-200 group px-3 py-2 bg-black/50 backdrop-blur-sm hover:bg-black/70"
         >
           <span className="text-white/70 group-hover:text-white transition-colors">←</span>
           VOLVER
@@ -180,30 +180,28 @@ export default function ProjectDetail() {
 
         {/* Hero content */}
         <motion.div
-          className="absolute bottom-0 left-0 right-0 px-8 pb-12 max-w-5xl"
+          className="absolute bottom-0 left-0 right-0 px-4 sm:px-8 pb-6 sm:pb-12 max-w-5xl"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
         >
-          <div className="flex items-center gap-3 mb-3">
-            <span className="w-8 h-px bg-white" />
-            <span className="text-white text-xs font-bold tracking-[0.3em] uppercase" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>HUB · Parque Industrial</span>
-            <span className="text-xs font-bold tracking-wider uppercase px-2 py-0.5 border border-white/40 bg-black/50 text-white" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
+          <div className="flex items-center gap-3 mb-2">
+            <span className="w-6 sm:w-8 h-px bg-white" />
+            <span className="text-white text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>HUB · Parque Industrial</span>
+            <span className="text-[10px] sm:text-xs font-bold tracking-wider uppercase px-2 py-0.5 border border-white/40 bg-black/50 text-white" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
               {project.status}
             </span>
           </div>
           <h1
             className="font-display text-white leading-none tracking-wide mb-2"
-            style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}
+            style={{ fontSize: 'clamp(1.8rem, 6vw, 5rem)' }}
           >
             {project.name.toUpperCase()}
           </h1>
-          <p className="text-hub-muted text-sm flex items-center gap-2">
-            <span>📍</span> {project.location}
-            <span className="w-px h-4 bg-hub-subtle" />
+          <p className="text-hub-muted text-xs sm:text-sm flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span>📍 {project.location}</span>
+            <span className="w-px h-3 bg-hub-subtle hidden sm:block" />
             <span className="text-hub-electric font-semibold">{project.area} m²</span>
-            <span className="w-px h-4 bg-hub-subtle" />
-            <span>{project.units}</span>
           </p>
         </motion.div>
       </div>
@@ -213,7 +211,7 @@ export default function ProjectDetail() {
         <div className="grid lg:grid-cols-3 gap-12">
 
           {/* Main content */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 order-2 lg:order-1">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -293,7 +291,7 @@ export default function ProjectDetail() {
 
           {/* Sidebar */}
           <motion.div
-            className="flex flex-col gap-4"
+            className="flex flex-col gap-4 order-1 lg:order-2"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -376,7 +374,7 @@ export default function ProjectDetail() {
 
       {/* Footer */}
       <footer className="border-t mt-8" style={{ borderColor: 'var(--border)' }}>
-        <div className="max-w-5xl mx-auto px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="max-w-5xl mx-auto px-4 sm:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <div className="w-5 h-5 flex items-center justify-center"
               style={{ backgroundColor: 'var(--text-primary)' }}>

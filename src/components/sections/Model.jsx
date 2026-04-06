@@ -120,7 +120,7 @@ export default function Model() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: 0.15 + i * 0.08 }}
-              className={`relative p-5 border transition-all duration-300 group flex flex-col ${
+              className={`relative p-4 sm:p-5 border transition-all duration-300 group flex flex-col ${
                 cat.highlight
                   ? 'border-hub-electric/30 bg-theme-card hover:border-hub-electric/50'
                   : 'border-theme bg-theme-card hover:border-theme-accent'
@@ -186,7 +186,7 @@ export default function Model() {
         </motion.div>
 
         {/* ── Mobile: simple cards ─────────────── */}
-        <div className="lg:hidden flex flex-col gap-3">
+        <div className="lg:hidden flex flex-col gap-2.5">
           {steps.map((step, i) => (
             <motion.div
               key={step.num}
@@ -194,17 +194,14 @@ export default function Model() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: i * 0.07 }}
-              className="flex gap-3 p-3.5 border border-theme bg-theme-card"
+              className="flex items-start gap-3 p-4 border border-theme bg-theme-card"
             >
-              <span
-                className="font-display text-hub-azure/20 leading-none shrink-0 select-none"
-                style={{ fontSize: '2.8rem', lineHeight: 1 }}
-              >
-                {step.num}
-              </span>
-              <div className="flex flex-col justify-center">
-                <h3 className="font-display text-theme text-lg tracking-wide mb-0.5">{step.title}</h3>
-                <p className="text-theme-muted text-xs leading-relaxed">{step.desc}</p>
+              <div className="w-7 h-7 border border-hub-electric/25 flex items-center justify-center shrink-0 mt-0.5">
+                <span className="font-display text-hub-electric/70 text-xs leading-none">{step.num}</span>
+              </div>
+              <div>
+                <h3 className="font-display text-theme text-base tracking-wide mb-1">{step.title}</h3>
+                <p className="text-theme-muted text-sm leading-relaxed">{step.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -275,7 +272,7 @@ export default function Model() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.25 }}
-          className="grid lg:grid-cols-2 gap-2.5 lg:gap-3 mt-5 lg:mt-6"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-2.5 lg:gap-3 mt-5 lg:mt-6"
         >
           <div className="flex items-center gap-3 p-3 lg:p-4 border border-hub-electric/15 bg-gradient-to-r from-hub-electric/5 to-transparent hover:border-hub-electric/30 transition-all duration-300">
             <div className="w-7 h-7 border border-hub-electric/30 flex items-center justify-center shrink-0">
@@ -283,7 +280,7 @@ export default function Model() {
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-theme font-semibold text-xs lg:text-sm">Pioneros — Cuota parte USD 560</p>
-              <p className="text-theme-muted text-xs truncate">Ingresá desde las primeras etapas del proyecto.</p>
+              <p className="text-theme-muted text-xs leading-snug">Ingresá desde las primeras etapas del proyecto.</p>
             </div>
             <a href="#contact" className="text-hub-electric text-xs font-medium shrink-0 hover:underline">Consultar →</a>
           </div>
@@ -293,7 +290,7 @@ export default function Model() {
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-theme font-semibold text-xs lg:text-sm">Inversores — Cuota parte USD 780 · 8% TNA</p>
-              <p className="text-theme-muted text-xs truncate">Interés anual en dólares hasta que el proyecto genere ingresos.</p>
+              <p className="text-theme-muted text-xs leading-snug">Interés anual en dólares hasta que el proyecto genere ingresos.</p>
             </div>
             <a href="#contact" className="text-hub-electric text-xs font-medium shrink-0 hover:underline">Consultar →</a>
           </div>

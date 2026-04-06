@@ -47,7 +47,7 @@ export default function About() {
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8 xl:px-12 w-full py-10">
 
         {/* ── Headline central ────────────────────────────── */}
-        <div className="grid lg:grid-cols-[3fr_2fr] gap-10 lg:gap-16 items-start mb-12 lg:mb-14">
+        <div className="grid lg:grid-cols-[3fr_2fr] gap-6 lg:gap-16 items-start mb-10 lg:mb-14">
 
           {/* Left — Headline del brochure */}
           <motion.div
@@ -63,7 +63,7 @@ export default function About() {
 
             <h2
               className="font-display text-theme leading-[0.92] tracking-wide mb-5"
-              style={{ fontSize: 'clamp(2rem, 4vw, 4.2rem)' }}
+              style={{ fontSize: 'clamp(1.7rem, 4vw, 4.2rem)' }}
             >
               RED DE{' '}
               <span
@@ -76,10 +76,7 @@ export default function About() {
               >
                 INFRAESTRUCTURA
               </span>
-              <br />Y SERVICIOS PARA
-              <br />EL CRECIMIENTO
-              <br />COTIDIANO
-              <br />DE TU EMPRESA
+              {' '}Y SERVICIOS PARA EL CRECIMIENTO DE TU EMPRESA
             </h2>
 
             <p className="text-theme-muted text-sm leading-relaxed">
@@ -146,8 +143,8 @@ export default function About() {
           </div>
 
           <div className="relative overflow-hidden">
-            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[var(--bg-primary)] to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[var(--bg-primary)] to-transparent z-10 pointer-events-none" />
+            <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-[var(--bg-primary)] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-[var(--bg-primary)] to-transparent z-10 pointer-events-none" />
             <div className="flex animate-marquee">
               {[...partners, ...partners].map((p, i) => (
                 <div

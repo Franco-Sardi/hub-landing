@@ -32,7 +32,7 @@ export default function Intro() {
   return (
     <section
       id="intro"
-      className="relative w-full h-screen overflow-hidden"
+      className="relative w-full h-dvh overflow-hidden"
       style={{ backgroundColor: '#112438fa' }}
     >
 
