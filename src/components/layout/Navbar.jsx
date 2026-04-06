@@ -101,12 +101,21 @@ export default function Navbar({ currentPage = 0, goTo = () => {} }) {
           </button>
         </div>
 
-        {/* Hamburger */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden flex flex-col gap-1.5 p-2"
-          aria-label="Menu"
-        >
+        {/* Mobile: theme toggle + hamburger */}
+        <div className="lg:hidden flex items-center gap-2">
+          <button
+            onClick={toggle}
+            className="w-8 h-8 flex items-center justify-center border transition-all duration-300"
+            style={{ borderColor: 'var(--nav-border-element)', color: 'var(--nav-text-dim)' }}
+            aria-label="Cambiar tema"
+          >
+            {dark ? <SunIcon /> : <MoonIcon />}
+          </button>
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="flex flex-col gap-1.5 p-2"
+            aria-label="Menu"
+          >
           {[0, 1, 2].map((i) => (
             <span
               key={i}
@@ -118,7 +127,8 @@ export default function Navbar({ currentPage = 0, goTo = () => {} }) {
               style={{ backgroundColor: 'var(--nav-text)' }}
             />
           ))}
-        </button>
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
