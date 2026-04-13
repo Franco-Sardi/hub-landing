@@ -453,7 +453,7 @@ export default function ProjectDetail() {
               <ProjectMap project={project} />
             </div>
             <a
-              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(project.address || project.location)}`}
+              href={`https://www.google.com/maps?q=${project.coords[0]},${project.coords[1]}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 mt-3 text-hub-electric text-xs font-semibold tracking-widest uppercase hover:text-hub-bright transition-colors"

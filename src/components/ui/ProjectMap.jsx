@@ -39,13 +39,10 @@ export default function ProjectMap({ project }) {
   if (!project.coords) return null
 
   const [lat, lng] = project.coords
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(project.address || project.location)}`
+  const mapsUrl = `https://www.google.com/maps?q=${lat},${lng}`
 
   return (
     <div className="relative">
-      {/* Dark overlay tint to match site theme */}
-      <div className="absolute inset-0 pointer-events-none z-10"
-        style={{ background: 'linear-gradient(to bottom, transparent 80%, var(--bg-primary) 100%)' }} />
 
       <MapContainer
         center={[lat, lng]}
