@@ -1,44 +1,72 @@
 import { motion } from 'framer-motion'
 import SectionFrame from '../ui/SectionFrame'
-import malabiaImg from '../../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 01.png'
+import malabiaImg from '../../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 01.webp'
 
 const specs = [
+  { value: 'AAA',    label: 'Estándar Triple A' },
+  { value: 'CERT',   label: 'Certificables' },
   { value: '1.000+', label: 'Módulos desde m²' },
-  { value: 'LED',    label: 'Iluminación' },
-  { value: '3F',     label: 'Energía trifásica' },
-  { value: 'AAA',    label: 'Naves Triple A' },
+  { value: 'FLEX',   label: 'Sistema modular' },
 ]
 
 const reasons = [
-  { num: '01', title: 'Recepción de mercadería', desc: 'Infraestructura diseñada para recibir, clasificar y distribuir mercadería de forma eficiente.' },
-  { num: '02', title: 'Almacenamiento flexible', desc: 'Módulos desde 1.000 m² que se adaptan a tu operación. Escalá sin límites.' },
-  { num: '03', title: 'Infraestructura operativa', desc: 'Playas de maniobras, docks de carga, tránsito segregado pesado/liviano, pavimentos industriales.' },
-  { num: '04', title: 'Operaciones de última milla', desc: 'Ubicaciones estratégicas sobre R7 y R40, conectando con Buenos Aires, Chile y todo Cuyo.' },
+  {
+    num: '01',
+    title: 'Acopio y recepción inteligente',
+    desc: 'Docks de carga y playas de maniobras diseñadas para recibir, clasificar y distribuir mercadería de forma ordenada y eficiente.',
+  },
+  {
+    num: '02',
+    title: 'Almacenamiento modular y escalable',
+    desc: 'Módulos desde 1.000 m² que se adaptan al volumen de tu operación. Crecés dentro del mismo hub sin cambiar de dirección.',
+  },
+  {
+    num: '03',
+    title: 'Infraestructura pensada para la operación',
+    desc: 'Tránsito diferenciado para vehículos de carga y tráfico liviano, estacionamiento propio para camiones, amenities para transportistas y pavimentos industriales de alta carga.',
+  },
+  {
+    num: '04',
+    title: 'Conectividad estratégica',
+    desc: 'Ubicaciones sobre Ruta 7 y Ruta 40, a minutos de centros urbanos clave. Acceso rápido a las principales vías y rutas de distribución optimizadas hacia Buenos Aires, Chile y todo Cuyo.',
+  },
 ]
 
 const services = [
-  'Eficiencia operativa',
-  'Sustentabilidad',
-  'Flexibilidad de uso',
-  'Iluminación LED',
-  'Energía trifásica',
+  'Control de acceso inteligente',
+  'Monitoreo y seguridad 24/7',
+  'Amenities para transportistas',
+  'Estacionamiento para camiones',
   'Oficinas integradas',
-  'Pavimentos industriales',
   'Fibra óptica',
+  'Pavimentos industriales',
+  'Sustentabilidad certificable',
 ]
 
 const sustainability = [
   'Energías renovables',
-  'Control consumo de energía',
   'Reutilización de aguas',
+  'Control de consumo energético',
   'Bike parking',
-  'Uso eficiente del agua potable',
+  'Agua potable eficiente',
 ]
 
 const contracts = [
-  { type: 'Alquiler',   desc: 'Desde 1 año en USD' },
-  { type: 'Compra',     desc: 'Módulos o naves completas' },
-  { type: 'Hecho a medida', desc: 'Build-to-suit' },
+  {
+    type: 'Alquiler',
+    desc: 'Desde 1 año en USD',
+    detail: 'Ideal para operaciones que necesitan flexibilidad de plazo y escala.',
+  },
+  {
+    type: 'Compra',
+    desc: 'Módulos o naves completas',
+    detail: 'Adquirí tu propio espacio dentro del hub con escritura independiente.',
+  },
+  {
+    type: 'A medida',
+    desc: 'Build-to-suit',
+    detail: 'Diseñamos y construimos el espacio según las necesidades específicas de tu operación.',
+  },
 ]
 
 export default function ForCompanies() {
@@ -52,7 +80,7 @@ export default function ForCompanies() {
       <div className="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-hub-azure/30 to-transparent" />
 
       {/* ── Main content ── */}
-      <div className="relative flex flex-col justify-center flex-1 max-w-7xl mx-auto px-5 sm:px-8 xl:px-12 w-full py-10 lg:py-8">
+      <div className="relative flex flex-col justify-center flex-1 max-w-7xl 3xl:max-w-[1600px] mx-auto px-5 sm:px-8 xl:px-12 3xl:px-20 w-full py-10 lg:py-8">
 
         {/* Header row */}
         <motion.div
@@ -75,7 +103,8 @@ export default function ForCompanies() {
               <span className="text-gradient-electric">PARA LA EFICIENCIA</span>
             </h2>
             <p className="text-theme-muted text-sm max-w-xs leading-relaxed font-light shrink-0">
-              Naves industriales Triple A diseñadas para optimizar la gestión, reducir costos y escalar tu operativa en Mendoza.
+              Naves logísticas Triple A en los principales corredores de Mendoza —{' '}
+              <span className="text-theme">Acceso Sur · Ruta 7 · Ruta 40.</span>
             </p>
           </div>
         </motion.div>
@@ -91,7 +120,7 @@ export default function ForCompanies() {
           <div className="relative h-40 lg:h-52 overflow-hidden">
             <img
               src={malabiaImg}
-              alt="HUB Parque Industrial"
+              alt="HUB Nave Logística — Centro de Servicios"
               className="w-full h-full object-cover"
               style={{ filter: 'brightness(0.5) saturate(0.8)' }}
             />
@@ -114,11 +143,11 @@ export default function ForCompanies() {
           </div>
         </motion.div>
 
-        {/* ── Two-column: reasons + services/contracts ── */}
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-10">
+        {/* ── Two-column: reasons + services ── */}
+        <div className="grid lg:grid-cols-2 gap-5 lg:gap-8">
 
-          {/* Left: reasons */}
-          <div>
+          {/* Left: 4 reasons as cards */}
+          <div className="flex flex-col gap-3">
             {reasons.map((r, i) => (
               <motion.div
                 key={r.num}
@@ -126,35 +155,19 @@ export default function ForCompanies() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
-                className="flex gap-4 py-3 border-b last:border-0 group"
-                style={{ borderColor: 'var(--border)' }}
+                className="relative flex gap-4 p-4 border border-hub-electric/10 bg-hub-black/30 hover:border-hub-electric/30 hover:bg-hub-dark/60 transition-all duration-300 overflow-hidden group"
               >
-                <span className="font-display text-hub-electric/20 text-3xl leading-none shrink-0 group-hover:text-hub-electric/45 transition-colors">{r.num}</span>
-                <div>
-                  <p className="text-theme text-sm font-semibold mb-0.5 group-hover:text-hub-bright transition-colors">{r.title}</p>
+                {/* Accent line */}
+                <div className="shrink-0 w-0.5 self-stretch bg-gradient-to-b from-hub-electric/50 to-hub-electric/10 group-hover:from-hub-electric to-hub-electric/30 transition-colors" />
+                <div className="relative">
+                  <p className="text-theme text-sm font-semibold mb-1 group-hover:text-hub-bright transition-colors">{r.title}</p>
                   <p className="text-theme-muted text-xs leading-relaxed">{r.desc}</p>
                 </div>
               </motion.div>
             ))}
-
-            {/* Sustainability */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-4"
-            >
-              <p className="text-theme-muted text-[10px] tracking-widest uppercase mb-2">Sustentabilidad</p>
-              <div className="flex flex-wrap gap-1.5">
-                {sustainability.map((s) => (
-                  <span key={s} className="px-2.5 py-1.5 border border-theme text-theme-muted text-xs hover:border-hub-electric/40 hover:text-hub-bright transition-all duration-200 cursor-default">{s}</span>
-                ))}
-              </div>
-            </motion.div>
           </div>
 
-          {/* Right: services + contracts + CTAs */}
+          {/* Right: services + sustainability + CTAs */}
           <motion.div
             initial={{ opacity: 0, x: 16 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -163,43 +176,42 @@ export default function ForCompanies() {
             className="flex flex-col gap-5"
           >
             {/* Services */}
-            <div>
-              <p className="text-theme-muted text-[10px] font-semibold tracking-widest uppercase mb-2.5">Servicios incluidos</p>
-              <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
-                {services.map((s) => (
-                  <div key={s} className="flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full bg-hub-electric/50 shrink-0" />
-                    <span className="text-theme-muted text-xs">{s}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Contracts */}
-            <div>
-              <p className="text-theme-muted text-[10px] font-semibold tracking-widest uppercase mb-2.5">Modalidades de contratación</p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                {contracts.map((c) => (
-                  <div key={c.type} className="flex items-center gap-2 px-3 py-2.5 border border-theme bg-theme-card hover:border-hub-electric/30 transition-colors group">
-                    <span className="w-0.5 h-full bg-hub-electric/25 shrink-0 group-hover:bg-hub-electric transition-colors" />
-                    <div>
-                      <span className="text-theme text-xs font-semibold block">{c.type}</span>
-                      <span className="text-theme-muted text-[10px]">{c.desc}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Key message */}
-            <div className="border border-theme bg-theme-card p-4">
-              <p className="text-theme-muted text-xs leading-relaxed">
-                Cada HUB funciona de forma independiente, pero como parte de un <span className="text-theme font-semibold">sistema integrado</span> que conecta puntos estratégicos de Mendoza para facilitar tu operación logística.
+            <div className="border border-hub-electric/12 bg-hub-black/20 p-4">
+              <p className="text-hub-electric dark:text-hub-bright text-[10px] font-semibold tracking-widest uppercase mb-3">
+                Servicios incluidos
               </p>
+              <div className="flex flex-wrap gap-2">
+                {services.map((s) => (
+                  <span
+                    key={s}
+                    className="flex items-center gap-1.5 px-2.5 py-1.5 border border-hub-electric/20 bg-hub-electric/5 text-theme-muted text-xs hover:border-hub-electric/40 hover:text-hub-bright transition-all duration-200 cursor-default"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-hub-electric/60 shrink-0" />
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Sustainability */}
+            <div>
+              <p className="text-theme-muted text-[10px] font-semibold tracking-widest uppercase mb-2.5">
+                Sustentabilidad
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {sustainability.map((s) => (
+                  <span
+                    key={s}
+                    className="px-2.5 py-1.5 border border-theme text-theme-muted text-xs hover:border-hub-electric/40 hover:text-hub-bright transition-all duration-200 cursor-default"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
             </div>
 
             {/* CTAs */}
-            <div className="flex gap-3 mt-1">
+            <div className="flex gap-3 mt-auto">
               <a href="#contact"
                 className="px-6 py-2.5 bg-hub-electric text-white text-xs font-bold tracking-widest uppercase hover:bg-hub-bright transition-colors duration-200"
                 style={{ boxShadow: '0 0 24px rgba(30,92,212,0.2)' }}>
@@ -207,7 +219,7 @@ export default function ForCompanies() {
               </a>
               <a href="#projects"
                 className="px-5 py-2.5 border border-hub-electric/40 text-hub-bright text-xs font-semibold tracking-widest uppercase hover:bg-hub-electric/10 transition-all duration-200">
-                Ver parques →
+                Ver proyectos →
               </a>
             </div>
           </motion.div>

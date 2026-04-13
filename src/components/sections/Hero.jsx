@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-import anchorenaImg from '../../assets/HUB MZA - Anchorena - Naves - 01.png'
-import sfdmEsteImg from '../../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B - RENDER.png'
-import sfdmOesteImg from '../../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS CONCEPTO - 2.png'
-import rodriguezPenaImg from '../../assets/CRP - PROYECTO NAVE LOGÍSTICA - RENDER AEREO.png'
-import malabiaImg from '../../assets/HUB MZA - MALABIA - RENDER AEREO.png'
+import anchorenaImg from '../../assets/HUB MZA - Anchorena - Naves - 01.webp'
+import sfdmEsteImg from '../../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B - RENDER.webp'
+import sfdmOesteImg from '../../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS CONCEPTO - 2.webp'
+import rodriguezPenaImg from '../../assets/CRP - PROYECTO NAVE LOGÍSTICA - RENDER AEREO.webp'
+import malabiaImg from '../../assets/HUB MZA - MALABIA - RENDER AEREO.webp'
 
 const slides = [
   { id: 0, image: anchorenaImg,      location: 'Luján de Cuyo, Mendoza',            area: '84.025 mts' },
   { id: 1, image: sfdmEsteImg,       location: 'San Francisco del Monte, Mendoza',  area: '33.546 mts' },
-  { id: 2, image: sfdmOesteImg,      location: 'San Francisco del Monte, Mendoza',  area: '79.968 mts' },
-  { id: 3, image: rodriguezPenaImg,  location: 'Rodríguez Peña, Mendoza',           area: '107.086 mts' },
-  { id: 4, image: malabiaImg,        location: 'Luján de Cuyo, Mendoza',            area: '44.000 mts' },
+  { id: 2, image: sfdmOesteImg,      location: 'San Francisco del Monte, Mendoza',  area: '72.968 mts' },
+  { id: 3, image: rodriguezPenaImg,  location: 'Rodríguez Peña, Mendoza',           area: '158.968 mts' },
+  { id: 4, image: malabiaImg,        location: 'Luján de Cuyo, Mendoza',            area: '64.071 mts' },
 ]
 
 // Blueprint SVG grid overlay
@@ -122,7 +122,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl xl:max-w-6xl mx-auto px-5 sm:px-8 text-center">
+      <div className="relative z-10 max-w-5xl xl:max-w-6xl 3xl:max-w-[1600px] mx-auto px-5 sm:px-8 3xl:px-16 text-center">
 
         {/* Eyebrow */}
         <motion.div
@@ -133,7 +133,7 @@ export default function Hero() {
         >
           <span className="w-6 lg:w-10 h-px bg-hub-electric/70" />
           <span className="font-body text-hub-bright text-[10px] lg:text-xs font-semibold tracking-[0.25em] lg:tracking-[0.35em] uppercase">
-            Parques Industriales · Mendoza
+            Naves Logísticas · Mendoza
           </span>
           <span className="w-6 lg:w-10 h-px bg-hub-electric/70" />
         </motion.div>
@@ -141,7 +141,7 @@ export default function Hero() {
         {/* Kinetic headline — from brochure: RED DE INFRAESTRUCTURA Y SERVICIOS PARA TU EMPRESA */}
         <div
           className="font-display text-white leading-[0.9] mb-3 lg:mb-6 overflow-hidden"
-          style={{ fontSize: 'clamp(1.6rem, 5.2vw, 5rem)' }}
+          style={{ fontSize: 'clamp(1.6rem, 5.2vw, 7rem)' }}
         >
           <div className="overflow-hidden">
             <motion.span
@@ -188,7 +188,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="text-white/60 text-xs lg:text-base max-w-xl mx-auto mb-4 lg:mb-7 leading-relaxed font-light tracking-wider"
         >
-          420.000 mts de terreno · 240.000 mts² de naves industriales inteligentes
+          413.578 mts de terreno · 222.800 m² de naves logísticas Triple A en Mendoza
         </motion.p>
 
         {/* CTAs */}

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import mapImg from '../../assets/mapa-dark.png'
+import mapImg from '../../assets/mapa-dark.webp'
 
 // Posiciones calibradas por el usuario en modo debug
 // Color dorado para todos los marcadores

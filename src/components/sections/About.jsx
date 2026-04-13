@@ -2,16 +2,16 @@ import { motion } from 'framer-motion'
 import SectionFrame from '../ui/SectionFrame'
 
 // Founder logos
-import logoOscarDavid from '../../assets/oscardavid.png'
-import logoCarnes from '../../assets/carnesdemicampo.png'
-import logoTerrandes from '../../assets/terrande.png'
+import logoOscarDavid from '../../assets/oscardavid.webp'
+import logoCarnes from '../../assets/carnesdemicampo.webp'
+import logoTerrandes from '../../assets/terrande.webp'
 
 // Partner logos
-import logoLtn from '../../assets/ltn.png'
-import logoHormiserv from '../../assets/Logo-Bilder-Hormiserv.png'
-import logoRogiro from '../../assets/rogiro.png'
-import logoLogmetal from '../../assets/logmetal.png'
-import logoSaldana from '../../assets/saldana.png'
+import logoLtn from '../../assets/ltn.webp'
+import logoHormiserv from '../../assets/Logo-Bilder-Hormiserv.webp'
+import logoRogiro from '../../assets/rogiro.webp'
+import logoLogmetal from '../../assets/logmetal.webp'
+import logoSaldana from '../../assets/saldana.webp'
 import logoInducret from '../../assets/inducret.jpg'
 import logoPrear from '../../assets/prear.webp'
 
@@ -44,7 +44,7 @@ export default function About() {
       />
       <div className="absolute inset-0 bg-grid opacity-20" />
 
-      <div className="relative max-w-7xl mx-auto px-5 sm:px-8 xl:px-12 w-full py-10">
+      <div className="relative max-w-7xl 3xl:max-w-[1600px] mx-auto px-5 sm:px-8 xl:px-12 3xl:px-20 w-full py-10">
 
         {/* ── Headline central ────────────────────────────── */}
         <div className="grid lg:grid-cols-[3fr_2fr] gap-6 lg:gap-16 items-start mb-10 lg:mb-14">
@@ -65,7 +65,7 @@ export default function About() {
               className="font-display text-theme leading-[0.92] tracking-wide mb-5"
               style={{ fontSize: 'clamp(1.7rem, 4vw, 4.2rem)' }}
             >
-              RED DE{' '}
+              ALMACENAMIENTO{' '}
               <span
                 style={{
                   background: 'linear-gradient(135deg, #4a87f5 0%, #6aa3ff 50%, #4a87f5 100%)',
@@ -74,14 +74,14 @@ export default function About() {
                   backgroundClip: 'text',
                 }}
               >
-                INFRAESTRUCTURA
+                INTELIGENTE
               </span>
-              {' '}Y SERVICIOS PARA EL CRECIMIENTO DE TU EMPRESA
+              {' '}Y LOGÍSTICA INTEGRADA PARA TU EMPRESA
             </h2>
 
             <p className="text-theme-muted text-sm leading-relaxed">
-              La infraestructura que tu empresa necesita, donde la necesita,
-              integrada en una sola red.
+              Naves logísticas flexibles y modulares donde tu operación puede crecer,
+              integradas en una red estratégica en los principales corredores de Mendoza.
             </p>
           </motion.div>
 

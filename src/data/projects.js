@@ -1,8 +1,8 @@
-import anchorenaImg from '../assets/anchorena-planimetria-watercolor.png'
-import sfdmEsteImg from '../assets/SanFranciscoEste-wide.png'
-import sfdmOesteImg from '../assets/SanFranciscoOeste.png'
-import rodriguezPenaImg from '../assets/rodriguezpena.png'
-import malabiaImg from '../assets/malabia.png'
+import anchorenaImg from '../assets/anchorena-planimetria-watercolor.webp'
+import sfdmEsteImg from '../assets/SanFranciscoEste-wide.webp'
+import sfdmOesteImg from '../assets/SanFranciscoOeste.webp'
+import rodriguezPenaImg from '../assets/rodriguezpena.webp'
+import malabiaImg from '../assets/malabia.webp'
 
 export const projects = [
   {
@@ -10,14 +10,27 @@ export const projects = [
     slug: 'anchorena',
     name: 'HUB Anchorena',
     location: 'Luján de Cuyo, Mendoza',
-    area: '84.025',
-    areaNaves: '54.960',
-    units: '3 Naves industriales + Edificio de Coworking',
+    address: 'Acceso Sur - Lateral Oeste, M5507 Luján de Cuyo, Mendoza',
+    coords: [-33.023417, -68.860404],
+    area: '84.025',        // Sup. Terreno
+    areaTotal: '53.090',   // Total a construir (naves + servicios + comercial)
+    areaNaves: '49.800',   // Sup. Cub. Galpón
+    areaComercial: '3.200',
+    units: 'Nave logística + Centro comercial + Coworking',
     status: 'En desarrollo',
     statusColor: 'gold',
-    description: 'Sobre Acceso Sur, en el corredor logístico más dinámico de Mendoza. Conecta directamente con Ruta 40 hacia el sur y con el centro urbano de Luján de Cuyo. Diseñado con tránsito pesado y liviano segregado. Incluye un edificio de coworking propio para las empresas del parque.',
-    features: ['Acceso Sur directo', 'Playa de maniobras', 'Sector comercial', 'Tránsito segregado'],
+    hasCommercialCenter: true,
     coworkingBuilding: true,
+    description: 'Sobre Acceso Sur, en el corredor logístico más dinámico de Mendoza. Acceso inmediato a Ruta 40 hacia el sur y al centro urbano de Luján de Cuyo. 49.800 m² de naves logísticas Triple A, un centro comercial propio de 3.200 m² y un edificio de coworking integrado para los operadores del hub.',
+    features: [
+      'Centro comercial propio 3.200 m²',
+      'Coworking integrado para operadores',
+      'Acceso directo Acceso Sur — Ruta 40',
+      'Playa de maniobras dedicada',
+      'Tránsito diferenciado carga / liviano',
+      'Módulos desde 1.000 m²',
+    ],
+    commercialHighlight: 'Centro comercial de 3.200 m² y coworking integrado — servicios y amenities para los operadores y sus equipos dentro del mismo hub.',
     image: anchorenaImg,
   },
   {
@@ -25,13 +38,23 @@ export const projects = [
     slug: 'san-francisco-del-monte-este',
     name: 'HUB San Francisco del Monte Este',
     location: 'San Francisco del Monte, Mendoza',
+    address: 'Ruta Nacional 7, San Francisco del Monte, Mendoza',
+    coords: [-32.9368, -68.7589],
     area: '33.546',
-    areaNaves: '18.500',
+    areaTotal: '20.054',
+    areaNaves: '20.000',
     units: 'Nave de almacenamiento + Área operativa',
     status: 'En desarrollo',
     statusColor: 'gold',
-    description: 'Ubicado sobre Ruta 7 en el corredor este, a minutos de la Variante Palmira. Punto clave para operaciones logísticas hacia Buenos Aires y el Mercosur. Muelles y estacionamientos segregados.',
-    features: ['Ruta 7 - Corredor este', 'Muelles operativos', 'Área administrativa', 'Estacionamiento segregado'],
+    description: 'Sobre Ruta 7, en el corredor este de Mendoza con salida directa hacia Buenos Aires y el Mercosur. A minutos de la Variante Palmira — el nodo de conexión más estratégico del corredor bioceánico. 20.000 m² de nave logística Triple A con área operativa, muelles de carga y estacionamientos segregados para tráfico pesado y liviano.',
+    features: [
+      'Acceso directo Ruta 7 — corredor este',
+      'Salida directa hacia Buenos Aires',
+      'Área operativa y muelles de carga',
+      'Estacionamientos segregados',
+      'Playa de maniobras',
+      'Módulos desde 1.000 m²',
+    ],
     image: sfdmEsteImg,
   },
   {
@@ -39,13 +62,23 @@ export const projects = [
     slug: 'san-francisco-del-monte-oeste',
     name: 'HUB San Francisco del Monte Oeste',
     location: 'San Francisco del Monte, Mendoza',
-    area: '79.968',
-    areaNaves: '41.600',
+    address: 'Ruta Nacional 7, San Francisco del Monte, Mendoza',
+    coords: [-32.9403, -68.7565],
+    area: '72.968',
+    areaTotal: '40.090',
+    areaNaves: '40.000',
     units: 'Nave de almacenamiento + Área operativa',
     status: 'En desarrollo',
     statusColor: 'gold',
-    description: 'El parque de mayor superficie en el corredor este. Sobre Ruta 7, complementa al HUB Este con capacidad ampliada de almacenamiento y operaciones. Ideal para grandes operadores logísticos.',
-    features: ['Ruta 7 - Corredor este', 'Mayor superficie este', 'Playa de maniobras', 'Área administrativa'],
+    description: 'La nave de mayor superficie de la red HUB en el corredor Ruta 7. Sobre Ruta 7 este, a metros de la Variante Palmira, diseñada para operadores que necesitan capacidad de almacenamiento a gran escala sin comprometer la conectividad. 40.000 m² Triple A con área operativa, muelles, estacionamientos segregados para tráfico pesado y liviano, y módulos escalables desde 1.000 m².',
+    features: [
+      'Acceso directo Ruta 7 — corredor este',
+      'Mayor nave HUB en Ruta 7: 40.000 m²',
+      'Salida directa hacia Buenos Aires',
+      'Área operativa y muelles de carga',
+      'Estacionamientos segregados',
+      'Módulos desde 1.000 m²',
+    ],
     image: sfdmOesteImg,
   },
   {
@@ -53,13 +86,26 @@ export const projects = [
     slug: 'rodriguez-pena',
     name: 'HUB Rodríguez Peña',
     location: 'Rodríguez Peña, Mendoza',
-    area: '107.086',
-    areaNaves: '130.920',
-    units: '3 Naves logísticas + Docks de carga',
+    address: 'Intersección Ruta 7 y Ruta 40, Rodríguez Peña, Mendoza',
+    coords: [-32.937526, -68.775179],
+    area: '158.968',       // RPE (80.000) + RPO (78.968)
+    areaTotal: '96.650',   // RPE (48.220) + RPO (48.430)
+    areaNaves: '89.000',   // RPE (43.500) + RPO (45.500)
+    areaComercial: '7.470',// RPE (4.630) + RPO (2.840)
+    units: 'Naves logísticas + Centro comercial + Docks de carga',
     status: 'En desarrollo',
     statusColor: 'gold',
-    description: 'El mayor proyecto de la red HUB. Estratégicamente ubicado en la intersección de Ruta 7 y Ruta 40, con acceso directo al corredor bioceánico. Tres naves logísticas con iluminación natural y docks de carga dedicados.',
-    features: ['Intersección R7 y R40', 'Docks de carga', 'Iluminación natural', '3 naves logísticas'],
+    hasCommercialCenter: true,
+    description: 'El proyecto de mayor escala de la red HUB. En la intersección de Ruta 7 y Ruta 40 — acceso directo hacia Buenos Aires por el este y hacia Chile por el oeste, con conexión a toda la red de distribución nacional. 89.000 m² de naves logísticas Triple A con docks de carga dedicados y 7.470 m² de centro comercial integrado para operadores y sus equipos.',
+    features: [
+      'Centro comercial 7.470 m²',
+      'Intersección Ruta 7 y Ruta 40',
+      'Acceso directo BS AS — Chile',
+      'Docks de carga dedicados',
+      'Estacionamiento para camiones',
+      'Módulos desde 1.000 m²',
+    ],
+    commercialHighlight: 'Centro comercial de 7.470 m² integrado — restaurantes, servicios y amenities a metros de la operación logística.',
     image: rodriguezPenaImg,
   },
   {
@@ -67,21 +113,34 @@ export const projects = [
     slug: 'malabia',
     name: 'HUB Malabia',
     location: 'Luján de Cuyo, Mendoza',
-    area: '44.000',
-    areaNaves: '29.380',
-    units: '3 Naves industriales + Sector Comercial',
+    address: 'América, M5505 Luján de Cuyo, Mendoza',
+    coords: [-32.975250, -68.847645],
+    area: '64.071',
+    areaTotal: '25.514',
+    areaNaves: '24.000',
+    areaComercial: '1.460',
+    units: 'Naves logísticas + Centro de servicios',
     status: 'En desarrollo',
     statusColor: 'gold',
-    description: 'Sobre Acceso Sur, junto al HUB Anchorena, conformando un polo industrial integrado. Combina naves industriales con un centro comercial de servicios para las empresas del corredor.',
-    features: ['Acceso Sur directo', 'Centro comercial', 'Playa de maniobras', 'Tránsito segregado'],
+    hasCommercialCenter: true,
+    description: 'Sobre Acceso Sur en Luján de Cuyo, en el mismo corredor que HUB Anchorena — el tramo logístico más activo del sur mendocino. 24.000 m² de naves Triple A con acceso directo a Ruta 40 y 1.460 m² de centro de servicios para operadores del corredor. Tránsito diferenciado para vehículos de carga y liviano, playa de maniobras y módulos adaptables desde 1.000 m².',
+    features: [
+      'Centro de servicios 1.460 m²',
+      'Mismo corredor que HUB Anchorena',
+      'Acceso directo Acceso Sur — Ruta 40',
+      'Playa de maniobras dedicada',
+      'Tránsito diferenciado carga / liviano',
+      'Módulos desde 1.000 m²',
+    ],
+    commercialHighlight: 'Centro de servicios de 1.460 m² — restaurantes, proveedores y amenities para los operadores del corredor, a metros de la operación.',
     image: malabiaImg,
   },
 ]
 
 export const stats = {
   parks: 5,
-  sqMeters: '420.000',
-  sqMetersNaves: '240.000',
+  sqMeters: '413.578',
+  sqMetersNaves: '222.800',
   roiBase: 8,
   companies: 40,
 }

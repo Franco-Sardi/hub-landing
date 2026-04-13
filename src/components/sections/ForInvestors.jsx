@@ -2,26 +2,11 @@ import { motion } from 'framer-motion'
 import ROICalculator from '../ui/ROICalculator'
 import SectionFrame from '../ui/SectionFrame'
 
-const investorProfiles = [
-  {
-    name: 'Iniciales',
-    cuota: null,
-    badge: 'Cerrado',
-    available: false,
-  },
-  {
-    name: 'Pioneros',
-    cuota: 'USD 560',
-    badge: 'Cupos limitados',
-    available: true,
-  },
-  {
-    name: 'Inversores',
-    cuota: 'USD 780',
-    badge: '8% TNA garantizado',
-    available: true,
-    highlight: true,
-  },
+const investorBenefits = [
+  { val: '8% TNA',        desc: 'Interés garantizado en dólares desde el primer aporte' },
+  { val: 'USD 780',       desc: 'Valor de cuota parte · mínimo 100 cuotas para ingresar' },
+  { val: 'Triple A',      desc: 'Naves logísticas certificables, estándar de clase internacional' },
+  { val: '240.000 m²',    desc: 'Red de naves logísticas distribuidas en corredores clave de Mendoza' },
 ]
 
 export default function ForInvestors() {
@@ -39,7 +24,7 @@ export default function ForInvestors() {
       />
       <div className="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-hub-electric/30 to-transparent" />
 
-      <div className="relative z-10 flex flex-col justify-center flex-1 max-w-7xl mx-auto px-5 sm:px-8 xl:px-12 w-full py-10 lg:py-8">
+      <div className="relative z-10 flex flex-col justify-center flex-1 max-w-7xl 3xl:max-w-[1600px] mx-auto px-5 sm:px-8 xl:px-12 3xl:px-20 w-full py-10 lg:py-8">
 
         {/* ── Header ── */}
         <motion.div
@@ -64,15 +49,15 @@ export default function ForInvestors() {
               <span className="text-gradient-blue">TRABAJANDO.</span>
             </h2>
             <p className="text-theme-muted text-sm max-w-xs leading-relaxed font-light shrink-0">
-              8% anual en dólares. Respaldado por activos reales.
+              Calculadora de retorno de inversión.
             </p>
           </div>
         </motion.div>
 
         {/* ── Two-column grid ── */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
 
-          {/* ── Left: profiles + info ── */}
+          {/* ── Left: info + benefits ── */}
           <motion.div
             initial={{ opacity: 0, x: -16 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -80,86 +65,38 @@ export default function ForInvestors() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="flex flex-col gap-5"
           >
-            {/* Estructura */}
-            <div className="border border-theme bg-theme-card p-4">
-              <p className="text-theme-muted text-xs leading-relaxed">
-                HUB MZA es el <span className="text-theme font-semibold">titular fiduciario de 6 fideicomisos</span> propietarios
-                de los inmuebles. Se han definido tres categorías de fiduciantes con condiciones de ingreso diferenciadas.
-              </p>
-            </div>
-
-            {/* Profile cards */}
-            <div>
-              <p className="text-theme-muted text-[10px] font-semibold tracking-widest uppercase mb-2.5">
-                Categorías de inversores
-              </p>
-              <div className="flex flex-col border border-theme">
-                {investorProfiles.map((p, i) => (
-                  <motion.div
-                    key={p.name}
-                    initial={{ opacity: 0, x: -12 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.45, delay: 0.2 + i * 0.1 }}
-                    className={`flex items-center gap-3 px-4 py-3.5 group transition-colors duration-200 ${
-                      p.available ? 'hover:bg-hub-electric/5' : 'opacity-45'
-                    } ${p.highlight ? 'bg-hub-electric/5' : ''} ${
-                      i < investorProfiles.length - 1 ? 'border-b border-theme' : ''
-                    }`}
-                  >
-                    {/* Indicator dot */}
-                    <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${
-                      p.highlight ? 'bg-hub-bright' : p.available ? 'bg-hub-electric/50' : 'bg-theme-muted/30'
-                    }`} />
-
-                    {/* Name */}
-                    <span className={`font-display text-sm tracking-wider min-w-[5rem] shrink-0 ${
-                      p.available ? 'text-theme' : 'text-theme-muted'
-                    }`}>
-                      {p.name}
-                    </span>
-
-                    {/* Cuota price */}
-                    {p.cuota ? (
-                      <span className={`font-display text-base leading-none shrink-0 ${
-                        p.highlight ? 'text-hub-bright' : 'text-hub-electric dark:text-hub-bright'
-                      }`}>
-                        {p.cuota}
-                      </span>
-                    ) : (
-                      <span className="text-theme-muted text-sm shrink-0">—</span>
-                    )}
-
-                    {/* Badge */}
-                    <span className={`ml-auto text-[10px] px-2 py-0.5 border tracking-wide uppercase shrink-0 ${
-                      p.highlight
-                        ? 'border-hub-electric/50 text-hub-bright dark:text-hub-bright bg-hub-electric/10'
-                        : p.available
-                          ? 'border-theme text-theme-muted'
-                          : 'border-theme text-theme-subtle'
-                    }`}>
-                      {p.badge}
-                    </span>
-                  </motion.div>
-                ))}
+            {/* Modalidad Inversores — card destacada */}
+            <div className="relative border border-hub-electric/30 bg-hub-electric/5 p-4 sm:p-5">
+              <div className="absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-hub-electric to-transparent" />
+              <div className="flex items-start justify-between gap-4 mb-3">
+                <div>
+                  <p className="text-theme-muted text-[10px] tracking-widest uppercase mb-1">Modalidad disponible</p>
+                  <p className="font-display text-theme text-xl tracking-wider">INVERSORES</p>
+                </div>
+                <div className="text-right shrink-0">
+                  <p className="font-display text-hub-bright text-2xl leading-none">USD 780</p>
+                  <p className="text-theme-muted text-[10px] mt-0.5">valor de cuota parte</p>
+                </div>
               </div>
+              <div className="flex items-center gap-2 px-3 py-1.5 border border-hub-electric/25 bg-hub-electric/8 w-fit mb-3">
+                <span className="font-display text-hub-bright text-base leading-none">8% TNA</span>
+                <span className="text-theme-muted text-[10px]">interés garantizado en USD</span>
+              </div>
+              <p className="text-theme-muted text-xs leading-relaxed">
+                Ingresá desde <span className="text-theme font-semibold">100 cuotas partes</span> (USD 78.000). Generás un interés del 8% anual en dólares desde tu primer aporte, hasta que el proyecto genere sus propios ingresos operativos.
+              </p>
             </div>
 
-            {/* Key benefits */}
+            {/* Por qué invertir en HUB */}
             <div>
               <p className="text-theme-muted text-[10px] font-semibold tracking-widest uppercase mb-2.5">
                 Por qué invertir en HUB
               </p>
               <div className="flex flex-col gap-1.5">
-                {[
-                  { val: '8% TNA',     desc: 'Retorno anual en dólares estadounidenses' },
-                  { val: 'Real',       desc: 'Capital respaldado por activos registrables' },
-                  { val: '5 parques',  desc: 'Red distribuida en corredores clave de Mendoza' },
-                  { val: '240.000 m²', desc: 'Naves industriales Triple A en construcción' },
-                ].map((b, i) => (
+                {investorBenefits.map((b) => (
                   <div key={b.val} className="flex items-center gap-3 py-2 border-b border-theme last:border-0 group">
                     <span className="w-1 h-1 rounded-full bg-hub-electric/50 shrink-0 group-hover:bg-hub-bright transition-colors" />
-                    <span className="text-hub-electric dark:text-hub-bright font-display text-sm w-20 shrink-0">{b.val}</span>
+                    <span className="text-hub-electric dark:text-hub-bright font-display text-sm w-24 shrink-0">{b.val}</span>
                     <span className="text-theme-muted text-xs leading-snug">{b.desc}</span>
                   </div>
                 ))}
@@ -179,7 +116,7 @@ export default function ForInvestors() {
                 href="#projects"
                 className="px-5 py-2.5 border border-hub-electric/40 text-hub-bright text-xs font-semibold tracking-widest uppercase hover:bg-hub-electric/10 transition-all duration-200"
               >
-                Ver parques
+                Ver proyectos
               </a>
             </div>
           </motion.div>
@@ -190,11 +127,7 @@ export default function ForInvestors() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col"
           >
-            <p className="text-theme-muted text-[10px] font-semibold tracking-widest uppercase mb-2.5">
-              Calculadora de retorno
-            </p>
             <ROICalculator />
           </motion.div>
 

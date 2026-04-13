@@ -50,6 +50,10 @@ export default {
           'ink-faint':  '#7a8094',   // Texto muy sutil sobre papel
         }
       },
+      screens: {
+        '3xl': '1920px',
+        '4xl': '2560px',
+      },
       fontFamily: {
         display: ['"Bebas Neue"', 'cursive'],
         body:    ['"Inter"', 'sans-serif'],

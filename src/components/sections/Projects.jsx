@@ -99,13 +99,13 @@ export default function Projects() {
                       {project.name.toUpperCase()}
                     </h3>
                   </div>
-                  <span className="text-hub-electric font-semibold text-sm shrink-0">{project.area} m²</span>
+                  <span className="text-hub-electric font-semibold text-sm shrink-0">{project.area} mts</span>
                 </div>
               </div>
               <div className="px-3 py-2 flex items-center justify-between">
                 <span className="text-theme-muted text-xs">📍 {project.location}</span>
                 <span className={`text-xs font-semibold tracking-widest uppercase ${project.statusColor === 'gold' ? 'text-hub-electric' : 'text-hub-steel'}`}>
-                  Ver parque →
+                  Ver proyecto →
                 </span>
               </div>
             </Link>
@@ -208,7 +208,7 @@ export default function Projects() {
                 </h3>
                 <div className="flex items-center justify-between mt-1">
                   <p className="text-theme-muted text-xs flex items-center gap-1">
-                    📍 {active.location} · {active.area} m²
+                    📍 {active.location} · {active.area} mts
                   </p>
                   <Link
                     to={`/proyecto/${active.slug}`}
@@ -261,7 +261,7 @@ export default function Projects() {
                       style={{ color: isActive ? MARKER_COLOR : 'var(--text-primary)' }}>
                       {project.name}
                     </span>
-                    <span className="text-theme-muted text-xs truncate block">{project.location} · {project.area} m²</span>
+                    <span className="text-theme-muted text-xs truncate block">{project.location} · {project.area} mts</span>
                   </div>
 
                   <Link

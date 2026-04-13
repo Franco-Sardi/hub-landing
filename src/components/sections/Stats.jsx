@@ -55,7 +55,7 @@ function Stat({ value, suffix, label, sublabel, delay }) {
           <span
             className="font-display tabular-nums"
             style={{
-              fontSize: 'clamp(2.4rem, 3.8vw, 4rem)',
+              fontSize: 'clamp(2.4rem, 3.8vw, 6rem)',
               lineHeight: 1,
               color: 'var(--stat-color)',
               letterSpacing: '-0.01em',
@@ -105,10 +105,10 @@ function Stat({ value, suffix, label, sublabel, delay }) {
 }
 
 const STATS = [
-  { value: 5,      suffix: '',     label: 'Parques',    sublabel: 'En Mendoza',               delay: 0    },
-  { value: 420000, suffix: ' mts', label: 'Terreno',    sublabel: 'Total disponible',          delay: 0.12 },
-  { value: 240000, suffix: ' m²',  label: 'Naves',      sublabel: 'Industriales inteligentes', delay: 0.24 },
-  { value: 8,      suffix: '%',    label: 'ROI Anual',  sublabel: 'En dólares · base',         delay: 0.36 },
+  { value: 5,      suffix: '',     label: 'Proyectos',  sublabel: 'En Mendoza',              delay: 0    },
+  { value: 413578, suffix: ' mts', label: 'Terreno',    sublabel: 'Total en desarrollo',     delay: 0.12 },
+  { value: 222800, suffix: ' m²',  label: 'Naves',      sublabel: 'Logísticas Triple A',     delay: 0.24 },
+  { value: 8,      suffix: '%',    label: 'ROI Anual',  sublabel: 'En dólares · garantizado', delay: 0.36 },
 ]
 
 export default function Stats() {
@@ -196,7 +196,7 @@ export default function Stats() {
         </motion.div>
 
         {/* Grid de stats */}
-        <div className="w-full max-w-6xl xl:max-w-7xl grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 lg:gap-0">
+        <div className="w-full max-w-6xl xl:max-w-7xl 3xl:max-w-[1700px] grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 lg:gap-0">
           {STATS.map((s, i) => (
             <div
               key={s.label}
@@ -232,7 +232,7 @@ export default function Stats() {
           className="font-body text-center mt-5 tracking-[0.15em] uppercase"
           style={{ fontSize: '0.68rem', color: 'var(--stat-color)', opacity: 0.38, maxWidth: '40ch' }}
         >
-          Infraestructura industrial de clase mundial en las principales zonas industriales con conectividad óptima de Mendoza
+          Almacenamiento logístico inteligente en los principales corredores de conectividad de Mendoza
         </motion.p>
       </div>
     </section>

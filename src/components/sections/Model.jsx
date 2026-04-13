@@ -1,30 +1,13 @@
 import { motion } from 'framer-motion'
 import SectionFrame from '../ui/SectionFrame'
 
-const categories = [
-  {
-    name: 'Iniciales',
-    badge: 'Etapa fundacional',
-    badgeDesc: 'Participación cerrada',
-    tags: ['Primer acceso', 'Condiciones exclusivas', 'Red fundadora'],
-    desc: 'Los primeros en confiar en el proyecto. Participaron desde la etapa fundacional de HUB con condiciones y acceso exclusivos.',
-    highlight: false,
-  },
-  {
-    name: 'Pioneros',
-    price: 'USD 560',
-    priceLabel: 'valor de cuota parte',
-    desc: 'Ingresá al proyecto con una cuota parte accesible y formá parte del crecimiento de la red HUB desde sus primeras etapas.',
-    highlight: false,
-  },
-  {
-    name: 'Inversores',
-    price: 'USD 780',
-    priceLabel: 'valor de cuota parte',
-    rate: '8% TNA',
-    desc: 'Generá un interés del 8% anual (TNA) desde tu aporte, hasta que el proyecto genere sus propios ingresos operativos.',
-    highlight: true,
-  },
+const investorFeatures = [
+  { label: 'Modalidad', val: 'INVERSORES' },
+  { label: 'Cuota parte', val: 'USD 780' },
+  { label: 'Retorno', val: '8% TNA' },
+  { label: 'Mínimo de ingreso', val: '100 cuotas' },
+  { label: 'Moneda', val: 'Dólares (USD)' },
+  { label: 'Respaldo', val: 'Capital protegido' },
 ]
 
 const steps = [
@@ -36,14 +19,14 @@ const steps = [
   },
   {
     num: '02',
-    title: 'Elegí tu categoría',
-    desc: 'Tres perfiles de participación: Iniciales, Pioneros y e Inversores. Cada uno con un valor de cuota parte y condiciones definidas.',
+    title: 'Ingresá como Inversor',
+    desc: 'La modalidad Inversores te permite participar desde 100 cuotas partes (USD 780 c/u) con un interés garantizado del 8% TNA en dólares.',
     side: 'right',
   },
   {
     num: '03',
     title: 'Desarrollo y construcción',
-    desc: 'Diseñamos, construimos y habilitamos naves industriales Triple A con infraestructura de clase internacional en ubicaciones estratégicas.',
+    desc: 'Diseñamos, construimos y habilitamos naves logísticas Triple A con infraestructura de clase internacional en los corredores estratégicos de Mendoza.',
     side: 'left',
   },
   {
@@ -67,7 +50,7 @@ export default function Model() {
         style={{ background: 'radial-gradient(ellipse 55% 50% at 100% 50%, rgba(13,42,78,0.15) 0%, transparent 65%)' }}
       />
 
-      <div className="relative max-w-6xl mx-auto px-5 sm:px-8 xl:px-10 w-full pt-6 pb-6">
+      <div className="relative max-w-6xl 3xl:max-w-[1600px] mx-auto px-5 sm:px-8 xl:px-10 3xl:px-20 w-full pt-6 pb-6">
 
         {/* Header */}
         <motion.div
@@ -99,90 +82,45 @@ export default function Model() {
               </span>
             </h2>
             <p className="text-theme-muted text-xs lg:text-sm max-w-sm leading-relaxed">
-              HUB MZA es el titular fiduciario de 6 fideicomisos propietarios de los inmuebles.
-              Tres categorías de participación para invertir.
+              Cada HUB funciona de forma independiente, pero como parte de un sistema integrado
+              que conecta los principales corredores logísticos de Mendoza.
             </p>
           </div>
         </motion.div>
 
-        {/* ── Categories cards ── */}
+        {/* ── Investor card ── */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 lg:mb-10"
+          className="relative border border-hub-electric/30 bg-theme-card mb-8 lg:mb-10"
         >
-          {categories.map((cat, i) => (
-            <motion.div
-              key={cat.name}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: 0.15 + i * 0.08 }}
-              className={`relative p-4 sm:p-5 border transition-all duration-300 group flex flex-col ${
-                cat.highlight
-                  ? 'border-hub-electric/30 bg-theme-card hover:border-hub-electric/50'
-                  : 'border-theme bg-theme-card hover:border-theme-accent'
-              }`}
-            >
-              {cat.highlight && (
-                <div className="absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-hub-electric to-transparent" />
-              )}
-
-              <p className="font-display text-theme text-xl tracking-wide mb-3">{cat.name.toUpperCase()}</p>
-
-              {/* Iniciales — badge fundacional */}
-              {cat.badge && (
-                <div className="mb-3">
-                  <div className="flex items-center gap-2 mb-3 px-3 py-1.5 border border-theme bg-theme-alt w-fit">
-                    <span className="w-1.5 h-1.5 rounded-full bg-hub-electric/60 shrink-0" />
-                    <span className="font-display text-theme-muted text-sm leading-none tracking-wider">{cat.badge}</span>
-                  </div>
-                  <p className="text-theme-subtle text-[10px] tracking-widest uppercase mb-3">{cat.badgeDesc}</p>
-                  <div className="flex flex-col gap-1.5">
-                    {cat.tags.map((tag) => (
-                      <div key={tag} className="flex items-center gap-2">
-                        <span className="w-px h-3 bg-hub-azure/40 shrink-0" />
-                        <span className="text-theme-muted text-xs">{tag}</span>
-                      </div>
-                    ))}
-                  </div>
+          <div className="absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-hub-electric to-transparent" />
+          <div className="p-5 sm:p-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {/* Left: headline */}
+            <div className="sm:col-span-2 lg:col-span-1 flex flex-col justify-between">
+              <div>
+                <p className="text-theme-muted text-[10px] tracking-widest uppercase mb-2">Modalidad de inversión</p>
+                <p className="font-display text-theme tracking-wider" style={{ fontSize: 'clamp(1.6rem, 2.5vw, 2.4rem)' }}>INVERSORES</p>
+                <p className="text-theme-muted text-xs leading-relaxed mt-2">
+                  Generá un interés del 8% anual (TNA) desde tu primer aporte.
+                </p>
+              </div>
+              <a href="#investors" className="mt-4 self-start text-hub-electric text-xs font-semibold tracking-widest uppercase hover:underline">
+                Simular ROI →
+              </a>
+            </div>
+            {/* Right: feature grid */}
+            <div className="sm:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {investorFeatures.map((f) => (
+                <div key={f.label} className="border border-theme bg-theme p-3">
+                  <p className="text-theme-muted text-[9px] tracking-widest uppercase mb-1">{f.label}</p>
+                  <p className="font-display text-hub-bright text-base leading-none tracking-wide">{f.val}</p>
                 </div>
-              )}
-
-              {cat.price && (
-                <div className="mb-3">
-                  <div className="flex items-baseline gap-2">
-                    <span
-                      className="font-display leading-none"
-                      style={{
-                        fontSize: 'clamp(1.4rem, 2.5vw, 2rem)',
-                        background: cat.highlight
-                          ? 'linear-gradient(135deg, #4a87f5 0%, #6aa3ff 100%)'
-                          : 'linear-gradient(135deg, #b7b9ba 0%, #e8e9ea 100%)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
-                      }}
-                    >
-                      {cat.price}
-                    </span>
-                    <span className="text-theme-muted text-[10px] leading-tight">{cat.priceLabel}</span>
-                  </div>
-                </div>
-              )}
-
-              {cat.rate && (
-                <div className="flex items-center gap-2 mb-3 px-3 py-1.5 border border-hub-electric/25 bg-hub-electric/8 w-fit">
-                  <span className="font-display text-hub-bright text-base leading-none">{cat.rate}</span>
-                  <span className="text-theme-muted text-[10px]">de interés anual</span>
-                </div>
-              )}
-
-              <p className="text-theme-muted text-xs leading-relaxed mt-auto pt-2">{cat.desc}</p>
-            </motion.div>
-          ))}
+              ))}
+            </div>
+          </div>
         </motion.div>
 
         {/* ── Mobile: simple cards ─────────────── */}
@@ -272,27 +210,17 @@ export default function Model() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.25 }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-2.5 lg:gap-3 mt-5 lg:mt-6"
+          className="mt-5 lg:mt-6"
         >
-          <div className="flex items-center gap-3 p-3 lg:p-4 border border-hub-electric/15 bg-gradient-to-r from-hub-electric/5 to-transparent hover:border-hub-electric/30 transition-all duration-300">
-            <div className="w-7 h-7 border border-hub-electric/30 flex items-center justify-center shrink-0">
-              <span className="text-hub-electric font-bold text-xs">$</span>
+          <div className="flex items-center gap-3 p-3 lg:p-5 border border-hub-electric/30 bg-gradient-to-r from-hub-electric/8 to-transparent hover:border-hub-electric/50 transition-all duration-300">
+            <div className="w-8 h-8 border border-hub-electric/40 flex items-center justify-center shrink-0">
+              <span className="text-hub-bright font-display text-sm">%</span>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-theme font-semibold text-xs lg:text-sm">Pioneros — Cuota parte USD 560</p>
-              <p className="text-theme-muted text-xs leading-snug">Ingresá desde las primeras etapas del proyecto.</p>
+              <p className="text-theme font-semibold text-sm lg:text-base">Inversores · USD 780 por cuota · 8% TNA garantizado</p>
+              <p className="text-theme-muted text-xs leading-snug mt-0.5">Interés en dólares desde el primer aporte · Mínimo 100 cuotas partes</p>
             </div>
-            <a href="#contact" className="text-hub-electric text-xs font-medium shrink-0 hover:underline">Consultar →</a>
-          </div>
-          <div className="flex items-center gap-3 p-3 lg:p-4 border border-hub-electric/15 bg-gradient-to-r from-hub-electric/5 to-transparent hover:border-hub-electric/30 transition-all duration-300">
-            <div className="w-7 h-7 border border-hub-electric/30 flex items-center justify-center shrink-0">
-              <span className="text-hub-electric font-bold text-xs">%</span>
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-theme font-semibold text-xs lg:text-sm">Inversores — Cuota parte USD 780 · 8% TNA</p>
-              <p className="text-theme-muted text-xs leading-snug">Interés anual en dólares hasta que el proyecto genere ingresos.</p>
-            </div>
-            <a href="#contact" className="text-hub-electric text-xs font-medium shrink-0 hover:underline">Consultar →</a>
+            <a href="#investors" className="text-hub-bright text-xs font-semibold tracking-widest uppercase shrink-0 hover:underline">Simular ROI →</a>
           </div>
         </motion.div>
       </div>

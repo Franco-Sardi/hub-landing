@@ -1,28 +1,15 @@
 import { useState, useMemo } from 'react'
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, ReferenceLine } from 'recharts'
 
-const PROFILES = [
-  {
-    id: 'pioneros',
-    name: 'Pioneros',
-    cuota: 560,
-    maxCuotas: 355,
-    rate: 0.08,
-    rateLabel: '8% TNA proyectado',
-    note: 'Ingreso fundacional con participación directa en el fideicomiso. Retorno proyectado en base al rendimiento del proyecto.',
-  },
-  {
-    id: 'inversores',
-    name: 'Inversores',
-    cuota: 780,
-    maxCuotas: 255,
-    rate: 0.08,
-    rateLabel: '8% TNA garantizado',
-    note: 'Interés garantizado en USD desde el primer aporte, hasta que el proyecto genere sus propios ingresos.',
-  },
-]
+const PROFILE = {
+  cuota: 780,
+  maxCuotas: 255,
+  rate: 0.08,
+  rateLabel: '8% TNA garantizado',
+  note: 'Interés garantizado en USD desde el primer aporte, hasta que el proyecto genere sus propios ingresos operativos.',
+}
 
-const TERMS = [3, 5, 10]
+const TERMS = [3, 5]
 
 const fmt = (n) =>
   new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n)
@@ -106,11 +93,10 @@ function ChartDot({ cx, cy, payload, term, final, principal }) {
 }
 
 export default function ROICalculator() {
-  const [profileId, setProfileId] = useState('inversores')
-  const [cuotas, setCuotas]       = useState(20)
-  const [term, setTerm]           = useState(5)
+  const [cuotas, setCuotas] = useState(100)
+  const [term, setTerm]     = useState(5)
 
-  const profile   = PROFILES.find((p) => p.id === profileId)
+  const profile   = PROFILE
   const principal = cuotas * profile.cuota
 
   const data = useMemo(() => {
@@ -133,29 +119,6 @@ export default function ROICalculator() {
   return (
     <div className="border border-theme bg-theme-card p-4 sm:p-5 flex flex-col gap-4">
 
-      {/* ── Profile selector ── */}
-      <div>
-        <label className="block text-theme-muted text-[10px] tracking-widest uppercase mb-2">
-          Perfil de inversión
-        </label>
-        <div className="flex gap-1.5">
-          {PROFILES.map((p) => (
-            <button
-              key={p.id}
-              onClick={() => { setProfileId(p.id); setCuotas(20) }}
-              className={`flex-1 py-2.5 px-3 text-xs font-semibold tracking-widest uppercase transition-all duration-200 ${
-                profileId === p.id
-                  ? 'bg-hub-electric text-white'
-                  : 'border border-theme text-theme-muted hover:border-hub-electric/40 hover:text-theme'
-              }`}
-            >
-              {p.name}
-            </button>
-          ))}
-        </div>
-        <p className="text-theme-muted text-xs mt-2 leading-relaxed">{profile.note}</p>
-      </div>
-
       {/* ── Cuotas partes ── */}
       <div>
         {/* Header row */}
@@ -177,7 +140,7 @@ export default function ROICalculator() {
         {/* Slider */}
         <input
           type="range"
-          min={5}
+          min={100}
           max={profile.maxCuotas}
           step={5}
           value={cuotas}
@@ -188,7 +151,7 @@ export default function ROICalculator() {
 
         {/* Min / Max labels */}
         <div className="flex justify-between text-theme-subtle text-[10px] mt-1">
-          <span>5 cuotas · {fmt(5 * profile.cuota)}</span>
+          <span>Mín. 100 cuotas · {fmt(100 * profile.cuota)}</span>
           <span>{profile.maxCuotas} cuotas · {fmt(profile.maxCuotas * profile.cuota)}</span>
         </div>
       </div>

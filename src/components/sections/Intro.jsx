@@ -126,11 +126,11 @@ export default function Intro() {
                 fontWeight: 600,
                 fontSize: 'clamp(0.45rem, 0.75vw, 0.6rem)',
                 color: LETTER_CLR,
-                opacity: 2,
                 letterSpacing: '0.55em',
                 textTransform: 'uppercase',
+                opacity: 1,
               }}>
-                Parques Industriales · Mendoza
+                Naves Logísticas · Mendoza
               </p>
             </motion.div>
           )}

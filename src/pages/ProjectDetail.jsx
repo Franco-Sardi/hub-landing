@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { projects } from '../data/projects'
+import ProjectMap from '../components/ui/ProjectMap'
 
 function Lightbox({ images, index, onClose, onPrev, onNext }) {
   useEffect(() => {
@@ -86,26 +87,26 @@ const statusStyle = {
 }
 
 // Per-project gallery images — Anchorena
-import anchorena01 from '../assets/HUB MZA - Anchorena - Naves - 01.png'
-import anchorena02 from '../assets/HUB MZA - Anchorena - Naves - 02.png'
-import anchorenaEdificio from '../assets/anchorena-coworking-watercolor.png'
-import anchorenaEdificio02 from '../assets/HUB MZA - Anchorena - Edificio - 02.png'
-import anchorenaPlanimetria from '../assets/HUB MZA - Anchorena - Planimetría.png'
+import anchorena01 from '../assets/HUB MZA - Anchorena - Naves - 01.webp'
+import anchorena02 from '../assets/HUB MZA - Anchorena - Naves - 02.webp'
+import anchorenaEdificio from '../assets/anchorena-coworking-watercolor.webp'
+import anchorenaEdificio02 from '../assets/HUB MZA - Anchorena - Edificio - 02.webp'
+import anchorenaPlanimetria from '../assets/HUB MZA - Anchorena - Planimetría.webp'
 // Style-transfer artistic renders (colores reales de las naves)
-import anchorenaStyle02 from '../assets/Anchorena 02_style_transfer02.png'
-import anchorenaStyle03 from '../assets/Anchorena 03_style_transfer01.png'
-import anchorenaStyle06a from '../assets/Anchorena 06_style_transfer01.png'
-import anchorenaStyle06b from '../assets/Anchorena 06_style_transfer02.png'
-import anchorenaStyle08 from '../assets/Anchorena 08_style_transfer01.png'
-import anchorenaStyle09 from '../assets/Anchorena 09_style_transfer01.png'
-import sfdmRender from '../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B - RENDER.png'
-import sfdmPlanta from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS PLANTA.png'
-import sfdmConcepto from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS CONCEPTO - 2.png'
-import crpAereo from '../assets/CRP - PROYECTO NAVE LOGÍSTICA - RENDER AEREO.png'
-import crpZonificacion from '../assets/CRP - PROYECTO NAVE LOGÍSTICA - ZONIFICACIÓN- tipo D.png'
-import malabiaAereo from '../assets/HUB MZA - MALABIA - RENDER AEREO.png'
-import malabiaCentro1 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 01.png'
-import malabiaCentro2 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 02.png'
+import anchorenaStyle02 from '../assets/Anchorena 02_style_transfer02.webp'
+import anchorenaStyle03 from '../assets/Anchorena 03_style_transfer01.webp'
+import anchorenaStyle06a from '../assets/Anchorena 06_style_transfer01.webp'
+import anchorenaStyle06b from '../assets/Anchorena 06_style_transfer02.webp'
+import anchorenaStyle08 from '../assets/Anchorena 08_style_transfer01.webp'
+import anchorenaStyle09 from '../assets/Anchorena 09_style_transfer01.webp'
+import sfdmRender from '../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B - RENDER.webp'
+import sfdmPlanta from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS PLANTA.webp'
+import sfdmConcepto from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS CONCEPTO - 2.webp'
+import crpAereo from '../assets/CRP - PROYECTO NAVE LOGÍSTICA - RENDER AEREO.webp'
+import crpZonificacion from '../assets/CRP - PROYECTO NAVE LOGÍSTICA - ZONIFICACIÓN- tipo D.webp'
+import malabiaAereo from '../assets/HUB MZA - MALABIA - RENDER AEREO.webp'
+import malabiaCentro1 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 01.webp'
+import malabiaCentro2 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 02.webp'
 
 const PROJECT_GALLERY = {
   1: [anchorenaStyle09, anchorenaStyle08, anchorenaStyle06a, anchorenaStyle06b, anchorenaStyle03, anchorenaStyle02, anchorena01, anchorena02, anchorenaEdificio, anchorenaEdificio02, anchorenaPlanimetria],
@@ -113,6 +114,39 @@ const PROJECT_GALLERY = {
   3: [sfdmConcepto, sfdmRender, sfdmPlanta],
   4: [crpAereo, crpZonificacion],
   5: [malabiaAereo, malabiaCentro1, malabiaCentro2],
+}
+
+const PROJECT_DIFFERENTIAL = {
+  1: {
+    image: anchorenaEdificio,
+    tag: 'Diferencial exclusivo',
+    label: 'EDIFICIO DE COWORKING',
+    desc: 'Espacios de trabajo profesional integrados al parque, disponibles para empresas inquilinas e inversores.',
+  },
+  2: {
+    image: sfdmRender,
+    tag: 'Hub Logístico',
+    label: 'NAVE LOGÍSTICA TRIPLE A',
+    desc: '20.000 m² de espacio cubierto con área operativa, muelles de carga y estacionamientos segregados para tráfico pesado y liviano.',
+  },
+  3: {
+    image: sfdmConcepto,
+    tag: 'Hub Logístico',
+    label: 'NAVE LOGÍSTICA TRIPLE A',
+    desc: '40.000 m² de espacio cubierto — la nave de mayor escala de la red HUB. Módulos adaptables desde 1.000 m² con muelles de carga dedicados.',
+  },
+  4: {
+    image: crpAereo,
+    tag: 'Diferencial exclusivo',
+    label: 'CENTRO COMERCIAL INTEGRADO',
+    desc: 'Gastronomía, proveedores, servicios bancarios y amenities dentro del mismo predio — sin salir del hub.',
+  },
+  5: {
+    image: malabiaCentro1,
+    tag: 'Diferencial exclusivo',
+    label: 'CENTRO DE SERVICIOS',
+    desc: 'Gastronomía, proveedores y servicios de soporte para los equipos del corredor — todo dentro del mismo predio.',
+  },
 }
 
 export default function ProjectDetail() {
@@ -141,6 +175,7 @@ export default function ProjectDetail() {
 
   const s = statusStyle[project.statusColor]
   const gallery = PROJECT_GALLERY[project.id] || []
+  const differential = PROJECT_DIFFERENTIAL[project.id]
 
   const [lightbox, setLightbox] = useState(null) // index o null
   const closeLightbox = useCallback(() => setLightbox(null), [])
@@ -178,6 +213,13 @@ export default function ProjectDetail() {
           {String(project.id).padStart(2, '0')}
         </div>
 
+        {/* Image disclaimer */}
+        <div className="absolute bottom-3 right-4 sm:bottom-4 sm:right-6 z-10 px-2 py-1 bg-black/40 backdrop-blur-sm">
+          <p className="text-white/60 text-[10px] tracking-wide italic text-right">
+            Render ilustrativo · sujeto a modificaciones de proyecto
+          </p>
+        </div>
+
         {/* Hero content */}
         <motion.div
           className="absolute bottom-0 left-0 right-0 px-4 sm:px-8 pb-6 sm:pb-12 max-w-5xl"
@@ -187,7 +229,9 @@ export default function ProjectDetail() {
         >
           <div className="flex items-center gap-3 mb-2">
             <span className="w-6 sm:w-8 h-px bg-white" />
-            <span className="text-white text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>HUB · Parque Industrial</span>
+            <span className="text-white text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>
+              HUB · {project.coworkingBuilding ? 'Nave + Coworking' : project.hasCommercialCenter ? 'Nave + Centro Comercial' : 'Nave Logística'}
+            </span>
             <span className="text-[10px] sm:text-xs font-bold tracking-wider uppercase px-2 py-0.5 border border-white/40 bg-black/50 text-white" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
               {project.status}
             </span>
@@ -206,6 +250,16 @@ export default function ProjectDetail() {
         </motion.div>
       </div>
 
+      {/* ── Aviso renders ─────────────────────────────────────────── */}
+      <div className="border-b" style={{ borderColor: 'var(--border)', background: 'var(--bg-secondary)' }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-8 py-2 flex items-center gap-2">
+          <span className="text-theme-subtle text-[10px]">⚠</span>
+          <p className="text-theme-subtle text-[10px] tracking-wide">
+            Todas las imágenes, renders y visualizaciones de este proyecto son ilustrativas y orientativas. Los diseños finales están sujetos a modificaciones.
+          </p>
+        </div>
+      </div>
+
       {/* ── Content ───────────────────────────────────────────────── */}
       <div className="max-w-5xl mx-auto px-4 sm:px-8 py-10 sm:py-16">
         <div className="grid lg:grid-cols-3 gap-12">
@@ -220,72 +274,28 @@ export default function ProjectDetail() {
               <h2 className="font-display text-theme text-2xl tracking-wide mb-4">DESCRIPCIÓN</h2>
               <p className="text-theme-muted leading-relaxed mb-8">{project.description}</p>
 
-              {/* Coworking building — Anchorena only */}
-              {project.coworkingBuilding && (
+              {/* Differential image — per project */}
+              {differential && (
                 <div className="mb-8 border overflow-hidden" style={{ borderColor: 'var(--border)' }}>
                   <div className="relative overflow-hidden" style={{ maxHeight: '340px' }}>
                     <img
-                      src={anchorenaEdificio}
-                      alt="Edificio de Coworking — HUB Anchorena"
+                      src={differential.image}
+                      alt={differential.label}
                       className="w-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                    <div className="absolute top-3 right-3 px-2 py-0.5 bg-black/50 backdrop-blur-sm">
+                      <p className="text-white/50 text-[9px] italic tracking-wide">Visualización ilustrativa</p>
+                    </div>
                     <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
-                      <p className="text-hub-bright text-[10px] font-semibold tracking-[0.3em] uppercase mb-1" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.9)' }}>Diferencial exclusivo</p>
-                      <h3 className="font-display text-white text-2xl tracking-wide leading-none" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.9)' }}>EDIFICIO DE COWORKING</h3>
-                      <p className="text-white text-sm mt-2 opacity-80" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>Espacios de trabajo profesional integrados al parque, disponibles para empresas inquilinas e inversores.</p>
+                      <p className="text-hub-bright text-[10px] font-semibold tracking-[0.3em] uppercase mb-1" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.9)' }}>{differential.tag}</p>
+                      <h3 className="font-display text-white text-2xl tracking-wide leading-none" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.9)' }}>{differential.label}</h3>
+                      <p className="text-white text-sm mt-2 opacity-80" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>{differential.desc}</p>
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* Features grid */}
-              <h2 className="font-display text-theme text-2xl tracking-wide mb-4">INFRAESTRUCTURA</h2>
-              <div className="grid grid-cols-2 gap-3 mb-8">
-                {project.features.map((f) => (
-                  <div key={f} className="flex items-center gap-3 p-3 border bg-theme-card"
-                    style={{ borderColor: 'var(--border-accent)' }}>
-                    <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${project.statusColor === 'gold' ? 'bg-hub-electric' : 'bg-hub-steel'}`} />
-                    <span className="text-theme text-sm">{f}</span>
-                  </div>
-                ))}
-                {[
-                  'Energías renovables',
-                  'Fibra óptica',
-                  'Reutilización de aguas',
-                  'Control consumo energía',
-                ].map((f) => (
-                  <div key={f} className="flex items-center gap-3 p-3 border bg-theme-card"
-                    style={{ borderColor: 'var(--border)' }}>
-                    <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-theme-subtle" />
-                    <span className="text-theme-muted text-sm">{f}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Gallery */}
-              <h2 className="font-display text-theme text-2xl tracking-wide mb-4">GALERÍA</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {gallery.map((src, i) => (
-                  <motion.div
-                    key={src}
-                    className="aspect-video overflow-hidden border border-hub-electric/10 cursor-zoom-in relative group"
-                    initial={{ opacity: 0, scale: 0.97 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: 0.6 + i * 0.08 }}
-                    onClick={() => setLightbox(i)}
-                  >
-                    <img
-                      src={src}
-                      alt={`Vista ${i + 1}`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                      <span className="text-white text-xl opacity-0 group-hover:opacity-70 transition-opacity duration-300">⊕</span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
             </motion.div>
           </div>
 
@@ -301,12 +311,12 @@ export default function ProjectDetail() {
               <p className="text-theme-muted text-xs font-semibold tracking-widest uppercase mb-4">Especificaciones</p>
               <div className="space-y-3">
                 {[
-                  { label: 'Sup. terreno',  value: `${project.area} mts` },
-                  { label: 'Sup. naves',    value: `${project.areaNaves} m²` },
-                  { label: 'Módulos',       value: project.units },
-                  { label: 'Energía',       value: 'Trifásica' },
-                  { label: 'Iluminación',   value: 'LED' },
-                  { label: 'Pavimentos',    value: 'Industriales' },
+                  { label: 'Sup. terreno',       value: `${project.area} m²` },
+                  { label: 'Sup. naves',         value: `${project.areaNaves} m²` },
+                  { label: 'Total a construir',   value: `${project.areaTotal} m²` },
+                  ...(project.areaComercial ? [{ label: 'Centro comercial', value: `${project.areaComercial} m²` }] : []),
+                  { label: 'Estándar',           value: 'Triple A' },
+                  { label: 'Certificaciones',    value: 'Certificables' },
                 ].map((item) => (
                   <div key={item.label} className="flex justify-between gap-2 pb-2 border-b last:border-0 last:pb-0"
                     style={{ borderColor: 'var(--border)' }}>
@@ -315,18 +325,6 @@ export default function ProjectDetail() {
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Contracts */}
-            <div className="border bg-theme-card p-5" style={{ borderColor: 'var(--border)' }}>
-              <p className="text-theme-muted text-xs font-semibold tracking-widest uppercase mb-3">Modalidades</p>
-              {['Alquiler', 'Compra', 'Hecho a medida'].map((m) => (
-                <div key={m} className="flex items-center gap-2 py-1.5 border-b last:border-0"
-                  style={{ borderColor: 'var(--border)' }}>
-                  <span className={`w-1 h-1 rounded-full ${project.statusColor === 'gold' ? 'bg-hub-electric' : 'bg-hub-steel'}`} />
-                  <span className="text-theme text-sm">{m}</span>
-                </div>
-              ))}
             </div>
 
             {/* CTA */}
@@ -370,6 +368,100 @@ export default function ProjectDetail() {
           </motion.div>
 
         </div>
+
+        {/* ── Infraestructura + Galería — full width ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="grid md:grid-cols-2 gap-8 mt-10 pt-10 border-t"
+          style={{ borderColor: 'var(--border)' }}
+        >
+          {/* Left: features */}
+          <div>
+            <h2 className="font-display text-theme text-2xl tracking-wide mb-4">INFRAESTRUCTURA</h2>
+            <div className="grid grid-cols-2 gap-2">
+              {project.features.map((f) => (
+                <div key={f} className="flex items-center gap-2.5 p-2.5 border bg-theme-card"
+                  style={{ borderColor: 'var(--border-accent)' }}>
+                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${project.statusColor === 'gold' ? 'bg-hub-electric' : 'bg-hub-steel'}`} />
+                  <span className="text-theme text-xs">{f}</span>
+                </div>
+              ))}
+              {['Energías renovables', 'Fibra óptica', 'Reutilización de aguas', 'Control consumo energía'].map((f) => (
+                <div key={f} className="flex items-center gap-2.5 p-2.5 border bg-theme-card"
+                  style={{ borderColor: 'var(--border)' }}>
+                  <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-theme-subtle" />
+                  <span className="text-theme-muted text-xs">{f}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: gallery preview */}
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-display text-theme text-2xl tracking-wide">GALERÍA</h2>
+              {gallery.length > 4 && (
+                <button
+                  onClick={() => setLightbox(0)}
+                  className="text-hub-electric text-xs font-semibold tracking-widest uppercase hover:text-hub-bright transition-colors"
+                >
+                  Ver todas ({gallery.length}) →
+                </button>
+              )}
+            </div>
+            <div className="grid grid-cols-2 gap-1.5">
+              {gallery.slice(0, 4).map((src, i) => (
+                <div
+                  key={src}
+                  className="relative overflow-hidden border border-hub-electric/10 cursor-zoom-in group"
+                  style={{ aspectRatio: '16/10' }}
+                  onClick={() => setLightbox(i)}
+                >
+                  <img
+                    src={src}
+                    alt={`Vista ${i + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  {i === 3 && gallery.length > 4 && (
+                    <div className="absolute inset-0 bg-black/55 flex items-center justify-center">
+                      <span className="font-display text-white text-2xl">+{gallery.length - 4}</span>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* ── Ubicación ── */}
+        {project.coords && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="mt-12"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <h2 className="font-display text-theme text-2xl tracking-wide">UBICACIÓN</h2>
+              <span className="w-8 h-px bg-hub-electric/40" />
+              <span className="text-theme-muted text-xs">{project.address || project.location}</span>
+            </div>
+            <div className="border overflow-hidden" style={{ borderColor: 'var(--border-accent)' }}>
+              <ProjectMap project={project} />
+            </div>
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(project.address || project.location)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-3 text-hub-electric text-xs font-semibold tracking-widest uppercase hover:text-hub-bright transition-colors"
+            >
+              Abrir en Google Maps →
+            </a>
+          </motion.div>
+        )}
       </div>
 
       {/* Footer */}
@@ -381,7 +473,7 @@ export default function ProjectDetail() {
               <span className="font-display text-xs leading-none" style={{ color: 'var(--bg-primary)' }}>H</span>
             </div>
             <span className="font-display text-theme-muted text-sm tracking-widest">HUB</span>
-            <span className="text-theme-subtle text-xs">© {new Date().getFullYear()} Parques Industriales</span>
+            <span className="text-theme-subtle text-xs">© {new Date().getFullYear()} Naves Logísticas</span>
           </div>
           <div className="flex items-center gap-4">
             <Link to="/" className="text-theme-subtle text-xs hover:text-theme-muted transition-colors">← Inicio</Link>
