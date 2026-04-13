@@ -1,16 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#0f1117"/>
-  <!-- H shape: left bar + crossbar + right bar as single path -->
+  <rect width="64" height="64" fill="#0e1a28"/>
   <path
     d="M10,8 L22,8 L22,27 L42,27 L42,8 L54,8 L54,56 L42,56 L42,37 L22,37 L22,56 L10,56 Z"
-    fill="none"
-    stroke="#4a87f5"
-    stroke-width="2"
-    stroke-linejoin="miter"
-  />
-  <path
-    d="M10,8 L22,8 L22,27 L42,27 L42,8 L54,8 L54,56 L42,56 L42,37 L22,37 L22,56 L10,56 Z"
-    fill="#4a87f5"
-    opacity="0.12"
+    fill="#ffffff"
   />
 </svg>
