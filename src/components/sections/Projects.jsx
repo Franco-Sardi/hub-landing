@@ -49,7 +49,7 @@ export default function Projects() {
         </h2>
 
         {/* Mapa mobile */}
-        <div className="relative border border-hub-electric/15 bg-hub-dark/30 w-full" style={{ minHeight: '300px' }}>
+        <div className="relative border border-hub-electric/15 bg-theme-card w-full" style={{ minHeight: '300px' }}>
           <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-hub-electric/25 pointer-events-none" />
           <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-hub-electric/25 pointer-events-none" />
           <div className="absolute bottom-2 left-2 w-3 h-3 border-b border-l border-hub-electric/25 pointer-events-none" />
@@ -152,7 +152,7 @@ export default function Projects() {
         {/* ── Left: Mendoza Map ─────────────────────────────────── */}
         <div className="flex flex-col shrink-0" style={{ width: '55%' }}>
           {/* Map container — fills entire left column */}
-          <div className="flex-1 min-h-0 border border-hub-electric/15 bg-hub-dark/30 relative overflow-hidden p-3">
+          <div className="flex-1 min-h-0 border border-hub-electric/15 bg-theme-card relative overflow-hidden p-3">
             {/* Corner accents */}
             <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-hub-electric/25 pointer-events-none" />
             <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-hub-electric/25 pointer-events-none" />
@@ -207,12 +207,12 @@ export default function Projects() {
                   {active.name.toUpperCase()}
                 </h3>
                 <div className="flex items-center justify-between mt-1">
-                  <p className="text-theme-muted text-xs flex items-center gap-1">
+                  <p className="text-white/60 text-xs flex items-center gap-1">
                     📍 {active.location} · {active.area} mts
                   </p>
                   <Link
                     to={`/proyecto/${active.slug}`}
-                    className="text-hub-electric text-xs font-semibold tracking-widest uppercase hover:text-hub-bright transition-colors"
+                    className="text-white text-xs font-semibold tracking-widest uppercase hover:text-hub-bright transition-colors"
                   >
                     Ver →
                   </Link>
@@ -252,7 +252,7 @@ export default function Projects() {
                   {isLocked && <div className="absolute right-1.5 top-1.5 w-1 h-1 rounded-full" style={{ background: MARKER_COLOR }} />}
 
                   <span className="font-display text-lg leading-none w-6 shrink-0 transition-colors"
-                    style={{ color: isActive ? MARKER_COLOR + 'b3' : MARKER_COLOR + '33' }}>
+                    style={{ color: isActive ? MARKER_COLOR : MARKER_COLOR + '70' }}>
                     {String(project.id).padStart(2, '0')}
                   </span>
 
@@ -261,12 +261,12 @@ export default function Projects() {
                       style={{ color: isActive ? MARKER_COLOR : 'var(--text-primary)' }}>
                       {project.name}
                     </span>
-                    <span className="text-theme-muted text-xs truncate block">{project.location} · {project.area} mts</span>
+                    <span className="text-theme text-xs truncate block opacity-60">{project.location} · {project.area} mts</span>
                   </div>
 
                   <Link
                     to={`/proyecto/${project.slug}`}
-                    className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-semibold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-all duration-200 border ${
+                    className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-semibold tracking-widest uppercase opacity-50 group-hover:opacity-100 transition-all duration-200 border ${
                       project.statusColor === 'gold'
                         ? 'border-hub-electric/50 text-hub-electric hover:bg-hub-electric hover:text-white'
                         : 'border-hub-steel/50 text-hub-steel hover:bg-hub-steel hover:text-white'

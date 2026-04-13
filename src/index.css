@@ -5,9 +5,9 @@
 @layer base {
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* ── Light mode (default) — Gris neutro brochure ── */
+  /* ── Light mode (default) — Azul pálido brochure ── */
   html, body {
-    background-color: #E8E9EB;
+    background-color: #E8EDF8;
     color: #1C2535;
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -22,29 +22,29 @@
 
   /* ── CSS variables — sistema de colores temático ── */
   :root {
-    /* Light mode: gris neutro brochure */
-    --bg-primary:   #E8E9EB;
-    --bg-secondary: #DEDEDF;
-    --bg-card:      #EDEDEF;
-    --bg-card-alt:  #E3E4E6;
+    /* Light mode: azul pálido — como el card de modalidad inversora */
+    --bg-primary:   #E8EDF8;
+    --bg-secondary: #DFE6F4;
+    --bg-card:      #D8E2F4;
+    --bg-card-alt:  #D2DCF0;
     --text-primary: #1C2535;
     --text-muted:   #3D4A5C;
     --text-subtle:  #6A7585;
     --text-accent:  #1E5CD4;
-    --border:       rgba(28,37,53,0.16);
-    --border-accent:rgba(28,37,53,0.30);
-    --nav-bg:             rgba(200,203,208,0.97);
-    --nav-border:         rgba(28,37,53,0.14);
+    --border:       rgba(30,92,212,0.14);
+    --border-accent:rgba(30,92,212,0.28);
+    --nav-bg:             rgba(220,228,246,0.97);
+    --nav-border:         rgba(30,92,212,0.12);
     --nav-text:           #1C2535;
     --nav-text-dim:       rgba(28,37,53,0.45);
-    --nav-border-element: rgba(28,37,53,0.20);
+    --nav-border-element: rgba(30,92,212,0.18);
     /* Stats & decoraciones */
     --stat-color:        #1C2535;
-    --grid-color:        rgba(28,37,53,0.06);
-    --stat-deco:         rgba(28,37,53,0.22);
-    --stat-deco-strong:  rgba(28,37,53,0.48);
-    --stat-deco-faint:   rgba(28,37,53,0.08);
-    --stat-deco-line:    rgba(28,37,53,0.24);
+    --grid-color:        rgba(30,92,212,0.05);
+    --stat-deco:         rgba(30,92,212,0.18);
+    --stat-deco-strong:  rgba(30,92,212,0.40);
+    --stat-deco-faint:   rgba(30,92,212,0.06);
+    --stat-deco-line:    rgba(30,92,212,0.20);
   }
   html.dark {
     /* Dark mode: navy profundo */

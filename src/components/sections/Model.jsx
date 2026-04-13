@@ -178,7 +178,7 @@ export default function Model() {
 
                   {/* Center node */}
                   <div className="absolute left-1/2 -translate-x-1/2 z-10">
-                    <div className="w-10 h-10 border border-theme bg-theme-card flex items-center justify-center relative">
+                    <div className="w-10 h-10 border border-theme bg-theme flex items-center justify-center relative">
                       <div className="absolute inset-0 bg-hub-azure/8" />
                       <span className="font-display text-hub-azure-light text-base leading-none relative z-10">{step.num}</span>
                     </div>
@@ -191,7 +191,7 @@ export default function Model() {
                       style={{
                         fontSize: 'clamp(4rem, 8vw, 7.5rem)',
                         color: 'transparent',
-                        WebkitTextStroke: '1px rgba(13,42,78,0.22)',
+                        WebkitTextStroke: '1px var(--stat-deco-faint)',
                         lineHeight: 1,
                       }}
                     >

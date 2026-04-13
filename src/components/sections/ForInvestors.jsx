@@ -66,7 +66,7 @@ export default function ForInvestors() {
             className="flex flex-col gap-5"
           >
             {/* Modalidad Inversores — card destacada */}
-            <div className="relative border border-hub-electric/30 bg-hub-electric/5 p-4 sm:p-5">
+            <div className="relative border border-hub-electric/30 bg-theme-card p-4 sm:p-5">
               <div className="absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-hub-electric to-transparent" />
               <div className="flex items-start justify-between gap-4 mb-3">
                 <div>

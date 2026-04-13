@@ -155,7 +155,7 @@ export default function ForCompanies() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
-                className="relative flex gap-4 p-4 border border-hub-electric/10 bg-hub-black/30 hover:border-hub-electric/30 hover:bg-hub-dark/60 transition-all duration-300 overflow-hidden group"
+                className="relative flex gap-4 p-4 border border-hub-electric/10 bg-theme-card hover:border-hub-electric/30 hover:bg-theme-alt transition-all duration-300 overflow-hidden group"
               >
                 {/* Accent line */}
                 <div className="shrink-0 w-0.5 self-stretch bg-gradient-to-b from-hub-electric/50 to-hub-electric/10 group-hover:from-hub-electric to-hub-electric/30 transition-colors" />
@@ -176,7 +176,7 @@ export default function ForCompanies() {
             className="flex flex-col gap-5"
           >
             {/* Services */}
-            <div className="border border-hub-electric/12 bg-hub-black/20 p-4">
+            <div className="border border-hub-electric/20 bg-theme-card p-4">
               <p className="text-hub-electric dark:text-hub-bright text-[10px] font-semibold tracking-widest uppercase mb-3">
                 Servicios incluidos
               </p>
