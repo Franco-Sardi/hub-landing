@@ -27,7 +27,7 @@ export default function Footer() {
             <span>Mendoza, Argentina</span>
           </div>
           <div className="border-t pt-3 flex items-center justify-between" style={{ borderColor: 'var(--border)' }}>
-            <span className="text-theme-muted text-[10px]">© {year} HUB Parques Industriales</span>
+            <span className="text-theme-muted text-[10px]">© {year} HUB Naves Logísticas</span>
             <div className="flex gap-4">
               <a href="#" className="text-theme-muted text-[10px]">Términos</a>
               <a href="#" className="text-theme-muted text-[10px]">Privacidad</a>
@@ -98,7 +98,7 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <span className="text-theme-muted/20 text-[10px] font-mono tracking-[0.2em]">LAT -32.89° · LON -68.84°</span>
               <span className="w-px h-3" style={{ backgroundColor: 'var(--border)' }} />
-              <span className="text-theme-muted text-[10px]">© {year} HUB Parques Industriales · Mendoza</span>
+              <span className="text-theme-muted text-[10px]">© {year} HUB Naves Logísticas · Mendoza</span>
             </div>
             <div className="flex gap-5">
               <a href="#" className="text-theme-muted text-[10px] hover:text-theme/35 transition-colors">Términos</a>

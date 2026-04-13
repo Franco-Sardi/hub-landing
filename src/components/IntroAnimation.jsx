@@ -168,7 +168,7 @@ export default function IntroAnimation({ onComplete }) {
                   letterSpacing: '0.55em',
                 }}
               >
-                Parques Industriales · Mendoza
+                Naves Logísticas · Mendoza
               </motion.p>
             )}
           </AnimatePresence>

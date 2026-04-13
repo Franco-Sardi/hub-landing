@@ -127,7 +127,7 @@ const PROJECT_DIFFERENTIAL = {
     image: sfdmRender,
     tag: 'Hub Logístico',
     label: 'NAVE LOGÍSTICA TRIPLE A',
-    desc: '20.000 m² de espacio cubierto con área operativa, muelles de carga y estacionamientos segregados para tráfico pesado y liviano.',
+    desc: '20.000 m² de espacio cubierto con área operativa, muelles de carga y estacionamientos diferenciados para tráfico pesado y liviano.',
   },
   3: {
     image: sfdmConcepto,
