@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { ThemeProvider } from './context/theme'
+import AuthGate from './components/auth/AuthGate'
 import Navbar from './components/layout/Navbar'
 import Intro from './components/sections/Intro'
 import Footer from './components/layout/Footer'
@@ -155,10 +156,12 @@ function Landing() {
 export default function App() {
   return (
     <ThemeProvider>
-      <Routes>
-        <Route path="/proyecto/:slug" element={<ProjectDetail />} />
-        <Route path="*" element={<Landing />} />
-      </Routes>
+      <AuthGate>
+        <Routes>
+          <Route path="/proyecto/:slug" element={<ProjectDetail />} />
+          <Route path="*" element={<Landing />} />
+        </Routes>
+      </AuthGate>
     </ThemeProvider>
   )
 }
