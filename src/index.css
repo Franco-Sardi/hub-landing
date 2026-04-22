@@ -5,70 +5,77 @@
 @layer base {
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* ── Light mode (default) — Azul pálido brochure ── */
+  /* ══════════════════════════════════════════════════════════════════════
+     PALETA OFICIAL · Manual de Marca HUB 2026
+     Primario:    #022A3A (Pantone 303 C)
+     Secundario:  #C7C8CA (Pantone 877 C)
+     Grises:      #3D4450 · #87888A · #A8A9AD · #C5C6C8
+     ══════════════════════════════════════════════════════════════════════ */
+
+  /* ── Light mode (default) — azul grisáceo referenciando #022A3A ─────────── */
   html, body {
-    background-color: #E8EDF8;
-    color: #1C2535;
-    font-family: 'Inter', sans-serif;
+    background-color: #C2D1D9;
+    color: #022A3A;
+    font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* ── Dark mode — Navy profundo ── */
+  /* ── Dark mode — navy oficial del manual ─────────────────────────────── */
   html.dark, html.dark body {
-    background-color: #0B1520;
-    color: #E8E9EA;
+    background-color: #022A3A;
+    color: #C7C8CA;
   }
 
-  /* ── CSS variables — sistema de colores temático ── */
+  /* ── CSS variables — sistema de colores temático ─────────────────────── */
   :root {
-    /* Light mode: azul pálido — como el card de modalidad inversora */
-    --bg-primary:   #E8EDF8;
-    --bg-secondary: #DFE6F4;
-    --bg-card:      #D8E2F4;
-    --bg-card-alt:  #D2DCF0;
-    --text-primary: #1C2535;
-    --text-muted:   #3D4A5C;
-    --text-subtle:  #6A7585;
-    --text-accent:  #1E5CD4;
-    --border:       rgba(30,92,212,0.14);
-    --border-accent:rgba(30,92,212,0.28);
-    --nav-bg:             rgba(220,228,246,0.97);
-    --nav-border:         rgba(30,92,212,0.12);
-    --nav-text:           #1C2535;
-    --nav-text-dim:       rgba(28,37,53,0.45);
-    --nav-border-element: rgba(30,92,212,0.18);
+    /* LIGHT MODE · azul-gris referenciado en #022A3A — no blanco */
+    --bg-primary:   #C2D1D9;
+    --bg-secondary: #B0C2CC;
+    --bg-card:      #CDDAE1;
+    --bg-card-alt:  #B8CAD3;
+    --text-primary: #022A3A;
+    --text-muted:   #1E3D4D;
+    --text-subtle:  #3D5A67;
+    --text-accent:  #022A3A;
+    --border:       rgba(2, 42, 58, 0.22);
+    --border-accent:rgba(2, 42, 58, 0.45);
+    --nav-bg:             rgba(178, 196, 207, 0.97);
+    --nav-border:         rgba(2, 42, 58, 0.18);
+    --nav-text:           #022A3A;
+    --nav-text-dim:       rgba(2, 42, 58, 0.55);
+    --nav-border-element: rgba(2, 42, 58, 0.25);
     /* Stats & decoraciones */
-    --stat-color:        #1C2535;
-    --grid-color:        rgba(30,92,212,0.05);
-    --stat-deco:         rgba(30,92,212,0.18);
-    --stat-deco-strong:  rgba(30,92,212,0.40);
-    --stat-deco-faint:   rgba(30,92,212,0.06);
-    --stat-deco-line:    rgba(30,92,212,0.20);
+    --stat-color:        #022A3A;
+    --grid-color:        rgba(2, 42, 58, 0.08);
+    --stat-deco:         rgba(2, 42, 58, 0.28);
+    --stat-deco-strong:  rgba(2, 42, 58, 0.55);
+    --stat-deco-faint:   rgba(2, 42, 58, 0.10);
+    --stat-deco-line:    rgba(2, 42, 58, 0.30);
   }
   html.dark {
-    /* Dark mode: navy profundo */
-    --bg-primary:   #0b1520;
-    --bg-secondary: #0e1a28;
-    --bg-card:      rgba(14,26,40,0.65);
-    --bg-card-alt:  rgba(14,26,40,0.38);
-    --text-primary: #e8e9ea;
-    --text-muted:   #b7b9ba;
-    --text-subtle:  #3a4455;
-    --text-accent:  #4a87f5;
-    --border:       rgba(74,135,245,0.18);
-    --border-accent:rgba(74,135,245,0.32);
-    --nav-bg:             rgba(22,36,52,0.97);
-    --nav-border:         rgba(74,135,245,0.20);
-    --nav-text:           #e8e9ea;
-    --nav-text-dim:       rgba(232,233,234,0.45);
-    --nav-border-element: rgba(255,255,255,0.18);
-    --stat-color:        #e8e9ea;
-    --grid-color:        rgba(13,63,165,0.12);
-    --stat-deco:         rgba(74,135,245,0.25);
-    --stat-deco-strong:  rgba(74,135,245,0.50);
-    --stat-deco-faint:   rgba(74,135,245,0.08);
-    --stat-deco-line:    rgba(74,135,245,0.30);
+    /* DARK MODE · navy oficial del manual */
+    --bg-primary:   #022A3A;
+    --bg-secondary: #011823;
+    --bg-card:      rgba(10, 56, 72, 0.65);
+    --bg-card-alt:  rgba(10, 56, 72, 0.38);
+    --text-primary: #C7C8CA;
+    --text-muted:   #A8A9AD;
+    --text-subtle:  #87888A;
+    --text-accent:  #C7C8CA;
+    --border:       rgba(199, 200, 202, 0.18);
+    --border-accent:rgba(199, 200, 202, 0.40);
+    --nav-bg:             rgba(2, 42, 58, 0.96);
+    --nav-border:         rgba(199, 200, 202, 0.20);
+    --nav-text:           #C7C8CA;
+    --nav-text-dim:       rgba(199, 200, 202, 0.45);
+    --nav-border-element: rgba(199, 200, 202, 0.22);
+    --stat-color:        #C7C8CA;
+    --grid-color:        rgba(199, 200, 202, 0.08);
+    --stat-deco:         rgba(199, 200, 202, 0.25);
+    --stat-deco-strong:  rgba(199, 200, 202, 0.55);
+    --stat-deco-faint:   rgba(199, 200, 202, 0.08);
+    --stat-deco-line:    rgba(199, 200, 202, 0.30);
   }
 
   #root { min-height: 100%; }
@@ -100,14 +107,27 @@
 }
 
 @layer utilities {
+  /* ── Gradientes sobre la paleta oficial ──────────────────── */
   .text-gradient-blue {
-    background: linear-gradient(135deg, #4a87f5 0%, #6aa3ff 50%, #4a87f5 100%);
+    background: linear-gradient(135deg, #022A3A 0%, #0a3848 50%, #022A3A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  html.dark .text-gradient-blue {
+    background: linear-gradient(135deg, #C7C8CA 0%, #E5E6E8 50%, #C7C8CA 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   .text-gradient-electric {
-    background: linear-gradient(135deg, #1e5cd4 0%, #4a87f5 100%);
+    background: linear-gradient(135deg, #022A3A 0%, #3D4450 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  html.dark .text-gradient-electric {
+    background: linear-gradient(135deg, #C7C8CA 0%, #A8A9AD 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -136,7 +156,9 @@
   background-color: var(--bg-primary);
 }
 
-/* ── Ghost "H" — marca de agua en secciones ── */
+/* ══════════════════════════════════════════════════════════════════════
+   Ghost "H" — marca de agua (ahora en Archivo, la tipografía de marca)
+   ══════════════════════════════════════════════════════════════════════ */
 .hub-bg-h {
   position: relative;
   overflow: hidden;
@@ -144,7 +166,8 @@
 }
 .hub-bg-h::before {
   content: 'H';
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 900;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -169,38 +192,56 @@ select option {
   color: var(--text-primary);
 }
 
-/* Selection */
+/* ══════════════════════════════════════════════════════════════════════
+   Selection & Scrollbar — ahora con los colores oficiales de marca
+   ══════════════════════════════════════════════════════════════════════ */
 ::selection {
-  background: rgba(74, 135, 245, 0.3);
-  color: #ffffff;
+  background: rgba(2, 42, 58, 0.25);
+  color: #022A3A;
+}
+html.dark ::selection {
+  background: rgba(199, 200, 202, 0.30);
+  color: #C7C8CA;
 }
 
-/* Scrollbar */
 html {
   scrollbar-width: thin;
-  scrollbar-color: rgba(74,135,245,0.15) transparent;
+  scrollbar-color: rgba(2, 42, 58, 0.20) transparent;
+}
+html.dark {
+  scrollbar-color: rgba(199, 200, 202, 0.20) transparent;
 }
 html::-webkit-scrollbar { width: 4px; }
 html::-webkit-scrollbar-track { background: transparent; }
-html::-webkit-scrollbar-thumb { background: rgba(74,135,245,0.15); border-radius: 2px; }
+html::-webkit-scrollbar-thumb { background: rgba(2, 42, 58, 0.20); border-radius: 2px; }
+html.dark::-webkit-scrollbar-thumb { background: rgba(199, 200, 202, 0.20); }
 
 .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 
 .inner-scroll::-webkit-scrollbar { width: 4px; }
 .inner-scroll::-webkit-scrollbar-track { background: transparent; }
-.inner-scroll::-webkit-scrollbar-thumb { background: rgba(74,135,245,0.2); border-radius: 2px; }
+.inner-scroll::-webkit-scrollbar-thumb { background: rgba(2, 42, 58, 0.22); border-radius: 2px; }
+html.dark .inner-scroll::-webkit-scrollbar-thumb { background: rgba(199, 200, 202, 0.22); }
 
-/* Scroll snap — only on desktop */
-.snap-container {
-  scroll-padding-top: var(--nav-height);
+/* Scroll normal — sin snap */
+html {
+  scroll-behavior: smooth;
 }
 
-@media (min-width: 1024px) {
-  .snap-container {
-    scroll-snap-type: y proximity;
-  }
-  .snap-section {
-    scroll-snap-align: start;
-  }
+/* ══════════════════════════════════════════════════════════════════════
+   Logo HUB — siempre dentro de contenedor rectangular con borde.
+   Exigencia explícita del manual de marca (área de reserva 3½ × x).
+   ══════════════════════════════════════════════════════════════════════ */
+.hub-logo-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35em 0.9em;
+  font-family: 'Archivo', 'Trade Gothic LT Std', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  border: 1.5px solid currentColor;
+  text-transform: uppercase;
 }

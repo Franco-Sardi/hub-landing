@@ -1,7 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#0e1a28"/>
-  <path
-    d="M10,8 L22,8 L22,27 L42,27 L42,8 L54,8 L54,56 L42,56 L42,37 L22,37 L22,56 L10,56 Z"
-    fill="#ffffff"
-  />
+<!--
+  Favicon HUB — Manual de marca oficial 2026
+  Fondo:  Pantone 303 C  (#022A3A)
+  "H":    Pantone 877 C  (#C7C8CA)
+  Construcción geométrica — idéntica a la letra "H" de Archivo Black.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" shape-rendering="crispEdges">
+  <rect width="64" height="64" fill="#022A3A"/>
+  <rect x="14" y="12" width="10" height="40" fill="#C7C8CA"/>
+  <rect x="40" y="12" width="10" height="40" fill="#C7C8CA"/>
+  <rect x="14" y="27" width="36" height="10" fill="#C7C8CA"/>
 </svg>

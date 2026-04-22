@@ -49,16 +49,18 @@ export default function Navbar({ currentPage = 0, goTo = () => {} }) {
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 xl:px-12 flex items-center justify-between h-16 lg:h-20">
 
-        {/* Logo */}
-        <button onClick={() => goTo(0)} className="flex items-center gap-3 group">
-          <div className="w-8 h-8 flex items-center justify-center border"
-            style={{ backgroundColor: 'var(--nav-text)', borderColor: 'var(--nav-border-element)' }}>
-            <span className="font-display text-lg leading-none" style={{ color: 'var(--nav-bg)' }}>H</span>
-          </div>
-          <span className="font-display text-2xl tracking-widest transition-colors"
-            style={{ color: 'var(--nav-text)' }}>
-            HUB
-          </span>
+        {/* Logo oficial — PNG de Boldrini & Ficcardi */}
+        <button onClick={() => goTo(0)} className="flex items-center group" aria-label="HUB">
+          <img
+            src="/hub-logo-oficial.png"
+            alt="HUB"
+            style={{
+              height: '2.2rem',
+              width: 'auto',
+              filter: dark ? 'brightness(0) invert(79%)' : 'none',
+              transition: 'filter 0.3s',
+            }}
+          />
         </button>
 
         {/* Desktop links */}
@@ -67,7 +69,7 @@ export default function Navbar({ currentPage = 0, goTo = () => {} }) {
             <li key={link.label}>
               <button
                 onClick={() => goTo(link.page)}
-                className="font-display text-sm tracking-widest uppercase transition-colors relative group"
+                className="font-condensed text-sm tracking-widest uppercase transition-colors relative group"
                 style={{ color: currentPage === link.page ? 'var(--nav-text)' : 'var(--nav-text-dim)' }}
               >
                 {link.label}
@@ -94,7 +96,7 @@ export default function Navbar({ currentPage = 0, goTo = () => {} }) {
           </button>
           <button
             onClick={() => goTo(7)}
-            className="px-5 py-2 border font-display text-sm tracking-widest uppercase transition-all duration-300"
+            className="px-5 py-2 border font-condensed text-sm tracking-widest uppercase transition-all duration-300"
             style={{ borderColor: 'var(--nav-border-element)', color: 'var(--nav-text)' }}
           >
             Contactar
@@ -146,7 +148,7 @@ export default function Navbar({ currentPage = 0, goTo = () => {} }) {
                 <li key={link.label}>
                   <button
                     onClick={() => { goTo(link.page); setMobileOpen(false) }}
-                    className="font-display text-base tracking-widest uppercase transition-colors block py-1 text-left w-full"
+                    className="font-condensed text-base tracking-widest uppercase transition-colors block py-1 text-left w-full"
                     style={{ color: 'var(--nav-text-dim)' }}
                   >
                     {link.label}
@@ -156,7 +158,7 @@ export default function Navbar({ currentPage = 0, goTo = () => {} }) {
               <li>
                 <button
                   onClick={() => { goTo(7); setMobileOpen(false) }}
-                  className="block w-full py-3 text-center border font-display tracking-widest uppercase transition-all mt-2"
+                  className="block w-full py-3 text-center border font-condensed tracking-widest uppercase transition-all mt-2"
                   style={{ borderColor: 'var(--nav-border-element)', color: 'var(--nav-text)' }}
                 >
                   Contactar

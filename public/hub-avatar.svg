@@ -1,0 +1,20 @@
+<!--
+  HUB · Ávatar para redes sociales
+  Manual de marca oficial 2026 · Boldrini & Ficcardi · Página 9
+
+  Círculo navy (Pantone 303 C) con "HUB" en silver (Pantone 877 C)
+  1024×1024 — tamaño óptimo para perfiles sociales (LinkedIn/IG/Twitter).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <circle cx="512" cy="512" r="512" fill="#022A3A"/>
+  <text
+    x="512" y="512"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-family="'Archivo', 'Trade Gothic LT Std', 'Arial Black', sans-serif"
+    font-weight="900"
+    font-size="360"
+    letter-spacing="10"
+    fill="#C7C8CA"
+  >HUB</text>
+</svg>

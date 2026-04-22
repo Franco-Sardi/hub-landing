@@ -9,45 +9,60 @@ export default {
     extend: {
       colors: {
         hub: {
-          // ── Backgrounds (brochure dark blue) ────────────────────────────
-          black:        '#0e1a28',   // Deepest background
-          dark:         '#152436',   // Primary section bg (brochure base)
-          darker:       '#0b1520',   // Deepest elements
-          midnight:     '#1a2d42',   // Cards, secondary panels
-          navy:         '#1e3550',   // Tertiary depth
-          // ── Slate / steel system ───────────────────────────────────────
-          slate:        '#1e3550',   // Panel backgrounds
-          // ── Accent blue system ─────────────────────────────────────────
-          tesla:        '#0d3fa5',   // Deep electric blue (fills, large elements)
-          electric:     '#1e5cd4',   // Mid electric (borders, active states)
-          bright:       '#4a87f5',   // Bright electric (readable accents, labels)
-          // ── Primary accent ─────────────────────────────────────────────
-          gold:         '#4a87f5',   // Readable electric blue
-          'gold-light': '#6aa3ff',   // Hover / lighter
-          'gold-dim':   '#1e5cd4',   // Deeper
-          // ── Secondary blue (companies) ─────────────────────────────────
-          steel:        '#3a78e8',   // Slightly different blue shade
-          'steel-light':'#5a96f8',
-          'steel-dim':  '#1a4fbd',
-          // ── Subtle borders & UI ────────────────────────────────────────
-          azure:        '#1e3550',   // Subtle border blue
-          'azure-light':'#2a4565',   // Slightly lighter border
-          // ── Text (brochure grays) ──────────────────────────────────────
-          text:         '#e8e9ea',   // Primary text — near white
-          muted:        '#b7b9ba',   // Secondary text (brochure gray)
-          subtle:       '#525659',   // Tertiary text (brochure dark gray)
+          // ══════════════════════════════════════════════════════════════════
+          // PALETA OFICIAL · Manual de Marca HUB 2026
+          // ══════════════════════════════════════════════════════════════════
 
-          // ── Paper / carta antigua system ───────────────────────────────
-          paper:        '#f0ebe0',   // Fondo principal — papel cálido (Opción A)
-          parchment:    '#e4ddd0',   // Fondo secundario — pergamino
-          linen:        '#d4c8a0',   // Borders crema
-          sand:         '#c4b888',   // Borders más marcados, hover
+          // ── Primario: PANTONE 303 C ──────────────────────────────────────
+          ink:          '#022A3A',   // Azul navy oficial — color insignia
+          'ink-deep':   '#011823',   // Variante más oscura (para fondos extremos)
+          'ink-soft':   '#0a3848',   // Variante algo más clara (hovers/estados)
 
-          // ── Ink — texto oscuro sobre papel ────────────────────────────
-          ink:          '#1c2535',   // Navy oscuro del brochure (texto principal)
-          sepia:        '#3d2e18',   // Marrón oscuro tinta alternativo
-          'ink-muted':  '#4a5568',   // Texto secundario sobre papel
-          'ink-faint':  '#7a8094',   // Texto muy sutil sobre papel
+          // ── Secundario: PANTONE 877 C ────────────────────────────────────
+          silver:       '#C7C8CA',   // Gris claro metálico — texto sobre navy
+          'silver-soft':'#E5E6E8',
+          'silver-dim': '#A8A9AD',
+
+          // ── Escala de grises oficial ─────────────────────────────────────
+          '5415':       '#3D4450',   // Gris azulado oscuro
+          '407':        '#87888A',   // Gris medio
+          '427':        '#A8A9AD',   // Gris claro
+          'cool-gray':  '#C5C6C8',   // Cool Gray 3
+          charcoal:     '#1A1A1A',   // Pantone Black aprox
+
+          // ══════════════════════════════════════════════════════════════════
+          // ALIASES — Mantienen compatibilidad con el código existente.
+          // Todos apuntan a la paleta oficial. Migrar gradualmente.
+          // ══════════════════════════════════════════════════════════════════
+          black:        '#011823',
+          dark:         '#022A3A',
+          darker:       '#011823',
+          midnight:     '#0a2a3a',
+          navy:         '#022A3A',
+          slate:        '#0a3848',
+          tesla:        '#022A3A',
+          electric:     '#C7C8CA',
+          bright:       '#E5E6E8',
+          gold:         '#C7C8CA',
+          'gold-light': '#E5E6E8',
+          'gold-dim':   '#87888A',
+          steel:        '#87888A',
+          'steel-light':'#A8A9AD',
+          'steel-dim':  '#3D4450',
+          azure:        '#0a3848',
+          'azure-light':'#3D4450',
+          text:         '#C7C8CA',
+          muted:        '#87888A',
+          subtle:       '#525659',
+
+          // ── Papel / fondos claros ────────────────────────────────────────
+          paper:        '#F5F5F6',
+          parchment:    '#EAEAEB',
+          linen:        '#C7C8CA',
+          sand:         '#A8A9AD',
+          sepia:        '#022A3A',
+          'ink-muted':  '#3D4450',
+          'ink-faint':  '#7A8086',
         }
       },
       screens: {
@@ -55,8 +70,15 @@ export default {
         '4xl': '2560px',
       },
       fontFamily: {
-        display: ['"Bebas Neue"', 'cursive'],
-        body:    ['"Inter"', 'sans-serif'],
+        // Tipografías oficiales del manual de marca (usando Google Fonts como
+        // alternativas libres visualmente cercanas a las licenciadas).
+        //   Trade Gothic LT Std Bold Extended → Archivo (wide geometric sans)
+        //   Roboto / Roboto Condensed           → Roboto (idéntica, Google)
+        //   PP Neue Montreal                    → Space Grotesk (sustituto)
+        display:   ['"Archivo"', '"Trade Gothic LT Std"', 'sans-serif'],
+        body:      ['"Roboto"', 'sans-serif'],
+        condensed: ['"Roboto Condensed"', '"Roboto"', 'sans-serif'],
+        accent:    ['"Space Grotesk"', '"PP Neue Montreal"', 'sans-serif'],
       },
       animation: {
         'pulse-blue': 'pulseBlue 3s ease-in-out infinite',
@@ -66,8 +88,8 @@ export default {
       },
       keyframes: {
         pulseBlue: {
-          '0%, 100%': { boxShadow: '0 0 0 0 rgba(74, 135, 245, 0)' },
-          '50%':       { boxShadow: '0 0 30px 10px rgba(74, 135, 245, 0.15)' },
+          '0%, 100%': { boxShadow: '0 0 0 0 rgba(2, 42, 58, 0)' },
+          '50%':       { boxShadow: '0 0 30px 10px rgba(2, 42, 58, 0.12)' },
         },
         marquee: {
           '0%':   { transform: 'translateX(0)' },

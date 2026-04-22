@@ -10,23 +10,23 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
 })
 
-// Custom branded marker: blue  circle with glow
+// Marker de marca — Pantone 303 C (#022A3A) sobre contorno plateado (Pantone 877 C)
 const hubMarker = L.divIcon({
   className: '',
   html: `
     <div style="
       width: 20px; height: 20px;
-      background: #1e5cd4;
-      border: 2px solid #4a87f5;
+      background: #022A3A;
+      border: 2px solid #C7C8CA;
       border-radius: 50%;
-      box-shadow: 0 0 0 4px rgba(30,92,212,0.25), 0 0 16px rgba(30,92,212,0.5);
+      box-shadow: 0 0 0 4px rgba(2,42,58,0.25), 0 0 16px rgba(2,42,58,0.45);
       position: relative;
     ">
       <div style="
         position: absolute; inset: 3px;
-        background: #fff;
+        background: #C7C8CA;
         border-radius: 50%;
-        opacity: 0.9;
+        opacity: 0.95;
       "></div>
     </div>
   `,
@@ -43,7 +43,6 @@ export default function ProjectMap({ project }) {
 
   return (
     <div className="relative">
-
       <MapContainer
         center={[lat, lng]}
         zoom={14.6}
@@ -63,19 +62,19 @@ export default function ProjectMap({ project }) {
             offset={[0, -8]}
           >
             <div style={{
-              background: '#0f1117',
-              border: '1px solid rgba(30,92,212,0.3)',
+              background: '#022A3A',
+              border: '1px solid rgba(199,200,202,0.30)',
               padding: '12px 14px',
               minWidth: '180px',
-              fontFamily: 'Inter, sans-serif',
+              fontFamily: 'Roboto, sans-serif',
             }}>
-              <p style={{ color: '#4a87f5', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '4px' }}>
+              <p style={{ color: '#C7C8CA', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '4px' }}>
                 HUB · {project.status}
               </p>
-              <p style={{ color: '#fff', fontSize: '13px', fontWeight: 700, marginBottom: '2px', fontFamily: 'Bebas Neue, sans-serif', letterSpacing: '0.08em' }}>
+              <p style={{ color: '#E5E6E8', fontSize: '13px', fontWeight: 700, marginBottom: '2px', fontFamily: 'Archivo, sans-serif', letterSpacing: '0.06em' }}>
                 {project.name.toUpperCase()}
               </p>
-              <p style={{ color: '#718096', fontSize: '11px', marginBottom: '10px' }}>
+              <p style={{ color: '#87888A', fontSize: '11px', marginBottom: '10px' }}>
                 {project.address || project.location}
               </p>
               <a
@@ -86,9 +85,9 @@ export default function ProjectMap({ project }) {
                   display: 'block',
                   textAlign: 'center',
                   padding: '6px 10px',
-                  background: 'rgba(30,92,212,0.15)',
-                  border: '1px solid rgba(30,92,212,0.35)',
-                  color: '#4a87f5',
+                  background: 'rgba(199,200,202,0.12)',
+                  border: '1px solid rgba(199,200,202,0.35)',
+                  color: '#C7C8CA',
                   fontSize: '10px',
                   fontWeight: 600,
                   letterSpacing: '0.15em',

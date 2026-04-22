@@ -2,16 +2,52 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="HUB — Red de naves logísticas Triple A en los principales corredores de Mendoza. Invertí o sumá tu empresa." />
-    <title>HUB — Naves Logísticas</title>
+
+    <!-- Título & descripción — paleta lingüística del brochure 2026 -->
+    <title>HUB — Red de Infraestructura y Servicios · Mendoza</title>
+    <meta name="description" content="HUB · Red de 6 parques industriales Triple A en los principales corredores de Mendoza. 420.000 m² de terreno, 240.000 m² de naves industriales inteligentes." />
+
+    <!-- Favicons — paleta oficial (Pantone 303 C navy + Pantone 877 C silver) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#022A3A" />
+
+    <!-- Open Graph / Twitter share -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HUB — Red de Infraestructura y Servicios" />
+    <meta property="og:description" content="6 parques industriales Triple A en los principales corredores de Mendoza. 420.000 m² de terreno, 240.000 m² de naves industriales inteligentes." />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_AR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="HUB — Red de Infraestructura y Servicios" />
+    <meta name="twitter:description" content="6 parques industriales Triple A en los principales corredores de Mendoza." />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <!-- Tipografías oficiales del manual de marca HUB 2026.
+         · Roboto / Roboto Condensed — tipografía 02 (Google Fonts, idéntica).
+         · Archivo — sustituto libre de Trade Gothic LT Std Bold Extended (tipo. 01).
+         · Space Grotesk — sustituto libre de PP Neue Montreal (tipo. 03). -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Barlow:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Roboto+Condensed:wght@300;400;500;700&family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>
+    <!-- Preamble React Fast Refresh — workaround para @vitejs/plugin-react v6.
+         En dev el plugin debería inyectarlo automáticamente pero a veces no sucede,
+         causando "$RefreshSig$ is not defined". Este script se ignora en prod. -->
+    <script type="module">
+      import RefreshRuntime from "/@react-refresh"
+      RefreshRuntime.injectIntoGlobalHook(window)
+      window.$RefreshReg$ = () => {}
+      window.$RefreshSig$ = () => (type) => type
+      window.__vite_plugin_react_preamble_installed__ = true
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

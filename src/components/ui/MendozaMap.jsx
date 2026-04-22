@@ -1,23 +1,23 @@
 import { motion } from 'framer-motion'
 import mapImg from '../../assets/mapa-dark.webp'
 
-// Posiciones calibradas por el usuario en modo debug
-// Color dorado para todos los marcadores
-const MARKER_COLOR = '#c9a84c'
+// Posiciones calibradas — color oficial de marca (Pantone 303 C)
+const MARKER_COLOR = '#022A3A'
 
 const PARK_POS = {
-  1: { left: 41.2, top: 55.2, label: 'ANCHORENA',      lx:  65, ly: -2  },
-  2: { left: 64.4, top: 53.3, label: 'SFDM ESTE',      lx:  12, ly: -30 },
-  3: { left: 72.0, top: 57.9, label: 'SFDM OESTE',     lx:  12, ly: -30 },
-  4: { left: 56.6, top: 50.8, label: 'RODRÍGUEZ PEÑA', lx:  65, ly: -2  },
-  5: { left: 41.9, top: 44.2, label: 'MALABIA',        lx: -70, ly: -2  },
+  1: { left: 41.2, top: 55.2, label: 'ANCHORENA',           lx:  65, ly: -2  },
+  2: { left: 64.4, top: 53.3, label: 'SFDM ESTE',           lx:  12, ly: -30 },
+  3: { left: 41.9, top: 44.2, label: 'MALABIA',             lx: -70, ly: -2  },
+  4: { left: 54.6, top: 50.8, label: 'RODRÍGUEZ PEÑA ESTE', lx:  65, ly: -2  },
+  5: { left: 58.6, top: 50.8, label: 'RODRÍGUEZ PEÑA OESTE',lx:  65, ly: 18  },
+  6: { left: 72.0, top: 57.9, label: 'SFDM OESTE',          lx:  12, ly: -30 },
 }
 
 export { MARKER_COLOR }
 
 export default function MendozaMap({ projects, activeId, onHover, onSelect }) {
   return (
-    <div className="w-full relative" style={{ background: '#0b1520' }}>
+    <div className="w-full relative" style={{ background: '#011823' }}>
       <img
         src={mapImg}
         alt="Mapa red HUB Mendoza"

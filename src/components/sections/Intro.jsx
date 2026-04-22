@@ -1,135 +1,108 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const FRAME_BG    = '/intro-bg.jpg'
-const FONT        = '"Barlow", sans-serif'
-const FONT_WEIGHT = 700
-const LETTER_SIZE     = 'clamp(9rem, 22vw, 18rem)'
-const LETTER_SIZE_HUB = 'clamp(7rem, 17vw, 10rem)'
-const LETTER_LS   = '0.1em'
-const LETTER_CLR  = '#8a9099'
+const FRAME_BG = '/intro-bg.jpg'
+// El logo oficial (navy sobre transparente) → invertido a silver para fondo oscuro
+const LOGO_FILTER = 'brightness(0) invert(79%)'
 
 /*
   TIMELINE
-  0.0 — H sola, fade in suave
-  2.8 — Crossfade directo al fondo con HUB
-  4.6 — Tagline + scroll
+  0.0 — Logo oficial fade in (fondo navy)
+  2.2 — Foto parque aparece detrás
+  4.0 — Tagline + scroll indicator
 */
 
 export default function Intro() {
-  const [phase, setPhase] = useState('h') // 'h' | 'hub' | 'done'
+  const [phase, setPhase] = useState('logo') // 'logo' | 'bg' | 'done'
 
   useEffect(() => {
     const timers = [
-      setTimeout(() => setPhase('hub'),  2800),
-      setTimeout(() => setPhase('done'), 4600),
+      setTimeout(() => setPhase('bg'),   2200),
+      setTimeout(() => setPhase('done'), 4000),
     ]
     return () => timers.forEach(clearTimeout)
   }, [])
 
-  const onHub = phase === 'hub' || phase === 'done'
+  const showBg = phase === 'bg' || phase === 'done'
 
   return (
     <section
       id="intro"
       className="relative w-full h-dvh overflow-hidden"
-      style={{ backgroundColor: '#112438fa' }}
+      style={{ backgroundColor: '#022A3A' }}
     >
-
-      {/* ── FONDO foto parque — fade in cuando pasa a hub ───────────────── */}
+      {/* ── Fondo foto parque ─────────────────────────────────────── */}
       <AnimatePresence>
-        {onHub && (
+        {showBg && (
           <motion.div
             key="bg"
             className="absolute inset-0"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 2.0, ease: 'easeInOut' }}
+            transition={{ duration: 2.2, ease: 'easeInOut' }}
           >
             <img
               src={FRAME_BG}
               alt=""
               className="w-full h-full object-cover"
-              style={{ filter: 'saturate(0.55) brightness(0.39)' }}
+              style={{ filter: 'saturate(0.55) brightness(0.38)' }}
             />
-            <div className="absolute inset-0" style={{
-              // background: 'linear-gradient(to bottom, rgba(17,36,56,0.4) 0%, rgba(17,36,56,0.28) 32%, rgba(17,36,56,0.65) 58%, rgba(17,36,56,0.95) 75%, rgba(17,36,56,1.0) 80%)',
-            }} />
-            <div className="absolute inset-0" style={{
-              background: 'radial-gradient(ellipse 100% 90% at 50% 42%, transparent 20%, rgba(17,36,56,0.72) 100%)',
-            }} />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  'radial-gradient(ellipse 100% 90% at 50% 42%, transparent 20%, rgba(2,42,58,0.85) 100%)',
+              }}
+            />
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* ── LETRAS — mismo contenedor, mismo lugar, todo el tiempo ─────── */}
+      {/* ── Logo oficial + tagline ────────────────────────────────── */}
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
 
-        {/* Fase H: solo la H */}
-        <AnimatePresence mode="wait">
-          {!onHub ? (
-            <motion.span
-              key="h-only"
-              initial={{ opacity: 0, filter: 'blur(14px)' }}
-              animate={{ opacity: 1, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, filter: 'blur(8px)' }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              style={{
-                fontFamily: FONT,
-                fontWeight: FONT_WEIGHT,
-                fontSize: LETTER_SIZE,
-                color: LETTER_CLR,
-                letterSpacing: LETTER_LS,
-                lineHeight: 1,
-                userSelect: 'none',
-              }}
-            >
-              H
-            </motion.span>
-          ) : (
-            <motion.span
-              key="hub-word"
-              initial={{ opacity: 0, filter: 'blur(10px)' }}
-              animate={{ opacity: 1, filter: 'blur(0px)' }}
-              transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-              style={{
-                fontFamily: FONT,
-                fontWeight: FONT_WEIGHT,
-                fontSize: LETTER_SIZE_HUB,
-                color: LETTER_CLR,
-                letterSpacing: LETTER_LS,
-                lineHeight: 1,
-                userSelect: 'none',
-              }}
-            >
-              HUB
-            </motion.span>
-          )}
-        </AnimatePresence>
+        {/* Logo PNG oficial — tipografía correcta (Boldrini & Ficcardi) */}
+        <motion.img
+          src="/hub-logo-oficial.png"
+          alt="HUB"
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            height: 'clamp(4.5rem, 11vw, 8.5rem)',
+            width: 'auto',
+            filter: LOGO_FILTER,
+          }}
+        />
 
-        {/* Tagline — aparece en fase final */}
+        {/* Tagline — aparece con la foto */}
         <AnimatePresence>
-          {onHub && (
+          {showBg && (
             <motion.div
               key="tagline"
-              className="flex flex-col items-center gap-3 mt-6"
-              initial={{ opacity: 0, y: 8 }}
+              className="flex flex-col items-center gap-3 mt-7"
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.0, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 1.0, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div style={{ width: 'clamp(3rem, 6vw, 5rem)', height: '1px', background: 'rgba(138,144,153,0.28)' }} />
-              <svg width="5" height="5" viewBox="0 0 6 6" style={{ opacity: 0.3 }}>
-                <rect x="3" y="0" width="4.24" height="4.24" transform="rotate(45 3 3)" fill="rgba(138,144,153,0.9)" />
-              </svg>
-              <p style={{
-                fontFamily: FONT,
-                fontWeight: 600,
-                fontSize: 'clamp(0.45rem, 0.75vw, 0.6rem)',
-                color: LETTER_CLR,
-                letterSpacing: '0.55em',
-                textTransform: 'uppercase',
-                opacity: 1,
-              }}>
+              <div
+                style={{
+                  width: 'clamp(3rem, 6vw, 5rem)',
+                  height: '1px',
+                  background: 'rgba(199,200,202,0.28)',
+                }}
+              />
+              <p
+                style={{
+                  fontFamily: '"Roboto Condensed", "Roboto", sans-serif',
+                  fontWeight: 400,
+                  fontSize: 'clamp(0.5rem, 0.8vw, 0.65rem)',
+                  color: '#C7C8CA',
+                  letterSpacing: '0.52em',
+                  textTransform: 'uppercase',
+                  opacity: 0.7,
+                }}
+              >
                 Naves Logísticas · Mendoza
               </p>
             </motion.div>
@@ -137,7 +110,7 @@ export default function Intro() {
         </AnimatePresence>
       </div>
 
-      {/* ── Esquineros ──────────────────────────────────────────────────── */}
+      {/* ── Esquineros ───────────────────────────────────────────── */}
       {[
         { top: 24, left: 24 },
         { top: 24, right: 24 },
@@ -151,16 +124,18 @@ export default function Intro() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.3 + i * 0.07 }}
           style={{
-            ...pos, width: 22, height: 22,
-            borderTop:    pos.bottom === undefined ? '2px solid rgba(138,144,153,0.32)' : undefined,
-            borderBottom: pos.top    === undefined ? '2px solid rgba(138,144,153,0.32)' : undefined,
-            borderLeft:   pos.right  === undefined ? '2px solid rgba(138,144,153,0.32)' : undefined,
-            borderRight:  pos.left   === undefined ? '2px solid rgba(138,144,153,0.32)' : undefined,
+            ...pos,
+            width: 22,
+            height: 22,
+            borderTop:    pos.bottom === undefined ? '2px solid rgba(199,200,202,0.32)' : undefined,
+            borderBottom: pos.top    === undefined ? '2px solid rgba(199,200,202,0.32)' : undefined,
+            borderLeft:   pos.right  === undefined ? '2px solid rgba(199,200,202,0.32)' : undefined,
+            borderRight:  pos.left   === undefined ? '2px solid rgba(199,200,202,0.32)' : undefined,
           }}
         />
       ))}
 
-      {/* ── Scroll indicator ────────────────────────────────────────────── */}
+      {/* ── Scroll indicator ─────────────────────────────────────── */}
       <AnimatePresence>
         {phase === 'done' && (
           <motion.div
@@ -169,26 +144,31 @@ export default function Intro() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <span style={{
-              fontFamily: FONT,
-              fontWeight: 300,
-              fontSize: '0.52rem',
-              color: LETTER_CLR,
-              opacity: 0.28,
-              letterSpacing: '0.45em',
-              textTransform: 'uppercase',
-            }}>
+            <span
+              style={{
+                fontFamily: '"Roboto Condensed", sans-serif',
+                fontWeight: 300,
+                fontSize: '0.52rem',
+                color: '#C7C8CA',
+                opacity: 0.28,
+                letterSpacing: '0.45em',
+                textTransform: 'uppercase',
+              }}
+            >
               Scroll
             </span>
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-              style={{ width: 1, height: 32, background: 'linear-gradient(to bottom, rgba(138,144,153,0.4), transparent)' }}
+              style={{
+                width: 1,
+                height: 32,
+                background: 'linear-gradient(to bottom, rgba(199,200,202,0.4), transparent)',
+              }}
             />
           </motion.div>
         )}
       </AnimatePresence>
-
     </section>
   )
 }

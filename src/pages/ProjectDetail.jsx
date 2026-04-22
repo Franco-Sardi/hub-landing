@@ -81,9 +81,15 @@ function Lightbox({ images, index, onClose, onPrev, onNext }) {
   )
 }
 
+// Estilo único — paleta oficial del manual (Pantone 303 C navy sobre silver).
+const defaultStatusStyle = {
+  badge: 'text-theme-accent border-theme-accent',
+  cta: 'text-white hover:opacity-90',
+}
 const statusStyle = {
-  gold:  { badge: 'bg-hub-electric/15 text-hub-electric border-hub-electric/30', cta: 'bg-hub-electric text-white hover:bg-hub-bright' },
-  steel: { badge: 'bg-hub-steel/15 text-hub-steel border-hub-steel/30', cta: 'bg-hub-steel text-white hover:bg-hub-steel-light' },
+  ink:   defaultStatusStyle,
+  gold:  defaultStatusStyle,
+  steel: defaultStatusStyle,
 }
 
 // Per-project gallery images — Anchorena
@@ -173,9 +179,28 @@ export default function ProjectDetail() {
     )
   }
 
-  const s = statusStyle[project.statusColor]
-  const gallery = PROJECT_GALLERY[project.id] || []
-  const differential = PROJECT_DIFFERENTIAL[project.id]
+  const s = statusStyle[project.statusColor] || defaultStatusStyle
+  // IDs renumerados (brochure oficial: 01 Anchorena, 02 SFDM Este, 03 Malabia,
+  // 04 Rodríguez Peña Este, 05 Rodríguez Peña Oeste, 06 SFDM Oeste).
+  // Reusamos los assets existentes mapeando id → slug.
+  const galleryBySlug = {
+    'anchorena': PROJECT_GALLERY[1],
+    'san-francisco-del-monte-este': PROJECT_GALLERY[2],
+    'san-francisco-del-monte-oeste': PROJECT_GALLERY[3],
+    'rodriguez-pena-este': PROJECT_GALLERY[4],
+    'rodriguez-pena-oeste': PROJECT_GALLERY[4],
+    'malabia': PROJECT_GALLERY[5],
+  }
+  const differentialBySlug = {
+    'anchorena': PROJECT_DIFFERENTIAL[1],
+    'san-francisco-del-monte-este': PROJECT_DIFFERENTIAL[2],
+    'san-francisco-del-monte-oeste': PROJECT_DIFFERENTIAL[3],
+    'rodriguez-pena-este': PROJECT_DIFFERENTIAL[4],
+    'rodriguez-pena-oeste': PROJECT_DIFFERENTIAL[4],
+    'malabia': PROJECT_DIFFERENTIAL[5],
+  }
+  const gallery = galleryBySlug[project.slug] || []
+  const differential = differentialBySlug[project.slug]
 
   const [lightbox, setLightbox] = useState(null) // index o null
   const closeLightbox = useCallback(() => setLightbox(null), [])
@@ -331,7 +356,8 @@ export default function ProjectDetail() {
             <div className="flex flex-col gap-2">
               <Link
                 to="/#contact"
-                className={`py-3 text-center text-xs font-semibold tracking-widest uppercase transition-colors duration-200 block ${s.cta}`}
+                className="py-3 text-center text-xs font-semibold tracking-widest uppercase transition-opacity duration-200 block hover:opacity-90 font-condensed"
+                style={{ backgroundColor: 'var(--text-accent)', color: 'var(--bg-primary)' }}
               >
                 Consultar Disponibilidad
               </Link>
@@ -384,7 +410,7 @@ export default function ProjectDetail() {
               {project.features.map((f) => (
                 <div key={f} className="flex items-center gap-2.5 p-2.5 border bg-theme-card"
                   style={{ borderColor: 'var(--border-accent)' }}>
-                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${project.statusColor === 'gold' ? 'bg-hub-electric' : 'bg-hub-steel'}`} />
+                  <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: 'var(--text-accent)' }} />
                   <span className="text-theme text-xs">{f}</span>
                 </div>
               ))}
@@ -473,7 +499,7 @@ export default function ProjectDetail() {
               <span className="font-display text-xs leading-none" style={{ color: 'var(--bg-primary)' }}>H</span>
             </div>
             <span className="font-display text-theme-muted text-sm tracking-widest">HUB</span>
-            <span className="text-theme-subtle text-xs">© {new Date().getFullYear()} Naves Logísticas</span>
+            <span className="text-theme-subtle text-xs">© {new Date().getFullYear()} HUB · Mendoza</span>
           </div>
           <div className="flex items-center gap-4">
             <Link to="/" className="text-theme-subtle text-xs hover:text-theme-muted transition-colors">← Inicio</Link>

@@ -105,10 +105,10 @@ function Stat({ value, suffix, label, sublabel, delay }) {
 }
 
 const STATS = [
-  { value: 5,      suffix: '',     label: 'Proyectos',  sublabel: 'En Mendoza',              delay: 0    },
-  { value: 413578, suffix: ' mts', label: 'Terreno',    sublabel: 'Total en desarrollo',     delay: 0.12 },
-  { value: 222800, suffix: ' m²',  label: 'Naves',      sublabel: 'Logísticas Triple A',     delay: 0.24 },
-  { value: 8,      suffix: '%',    label: 'ROI Anual',  sublabel: 'En dólares · garantizado', delay: 0.36 },
+  { value: 6,      suffix: '',     label: 'HUBs',       sublabel: 'En Mendoza',                      delay: 0    },
+  { value: 420000, suffix: ' mts', label: 'Terreno',    sublabel: 'Superficie total',                delay: 0.12 },
+  { value: 240000, suffix: ' m²',  label: 'Naves',      sublabel: 'Logísticas en Mendoza',           delay: 0.24 },
+  { value: 1000,   suffix: ' m²',  label: 'Módulos',    sublabel: 'Desde, flexibles y escalables',   delay: 0.36 },
 ]
 
 export default function Stats() {
@@ -229,10 +229,10 @@ export default function Stats() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.9 }}
-          className="font-body text-center mt-5 tracking-[0.15em] uppercase"
-          style={{ fontSize: '0.68rem', color: 'var(--stat-color)', opacity: 0.38, maxWidth: '40ch' }}
+          className="font-condensed text-center mt-5 tracking-[0.15em] uppercase"
+          style={{ fontSize: '0.72rem', color: 'var(--stat-color)', opacity: 0.50, maxWidth: '50ch' }}
         >
-          Almacenamiento logístico inteligente en los principales corredores de conectividad de Mendoza
+          Red de infraestructura y servicios en los principales corredores industriales de Mendoza
         </motion.p>
       </div>
     </section>
