@@ -39,11 +39,14 @@ export default function Projects() {
           <span className="text-theme-accent text-xs font-semibold tracking-[0.3em] uppercase font-condensed">HUB · Proyectos</span>
         </div>
         <h2
-          className="font-display text-theme leading-none tracking-wide text-3xl mb-2"
+          className="font-display text-theme leading-none tracking-wide text-3xl mb-1"
           style={{ fontWeight: 800 }}
         >
           MENDOZA, <span className="text-gradient-blue">ARGENTINA</span>
         </h2>
+        <p className="text-[10px] leading-relaxed font-condensed italic mb-1" style={{ color: 'var(--text-subtle)' }}>
+          Los proyectos están sujetos a cambios. La implementación de centros comerciales será evaluada según viabilidad.
+        </p>
 
         {/* Mapa mobile */}
         <div
@@ -133,6 +136,9 @@ export default function Projects() {
               </span>
             </div>
           </div>
+          <p className="text-theme-subtle text-[10px] mt-1.5 leading-relaxed font-condensed italic" style={{ color: 'var(--text-subtle)' }}>
+            Los proyectos, superficies y características están sujetos a cambios. La implementación de centros comerciales será evaluada según la viabilidad de cada desarrollo.
+          </p>
         </div>
 
         <div className="flex flex-1 min-h-0 gap-5">

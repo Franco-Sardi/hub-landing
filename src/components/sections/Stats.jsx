@@ -105,10 +105,10 @@ function Stat({ value, suffix, label, sublabel, delay }) {
 }
 
 const STATS = [
-  { value: 6,      suffix: '',     label: 'HUBs',       sublabel: 'En Mendoza',                      delay: 0    },
-  { value: 420000, suffix: ' mts', label: 'Terreno',    sublabel: 'Superficie total',                delay: 0.12 },
-  { value: 240000, suffix: ' m²',  label: 'Naves',      sublabel: 'Logísticas en Mendoza',           delay: 0.24 },
-  { value: 1000,   suffix: ' m²',  label: 'Módulos',    sublabel: 'Desde, flexibles y escalables',   delay: 0.36 },
+  { value: 5,      suffix: '',     label: 'HUBs',       sublabel: 'En Mendoza',                      delay: 0    },
+  { value: 335000, suffix: ' mts', label: 'Terreno',    sublabel: 'Superficie total',                delay: 0.12 },
+  { value: 178000, suffix: ' m²',  label: 'Naves',      sublabel: 'Industriales inteligentes',       delay: 0.24 },
+  { value: 3,      suffix: '',     label: 'Corredores', sublabel: 'Acceso Sur · Ruta 7 · Ruta 40',  delay: 0.36 },
 ]
 
 export default function Stats() {

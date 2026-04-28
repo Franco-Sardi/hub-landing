@@ -77,7 +77,7 @@ export default function Footer() {
             <div>
               <h4 className="text-theme-muted text-[10px] font-semibold tracking-widest uppercase mb-3 font-condensed">Servicios</h4>
               <ul className="space-y-1.5">
-                {['Naves industriales Triple A', 'Módulos desde 1.000 m²', 'Build-to-suit', 'Sistema modular', 'Sustentabilidad certificable'].map((s) => (
+                {['Naves industriales Triple A', 'Módulos adaptables', 'Build-to-suit', 'Sistema modular', 'Sustentabilidad certificable'].map((s) => (
                   <li key={s}><span className="text-theme-muted/80 text-xs">{s}</span></li>
                 ))}
               </ul>

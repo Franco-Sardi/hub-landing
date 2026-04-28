@@ -121,7 +121,7 @@ function Landing() {
   }, [location]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="bg-theme font-body">
+    <div className="bg-theme font-body overflow-x-hidden w-full">
       <div className={`transition-all duration-500 ${onIntro ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <Navbar currentPage={active - 1} goTo={(i) => goTo(i + 1)} />
       </div>

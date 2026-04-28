@@ -2,10 +2,10 @@ import { motion } from 'framer-motion'
 import SectionFrame from '../ui/SectionFrame'
 
 const investorBenefits = [
-  { val: 'Retorno fijo',   desc: 'Generás un retorno garantizado en dólares desde tu primer aporte' },
+  { val: 'Participación',  desc: 'Participás en la rentabilidad del negocio con retorno en dólares desde tu primer aporte' },
   { val: 'Cuota parte',    desc: 'Ingreso accesible con participación mínima y posibilidad de escalar' },
   { val: 'Triple A',       desc: 'Naves logísticas certificables, estándar de clase internacional' },
-  { val: '240.000 m²',     desc: 'Red de naves logísticas distribuidas en corredores clave de Mendoza' },
+  { val: '178.000 m²',     desc: 'Red de naves logísticas distribuidas en corredores clave de Mendoza' },
 ]
 
 const nextSteps = [
@@ -84,11 +84,11 @@ export default function ForInvestors() {
                 </div>
               </div>
               <div className="flex items-center gap-2 px-3 py-1.5 border border-theme-accent bg-theme w-fit mb-3">
-                <span className="font-display text-theme text-base leading-none" style={{ fontWeight: 800 }}>Retorno garantizado</span>
-                <span className="text-theme-muted text-[10px] font-condensed">en dólares desde el primer aporte</span>
+                <span className="font-display text-theme text-base leading-none" style={{ fontWeight: 800 }}>Participación en el negocio</span>
+                <span className="text-theme-muted text-[10px] font-condensed">rentabilidad real desde tu primer aporte</span>
               </div>
               <p className="text-theme-muted text-xs leading-relaxed">
-                Generás un <span className="text-theme font-semibold">retorno garantizado en dólares</span> desde tu primer aporte, durante toda la etapa de desarrollo. Una vez que los HUBs entran en operación, ese retorno se incrementa con los flujos propios de la red.
+                La modalidad inversores te permite <span className="text-theme font-semibold">participar con cuotas partes</span> y generar un retorno garantizado en dólares desde tu primer aporte. Tu inversión está respaldada por activos inmobiliarios industriales reales.
               </p>
             </div>
 

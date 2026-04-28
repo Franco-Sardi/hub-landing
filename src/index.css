@@ -19,6 +19,8 @@
     font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   /* ── Dark mode — navy oficial del manual ─────────────────────────────── */

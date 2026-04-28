@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -35,11 +36,33 @@ const hubMarker = L.divIcon({
   popupAnchor: [0, -14],
 })
 
+function useIsLight() {
+  const [isLight, setIsLight] = useState(
+    () => document.documentElement.classList.contains('light')
+  )
+  useEffect(() => {
+    const el = document.documentElement
+    const obs = new MutationObserver(() => {
+      setIsLight(el.classList.contains('light'))
+    })
+    obs.observe(el, { attributes: true, attributeFilter: ['class'] })
+    return () => obs.disconnect()
+  }, [])
+  return isLight
+}
+
 export default function ProjectMap({ project }) {
+  const markerRef = useRef(null)
+  const isLight = useIsLight()
+
   if (!project.coords) return null
 
   const [lat, lng] = project.coords
   const mapsUrl = `https://www.google.com/maps?q=${lat},${lng}`
+
+  const tileUrl = isLight
+    ? 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
+    : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
 
   return (
     <div className="relative">
@@ -52,10 +75,15 @@ export default function ProjectMap({ project }) {
         attributionControl={false}
       >
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+          url={tileUrl}
           attribution='&copy; <a href="https://carto.com/">CARTO</a>'
         />
-        <Marker position={[lat, lng]} icon={hubMarker}>
+        <Marker
+          position={[lat, lng]}
+          icon={hubMarker}
+          ref={markerRef}
+          eventHandlers={{ add: () => markerRef.current?.openPopup() }}
+        >
           <Popup
             className="hub-map-popup"
             closeButton={false}

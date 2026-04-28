@@ -5,9 +5,9 @@ import rodriguezPenaImg from '../assets/rodriguezpena.webp'
 import malabiaImg from '../assets/malabia.webp'
 
 // ══════════════════════════════════════════════════════════════════════════
-// Datos oficiales — extraídos del Brochure 07 HUB 2026.
-// Orden exacto según el manual: 01 Anchorena, 02 SFDM Este, 03 Malabia,
-// 04 Rodriguez Peña Este, 05 Rodriguez Peña Oeste, 06 SFDM Oeste.
+// Datos oficiales — extraídos del Brochure 10 HUB 2026.
+// Orden exacto: 01 Anchorena, 02 SFDM Este, 03 Malabia,
+// 04 Rodriguez Peña Este, 05 SFDM Oeste.
 // ══════════════════════════════════════════════════════════════════════════
 
 export const projects = [
@@ -21,8 +21,8 @@ export const projects = [
     address: 'Acceso Sur - Lateral Oeste, M5507 Luján de Cuyo, Mendoza',
     coords: [-33.023417, -68.860404],
     area: '84.025',        // Superficie terreno (m²)
-    areaTotal: '53.090',   // Superficie naves (m²)
-    areaNaves: '53.090',
+    areaTotal: '49.800',   // Superficie naves (m²)
+    areaNaves: '49.800',
     units: 'Nave 01 · Nave 02 · Nave 03 · Playa de Maniobras · Sector Comercial',
     status: 'En desarrollo',
     statusColor: 'ink',
@@ -72,7 +72,7 @@ export const projects = [
     location: 'Luján de Cuyo, Mendoza',
     address: 'América, M5505 Luján de Cuyo, Mendoza',
     coords: [-32.975250, -68.847645],
-    area: '464.070',
+    area: '64.070',
     areaTotal: '25.514',
     areaNaves: '25.514',
     units: 'Nave 01 · Nave 02 · Nave 03 · Playa de Maniobras · Sector Comercial',
@@ -100,8 +100,8 @@ export const projects = [
     address: 'Rodríguez Peña (este), Mendoza',
     coords: [-32.937526, -68.775179],
     area: '80.000',
-    areaTotal: '48.220',
-    areaNaves: '48.220',
+    areaTotal: '43.500',
+    areaNaves: '43.500',
     units: 'Nave Logística Oeste · Nave Logística Este · Nave Logística Sur',
     status: 'En desarrollo',
     statusColor: 'ink',
@@ -120,33 +120,6 @@ export const projects = [
   {
     id: 5,
     number: '05',
-    slug: 'rodriguez-pena-oeste',
-    name: 'HUB Rodríguez Peña Oeste',
-    shortName: 'Rodríguez Peña Oeste',
-    location: 'Rodríguez Peña, Mendoza',
-    address: 'Rodríguez Peña (oeste), Mendoza',
-    coords: [-32.939000, -68.782000],
-    area: '78.968',
-    areaTotal: '48.430',
-    areaNaves: '48.430',
-    units: 'Nave Logística Oeste · Nave Logística Este · Nave Logística Sur',
-    status: 'En desarrollo',
-    statusColor: 'ink',
-    description: 'Tres naves logísticas con docks de carga dedicados, iluminación natural, oficinas y servicios integrados. Corredor estratégico Ruta 7 / Ruta 40.',
-    features: [
-      'Nave Logística Oeste',
-      'Nave Logística Este',
-      'Nave Logística Sur',
-      'Docks de Carga',
-      'Estacionamiento',
-      'Iluminación Natural',
-      'Oficinas y Servicios',
-    ],
-    image: rodriguezPenaImg,
-  },
-  {
-    id: 6,
-    number: '06',
     slug: 'san-francisco-del-monte-oeste',
     name: 'HUB San Francisco del Monte Oeste',
     shortName: 'San Francisco del Monte Oeste',
@@ -154,8 +127,8 @@ export const projects = [
     address: 'Ruta Nacional 7, San Francisco del Monte, Mendoza',
     coords: [-32.9403, -68.7565],
     area: '72.968',
-    areaTotal: '40.090',
-    areaNaves: '40.090',
+    areaTotal: '40.000',
+    areaNaves: '40.000',
     units: 'Nave de Almacenamiento · Área Operativa y Muelles',
     status: 'En desarrollo',
     statusColor: 'ink',
@@ -175,9 +148,9 @@ export const projects = [
 // Cifras globales — oficiales del brochure 2026
 // ══════════════════════════════════════════════════════════════════════════
 export const stats = {
-  parks: 6,
-  sqMeters: '420.000',        // Superficie total de terreno
-  sqMetersNaves: '240.000',   // Naves industriales inteligentes
+  parks: 5,
+  sqMeters: '335.000',        // Superficie total de terreno
+  sqMetersNaves: '178.000',   // Naves industriales inteligentes
   companies: 40,
 }
 
@@ -188,7 +161,7 @@ export const commonServices = [
   'Eficiencia operativa',
   'Sustentabilidad',
   'Flexibilidad de uso',
-  'Módulos desde 1.000 m²',
+  'Módulos que se adaptan a tu operación',
   'Iluminación LED',
   'Energía trifásica',
   'Oficinas integradas',

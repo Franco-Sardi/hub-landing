@@ -10,10 +10,9 @@ import malabiaImg from '../../assets/HUB MZA - MALABIA - RENDER AEREO.webp'
 const slides = [
   { id: 0, image: anchorenaImg,      location: 'HUB 01 · Anchorena',                    area: '84.025 m² terreno' },
   { id: 1, image: sfdmEsteImg,       location: 'HUB 02 · San Francisco del Monte Este', area: '33.546 m² terreno' },
-  { id: 2, image: malabiaImg,        location: 'HUB 03 · Malabia',                      area: '464.070 m² terreno' },
+  { id: 2, image: malabiaImg,        location: 'HUB 03 · Malabia',                      area: '64.070 m² terreno' },
   { id: 3, image: rodriguezPenaImg,  location: 'HUB 04 · Rodríguez Peña Este',          area: '80.000 m² terreno' },
-  { id: 4, image: rodriguezPenaImg,  location: 'HUB 05 · Rodríguez Peña Oeste',         area: '78.968 m² terreno' },
-  { id: 5, image: sfdmOesteImg,      location: 'HUB 06 · San Francisco del Monte Oeste',area: '72.968 m² terreno' },
+  { id: 4, image: sfdmOesteImg,      location: 'HUB 05 · San Francisco del Monte Oeste',area: '72.968 m² terreno' },
 ]
 
 // Blueprint SVG grid overlay — trazado técnico sobre fondo (paleta oficial)

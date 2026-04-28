@@ -4,10 +4,10 @@ import malabiaImg from '../../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL
 import { commonServices, sustainabilityAttributes } from '../../data/projects'
 
 const specs = [
-  { value: 'AAA',    label: 'Estándar Triple A' },
-  { value: 'CERT',   label: 'Certificables' },
-  { value: '1.000+', label: 'Módulos desde m²' },
-  { value: 'FLEX',   label: 'Sistema modular' },
+  { value: 'AAA',  label: 'Estándar Triple A' },
+  { value: 'CERT', label: 'Certificables' },
+  { value: 'FLEX', label: 'Módulos que se adaptan a tu operación' },
+  { value: 'RED',  label: 'Sistema integrado de 5 parques' },
 ]
 
 const reasons = [
@@ -19,7 +19,7 @@ const reasons = [
   {
     num: '02',
     title: 'Almacenamiento flexible',
-    desc: 'Módulos desde 1.000 m² que se adaptan al volumen de tu operación. Crecés dentro del mismo HUB sin cambiar de dirección.',
+    desc: 'Módulos que se adaptan al volumen de tu operación. Crecés dentro del mismo HUB sin cambiar de dirección.',
   },
   {
     num: '03',

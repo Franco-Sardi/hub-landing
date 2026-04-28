@@ -180,15 +180,13 @@ export default function ProjectDetail() {
   }
 
   const s = statusStyle[project.statusColor] || defaultStatusStyle
-  // IDs renumerados (brochure oficial: 01 Anchorena, 02 SFDM Este, 03 Malabia,
-  // 04 Rodríguez Peña Este, 05 Rodríguez Peña Oeste, 06 SFDM Oeste).
-  // Reusamos los assets existentes mapeando id → slug.
+  // 5 parques (brochure 10): 01 Anchorena, 02 SFDM Este, 03 Malabia,
+  // 04 Rodríguez Peña Este, 05 SFDM Oeste.
   const galleryBySlug = {
     'anchorena': PROJECT_GALLERY[1],
     'san-francisco-del-monte-este': PROJECT_GALLERY[2],
     'san-francisco-del-monte-oeste': PROJECT_GALLERY[3],
     'rodriguez-pena-este': PROJECT_GALLERY[4],
-    'rodriguez-pena-oeste': PROJECT_GALLERY[4],
     'malabia': PROJECT_GALLERY[5],
   }
   const differentialBySlug = {
@@ -196,7 +194,6 @@ export default function ProjectDetail() {
     'san-francisco-del-monte-este': PROJECT_DIFFERENTIAL[2],
     'san-francisco-del-monte-oeste': PROJECT_DIFFERENTIAL[3],
     'rodriguez-pena-este': PROJECT_DIFFERENTIAL[4],
-    'rodriguez-pena-oeste': PROJECT_DIFFERENTIAL[4],
     'malabia': PROJECT_DIFFERENTIAL[5],
   }
   const gallery = galleryBySlug[project.slug] || []

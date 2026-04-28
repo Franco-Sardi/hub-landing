@@ -22,13 +22,13 @@ const founders = [
 ]
 
 const partners = [
-  { name: 'Grupo LTN', logo: logoLtn },
-  { name: 'Hormi-Serv', logo: logoHormiserv },
-  { name: 'Rogiro Aceros', logo: logoRogiro },
-  { name: 'LogMetal', logo: logoLogmetal },
-  { name: 'Saldaña', logo: logoSaldana },
-  { name: 'Inducret', logo: logoInducret },
-  { name: 'Prear', logo: logoPrear },
+  { name: 'Grupo LTN',     logo: logoLtn,       url: 'https://www.grupoltn.com/' },
+  { name: 'Hormi-Serv',    logo: logoHormiserv, url: 'https://www.hormiserv.com/' },
+  { name: 'Rogiro Aceros', logo: logoRogiro,    url: 'https://rogiroaceros.com/' },
+  { name: 'LogMetal',      logo: logoLogmetal,  url: 'https://logmetal.com.ar/' },
+  { name: 'Saldaña',       logo: logoSaldana,   url: 'https://saldanamateriales.com/' },
+  { name: 'Inducret',      logo: logoInducret,  url: 'https://inducret.com.ar/' },
+  { name: 'Prear',         logo: logoPrear,     url: 'https://prear.com.ar/' },
 ]
 
 export default function About() {
@@ -72,15 +72,15 @@ export default function About() {
 
             <p className="text-theme-muted text-sm lg:text-base leading-relaxed max-w-xl mb-8">
               HUB es el proyecto de infraestructura logística más ambicioso de la región.
-              Seis parques en los principales corredores de Mendoza, diseñados para que
+              Cinco parques en los principales corredores de Mendoza, diseñados para que
               empresas de cualquier escala operen con estándar Triple A.
             </p>
 
             {/* Tres datos clave en fila */}
             <div className="flex flex-wrap gap-6 lg:gap-10">
               {[
-                { num: '6', label: 'Parques en Mendoza' },
-                { num: '420K', label: 'm² de terreno' },
+                { num: '5', label: 'Parques en Mendoza' },
+                { num: '335K', label: 'm² de terreno' },
                 { num: '3', label: 'Corredores estratégicos' },
               ].map((d) => (
                 <div key={d.label}>
@@ -101,16 +101,18 @@ export default function About() {
             <p className="text-theme-muted text-xs tracking-widest uppercase mb-4 font-condensed">Los fundadores</p>
             <div className="flex flex-col gap-3">
               {founders.map((f, i) => (
-                <motion.div
+                <motion.a
                   key={f.name}
+                  href={`https://${f.url}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   initial={{ opacity: 0, x: 16 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
                   className="flex items-center gap-5 p-5 border bg-theme-card group hover:border-theme-accent/50 transition-all duration-300"
-                  style={{ borderColor: 'var(--border)' }}
+                  style={{ borderColor: 'var(--border)', textDecoration: 'none' }}
                 >
-                  {/* Logo area — grande y respirable */}
                   <div
                     className="shrink-0 flex items-center justify-center bg-theme border p-2"
                     style={{ width: '10rem', height: '7rem', borderColor: 'var(--border)' }}
@@ -125,7 +127,7 @@ export default function About() {
                     <p className="text-theme text-sm font-semibold leading-tight">{f.name}</p>
                     <p className="text-theme-subtle text-xs mt-1">{f.url}</p>
                   </div>
-                </motion.div>
+                </motion.a>
               ))}
             </div>
           </motion.div>
@@ -157,23 +159,39 @@ export default function About() {
             <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-[var(--bg-primary)] to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-[var(--bg-primary)] to-transparent z-10 pointer-events-none" />
             <div className="flex animate-marquee">
-              {[...partners, ...partners].map((p, i) => (
-                <div
-                  key={`${p.name}-${i}`}
-                  className="shrink-0 mx-3 px-6 py-3 border flex items-center justify-center gap-3 transition-colors min-w-[160px] h-16"
-                  style={{ borderColor: 'var(--border)', backgroundColor: 'var(--bg-card)' }}
-                >
-                  <img
-                    src={p.logo}
-                    alt={p.name}
-                    className="max-h-8 max-w-[80px] object-contain opacity-70 hover:opacity-100 transition-opacity"
-                    style={{ filter: 'brightness(1.2) grayscale(0.3)' }}
-                  />
-                  <span className="font-display text-theme-muted text-xs tracking-wider whitespace-nowrap transition-colors" style={{ fontWeight: 700 }}>
-                    {p.name.toUpperCase()}
-                  </span>
-                </div>
-              ))}
+              {[...partners, ...partners].map((p, i) => {
+                const inner = (
+                  <>
+                    <img
+                      src={p.logo}
+                      alt={p.name}
+                      className="max-h-8 max-w-[80px] object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+                      style={{ filter: 'brightness(1.2) grayscale(0.3)' }}
+                    />
+                    <span className="font-display text-theme-muted text-xs tracking-wider whitespace-nowrap transition-colors" style={{ fontWeight: 700 }}>
+                      {p.name.toUpperCase()}
+                    </span>
+                  </>
+                )
+                const cardClass = "group shrink-0 mx-3 px-6 py-3 border flex items-center justify-center gap-3 transition-colors min-w-[160px] h-16"
+                const cardStyle = { borderColor: 'var(--border)', backgroundColor: 'var(--bg-card)' }
+                return p.url ? (
+                  <a
+                    key={`${p.name}-${i}`}
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cardClass}
+                    style={cardStyle}
+                  >
+                    {inner}
+                  </a>
+                ) : (
+                  <div key={`${p.name}-${i}`} className={cardClass} style={cardStyle}>
+                    {inner}
+                  </div>
+                )
+              })}
             </div>
           </div>
         </motion.div>
