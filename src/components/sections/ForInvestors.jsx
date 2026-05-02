@@ -19,7 +19,7 @@ export default function ForInvestors() {
   return (
     <section
       id="investors"
-      className="hub-bg-h relative lg:min-h-dvh flex flex-col overflow-hidden bg-theme py-10 lg:py-0"
+      className="hub-bg-h relative lg:min-h-dvh flex flex-col overflow-hidden bg-theme lg:py-0"
     >
       <SectionFrame />
       <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
@@ -29,7 +29,7 @@ export default function ForInvestors() {
       />
       <div className="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-theme-accent to-transparent" />
 
-      <div className="relative z-10 flex flex-col justify-center flex-1 max-w-7xl 3xl:max-w-[1600px] mx-auto px-5 sm:px-8 xl:px-12 3xl:px-20 w-full py-10 lg:py-8">
+      <div className="relative z-10 flex flex-col justify-center flex-1 w-full max-w-[95vw] 3xl:max-w-[1700px] mx-auto px-5 sm:px-8 xl:px-10 3xl:px-16 py-8 lg:py-8">
 
         {/* ── Header ── */}
         <motion.div
@@ -83,9 +83,9 @@ export default function ForInvestors() {
                   <p className="text-theme-muted text-[10px] mt-0.5 font-condensed">consultar valor vigente</p>
                 </div>
               </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 border border-theme-accent bg-theme w-fit mb-3">
+              <div className="flex flex-col px-3 py-1.5 border border-theme-accent bg-theme w-fit mb-3">
                 <span className="font-display text-theme text-base leading-none" style={{ fontWeight: 800 }}>Participación en el negocio</span>
-                <span className="text-theme-muted text-[10px] font-condensed">rentabilidad real desde tu primer aporte</span>
+                <span className="text-theme-muted text-[10px] font-condensed mt-0.5">rentabilidad real desde tu primer aporte</span>
               </div>
               <p className="text-theme-muted text-xs leading-relaxed">
                 La modalidad inversores te permite <span className="text-theme font-semibold">participar con cuotas partes</span> y generar un retorno garantizado en dólares desde tu primer aporte. Tu inversión está respaldada por activos inmobiliarios industriales reales.
@@ -101,7 +101,7 @@ export default function ForInvestors() {
                 {investorBenefits.map((b) => (
                   <div key={b.val} className="flex items-center gap-3 py-2 border-b border-theme last:border-0 group">
                     <span className="w-1 h-1 rounded-full bg-theme-accent/50 shrink-0 group-hover:bg-theme-accent transition-colors" />
-                    <span className="text-theme-accent font-display text-sm w-28 shrink-0" style={{ fontWeight: 700 }}>{b.val}</span>
+                    <span className="text-theme-accent font-display text-sm w-24 sm:w-28 shrink-0" style={{ fontWeight: 700 }}>{b.val}</span>
                     <span className="text-theme-muted text-xs leading-snug">{b.desc}</span>
                   </div>
                 ))}

@@ -1,4 +1,4 @@
-import anchorenaImg from '../assets/anchorena-planimetria-watercolor.webp'
+import anchorenaImg from '../assets/anchorena-croquis.png'
 import sfdmEsteImg from '../assets/SanFranciscoEste-wide.webp'
 import sfdmOesteImg from '../assets/SanFranciscoOeste.webp'
 import rodriguezPenaImg from '../assets/rodriguezpena.webp'
@@ -95,7 +95,7 @@ export const projects = [
     number: '04',
     slug: 'rodriguez-pena-este',
     name: 'HUB Rodríguez Peña Este',
-    shortName: 'Rodríguez Peña Este',
+    shortName: 'Rodríguez Peña',
     location: 'Rodríguez Peña, Mendoza',
     address: 'Rodríguez Peña (este), Mendoza',
     coords: [-32.937526, -68.775179],

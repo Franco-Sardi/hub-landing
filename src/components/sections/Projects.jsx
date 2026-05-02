@@ -48,10 +48,10 @@ export default function Projects() {
           Los proyectos están sujetos a cambios. La implementación de centros comerciales será evaluada según viabilidad.
         </p>
 
-        {/* Mapa mobile */}
+        {/* Mapa mobile — altura = ratio natural de la imagen */}
         <div
           className="relative border bg-theme-card w-full"
-          style={{ minHeight: '300px', borderColor: 'var(--border-accent)' }}
+          style={{ aspectRatio: '1024 / 904', borderColor: 'var(--border-accent)' }}
         >
           <div className="absolute top-2 left-2 w-3 h-3 border-t border-l pointer-events-none" style={{ borderColor: 'var(--border-accent)' }} />
           <div className="absolute top-2 right-2 w-3 h-3 border-t border-r pointer-events-none" style={{ borderColor: 'var(--border-accent)' }} />
@@ -105,7 +105,12 @@ export default function Projects() {
                 </div>
               </div>
               <div className="px-3 py-2 flex items-center justify-between">
-                <span className="text-theme-muted text-xs">📍 {project.location}</span>
+                <span className="text-theme-muted text-xs flex items-center gap-1">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" className="shrink-0 opacity-70">
+                    <path d="M5 0a3.5 3.5 0 0 0-3.5 3.5C1.5 6.5 5 10 5 10s3.5-3.5 3.5-6.5A3.5 3.5 0 0 0 5 0zm0 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                  </svg>
+                  {project.location}
+                </span>
                 <span className="text-xs font-semibold tracking-widest uppercase text-theme-accent font-condensed">
                   Ver proyecto →
                 </span>
@@ -116,7 +121,7 @@ export default function Projects() {
       </div>
 
       {/* ── Desktop layout ─────────────────────────────────────── */}
-      <div className="hidden lg:flex flex-col flex-1 max-w-7xl mx-auto px-6 w-full py-4 min-h-0">
+      <div className="hidden lg:flex flex-col flex-1 w-full max-w-[96vw] 3xl:max-w-[1700px] mx-auto px-6 py-4 min-h-0">
 
         <div className="mb-3 shrink-0">
           <div className="flex items-center gap-2 mb-1">
@@ -144,10 +149,10 @@ export default function Projects() {
         <div className="flex flex-1 min-h-0 gap-5">
 
         {/* ── Left: Mendoza Map ─────────────────────────────────── */}
-        <div className="flex flex-col shrink-0" style={{ width: '55%' }}>
+        <div className="flex flex-col shrink-0" style={{ width: '62%' }}>
           <div
             className="flex-1 min-h-0 border bg-theme-card relative overflow-hidden p-3"
-            style={{ borderColor: 'var(--border-accent)' }}
+            style={{ borderColor: 'var(--border-accent)', minHeight: 'clamp(340px, 48vh, 700px)' }}
           >
             <div className="absolute top-2 left-2 w-3 h-3 border-t border-l pointer-events-none" style={{ borderColor: 'var(--border-accent)' }} />
             <div className="absolute top-2 right-2 w-3 h-3 border-t border-r pointer-events-none" style={{ borderColor: 'var(--border-accent)' }} />

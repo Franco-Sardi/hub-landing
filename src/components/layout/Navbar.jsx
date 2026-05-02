@@ -47,7 +47,7 @@ export default function Navbar({ currentPage = 0, goTo = () => {} }) {
         borderColor: scrolled ? 'var(--nav-border)' : 'transparent',
       }}
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 xl:px-12 flex items-center justify-between h-16 lg:h-20">
+      <div className="w-full max-w-[95vw] 3xl:max-w-[1700px] mx-auto px-5 sm:px-8 xl:px-10 flex items-center justify-between h-16 lg:h-20">
 
         {/* Logo oficial — PNG de Boldrini & Ficcardi */}
         <button onClick={() => goTo(0)} className="flex items-center group" aria-label="HUB">

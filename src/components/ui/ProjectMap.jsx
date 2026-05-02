@@ -38,12 +38,12 @@ const hubMarker = L.divIcon({
 
 function useIsLight() {
   const [isLight, setIsLight] = useState(
-    () => document.documentElement.classList.contains('light')
+    () => !document.documentElement.classList.contains('dark')
   )
   useEffect(() => {
     const el = document.documentElement
     const obs = new MutationObserver(() => {
-      setIsLight(el.classList.contains('light'))
+      setIsLight(!el.classList.contains('dark'))
     })
     obs.observe(el, { attributes: true, attributeFilter: ['class'] })
     return () => obs.disconnect()

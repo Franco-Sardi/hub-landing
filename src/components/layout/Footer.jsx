@@ -15,18 +15,18 @@ export default function Footer() {
 
   return (
     <footer className="bg-theme border-t relative" style={{ borderColor: 'var(--border)' }}>
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 xl:px-12">
+      <div className="w-full max-w-[95vw] 3xl:max-w-[1700px] mx-auto px-5 sm:px-8 xl:px-10">
 
         {/* ── Mobile: compact ── */}
-        <div className="lg:hidden py-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="lg:hidden py-8">
+          <div className="flex items-center justify-between mb-6">
             <Logo size="sm" />
             <div className="flex gap-2">
               {['LinkedIn', 'Instagram'].map((s) => (
                 <a
                   key={s}
                   href="#"
-                  className="text-[9px] text-theme-muted/60 border px-2 py-0.5 tracking-widest uppercase font-condensed"
+                  className="text-[9px] text-theme-muted border px-3 py-1.5 tracking-widest uppercase font-condensed hover:text-theme-accent transition-colors"
                   style={{ borderColor: 'var(--border)' }}
                 >
                   {s}
@@ -34,16 +34,25 @@ export default function Footer() {
               ))}
             </div>
           </div>
-          <div className="flex flex-wrap gap-x-4 gap-y-1 text-theme-muted/60 text-[10px] mb-3">
-            <span>contacto@hubmza.com.ar</span>
-            <span>+54 261 000-0000</span>
-            <span>Mendoza, Argentina</span>
+
+          <div className="flex flex-col gap-0 border-t" style={{ borderColor: 'var(--border)' }}>
+            {[
+              { label: 'Email',    value: 'contacto@hubmza.com.ar' },
+              { label: 'Tel',      value: '+54 261 000-0000' },
+              { label: 'Sede',     value: 'Mendoza, Argentina' },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center justify-between py-3 border-b" style={{ borderColor: 'var(--border)' }}>
+                <span className="text-theme-muted/60 text-[10px] tracking-widest uppercase font-condensed w-12 shrink-0">{item.label}</span>
+                <span className="text-theme text-xs text-right">{item.value}</span>
+              </div>
+            ))}
           </div>
-          <div className="border-t pt-3 flex items-center justify-between" style={{ borderColor: 'var(--border)' }}>
-            <span className="text-theme-muted text-[10px]">© {year} HUB · Mendoza</span>
+
+          <div className="pt-4 flex items-center justify-between">
+            <span className="text-theme-muted/50 text-[10px]">© {year} HUB · Mendoza</span>
             <div className="flex gap-4">
-              <a href="#" className="text-theme-muted text-[10px]">Términos</a>
-              <a href="#" className="text-theme-muted text-[10px]">Privacidad</a>
+              <a href="#" className="text-theme-muted/60 text-[10px] hover:text-theme-accent transition-colors">Términos</a>
+              <a href="#" className="text-theme-muted/60 text-[10px] hover:text-theme-accent transition-colors">Privacidad</a>
             </div>
           </div>
         </div>

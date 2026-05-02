@@ -6,7 +6,7 @@ import { commonServices, sustainabilityAttributes } from '../../data/projects'
 const specs = [
   { value: 'AAA',  label: 'Estándar Triple A' },
   { value: 'CERT', label: 'Certificables' },
-  { value: 'FLEX', label: 'Módulos que se adaptan a tu operación' },
+  { value: 'FLEX', label: 'Módulos adaptables' },
   { value: 'RED',  label: 'Sistema integrado de 5 parques' },
 ]
 
@@ -35,7 +35,7 @@ const reasons = [
 
 export default function ForCompanies() {
   return (
-    <section id="companies" className="hub-bg-h relative lg:min-h-dvh flex flex-col overflow-hidden bg-theme py-10 lg:py-0">
+    <section id="companies" className="hub-bg-h relative lg:min-h-dvh flex flex-col overflow-hidden bg-theme lg:py-0">
       {/* Background layers */}
       <SectionFrame />
       <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
@@ -44,7 +44,7 @@ export default function ForCompanies() {
       <div className="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-theme-accent to-transparent" />
 
       {/* ── Main content ── */}
-      <div className="relative flex flex-col justify-center flex-1 max-w-7xl 3xl:max-w-[1600px] mx-auto px-5 sm:px-8 xl:px-12 3xl:px-20 w-full py-10 lg:py-8">
+      <div className="relative flex flex-col justify-center flex-1 w-full max-w-[95vw] 3xl:max-w-[1700px] mx-auto px-5 sm:px-8 xl:px-10 3xl:px-16 py-8 lg:py-8">
 
         {/* Header row */}
         <motion.div
@@ -80,7 +80,7 @@ export default function ForCompanies() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="relative mb-6 lg:mb-8"
         >
-          <div className="relative h-40 lg:h-52 overflow-hidden">
+          <div className="relative h-52 lg:h-56 overflow-hidden">
             <img
               src={malabiaImg}
               alt="HUB Nave Industrial — Centro de Servicios"

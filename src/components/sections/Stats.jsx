@@ -55,7 +55,7 @@ function Stat({ value, suffix, label, sublabel, delay }) {
           <span
             className="font-display tabular-nums"
             style={{
-              fontSize: 'clamp(2.4rem, 3.8vw, 6rem)',
+              fontSize: 'clamp(1.9rem, 3.8vw, 6rem)',
               lineHeight: 1,
               color: 'var(--stat-color)',
               letterSpacing: '-0.01em',
@@ -106,16 +106,16 @@ function Stat({ value, suffix, label, sublabel, delay }) {
 
 const STATS = [
   { value: 5,      suffix: '',     label: 'HUBs',       sublabel: 'En Mendoza',                      delay: 0    },
-  { value: 335000, suffix: ' mts', label: 'Terreno',    sublabel: 'Superficie total',                delay: 0.12 },
-  { value: 178000, suffix: ' m²',  label: 'Naves',      sublabel: 'Industriales inteligentes',       delay: 0.24 },
-  { value: 3,      suffix: '',     label: 'Corredores', sublabel: 'Acceso Sur · Ruta 7 · Ruta 40',  delay: 0.36 },
+  { value: 335000, suffix: ' m²',  label: 'Terreno',    sublabel: 'Superficie total',                      delay: 0.12 },
+  { value: 178000, suffix: ' m²',  label: 'Naves',      sublabel: 'Industriales inteligentes',             delay: 0.24 },
+  { value: 3,      suffix: '',     label: 'Corredores', sublabel: 'Más estratégicos de Mendoza',           delay: 0.36 },
 ]
 
 export default function Stats() {
   return (
     <section
       id="stats"
-      className="stats-section relative lg:min-h-dvh flex flex-col overflow-hidden py-12 lg:py-0"
+      className="stats-section relative lg:min-h-dvh flex flex-col overflow-hidden py-8 lg:py-0"
     >
       {/* Ghost "H" — marca de agua de la identidad */}
       <div
@@ -169,7 +169,7 @@ export default function Stats() {
       ))}
 
       {/* Contenido */}
-      <div className="relative z-10 flex flex-col items-center justify-center flex-1 px-8 sm:px-12 xl:px-16">
+      <div className="relative z-10 flex flex-col items-center justify-center flex-1 px-5 sm:px-12 xl:px-16">
 
         {/* Eyebrow — ornamento ◆ línea ◆ */}
         <motion.div
@@ -177,7 +177,7 @@ export default function Stats() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-3 mb-8 lg:mb-20"
+          className="flex items-center gap-3 mb-6 lg:mb-20"
         >
           <div className="w-16 h-px" style={{ background: 'linear-gradient(to right, transparent, var(--stat-deco))' }} />
           <svg width="6" height="6" viewBox="0 0 6 6">
@@ -196,7 +196,7 @@ export default function Stats() {
         </motion.div>
 
         {/* Grid de stats */}
-        <div className="w-full max-w-6xl xl:max-w-7xl 3xl:max-w-[1700px] grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 lg:gap-0">
+        <div className="w-full max-w-[95vw] 3xl:max-w-[1700px] grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 lg:gap-0">
           {STATS.map((s, i) => (
             <div
               key={s.label}
@@ -214,7 +214,7 @@ export default function Stats() {
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-8 lg:mt-20 w-full max-w-4xl flex items-center gap-4 origin-center"
+          className="mt-8 lg:mt-20 w-full max-w-[80vw] flex items-center gap-4 origin-center"
         >
           <div className="flex-1 h-px" style={{ background: 'linear-gradient(to right, transparent, var(--stat-deco))' }} />
           <svg width="8" height="8" viewBox="0 0 8 8">

@@ -56,7 +56,7 @@ export default function Contact() {
         style={{ background: 'radial-gradient(ellipse 50% 60% at 50% 100%, rgba(2,42,58,0.10) 0%, transparent 65%)' }} />
       <div className="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-theme-accent to-transparent" />
 
-      <div className="relative max-w-6xl mx-auto px-5 sm:px-8 xl:px-12 w-full py-12 lg:py-16">
+      <div className="relative w-full max-w-[95vw] 3xl:max-w-[1700px] mx-auto px-5 sm:px-8 xl:px-10 py-12 lg:py-16">
 
         {/* Header */}
         <motion.div
@@ -185,18 +185,6 @@ export default function Contact() {
               ))}
             </div>
 
-            <div className="flex gap-2">
-              {['LinkedIn', 'Instagram'].map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  className="text-[10px] text-theme-muted border px-3 py-1.5 tracking-widest uppercase hover:text-theme-accent transition-all duration-200 font-condensed"
-                  style={{ borderColor: 'var(--border)' }}
-                >
-                  {s}
-                </a>
-              ))}
-            </div>
           </motion.div>
         </div>
       </div>

@@ -82,8 +82,8 @@ export default {
       },
       animation: {
         'pulse-blue': 'pulseBlue 3s ease-in-out infinite',
-        'marquee':    'marquee 22s linear infinite',
-        'marquee2':   'marquee2 22s linear infinite',
+        'marquee':    'marquee 14s linear infinite',
+        'marquee2':   'marquee2 14s linear infinite',
         'float':      'float 6s ease-in-out infinite',
       },
       keyframes: {

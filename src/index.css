@@ -13,13 +13,17 @@
      ══════════════════════════════════════════════════════════════════════ */
 
   /* ── Light mode (default) — azul grisáceo referenciando #022A3A ─────────── */
-  html, body {
+  html {
+    background-color: #C2D1D9;
+    color: #022A3A;
+  }
+  body {
     background-color: #C2D1D9;
     color: #022A3A;
     font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100vw;
   }
 

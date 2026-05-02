@@ -35,7 +35,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative lg:min-h-dvh flex flex-col justify-center overflow-hidden bg-theme py-12 lg:py-0"
+      className="relative lg:min-h-dvh flex flex-col justify-center overflow-hidden bg-theme lg:py-0"
     >
       <SectionFrame />
       <div
@@ -44,7 +44,7 @@ export default function About() {
       />
       <div className="absolute inset-0 bg-grid opacity-20" />
 
-      <div className="relative max-w-7xl 3xl:max-w-[1600px] mx-auto px-5 sm:px-8 xl:px-12 3xl:px-20 w-full py-10">
+      <div className="relative w-full max-w-[95vw] 3xl:max-w-[1700px] mx-auto px-5 sm:px-8 xl:px-10 3xl:px-16 py-8 lg:py-10">
 
         {/* ── Main grid: texto izquierda · fundadores derecha ── */}
         <div className="grid lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_480px] gap-10 lg:gap-16 items-center mb-10 lg:mb-14">
@@ -77,7 +77,7 @@ export default function About() {
             </p>
 
             {/* Tres datos clave en fila */}
-            <div className="flex flex-wrap gap-6 lg:gap-10">
+            <div className="hidden sm:flex flex-wrap gap-6 lg:gap-10">
               {[
                 { num: '5', label: 'Parques en Mendoza' },
                 { num: '335K', label: 'm² de terreno' },
@@ -114,8 +114,8 @@ export default function About() {
                   style={{ borderColor: 'var(--border)', textDecoration: 'none' }}
                 >
                   <div
-                    className="shrink-0 flex items-center justify-center bg-theme border p-2"
-                    style={{ width: '10rem', height: '7rem', borderColor: 'var(--border)' }}
+                    className="shrink-0 flex items-center justify-center bg-theme border p-2 w-28 h-20 sm:w-40 sm:h-28"
+                    style={{ borderColor: 'var(--border)' }}
                   >
                     <img
                       src={f.logo}

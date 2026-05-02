@@ -93,18 +93,10 @@ const statusStyle = {
 }
 
 // Per-project gallery images — Anchorena
-import anchorena01 from '../assets/HUB MZA - Anchorena - Naves - 01.webp'
-import anchorena02 from '../assets/HUB MZA - Anchorena - Naves - 02.webp'
+import anchorenaCroquis from '../assets/anchorena-croquis.png'
+import anchorenaArteTinta from '../assets/anchorena-arte-tinta.png'
+import anchorenaStyle03new from '../assets/anchorena-style03.png'
 import anchorenaEdificio from '../assets/anchorena-coworking-watercolor.webp'
-import anchorenaEdificio02 from '../assets/HUB MZA - Anchorena - Edificio - 02.webp'
-import anchorenaPlanimetria from '../assets/HUB MZA - Anchorena - Planimetría.webp'
-// Style-transfer artistic renders (colores reales de las naves)
-import anchorenaStyle02 from '../assets/Anchorena 02_style_transfer02.webp'
-import anchorenaStyle03 from '../assets/Anchorena 03_style_transfer01.webp'
-import anchorenaStyle06a from '../assets/Anchorena 06_style_transfer01.webp'
-import anchorenaStyle06b from '../assets/Anchorena 06_style_transfer02.webp'
-import anchorenaStyle08 from '../assets/Anchorena 08_style_transfer01.webp'
-import anchorenaStyle09 from '../assets/Anchorena 09_style_transfer01.webp'
 import sfdmRender from '../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B - RENDER.webp'
 import sfdmPlanta from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS PLANTA.webp'
 import sfdmConcepto from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS CONCEPTO - 2.webp'
@@ -115,7 +107,7 @@ import malabiaCentro1 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIA
 import malabiaCentro2 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 02.webp'
 
 const PROJECT_GALLERY = {
-  1: [anchorenaStyle09, anchorenaStyle08, anchorenaStyle06a, anchorenaStyle06b, anchorenaStyle03, anchorenaStyle02, anchorena01, anchorena02, anchorenaEdificio, anchorenaEdificio02, anchorenaPlanimetria],
+  1: [anchorenaCroquis, anchorenaArteTinta, anchorenaStyle03new, anchorenaEdificio],
   2: [sfdmRender, sfdmPlanta, sfdmConcepto],
   3: [sfdmConcepto, sfdmRender, sfdmPlanta],
   4: [crpAereo, crpZonificacion],

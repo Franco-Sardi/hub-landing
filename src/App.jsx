@@ -71,10 +71,10 @@ function SectionDots({ active, goTo }) {
             key={s.id}
             onClick={() => goTo(realIndex)}
             title={s.label}
-            className="group flex items-center gap-2 justify-end"
+            className="group relative flex items-center justify-center"
             aria-label={s.label}
           >
-            <span className={`text-xs font-medium tracking-wider uppercase transition-all duration-500 ${
+            <span className={`absolute right-full mr-2 text-xs font-medium tracking-wider uppercase transition-all duration-500 pointer-events-none whitespace-nowrap ${
               (active === realIndex && flashLabel)
                 ? 'opacity-100 text-hub-bright'
                 : 'opacity-0 group-hover:opacity-60 group-hover:text-hub-muted'
@@ -121,7 +121,7 @@ function Landing() {
   }, [location]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="bg-theme font-body overflow-x-hidden w-full">
+    <div className="bg-theme font-body w-full" style={{ overflowX: 'clip' }}>
       <div className={`transition-all duration-500 ${onIntro ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <Navbar currentPage={active - 1} goTo={(i) => goTo(i + 1)} />
       </div>

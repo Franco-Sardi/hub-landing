@@ -4,7 +4,7 @@ import SectionFrame from '../ui/SectionFrame'
 const investorFeatures = [
   { label: 'Modalidad',       val: 'INVERSORES' },
   { label: 'Cuota parte',     val: 'A consultar' },
-  { label: 'Retorno',         val: 'Garantizado USD' },
+  { label: 'Retorno',         val: 'Participación USD' },
   { label: 'Mínimo ingreso',  val: 'A consultar' },
   { label: 'Moneda',          val: 'Dólares (USD)' },
   { label: 'Respaldo',        val: 'Capital protegido' },
@@ -41,7 +41,7 @@ export default function Model() {
   return (
     <section
       id="model"
-      className="hub-bg-h relative lg:min-h-dvh flex flex-col justify-center overflow-hidden bg-theme py-12 lg:py-0"
+      className="hub-bg-h relative lg:min-h-dvh flex flex-col justify-center overflow-hidden bg-theme lg:py-0"
     >
       <SectionFrame />
       <div className="absolute inset-0 bg-grid opacity-35" />
@@ -50,7 +50,7 @@ export default function Model() {
         style={{ background: 'radial-gradient(ellipse 55% 50% at 100% 50%, rgba(2,42,58,0.10) 0%, transparent 65%)' }}
       />
 
-      <div className="relative max-w-6xl 3xl:max-w-[1600px] mx-auto px-5 sm:px-8 xl:px-10 3xl:px-20 w-full pt-6 pb-6">
+      <div className="relative w-full max-w-[95vw] 3xl:max-w-[1700px] mx-auto px-5 sm:px-8 xl:px-10 3xl:px-16 py-8 lg:py-6">
 
         {/* Header */}
         <motion.div
@@ -198,15 +198,17 @@ export default function Model() {
           transition={{ duration: 0.5, delay: 0.25 }}
           className="mt-5 lg:mt-6"
         >
-          <div className="flex items-center gap-3 p-3 lg:p-5 border border-theme-accent bg-theme-card hover:border-theme-accent transition-all duration-300">
-            <div className="w-8 h-8 border border-theme-accent flex items-center justify-center shrink-0">
-              <span className="text-theme-accent font-display text-sm" style={{ fontWeight: 800 }}>H</span>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-3 lg:p-5 border border-theme-accent bg-theme-card transition-all duration-300">
+            <div className="flex items-center gap-3 flex-1 min-w-0">
+              <div className="w-8 h-8 border border-theme-accent flex items-center justify-center shrink-0">
+                <span className="text-theme-accent font-display text-sm" style={{ fontWeight: 800 }}>H</span>
+              </div>
+              <div className="min-w-0">
+                <p className="text-theme font-semibold text-sm lg:text-base">Inversores · Participación en la rentabilidad · Capital respaldado</p>
+                <p className="text-theme-muted text-xs leading-snug mt-0.5">Retorno desde el primer aporte · Se incrementa al entrar en operación la red</p>
+              </div>
             </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-theme font-semibold text-sm lg:text-base">Inversores · Retorno garantizado en dólares · Capital respaldado</p>
-              <p className="text-theme-muted text-xs leading-snug mt-0.5">Retorno desde el primer aporte · Se incrementa al entrar en operación la red</p>
-            </div>
-            <a href="#investors" className="text-theme-accent text-xs font-semibold tracking-widest uppercase shrink-0 hover:underline font-condensed">Consultá condiciones →</a>
+            <a href="#investors" className="text-theme-accent text-xs font-semibold tracking-widest uppercase shrink-0 hover:underline font-condensed sm:pl-3">Consultá condiciones →</a>
           </div>
         </motion.div>
       </div>
