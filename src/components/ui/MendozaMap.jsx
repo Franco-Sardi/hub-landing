@@ -288,7 +288,7 @@ export default function MendozaMap({ projects, activeId, onHover, onSelect }) {
     <div
       ref={containerRef}
       className="w-full h-full relative overflow-hidden"
-      style={{ background: isLight ? '#e8dfd3' : '#011823' }}
+      style={{ background: isLight ? '#e8dfd3' : '#011823', clipPath: 'inset(0)' }}
     >
       {/* Imagen con object-fit: cover — llena el contenedor siempre */}
       <img
