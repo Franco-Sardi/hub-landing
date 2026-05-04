@@ -93,36 +93,36 @@ const statusStyle = {
 }
 
 // Per-project gallery images — Anchorena
-import anchorenaCroquis from '../assets/anchorena-croquis.png'
-import anchorenaArteTinta from '../assets/anchorena-arte-tinta.png'
-import anchorenaStyle03new from '../assets/anchorena-style03.png'
-import anchorenaEdificio from '../assets/anchorena-coworking-watercolor.webp'
+import anchorenaArteTinta from '../assets/anchorena-tinta.png'
+import anchorenaGeneralTinta from '../assets/anchorena-general-tinta.png'
+import sfdmEsteDetalle from '../assets/SanFranciscoEste.png'
 import sfdmRender from '../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B - RENDER.webp'
 import sfdmPlanta from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS PLANTA.webp'
 import sfdmConcepto from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS CONCEPTO - 2.webp'
 import crpAereo from '../assets/CRP - PROYECTO NAVE LOGÍSTICA - RENDER AEREO.webp'
 import crpZonificacion from '../assets/CRP - PROYECTO NAVE LOGÍSTICA - ZONIFICACIÓN- tipo D.webp'
+import crpPng from '../assets/rodriguezpena.png'
 import malabiaAereo from '../assets/HUB MZA - MALABIA - RENDER AEREO.webp'
 import malabiaCentro1 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 01.webp'
 import malabiaCentro2 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 02.webp'
 
 const PROJECT_GALLERY = {
-  1: [anchorenaCroquis, anchorenaArteTinta, anchorenaStyle03new, anchorenaEdificio],
+  1: [anchorenaArteTinta, anchorenaGeneralTinta],
   2: [sfdmRender, sfdmPlanta, sfdmConcepto],
   3: [sfdmConcepto, sfdmRender, sfdmPlanta],
-  4: [crpAereo, crpZonificacion],
+  4: [crpPng, crpAereo, crpZonificacion],
   5: [malabiaAereo, malabiaCentro1, malabiaCentro2],
 }
 
 const PROJECT_DIFFERENTIAL = {
   1: {
-    image: anchorenaEdificio,
+    image: anchorenaGeneralTinta,
     tag: 'Diferencial exclusivo',
     label: 'EDIFICIO DE COWORKING',
     desc: 'Espacios de trabajo profesional integrados al parque, disponibles para empresas inquilinas e inversores.',
   },
   2: {
-    image: sfdmRender,
+    image: sfdmEsteDetalle,
     tag: 'Hub Logístico',
     label: 'NAVE LOGÍSTICA TRIPLE A',
     desc: '20.000 m² de espacio cubierto con área operativa, muelles de carga y estacionamientos diferenciados para tráfico pesado y liviano.',
@@ -205,6 +205,7 @@ export default function ProjectDetail() {
           src={project.image}
           alt={project.name}
           className="w-full h-full object-cover"
+          style={{ objectPosition: project.heroPosition || 'center' }}
           initial={{ scale: 1.08 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}

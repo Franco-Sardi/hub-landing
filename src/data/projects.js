@@ -1,7 +1,7 @@
-import anchorenaImg from '../assets/anchorena-croquis.png'
-import sfdmEsteImg from '../assets/SanFranciscoEste-wide.webp'
-import sfdmOesteImg from '../assets/SanFranciscoOeste.webp'
-import rodriguezPenaImg from '../assets/rodriguezpena.webp'
+import anchorenaImg from '../assets/anchorena-croquis-banner.png'
+import sfdmEsteImg from '../assets/sfdm-este-tinta.png'
+import sfdmOesteImg from '../assets/sfdm-oeste-tinta.png'
+import rodriguezPenaImg from '../assets/rodriguez-pena-tinta.png'
 import malabiaImg from '../assets/malabia.webp'
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -46,7 +46,7 @@ export const projects = [
     shortName: 'San Francisco del Monte Este',
     location: 'San Francisco del Monte, Mendoza',
     address: 'Ruta Nacional 7, San Francisco del Monte, Mendoza',
-    coords: [-32.9368, -68.7589],
+    coords: [-32.9368227, -68.7588619],
     area: '33.546',
     areaTotal: '20.054',
     areaNaves: '20.054',
@@ -125,7 +125,7 @@ export const projects = [
     shortName: 'San Francisco del Monte Oeste',
     location: 'San Francisco del Monte, Mendoza',
     address: 'Ruta Nacional 7, San Francisco del Monte, Mendoza',
-    coords: [-32.9403, -68.7565],
+    coords: [-32.9403079, -68.7565023],
     area: '72.968',
     areaTotal: '40.000',
     areaNaves: '40.000',
