@@ -350,35 +350,6 @@ export default function MendozaMap({ projects, activeId, onHover, onSelect }) {
               }}
             />
 
-            <svg
-              style={{ position: 'absolute', left: '50%', top: '50%', overflow: 'visible', pointerEvents: 'none' }}
-              width="0" height="0"
-            >
-              <line x1="0" y1="0" x2={pos.lx} y2={pos.ly}
-                stroke={isActive ? color + 'b3' : color + '4d'}
-                strokeWidth="1" strokeDasharray="3,2" />
-              <circle cx={pos.lx} cy={pos.ly} r="1.5" fill={isActive ? color : color + '73'} />
-              <rect
-                x={isRight ? pos.lx + 4 : pos.lx - pos.label.length * 6.5 - 14}
-                y={pos.ly - 9}
-                width={pos.label.length * 6.5 + 10}
-                height="18" rx="2"
-                fill={isActive ? color + '30' : isLight ? 'rgba(11,21,32,0.88)' : 'rgba(2,26,38,0.92)'}
-                stroke={isActive ? color + '80' : color + '40'}
-                strokeWidth="0.8"
-              />
-              <text
-                x={isRight ? pos.lx + 9 : pos.lx - 9}
-                y={pos.ly + 1}
-                fill={isActive ? color : color + 'dd'}
-                fontSize="10"
-                fontFamily="'Bebas Neue', sans-serif"
-                letterSpacing="0.6"
-                textAnchor={isRight ? 'start' : 'end'}
-                dominantBaseline="middle"
-                style={{ filter: isActive ? `drop-shadow(0 0 3px ${color}99)` : 'none' }}
-              >{pos.label}</text>
-            </svg>
           </div>
         )
       })}
