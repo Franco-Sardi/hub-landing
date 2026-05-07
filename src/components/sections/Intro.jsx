@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import presentacionGif from '../../assets/Presentacion.gif'
+import presentacionImg from '../../assets/WhatsApp Image 2026-05-06 at 7.50.21 PM (1).jpeg'
 
-const FRAME_BG = presentacionGif
+const FRAME_BG = presentacionImg
 // El logo oficial (navy sobre transparente) → invertido a silver para fondo oscuro
 const LOGO_FILTER = 'brightness(0) invert(79%)'
 
@@ -46,7 +46,7 @@ export default function Intro() {
               src={FRAME_BG}
               alt=""
               className="w-full h-full object-cover"
-              style={{ filter: 'brightness(0.5)' }}
+              style={{ filter: 'brightness(0.21)' }}
             />
             <div
               className="absolute inset-0"
@@ -90,7 +90,7 @@ export default function Intro() {
                 style={{
                   width: 'clamp(3rem, 6vw, 5rem)',
                   height: '1px',
-                  background: 'rgba(199,200,202,0.28)',
+                  background: 'rgba(199,200,202,0.70)',
                 }}
               />
               <p
@@ -98,10 +98,10 @@ export default function Intro() {
                   fontFamily: '"Roboto Condensed", "Roboto", sans-serif',
                   fontWeight: 400,
                   fontSize: 'clamp(0.5rem, 0.8vw, 0.65rem)',
-                  color: '#C7C8CA',
+                  color: '#FFFFFF',
                   letterSpacing: '0.52em',
                   textTransform: 'uppercase',
-                  opacity: 0.7,
+                  opacity: 1,
                 }}
               >
                 Naves Almacenamiento Inteligente · Mendoza
