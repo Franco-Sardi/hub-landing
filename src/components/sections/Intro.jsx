@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import presentacionGif from '../../assets/Presentacion.gif'
 
-const FRAME_BG = '/intro-bg.jpg'
+const FRAME_BG = presentacionGif
 // El logo oficial (navy sobre transparente) → invertido a silver para fondo oscuro
 const LOGO_FILTER = 'brightness(0) invert(79%)'
 
@@ -45,7 +46,7 @@ export default function Intro() {
               src={FRAME_BG}
               alt=""
               className="w-full h-full object-cover"
-              style={{ filter: 'saturate(0.55) brightness(0.38)' }}
+              style={{ filter: 'brightness(0.5)' }}
             />
             <div
               className="absolute inset-0"
@@ -103,7 +104,7 @@ export default function Intro() {
                   opacity: 0.7,
                 }}
               >
-                Naves Logísticas · Mendoza
+                Naves Almacenamiento Inteligente · Mendoza
               </p>
             </motion.div>
           )}
