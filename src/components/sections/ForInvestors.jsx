@@ -2,10 +2,10 @@ import { motion } from 'framer-motion'
 import SectionFrame from '../ui/SectionFrame'
 
 const investorBenefits = [
-  { val: 'Participación',  desc: 'Participás en la rentabilidad del negocio con retorno en dólares desde tu primer aporte' },
-  { val: 'Cuota parte',    desc: 'Ingreso accesible con participación mínima y posibilidad de escalar' },
-  { val: 'Triple A',       desc: 'Naves logísticas certificables, estándar de clase internacional' },
-  { val: '178.000 m²',     desc: 'Red de naves logísticas distribuidas en corredores clave de Mendoza' },
+  { val: 'Retorno en USD',  desc: 'Retorno garantizado en dólares desde tu primer aporte, independiente de la inflación' },
+  { val: 'Cuota parte',     desc: 'Ingreso accesible con participación mínima y posibilidad de escalar tu inversión' },
+  { val: 'Liquidez',        desc: 'Posibilidad de escalar o reinvertir tu participación a medida que avanza el proyecto' },
+  { val: 'Fideicomiso',     desc: 'Estructura fiduciaria que protege tu inversión durante todo el proceso de desarrollo' },
 ]
 
 const nextSteps = [
@@ -48,13 +48,13 @@ export default function ForInvestors() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-3">
             <h2
               className="font-display text-theme leading-[0.90] tracking-wide"
-              style={{ fontSize: 'clamp(2rem, 4vw, 4rem)', fontWeight: 800 }}
+              style={{ fontSize: 'clamp(1.5rem, 2.6vw, 2.6rem)', fontWeight: 800 }}
             >
               TU CAPITAL,{' '}
               <span className="text-gradient-blue">TRABAJANDO.</span>
             </h2>
             <p className="text-theme-muted text-sm max-w-xs leading-relaxed font-light shrink-0">
-              Sumate al proyecto de naves logísticas Triple A más ambicioso de Mendoza.
+              Sumate al proyecto de infraestructura más ambicioso de Mendoza.
             </p>
           </div>
         </motion.div>

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import mapDark from '../../assets/mapa-dark-v2.png'
 import mapLight from '../../assets/mapa-acuarela.png'
 
-const MARKER_COLOR = '#022A3A'
+const MARKER_COLOR = '#C7C8CA'
 
 // Posiciones como % de la imagen original (se recalculan al llenar el contenedor)
 const PARK_POS = {
@@ -255,7 +255,7 @@ function useCoverTransform(containerRef) {
   return fns
 }
 
-export default function MendozaMap({ projects, activeId, onHover, onSelect }) {
+export default function MendozaMap({ projects, activeId, onHover, onSelect, onNavigate }) {
   const containerRef = useRef(null)
   const [isLight, setIsLight] = useState(() => !document.documentElement.classList.contains('dark'))
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 1024)
@@ -309,7 +309,7 @@ export default function MendozaMap({ projects, activeId, onHover, onSelect }) {
         const { l: cLeft, t: cTop } = toContainer(pos.left, pos.top)
 
         const isActive = activeId === p.id
-        const color = isLight ? MARKER_COLOR : '#C7C8CA'
+        const color = isLight ? '#022A3A' : '#FFFFFF'
         const isRight = pos.lx >= 0
 
         return (
@@ -325,25 +325,38 @@ export default function MendozaMap({ projects, activeId, onHover, onSelect }) {
             }}
             onMouseEnter={() => !debug && onHover(p.id)}
             onMouseLeave={() => !debug && onHover(null)}
-            onClick={() => !debug && onSelect(p.id)}
-            onTouchEnd={() => { if (!debug) onSelect(p.id) }}
+            onClick={() => {
+              if (debug) return
+              if (onNavigate) onNavigate(p.slug)
+              else onSelect(p.id)
+            }}
+            onTouchEnd={(e) => {
+              if (debug) return
+              e.preventDefault()
+              if (onNavigate) onNavigate(p.slug)
+              else onSelect(p.id)
+            }}
           >
-            {isActive && (
-              <motion.div
-                className="absolute rounded-full"
-                style={{ inset: isMobile ? -4 : -6, border: `1px solid ${color}` }}
-                initial={{ opacity: 0.6, scale: 0.6 }}
-                animate={{ opacity: 0, scale: 1.8 }}
-                transition={{ duration: 1.2, repeat: Infinity, ease: 'easeOut' }}
-              />
-            )}
+            {/* Pulse ring — siempre activo, más intenso cuando isActive */}
+            <motion.div
+              className="absolute rounded-full"
+              style={{ inset: isMobile ? -4 : -6, border: `1px solid ${color}` }}
+              initial={{ opacity: isActive ? 0.6 : 0.25, scale: 0.6 }}
+              animate={{ opacity: 0, scale: isActive ? 1.8 : 1.4 }}
+              transition={{
+                duration: isActive ? 1.2 : 2,
+                repeat: Infinity,
+                ease: 'easeOut',
+                repeatDelay: isActive ? 0 : 0.6,
+              }}
+            />
 
             <div
               className="rounded-full transition-all duration-200"
               style={{
-                width:  isActive ? (isMobile ? 9  : 14) : (isMobile ? 6  : 10),
-                height: isActive ? (isMobile ? 9  : 14) : (isMobile ? 6  : 10),
-                margin: isActive ? 0 : (isMobile ? 1.5 : 2),
+                width:  isActive ? (isMobile ? 14 : 20) : (isMobile ? 10 : 15),
+                height: isActive ? (isMobile ? 14 : 20) : (isMobile ? 10 : 15),
+                margin: isActive ? 0 : (isMobile ? 2 : 2.5),
                 border: `${isMobile ? 1.5 : 2}px solid ${color}`,
                 background: color,
                 boxShadow: isActive ? `0 0 6px 1px ${color}99` : 'none',

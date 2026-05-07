@@ -93,8 +93,9 @@ const statusStyle = {
 }
 
 // Per-project gallery images — Anchorena
-import anchorenaArteTinta from '../assets/anchorena-tinta.png'
-import anchorenaGeneralTinta from '../assets/anchorena-general-tinta.png'
+import anchorenaCoworking from '../assets/anchorena-coworking-watercolor.png'
+import anchorenaPlanimetria from '../assets/anchorena-planimetria-watercolor.png'
+import anchorenaMain from '../assets/anchorena.png'
 import sfdmEsteDetalle from '../assets/SanFranciscoEste.png'
 import sfdmRender from '../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B - RENDER.webp'
 import sfdmPlanta from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS PLANTA.webp'
@@ -107,7 +108,7 @@ import malabiaCentro1 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIA
 import malabiaCentro2 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 02.webp'
 
 const PROJECT_GALLERY = {
-  1: [anchorenaArteTinta, anchorenaGeneralTinta],
+  1: [anchorenaMain, anchorenaCoworking, anchorenaPlanimetria],
   2: [sfdmRender, sfdmPlanta, sfdmConcepto],
   3: [sfdmConcepto, sfdmRender, sfdmPlanta],
   4: [crpPng, crpAereo, crpZonificacion],
@@ -116,7 +117,7 @@ const PROJECT_GALLERY = {
 
 const PROJECT_DIFFERENTIAL = {
   1: {
-    image: anchorenaGeneralTinta,
+    image: anchorenaCoworking,
     tag: 'Diferencial exclusivo',
     label: 'EDIFICIO DE COWORKING',
     desc: 'Espacios de trabajo profesional integrados al parque, disponibles para empresas inquilinas e inversores.',

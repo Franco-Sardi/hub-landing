@@ -16,9 +16,24 @@ import logoInducret from '../../assets/inducret.jpg'
 import logoPrear from '../../assets/prear.webp'
 
 const founders = [
-  { name: 'Oscar David', url: 'oscardavid.fydels.com', logo: logoOscarDavid },
-  { name: 'Carnes de mi Campo', url: 'carnesdemicampo.com.ar', logo: logoCarnes },
-  { name: 'Terrandes', url: 'terrandes.com', logo: logoTerrandes },
+  {
+    name: 'Oscar David',
+    url: 'oscardavid.fydels.com',
+    logo: logoOscarDavid,
+    desc: 'Producción agropecuaria y distribución',
+  },
+  {
+    name: 'Carnes de mi Campo',
+    url: 'carnesdemicampo.com.ar',
+    logo: logoCarnes,
+    desc: 'Ganadería, frigoríficos y cadena de frío',
+  },
+  {
+    name: 'Terrandes',
+    url: 'terrandes.com',
+    logo: logoTerrandes,
+    desc: 'Desarrollo y gestión de tierras en Mendoza',
+  },
 ]
 
 const partners = [
@@ -50,38 +65,83 @@ export default function About() {
         <div className="grid lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_480px] gap-10 lg:gap-16 items-center mb-10 lg:mb-14">
 
           {/* Left — headline + copy */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="flex items-center gap-3 mb-5">
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="flex items-center gap-3 mb-6"
+            >
               <span className="w-8 h-px bg-theme-accent" />
               <span className="text-theme-accent text-xs font-semibold tracking-[0.3em] uppercase font-condensed">Quiénes Somos</span>
-            </div>
+            </motion.div>
 
-            <h2
-              className="font-display text-theme leading-[0.92] tracking-wide mb-6"
-              style={{ fontSize: 'clamp(2rem, 3.2vw, 3.4rem)', fontWeight: 800 }}
+            {/* Palabra 1 — INFRAESTRUCTURA: enorme, outline, marca de fondo */}
+            <motion.span
+              initial={{ opacity: 0, y: 28, clipPath: 'inset(0 0 40% 0)' }}
+              whileInView={{ opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)' }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="font-display block leading-none tracking-wide mb-0.5"
+              style={{
+                fontSize: 'clamp(1.3rem, 2.4vw, 3rem)',
+                fontWeight: 800,
+                color: 'transparent',
+                WebkitTextStroke: '1.5px var(--text-accent)',
+                opacity: 0.45,
+              }}
             >
-              DESARROLLAMOS LA RED<br />
-              <span className="text-gradient-blue">LOGÍSTICA</span> INDUSTRIAL<br />
-              DE MENDOZA
-            </h2>
+              INFRAESTRUCTURA
+            </motion.span>
 
-            <p className="text-theme-muted text-sm lg:text-base leading-relaxed max-w-xl mb-8">
-              HUB es el proyecto de infraestructura logística más ambicioso de la región.
-              Cinco parques en los principales corredores de Mendoza, diseñados para que
-              empresas de cualquier escala operen con estándar Triple A.
-            </p>
+            {/* Palabra 2 — ALMACENAMIENTO: protagonista, gradiente */}
+            <motion.span
+              initial={{ opacity: 0, y: 28, clipPath: 'inset(0 0 40% 0)' }}
+              whileInView={{ opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)' }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, delay: 0.13, ease: [0.16, 1, 0.3, 1] }}
+              className="font-display block leading-none tracking-wide text-gradient-blue mb-1"
+              style={{ fontSize: 'clamp(1.1rem, 2vw, 2.6rem)', fontWeight: 800 }}
+            >
+              ALMACENAMIENTO
+            </motion.span>
 
-            {/* Tres datos clave en fila */}
+            {/* Palabra 3 — inteligente: mismo estilo outline que INFRAESTRUCTURA */}
+            <motion.span
+              initial={{ opacity: 0, y: 20, clipPath: 'inset(0 0 40% 0)' }}
+              whileInView={{ opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)' }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, delay: 0.26, ease: [0.16, 1, 0.3, 1] }}
+              className="font-display block leading-none tracking-wide mb-8"
+              style={{
+                fontSize: 'clamp(1.3rem, 2.4vw, 3rem)',
+                fontWeight: 800,
+                color: 'transparent',
+                WebkitTextStroke: '1.5px var(--text-accent)',
+                opacity: 0.45,
+              }}
+            >
+              INTELIGENTE
+            </motion.span>
+
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.38 }}
+              className="text-theme-muted text-sm lg:text-base leading-relaxed max-w-xl mb-8"
+            >
+              Nuestra visión es elevar el estándar de almacenamiento en el interior
+              productivo de Argentina, respaldados por empresas con trayectoria
+              real en la región y una cadena de partners constructivos integrados.
+            </motion.p>
+
+            {/* Dos datos clave en fila */}
             <div className="hidden sm:flex flex-wrap gap-6 lg:gap-10">
               {[
-                { num: '5', label: 'Parques en Mendoza' },
-                { num: '335K', label: 'm² de terreno' },
-                { num: '3', label: 'Corredores estratégicos' },
+                { num: '3', label: 'Empresas fundadoras con trayectoria' },
+                { num: '7', label: 'Partners en la cadena constructiva' },
               ].map((d) => (
                 <div key={d.label}>
                   <p className="font-display text-theme-accent leading-none" style={{ fontSize: 'clamp(1.6rem, 2.5vw, 2.5rem)', fontWeight: 800 }}>{d.num}</p>
@@ -89,7 +149,7 @@ export default function About() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Right — fundadores */}
           <motion.div
@@ -125,7 +185,8 @@ export default function About() {
                   </div>
                   <div>
                     <p className="text-theme text-sm font-semibold leading-tight">{f.name}</p>
-                    <p className="text-theme-subtle text-xs mt-1">{f.url}</p>
+                    <p className="text-theme-subtle text-xs mt-1 mb-2">{f.url}</p>
+                    <p className="text-theme-muted text-xs leading-snug">{f.desc}</p>
                   </div>
                 </motion.a>
               ))}

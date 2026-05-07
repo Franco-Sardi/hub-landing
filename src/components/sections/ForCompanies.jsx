@@ -61,7 +61,7 @@ export default function ForCompanies() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-3">
             <h2
               className="font-display text-theme leading-[0.90] tracking-wide"
-              style={{ fontSize: 'clamp(2rem, 4vw, 4rem)', fontWeight: 800 }}
+              style={{ fontSize: 'clamp(1.5rem, 2.6vw, 2.6rem)', fontWeight: 800 }}
             >
               UNA RED PENSADA <span className="text-gradient-electric">PARA LA EFICIENCIA</span>
             </h2>

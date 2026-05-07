@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { projects } from '../../data/projects'
 import MendozaMap, { MARKER_COLOR } from '../ui/MendozaMap'
 import SectionFrame from '../ui/SectionFrame'
@@ -10,6 +10,7 @@ const statusBadgeClass =
   'inline-block text-[10px] font-semibold tracking-wider uppercase px-1.5 py-0.5 border font-condensed'
 
 export default function Projects() {
+  const navigate = useNavigate()
   const [activeId, setActiveId] = useState(projects[0].id)
   const [lockedId, setLockedId] = useState(projects[0].id)
   const active = projects.find((p) => p.id === activeId) || projects[0]
@@ -62,6 +63,7 @@ export default function Projects() {
             activeId={activeId}
             onHover={handleHover}
             onSelect={handleSelect}
+            onNavigate={(slug) => navigate(`/proyecto/${slug}`)}
           />
         </div>
 
@@ -164,6 +166,7 @@ export default function Projects() {
               activeId={activeId}
               onHover={handleHover}
               onSelect={handleSelect}
+              onNavigate={(slug) => navigate(`/proyecto/${slug}`)}
             />
           </div>
         </div>

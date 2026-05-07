@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-import anchorenaImg from '../../assets/anchorena-croquis-banner.png'
+import anchorenaImg from '../../assets/anchorena-planimetria-watercolor.png'
 import sfdmEsteImg from '../../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B - RENDER.webp'
 import sfdmOesteImg from '../../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS CONCEPTO - 2.webp'
 import rodriguezPenaImg from '../../assets/CRP - PROYECTO NAVE LOGÍSTICA - RENDER AEREO.webp'
@@ -188,7 +188,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="text-hub-silver/60 text-xs lg:text-base max-w-xl mx-auto mb-4 lg:mb-7 leading-relaxed font-light tracking-wider"
         >
-          420.000 m² de terreno · 240.000 m² de naves logísticas en Mendoza
+          335.000 m² de terreno · 178.000 m² de naves industriales inteligentes en Mendoza
         </motion.p>
 
         {/* CTAs */}

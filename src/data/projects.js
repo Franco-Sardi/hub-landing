@@ -1,8 +1,8 @@
-import anchorenaImg from '../assets/anchorena-croquis-banner.png'
-import sfdmEsteImg from '../assets/sfdm-este-tinta.png'
-import sfdmOesteImg from '../assets/sfdm-oeste-tinta.png'
-import rodriguezPenaImg from '../assets/rodriguez-pena-tinta.png'
-import malabiaImg from '../assets/malabia.webp'
+import anchorenaImg from '../assets/anchorena-planimetria-watercolor.png'
+import sfdmEsteImg from '../assets/hubzip/__MACOSX/Links/Vista aerea SFDM Este.jpg'
+import sfdmOesteImg from '../assets/hubzip/__MACOSX/Links/Vista aerea SFDM Oeste.jpg'
+import rodriguezPenaImg from '../assets/rodriguez-pena-aerial.jpg'
+import malabiaImg from '../assets/malabia.png'
 
 // ══════════════════════════════════════════════════════════════════════════
 // Datos oficiales — extraídos del Brochure 10 HUB 2026.

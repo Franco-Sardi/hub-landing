@@ -1,38 +1,29 @@
 import { motion } from 'framer-motion'
 import SectionFrame from '../ui/SectionFrame'
 
-const investorFeatures = [
-  { label: 'Modalidad',       val: 'INVERSORES' },
-  { label: 'Cuota parte',     val: 'A consultar' },
-  { label: 'Retorno',         val: 'Participación USD' },
-  { label: 'Mínimo ingreso',  val: 'A consultar' },
-  { label: 'Moneda',          val: 'Dólares (USD)' },
-  { label: 'Respaldo',        val: 'Capital protegido' },
-]
-
 const steps = [
   {
     num: '01',
-    title: 'Estructura fiduciaria',
-    desc: 'HUB MZA es el titular fiduciario de los fideicomisos propietarios de los inmuebles. Tu inversión está respaldada por activos reales.',
+    title: 'Inversores financian la red',
+    desc: 'Capital privado que financia la construcción de cada parque. Sin inversión no hay infraestructura, sin infraestructura no hay red.',
     side: 'left',
   },
   {
     num: '02',
-    title: 'Ingresá como Inversor',
-    desc: 'La modalidad Inversores te permite participar con cuotas partes y generar un retorno garantizado en dólares desde tu primer aporte.',
+    title: 'HUB diseña y construye',
+    desc: 'Desarrollamos y habilitamos naves de almacenamiento en los corredores estratégicos de Mendoza. Cada HUB opera de forma independiente, pero integrado a la red.',
     side: 'right',
   },
   {
     num: '03',
-    title: 'Desarrollo y construcción',
-    desc: 'Diseñamos, construimos y habilitamos naves logísticas Triple A con infraestructura de clase internacional en los corredores estratégicos de Mendoza.',
+    title: 'Empresas ocupan y operan',
+    desc: 'Empresas de cualquier escala alquilan módulos y operan desde el día uno. La ocupación genera flujos de caja en dólares de forma continua.',
     side: 'left',
   },
   {
     num: '04',
-    title: 'Retorno sobre tu inversión',
-    desc: 'Las empresas ocupantes generan flujos en dólares que se distribuyen entre los fiduciantes. Una vez operativa la red, ese retorno se incrementa.',
+    title: 'El retorno vuelve al inversor',
+    desc: 'Los flujos generados se distribuyen entre los fiduciantes. Una vez operativa la red completa, ese retorno se incrementa con cada nuevo HUB.',
     side: 'right',
   },
 ]
@@ -67,51 +58,16 @@ export default function Model() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-2">
             <h2
               className="font-display text-theme leading-none tracking-wide"
-              style={{ fontSize: 'clamp(1.9rem, 4vw, 4rem)', fontWeight: 800 }}
+              style={{ fontSize: 'clamp(1.5rem, 2.6vw, 2.6rem)', fontWeight: 800 }}
             >
-              NUESTRO MODELO <span className="text-gradient-electric">DE NEGOCIO</span>
+              INVERTÍS. CONSTRUIMOS. <span className="text-gradient-electric">RENTÁS.</span>
             </h2>
             <p className="text-theme-muted text-xs lg:text-sm max-w-sm leading-relaxed">
-              Cada HUB funciona de forma independiente, pero como parte de un sistema integrado
-              que conecta los principales corredores logísticos de Mendoza.
+              El capital de los fiduciantes se convierte en naves industriales reales que generan retorno en dólares.
             </p>
           </div>
         </motion.div>
 
-        {/* ── Investor card ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="relative border border-theme-accent bg-theme-card mb-8 lg:mb-10"
-        >
-          <div className="absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-theme-accent to-transparent" />
-          <div className="p-5 sm:p-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {/* Left: headline */}
-            <div className="sm:col-span-2 lg:col-span-1 flex flex-col justify-between">
-              <div>
-                <p className="text-theme-muted text-[10px] tracking-widest uppercase mb-2 font-condensed">Modalidad de inversión</p>
-                <p className="font-display text-theme tracking-wider" style={{ fontSize: 'clamp(1.6rem, 2.5vw, 2.4rem)', fontWeight: 800 }}>INVERSORES</p>
-                <p className="text-theme-muted text-xs leading-relaxed mt-2">
-                  Generá un retorno garantizado en dólares desde tu primer aporte, que crece al entrar en operación.
-                </p>
-              </div>
-              <a href="#investors" className="mt-4 self-start text-theme-accent text-xs font-semibold tracking-widest uppercase hover:underline font-condensed">
-                Conocer condiciones →
-              </a>
-            </div>
-            {/* Right: feature grid */}
-            <div className="sm:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {investorFeatures.map((f) => (
-                <div key={f.label} className="border border-theme bg-theme p-3">
-                  <p className="text-theme-muted text-[9px] tracking-widest uppercase mb-1 font-condensed">{f.label}</p>
-                  <p className="font-display text-theme text-sm leading-none tracking-wide" style={{ fontWeight: 700 }}>{f.val}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
 
         {/* ── Mobile: simple cards ─────────────── */}
         <div className="lg:hidden flex flex-col gap-2.5">
@@ -204,11 +160,11 @@ export default function Model() {
                 <span className="text-theme-accent font-display text-sm" style={{ fontWeight: 800 }}>H</span>
               </div>
               <div className="min-w-0">
-                <p className="text-theme font-semibold text-sm lg:text-base">Inversores · Participación en la rentabilidad · Capital respaldado</p>
-                <p className="text-theme-muted text-xs leading-snug mt-0.5">Retorno desde el primer aporte · Se incrementa al entrar en operación la red</p>
+                <p className="text-theme font-semibold text-sm lg:text-base">¿Querés ser parte?</p>
+                <p className="text-theme-muted text-xs leading-snug mt-0.5">Tanto si buscás invertir como si necesitás espacio para tu operación.</p>
               </div>
             </div>
-            <a href="#investors" className="text-theme-accent text-xs font-semibold tracking-widest uppercase shrink-0 hover:underline font-condensed sm:pl-3">Consultá condiciones →</a>
+            <a href="#contact" className="text-theme-accent text-xs font-semibold tracking-widest uppercase shrink-0 hover:underline font-condensed sm:pl-3">Contactanos →</a>
           </div>
         </motion.div>
       </div>

@@ -5,7 +5,7 @@ const ThemeCtx = createContext({ dark: false, toggle: () => {} })
 export function ThemeProvider({ children }) {
   const [dark, setDark] = useState(() => {
     const stored = localStorage.getItem('hub-theme')
-    return stored === 'dark'
+    return stored === null ? true : stored === 'dark'
   })
 
   useEffect(() => {

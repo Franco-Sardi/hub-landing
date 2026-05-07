@@ -22,10 +22,10 @@ function MoonIcon() {
 }
 
 const navLinks = [
-  { label: 'Nosotros',  page: 6 },  // about    = SECTIONS[7], 7-1=6
-  { label: 'Modelo',    page: 2 },  // model    = SECTIONS[3], 3-1=2
-  { label: 'Proyectos', page: 3 },  // projects = SECTIONS[4], 4-1=3
-  { label: 'Empresas',  page: 5 },  // companies= SECTIONS[6], 6-1=5
+  { label: 'Nosotros',  page: 1 },  // about    = SECTIONS[2], 2-1=1
+  { label: 'Empresas',  page: 3 },  // companies= SECTIONS[4], 4-1=3
+  { label: 'Proyectos', page: 4 },  // projects = SECTIONS[5], 5-1=4
+  { label: 'Inversores', page: 5 }, // investors= SECTIONS[6], 6-1=5
   { label: 'Contacto',  page: 7 },  // contact  = SECTIONS[8], 8-1=7
 ]
 

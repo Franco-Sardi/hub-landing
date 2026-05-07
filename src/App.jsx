@@ -18,16 +18,16 @@ import ProjectDetail from './pages/ProjectDetail'
 const SECTIONS = [
   { id: 'intro',     label: '' },
   { id: 'hero',      label: 'Inicio' },
+  { id: 'about',     label: 'Nosotros' },
   { id: 'stats',     label: 'Métricas' },
+  { id: 'companies', label: 'Empresas' },
+  { id: 'projects',  label: 'Proyectos' },
   { id: 'investors', label: 'Inversores' },
   { id: 'model',     label: 'Modelo' },
-  { id: 'projects',  label: 'Proyectos' },
-  { id: 'about',     label: 'Nosotros' },
-  { id: 'companies', label: 'Empresas' },
   { id: 'contact',   label: 'Contacto' },
 ]
 
-const PAGES = [Intro, Hero, Stats, ForInvestors, Model, Projects, About, ForCompanies, Contact]
+const PAGES = [Intro, Hero, About, Stats, ForCompanies, Projects, ForInvestors, Model, Contact]
 
 // Detecta sección activa por IntersectionObserver sobre el viewport (scroll normal)
 function useActiveSection() {
