@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import presentacionImg from '../../assets/WhatsApp Image 2026-05-06 at 7.50.21 PM (1).jpeg'
+import presentacionImg from '../../assets/HUB MZA - Anchorena - 02.png'
 
 const FRAME_BG = presentacionImg
 // El logo oficial (navy sobre transparente) → invertido a silver para fondo oscuro
@@ -46,13 +46,13 @@ export default function Intro() {
               src={FRAME_BG}
               alt=""
               className="w-full h-full object-cover"
-              style={{ filter: 'brightness(0.21)' }}
+              style={{ filter: 'brightness(0.32)', objectPosition: 'center top' }}
             />
             <div
               className="absolute inset-0"
               style={{
                 background:
-                  'radial-gradient(ellipse 100% 90% at 50% 42%, transparent 20%, rgba(2,42,58,0.85) 100%)',
+                  'radial-gradient(ellipse 110% 95% at 50% 50%, transparent 35%, rgba(2,42,58,0.78) 100%)',
               }}
             />
           </motion.div>

@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-import anchorenaImg from '../../assets/anchorena-planimetria-watercolor.png'
+import anchorenaImg from '../../assets/WhatsApp Image 2026-05-06 at 7.50.21 PM (1).jpeg'
 import sfdmEsteImg from '../../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B - RENDER.webp'
 import sfdmOesteImg from '../../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS CONCEPTO - 2.webp'
 import rodriguezPenaImg from '../../assets/CRP - PROYECTO NAVE LOGÍSTICA - RENDER AEREO.webp'
 import malabiaImg from '../../assets/HUB MZA - MALABIA - RENDER AEREO.webp'
 
 const slides = [
-  { id: 0, image: anchorenaImg,      location: 'HUB 01 · Anchorena',                    area: '84.025 m² terreno' },
-  { id: 1, image: sfdmEsteImg,       location: 'HUB 02 · San Francisco del Monte Este', area: '33.546 m² terreno' },
-  { id: 2, image: malabiaImg,        location: 'HUB 03 · Malabia',                      area: '64.070 m² terreno' },
-  { id: 3, image: rodriguezPenaImg,  location: 'HUB 04 · Rodríguez Peña Este',          area: '80.000 m² terreno' },
-  { id: 4, image: sfdmOesteImg,      location: 'HUB 05 · San Francisco del Monte Oeste',area: '72.968 m² terreno' },
+  { id: 0, image: anchorenaImg,      location: 'HUB 01 · Anchorena',                    area: '84.025 m² terreno', position: 'center top' },
+  { id: 1, image: sfdmEsteImg,       location: 'HUB 02 · San Francisco del Monte Este', area: '33.546 m² terreno', position: 'center' },
+  { id: 2, image: malabiaImg,        location: 'HUB 03 · Malabia',                      area: '64.070 m² terreno', position: 'center' },
+  { id: 3, image: rodriguezPenaImg,  location: 'HUB 04 · Rodríguez Peña Este',          area: '80.000 m² terreno', position: 'center' },
+  { id: 4, image: sfdmOesteImg,      location: 'HUB 05 · San Francisco del Monte Oeste',area: '72.968 m² terreno', position: 'center' },
 ]
 
 // Blueprint SVG grid overlay — trazado técnico sobre fondo (paleta oficial)
@@ -69,9 +69,9 @@ export default function Hero() {
           transition={{ duration: 1.6, ease: 'easeInOut' }}
           className="absolute inset-0"
           style={{
-            backgroundImage: `url(${slides[current].image})`,
+            backgroundImage: `url("${slides[current].image}")`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundPosition: slides[current].position,
           }}
         />
       </AnimatePresence>

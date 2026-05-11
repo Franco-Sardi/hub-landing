@@ -3,7 +3,7 @@ import SectionFrame from '../ui/SectionFrame'
 
 // Founder logos
 import logoOscarDavid from '../../assets/oscardavid.webp'
-import logoCarnes from '../../assets/carnesdemicampo.webp'
+import logoCarnes from '../../assets/carnesdemicampo-nuevo.webp'
 import logoTerrandes from '../../assets/terrande.webp'
 
 // Partner logos
