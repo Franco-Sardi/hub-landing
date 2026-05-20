@@ -230,7 +230,7 @@ export default function ProjectDetail() {
         </div>
 
         {/* Image disclaimer */}
-        <div className="absolute bottom-3 right-4 sm:bottom-4 sm:right-6 z-10 px-2 py-1 bg-black/40 backdrop-blur-sm">
+        <div className="absolute bottom-3 right-4 sm:bottom-4 sm:right-6 z-10 px-2 py-1 bg-black/40 backdrop-blur-sm hidden sm:block">
           <p className="text-white/60 text-[10px] tracking-wide italic text-right">
             Render ilustrativo · sujeto a modificaciones de proyecto
           </p>
@@ -267,7 +267,7 @@ export default function ProjectDetail() {
       </div>
 
       {/* ── Aviso renders ─────────────────────────────────────────── */}
-      <div className="border-b" style={{ borderColor: 'var(--border)', background: 'var(--bg-secondary)' }}>
+      <div className="border-b hidden sm:block" style={{ borderColor: 'var(--border)', background: 'var(--bg-secondary)' }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-8 py-2 flex items-center gap-2">
           <span className="text-theme-subtle text-[10px]">⚠</span>
           <p className="text-theme-subtle text-[10px] tracking-wide">

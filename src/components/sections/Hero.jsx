@@ -59,6 +59,13 @@ export default function Hero() {
       className="relative h-svh flex flex-col items-center justify-center overflow-hidden"
       style={{ backgroundColor: '#011823' }}
     >
+      {/* Preload all carousel images so they're cached before the slide change */}
+      <div className="sr-only" aria-hidden="true">
+        {slides.map((s, i) => (
+          <img key={i} src={s.image} alt="" loading="eager" fetchPriority={i === 0 ? 'high' : 'low'} />
+        ))}
+      </div>
+
       {/* Photo carousel */}
       <AnimatePresence mode="sync">
         <motion.div
@@ -67,13 +74,18 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.6, ease: 'easeInOut' }}
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `url("${slides[current].image}")`,
-            backgroundSize: 'cover',
-            backgroundPosition: slides[current].position,
-          }}
-        />
+          className="absolute inset-0 overflow-hidden"
+        >
+          <img
+            src={slides[current].image}
+            alt=""
+            fetchPriority={current === 0 ? 'high' : 'auto'}
+            loading="eager"
+            decoding="async"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: slides[current].position }}
+          />
+        </motion.div>
       </AnimatePresence>
 
       {/* Multi-layer overlay — navy oficial (#022A3A) */}
