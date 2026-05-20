@@ -25,6 +25,7 @@
     -moz-osx-font-smoothing: grayscale;
     overflow-x: clip;
     max-width: 100vw;
+    overscroll-behavior: none;
   }
 
   /* ── Dark mode — navy oficial del manual ─────────────────────────────── */

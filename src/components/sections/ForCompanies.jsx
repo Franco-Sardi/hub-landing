@@ -35,7 +35,7 @@ const reasons = [
 
 export default function ForCompanies() {
   return (
-    <section id="companies" className="hub-bg-h relative lg:min-h-dvh flex flex-col overflow-hidden bg-theme lg:py-0">
+    <section id="companies" className="hub-bg-h relative lg:min-h-svh flex flex-col overflow-hidden bg-theme lg:py-0">
       {/* Background layers */}
       <SectionFrame />
       <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />

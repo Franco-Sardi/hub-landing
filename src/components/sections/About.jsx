@@ -50,7 +50,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative lg:min-h-dvh flex flex-col justify-center overflow-hidden bg-theme lg:py-0"
+      className="relative lg:min-h-svh flex flex-col justify-center overflow-hidden bg-theme lg:py-0"
     >
       <SectionFrame />
       <div

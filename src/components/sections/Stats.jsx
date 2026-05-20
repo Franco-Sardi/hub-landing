@@ -115,7 +115,7 @@ export default function Stats() {
   return (
     <section
       id="stats"
-      className="stats-section relative lg:min-h-dvh flex flex-col overflow-hidden py-8 lg:py-0"
+      className="stats-section relative lg:min-h-svh flex flex-col overflow-hidden py-8 lg:py-0"
     >
       {/* Ghost "H" — marca de agua de la identidad */}
       <div

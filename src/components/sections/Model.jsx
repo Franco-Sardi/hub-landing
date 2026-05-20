@@ -32,7 +32,7 @@ export default function Model() {
   return (
     <section
       id="model"
-      className="hub-bg-h relative lg:min-h-dvh flex flex-col justify-center overflow-hidden bg-theme lg:py-0"
+      className="hub-bg-h relative lg:min-h-svh flex flex-col justify-center overflow-hidden bg-theme lg:py-0"
     >
       <SectionFrame />
       <div className="absolute inset-0 bg-grid opacity-35" />

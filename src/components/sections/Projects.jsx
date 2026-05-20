@@ -28,7 +28,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="hub-bg-h lg:min-h-dvh bg-theme relative overflow-hidden flex flex-col py-10 lg:py-4"
+      className="hub-bg-h lg:min-h-svh bg-theme relative overflow-hidden flex flex-col py-10 lg:py-4"
     >
       <SectionFrame />
       <div className="absolute inset-0 bg-grid opacity-20" />

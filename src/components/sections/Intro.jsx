@@ -29,7 +29,7 @@ export default function Intro() {
   return (
     <section
       id="intro"
-      className="relative w-full h-dvh overflow-hidden"
+      className="relative w-full h-svh overflow-hidden"
       style={{ backgroundColor: '#022A3A' }}
     >
       {/* ── Fondo foto parque ─────────────────────────────────────── */}

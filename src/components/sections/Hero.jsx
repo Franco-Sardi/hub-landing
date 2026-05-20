@@ -56,7 +56,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative h-dvh flex flex-col items-center justify-center overflow-hidden"
+      className="relative h-svh flex flex-col items-center justify-center overflow-hidden"
       style={{ backgroundColor: '#011823' }}
     >
       {/* Photo carousel */}
