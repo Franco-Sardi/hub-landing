@@ -98,8 +98,11 @@ import anchorenaCoworking from '../assets/anchorena-coworking-watercolor.png'
 import anchorenaPlanimetria from '../assets/anchorena-planimetria-watercolor.png'
 import anchorenaMain from '../assets/anchorena.png'
 import sfdmEsteDetalle from '../assets/SanFranciscoEste.png'
+import sfdmEsteWide from '../assets/SanFranciscoEste-wide.png'
+import sfdmOesteDetalle from '../assets/SanFranciscoOeste.png'
 import sfdmRender from '../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B - RENDER.webp'
-import sfdmPlanta from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS PLANTA.webp'
+import sfdmPlantaVer01 from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS PLANTA.webp'
+import sfdmPlanta from '../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B.webp'
 import sfdmConcepto from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS CONCEPTO - 2.webp'
 import crpAereo from '../assets/CRP - PROYECTO NAVE LOGÍSTICA - RENDER AEREO.webp'
 import crpZonificacion from '../assets/CRP - PROYECTO NAVE LOGÍSTICA - ZONIFICACIÓN- tipo D.webp'
@@ -110,8 +113,8 @@ import malabiaCentro2 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIA
 
 const PROJECT_GALLERY = {
   1: [anchorenaMain, anchorenaCoworking, anchorenaPlanimetria],
-  2: [sfdmRender, sfdmPlanta, sfdmConcepto],
-  3: [sfdmConcepto, sfdmRender, sfdmPlanta],
+  2: [sfdmPlantaVer01, sfdmEsteWide, sfdmConcepto],
+  3: [sfdmOesteDetalle, sfdmRender, sfdmPlanta],
   4: [crpPng, crpAereo, crpZonificacion],
   5: [malabiaAereo, malabiaCentro1, malabiaCentro2],
 }
@@ -130,7 +133,7 @@ const PROJECT_DIFFERENTIAL = {
     desc: '20.000 m² de espacio cubierto con área operativa, muelles de carga y estacionamientos diferenciados para tráfico pesado y liviano.',
   },
   3: {
-    image: sfdmConcepto,
+    image: sfdmOesteDetalle,
     tag: 'Hub Logístico',
     label: 'NAVE LOGÍSTICA TRIPLE A',
     desc: '40.000 m² de espacio cubierto — la nave de mayor escala de la red HUB. Módulos adaptables desde 1.000 m² con muelles de carga dedicados.',
