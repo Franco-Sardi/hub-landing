@@ -266,6 +266,36 @@ html {
    Logo HUB — siempre dentro de contenedor rectangular con borde.
    Exigencia explícita del manual de marca (área de reserva 3½ × x).
    ══════════════════════════════════════════════════════════════════════ */
+/* Popup del mapa — más compacto en mobile */
+@media (max-width: 640px) {
+  .hub-map-popup .leaflet-popup-content-wrapper {
+    box-shadow: none !important;
+  }
+  .hub-map-popup .leaflet-popup-content {
+    margin: 0 !important;
+  }
+  .hub-map-popup .leaflet-popup-content > div {
+    padding: 8px 10px !important;
+    min-width: 140px !important;
+  }
+  .hub-map-popup .leaflet-popup-content > div p:nth-child(1) {
+    font-size: 8px !important;
+    margin-bottom: 2px !important;
+  }
+  .hub-map-popup .leaflet-popup-content > div p:nth-child(2) {
+    font-size: 10px !important;
+    margin-bottom: 1px !important;
+  }
+  .hub-map-popup .leaflet-popup-content > div p:nth-child(3) {
+    font-size: 9px !important;
+    margin-bottom: 6px !important;
+  }
+  .hub-map-popup .leaflet-popup-content > div a {
+    font-size: 8px !important;
+    padding: 4px 8px !important;
+  }
+}
+
 .hub-logo-box {
   display: inline-flex;
   align-items: center;
