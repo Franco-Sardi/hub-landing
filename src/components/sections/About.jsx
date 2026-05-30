@@ -2,9 +2,9 @@ import { motion } from 'framer-motion'
 import SectionFrame from '../ui/SectionFrame'
 
 // Founder logos
-import logoOscarDavid from '../../assets/oscardavid.webp'
+import logoOscarDavid from '../../assets/image-removebg-preview (2).png'
 import logoCarnes from '../../assets/carnesdemicampo-nuevo.webp'
-import logoTerrandes from '../../assets/terrande.webp'
+import logoTerrandes from '../../assets/image-removebg-preview (3).png'
 
 // Partner logos
 import logoLtn from '../../assets/ltn.webp'
@@ -21,18 +21,21 @@ const founders = [
     url: 'oscardavid.fydels.com',
     logo: logoOscarDavid,
     desc: 'Producción agropecuaria y distribución',
+    logoBg: 'bg-white/10',
   },
   {
     name: 'Carnes de mi Campo',
     url: 'carnesdemicampo.com.ar',
     logo: logoCarnes,
     desc: 'Ganadería, frigoríficos y cadena de frío',
+    logoBg: 'bg-white/10',
   },
   {
     name: 'Terrandes',
     url: 'terrandes.com',
     logo: logoTerrandes,
     desc: 'Desarrollo y gestión de tierras en Mendoza',
+    logoBg: 'bg-white/10',
   },
 ]
 
@@ -158,8 +161,8 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="text-theme-muted text-xs tracking-widest uppercase mb-4 font-condensed">Los fundadores</p>
-            <div className="flex flex-col gap-3">
+            <p className="text-theme-muted text-xs tracking-widest uppercase mb-2 font-condensed">Los fundadores</p>
+            <div className="flex flex-col gap-2">
               {founders.map((f, i) => (
                 <motion.a
                   key={f.name}
@@ -170,22 +173,22 @@ export default function About() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
-                  className="flex items-center gap-5 p-5 border bg-theme-card group hover:border-theme-accent/50 transition-all duration-300"
+                  className="flex items-center gap-3 p-3 border bg-theme-card group hover:border-theme-accent/50 transition-all duration-300"
                   style={{ borderColor: 'var(--border)', textDecoration: 'none' }}
                 >
                   <div
-                    className="shrink-0 flex items-center justify-center bg-theme border p-2 w-28 h-20 sm:w-40 sm:h-28"
+                    className={`shrink-0 flex items-center justify-center ${f.logoBg} border p-2 w-28 h-20 sm:w-36 sm:h-24`}
                     style={{ borderColor: 'var(--border)' }}
                   >
                     <img
                       src={f.logo}
                       alt={f.name}
-                      className="w-full h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+                      className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
                     />
                   </div>
                   <div>
                     <p className="text-theme text-sm font-semibold leading-tight">{f.name}</p>
-                    <p className="text-theme-subtle text-xs mt-1 mb-2">{f.url}</p>
+                    <p className="text-theme-subtle text-xs mt-0.5 mb-1">{f.url}</p>
                     <p className="text-theme-muted text-xs leading-snug">{f.desc}</p>
                   </div>
                 </motion.a>

@@ -1,35 +1,16 @@
-const CORNERS = [
-  { top: 14,    left: 14  },
-  { top: 14,    right: 14 },
-  { bottom: 14, left: 14  },
-  { bottom: 14, right: 14 },
-]
-
 export default function SectionFrame() {
   return (
-    <>
-      {/* Borde interior — solo desktop */}
-      <div
-        className="absolute pointer-events-none hidden lg:block"
-        style={{ inset: 20, border: '1px solid var(--stat-deco)', zIndex: 1 }}
-      />
-      {/* Esquinas — solo desktop */}
-      {CORNERS.map((pos, i) => (
-        <div
-          key={i}
-          className="absolute pointer-events-none hidden lg:block"
-          style={{
-            ...pos,
-            width: 18,
-            height: 18,
-            borderTop:    pos.bottom === undefined ? '2px solid var(--stat-deco-strong)' : undefined,
-            borderBottom: pos.top    === undefined ? '2px solid var(--stat-deco-strong)' : undefined,
-            borderLeft:   pos.right  === undefined ? '2px solid var(--stat-deco-strong)' : undefined,
-            borderRight:  pos.left   === undefined ? '2px solid var(--stat-deco-strong)' : undefined,
-            zIndex: 2,
-          }}
-        />
-      ))}
-    </>
+    /* Rail vertical izquierdo — hilo conductor entre secciones, solo desktop */
+    <div
+      className="absolute pointer-events-none hidden lg:block"
+      style={{
+        left: 20,
+        top: 0,
+        bottom: 0,
+        width: 1,
+        background: 'linear-gradient(to bottom, transparent 0%, var(--stat-deco) 15%, var(--stat-deco) 85%, transparent 100%)',
+        zIndex: 1,
+      }}
+    />
   )
 }

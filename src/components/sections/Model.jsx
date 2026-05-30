@@ -1,30 +1,39 @@
 import { motion } from 'framer-motion'
 import SectionFrame from '../ui/SectionFrame'
+import AnimatedIcon from '../ui/AnimatedIcon'
 
 const steps = [
   {
     num: '01',
     title: 'Inversores financian la red',
-    desc: 'Capital privado que financia la construcción de cada parque. Sin inversión no hay infraestructura, sin infraestructura no hay red.',
+    desc: 'Capital privado que financia la construcción de cada parque.',
     side: 'left',
+    // Coin / money circle
+    icon: ['M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z', 'M12 7v10', 'M9 10c0-1.66 1.34-3 3-3s3 1.34 3 3-1.34 3-3 3-3-1.34-3-3'],
   },
   {
     num: '02',
     title: 'HUB diseña y construye',
     desc: 'Desarrollamos y habilitamos naves de almacenamiento en los corredores estratégicos de Mendoza. Cada HUB opera de forma independiente, pero integrado a la red.',
     side: 'right',
+    // Building / construction
+    icon: ['M2 20h20', 'M6 20V9', 'M18 20V9', 'M2 9l10-7 10 7'],
   },
   {
     num: '03',
     title: 'Empresas ocupan y operan',
     desc: 'Empresas de cualquier escala alquilan módulos y operan desde el día uno. La ocupación genera flujos de caja en dólares de forma continua.',
     side: 'left',
+    // Office / company
+    icon: ['M3 21h18', 'M3 21V9l9-7 9 7v12', 'M10 21v-5h4v5'],
   },
   {
     num: '04',
     title: 'El retorno vuelve al inversor',
     desc: 'Los flujos generados se distribuyen entre los fiduciantes. Una vez operativa la red completa, ese retorno se incrementa con cada nuevo HUB.',
     side: 'right',
+    // Trending up / return
+    icon: ['M3 17l5-5 4 4 9-9', 'M14 7h6v6'],
   },
 ]
 
@@ -78,10 +87,11 @@ export default function Model() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: i * 0.07 }}
-              className="flex items-start gap-3 p-4 border border-theme bg-theme-card"
+              className="flex items-center gap-3 p-4 border border-theme bg-theme-card cursor-default group"
+              whileHover={{ borderColor: 'var(--border-accent)', backgroundColor: 'var(--bg-card-alt)' }}
             >
-              <div className="w-7 h-7 border border-theme-accent/40 flex items-center justify-center shrink-0 mt-0.5">
-                <span className="font-display text-theme-accent text-xs leading-none" style={{ fontWeight: 500 }}>{step.num}</span>
+              <div className="w-8 h-8 border border-theme-accent/40 flex items-center justify-center shrink-0 transition-all duration-300 group-hover:border-theme-accent">
+                <AnimatedIcon paths={step.icon} size={16} strokeWidth={1.5} className="text-theme-accent transition-transform duration-300 group-hover:scale-110" />
               </div>
               <div>
                 <h3 className="font-display text-theme text-base tracking-wide mb-1" style={{ fontWeight: 700 }}>{step.title}</h3>
@@ -121,8 +131,8 @@ export default function Model() {
                   </div>
 
                   <div className="absolute left-1/2 -translate-x-1/2 z-10">
-                    <div className="w-10 h-10 border border-theme bg-theme flex items-center justify-center">
-                      <span className="font-accent text-theme-accent text-base leading-none" style={{ fontWeight: 500 }}>{step.num}</span>
+                    <div className="w-10 h-10 border border-theme-accent/60 bg-theme flex items-center justify-center">
+                      <AnimatedIcon paths={step.icon} size={18} strokeWidth={1.5} className="text-theme-accent" />
                     </div>
                   </div>
 

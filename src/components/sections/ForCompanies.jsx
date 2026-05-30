@@ -1,7 +1,22 @@
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import SectionFrame from '../ui/SectionFrame'
+import AnimatedIcon from '../ui/AnimatedIcon'
 import malabiaImg from '../../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 01.webp'
-import { commonServices, sustainabilityAttributes } from '../../data/projects'
+
+// Grilla unificada: infra (0-3) + sustain (4-7), separadas por divider en el render
+const FEATURES = [
+  { label: 'Módulos flexibles',      icon: ['M3 9l9-6 9 6v8l-9 6-9-6V9z', 'M12 21V9', 'M3.27 6.96L12 12l8.73-5.04'] },
+  { label: 'Oficinas integradas',    icon: ['M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z', 'M9 22V12h6v10'] },
+  { label: 'Pavimentos industriales',icon: ['M3 20h18', 'M3 15h18', 'M3 10h18'] },
+  { label: 'Tránsito diferenciado',  icon: ['M1 3h15v11H1z', 'M16 8h4l3 3v3h-7V8z', 'M5 17a2 2 0 1 0 4 0 2 2 0 0 0-4 0', 'M17 17a2 2 0 1 0 4 0 2 2 0 0 0-4 0'] },
+  // — sustentabilidad —
+  { label: 'Energías renovables',    icon: ['M12 8a4 4 0 0 0 0 8 4 4 0 0 0 0-8z', 'M12 2v2', 'M12 20v2', 'M4.22 4.22l1.42 1.42', 'M18.36 18.36l1.42 1.42', 'M2 12h2', 'M20 12h2', 'M4.22 19.78l1.42-1.42', 'M18.36 5.64l1.42-1.42'] },
+  { label: 'Fibra óptica',           icon: ['M1.42 9a16 16 0 0 1 21.16 0', 'M5 12.55a11 11 0 0 1 14.08 0', 'M8.53 16.11a6 6 0 0 1 6.95 0', 'M12 20h.01'] },
+  { label: 'Control de energía',     icon: ['M13 2L3 14h9l-1 8 10-12h-9l1-8z'] },
+  { label: 'Reutilización de aguas', icon: ['M12 2s-7 7.6-7 12a7 7 0 0 0 14 0c0-4.4-7-12-7-12z'] },
+]
+const INFRA_COUNT = 4
 
 const specs = [
   { value: 'AAA',  label: 'Estándar Triple A' },
@@ -15,23 +30,110 @@ const reasons = [
     num: '01',
     title: 'Recepción de mercadería',
     desc: 'Docks de carga y playas de maniobras diseñadas para recibir, clasificar y distribuir mercadería de forma ordenada y eficiente.',
+    // Arrow down to line = incoming goods
+    icon: ['M12 3v15', 'M5 15l7 7 7-7', 'M3 22h18'],
   },
   {
     num: '02',
     title: 'Almacenamiento flexible',
     desc: 'Módulos que se adaptan al volumen de tu operación. Crecés dentro del mismo HUB sin cambiar de dirección.',
+    // Package / box
+    icon: ['M3 9l9-6 9 6v8l-9 6-9-6V9z', 'M12 21V9', 'M3.27 6.96L12 12l8.73-5.04'],
   },
   {
     num: '03',
     title: 'Infraestructura operativa',
     desc: 'Tránsito diferenciado para vehículos de carga y tráfico liviano, estacionamiento propio para camiones, oficinas integradas y pavimentos industriales.',
+    // Building / warehouse
+    icon: ['M3 21h18', 'M3 21V11l9-7 9 7v10', 'M9 21v-6h6v6'],
   },
   {
     num: '04',
     title: 'Operaciones de última milla',
     desc: 'Ubicaciones sobre Acceso Sur, Ruta 7 y Ruta 40, a minutos de centros urbanos clave. Rutas de distribución optimizadas hacia Buenos Aires, Chile y todo Cuyo.',
+    // Map pin
+    icon: ['M12 22s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z', 'M12 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4'],
   },
 ]
+
+function ReasonsList() {
+  const [hovered, setHovered] = useState(null)
+  return (
+    <div className="flex flex-col gap-3">
+      {reasons.map((r, i) => (
+        <motion.div
+          key={r.num}
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
+          className="relative flex gap-4 p-4 border bg-theme-card overflow-hidden group cursor-default transition-all duration-300"
+          style={{ borderColor: 'var(--border)' }}
+          whileHover={{ borderColor: 'var(--border-accent)', backgroundColor: 'var(--bg-card-alt)' }}
+          onHoverStart={() => setHovered(i)}
+          onHoverEnd={() => setHovered(null)}
+        >
+          <div className="shrink-0 w-0.5 self-stretch transition-all duration-300" style={{ background: 'linear-gradient(to bottom, var(--text-accent), var(--border))' }} />
+          <div className="relative flex gap-3 items-center w-full">
+            <AnimatedIcon
+              paths={r.icon}
+              size={20}
+              strokeWidth={1.5}
+              className="shrink-0 text-theme-accent transition-transform duration-300 group-hover:scale-110"
+              isHovered={hovered === i}
+            />
+            <div>
+              <p className="text-theme text-sm font-semibold mb-1">{r.title}</p>
+              <p className="text-theme-muted text-xs leading-relaxed">{r.desc}</p>
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  )
+}
+
+function FeaturesGrid() {
+  const [hovered, setHovered] = useState(null)
+
+  const divider = (
+    <div key="__divider" className="col-span-2 flex items-center gap-2 my-0.5">
+      <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
+      <span className="text-[9px] font-semibold tracking-widest uppercase font-condensed" style={{ color: 'var(--text-subtle)' }}>Sustentabilidad</span>
+      <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
+    </div>
+  )
+
+  const tiles = FEATURES.map((item, i) => (
+    <div
+      key={item.label}
+      className="flex items-center gap-2.5 p-3 border bg-theme-card cursor-default"
+      style={{ borderColor: 'var(--border)' }}
+      onMouseEnter={() => setHovered(i)}
+      onMouseLeave={() => setHovered(null)}
+    >
+      <AnimatedIcon
+        paths={item.icon}
+        size={i < INFRA_COUNT ? 22 : 18}
+        strokeWidth={1.5}
+        className={`shrink-0 ${i < INFRA_COUNT ? 'text-theme-accent' : 'text-theme-accent/70'}`}
+        isHovered={hovered === i}
+      />
+      <span className="text-theme-muted text-xs leading-tight">{item.label}</span>
+    </div>
+  ))
+
+  return (
+    <div>
+      <p className="text-theme-accent text-[10px] font-semibold tracking-widest uppercase mb-3 font-condensed">
+        Infraestructura &amp; Sustentabilidad
+      </p>
+      <div className="grid grid-cols-2 gap-2">
+        {[...tiles.slice(0, INFRA_COUNT), divider, ...tiles.slice(INFRA_COUNT)]}
+      </div>
+    </div>
+  )
+}
 
 export default function ForCompanies() {
   return (
@@ -121,30 +223,9 @@ export default function ForCompanies() {
         <div className="grid lg:grid-cols-2 gap-5 lg:gap-8">
 
           {/* Left: 4 reasons */}
-          <div className="flex flex-col gap-3">
-            {reasons.map((r, i) => (
-              <motion.div
-                key={r.num}
-                initial={{ opacity: 0, x: -16 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
-                className="relative flex gap-4 p-4 border bg-theme-card hover:bg-theme-alt transition-all duration-300 overflow-hidden group"
-                style={{ borderColor: 'var(--border)' }}
-              >
-                <div className="shrink-0 w-0.5 self-stretch" style={{ background: 'linear-gradient(to bottom, var(--text-accent), var(--border))' }} />
-                <div className="relative">
-                  <div className="flex items-baseline gap-2 mb-1">
-                    <span className="font-accent text-theme-accent text-lg leading-none" style={{ fontWeight: 500 }}>{r.num}</span>
-                    <p className="text-theme text-sm font-semibold">{r.title}</p>
-                  </div>
-                  <p className="text-theme-muted text-xs leading-relaxed">{r.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <ReasonsList />
 
-          {/* Right: services + sustainability + CTAs */}
+          {/* Right: icon grid + CTAs */}
           <motion.div
             initial={{ opacity: 0, x: 16 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -152,45 +233,10 @@ export default function ForCompanies() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col gap-5"
           >
-            {/* Servicios */}
-            <div className="border bg-theme-card p-4" style={{ borderColor: 'var(--border-accent)' }}>
-              <p className="text-theme-accent text-[10px] font-semibold tracking-widest uppercase mb-3 font-condensed">
-                Servicios comunes a la red
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {commonServices.map((s) => (
-                  <span
-                    key={s}
-                    className="flex items-center gap-1.5 px-2.5 py-1.5 border text-theme-muted text-xs transition-all duration-200 cursor-default"
-                    style={{ borderColor: 'var(--border)', backgroundColor: 'var(--bg-card-alt)' }}
-                  >
-                    <span className="w-1 h-1 rounded-full bg-theme-accent/60 shrink-0" />
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Sustentabilidad */}
-            <div>
-              <p className="text-theme-muted text-[10px] font-semibold tracking-widest uppercase mb-2.5 font-condensed">
-                Sustentabilidad y tecnología
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {sustainabilityAttributes.map((s) => (
-                  <span
-                    key={s}
-                    className="px-2.5 py-1.5 border text-theme-muted text-xs transition-all duration-200 cursor-default"
-                    style={{ borderColor: 'var(--border)' }}
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
+            <FeaturesGrid />
 
             {/* CTAs */}
-            <div className="flex flex-wrap gap-3 mt-auto">
+            <div className="flex flex-wrap gap-3 mt-auto justify-center">
               <a
                 href="#contact"
                 className="px-6 py-3 text-xs font-bold tracking-widest uppercase transition-opacity duration-200 hover:opacity-90 font-condensed"

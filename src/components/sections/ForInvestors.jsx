@@ -12,7 +12,7 @@ const nextSteps = [
   { num: '01', text: 'Completás el formulario de contacto' },
   { num: '02', text: 'Te enviamos el brochure completo con condiciones' },
   { num: '03', text: 'Coordinamos una reunión para responder tus preguntas' },
-  { num: '04', text: 'Formalizás tu ingreso como fiduciante' },
+  { num: '04', text: 'Firmás tu contrato de participación como cuota-partista' },
 ]
 
 export default function ForInvestors() {

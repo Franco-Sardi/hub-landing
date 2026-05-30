@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import SectionFrame from '../ui/SectionFrame'
 
 function useCountUp(target, duration = 1600, start = false) {
   const [value, setValue] = useState(0)
@@ -117,9 +118,9 @@ export default function Stats() {
       id="stats"
       className="stats-section relative lg:min-h-svh flex flex-col overflow-hidden py-8 lg:py-0"
     >
-      {/* Ghost "H" — marca de agua de la identidad */}
+      {/* Ghost "H" — z-[3] para quedar encima de la línea decorativa */}
       <div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-[3]"
         aria-hidden="true"
       >
         <span
@@ -136,64 +137,48 @@ export default function Stats() {
         </span>
       </div>
 
-      {/* Marco interior — detalle premium */}
+      {/* Divisor ornamentado desktop — z-[2]: detrás del H, zona baja */}
       <div
-        className="absolute pointer-events-none"
-        style={{
-          inset: 20,
-          border: '1px solid var(--stat-deco)',
-          zIndex: 1,
-        }}
-      />
-      {/* Esquinas marcadas */}
-      {[
-        { top: 14, left: 14 },
-        { top: 14, right: 14 },
-        { bottom: 14, left: 14 },
-        { bottom: 14, right: 14 },
-      ].map((pos, i) => (
-        <div
-          key={i}
-          className="absolute pointer-events-none"
-          style={{
-            ...pos,
-            width: 18,
-            height: 18,
-            borderTop:    pos.bottom === undefined ? '2px solid var(--stat-deco-strong)' : undefined,
-            borderBottom: pos.top    === undefined ? '2px solid var(--stat-deco-strong)' : undefined,
-            borderLeft:   pos.right  === undefined ? '2px solid var(--stat-deco-strong)' : undefined,
-            borderRight:  pos.left   === undefined ? '2px solid var(--stat-deco-strong)' : undefined,
-            zIndex: 2,
-          }}
-        />
-      ))}
+        className="hidden lg:flex absolute left-0 right-0 justify-center items-center z-[2] pointer-events-none"
+        style={{ bottom: '2rem' }}
+      >
+        <div className="w-full max-w-[80vw] flex items-center gap-4 px-5 sm:px-12 xl:px-16">
+          <div className="flex-1 h-px" style={{ background: 'linear-gradient(to right, transparent, var(--stat-deco))' }} />
+          <svg width="8" height="8" viewBox="0 0 8 8">
+            <rect x="4" y="0" width="5.66" height="5.66" transform="rotate(45 4 4)" fill="none" stroke="var(--stat-deco-line)" strokeWidth="1" />
+          </svg>
+          <div className="flex-1 h-px" style={{ background: 'linear-gradient(to left, transparent, var(--stat-deco))' }} />
+        </div>
+      </div>
 
-      {/* Contenido */}
-      <div className="relative z-10 flex flex-col items-center justify-center flex-1 px-5 sm:px-12 xl:px-16">
+      <SectionFrame />
 
-        {/* Eyebrow — ornamento ◆ línea ◆ */}
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex items-center gap-3 mb-6 lg:mb-20"
+      {/* Eyebrow — fuera del contenedor centrado, arriba de la sección */}
+      <motion.div
+        initial={{ opacity: 0, y: -8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="relative z-10 flex items-center justify-center gap-3 pt-10 lg:pt-14 px-5"
+      >
+        <div className="w-16 h-px" style={{ background: 'linear-gradient(to right, transparent, var(--stat-deco))' }} />
+        <svg width="6" height="6" viewBox="0 0 6 6">
+          <rect x="3" y="0" width="4.24" height="4.24" transform="rotate(45 3 3)" fill="var(--stat-deco-strong)" />
+        </svg>
+        <span
+          className="font-display tracking-[0.45em] uppercase"
+          style={{ fontSize: '0.72rem', color: 'var(--stat-color)', opacity: 0.6, letterSpacing: '0.45em' }}
         >
-          <div className="w-16 h-px" style={{ background: 'linear-gradient(to right, transparent, var(--stat-deco))' }} />
-          <svg width="6" height="6" viewBox="0 0 6 6">
-            <rect x="3" y="0" width="4.24" height="4.24" transform="rotate(45 3 3)" fill="var(--stat-deco-strong)" />
-          </svg>
-          <span
-            className="font-display tracking-[0.45em] uppercase"
-            style={{ fontSize: '0.72rem', color: 'var(--stat-color)', opacity: 0.6, letterSpacing: '0.45em' }}
-          >
-            HUB en Números
-          </span>
-          <svg width="6" height="6" viewBox="0 0 6 6">
-            <rect x="3" y="0" width="4.24" height="4.24" transform="rotate(45 3 3)" fill="var(--stat-deco-strong)" />
-          </svg>
-          <div className="w-16 h-px" style={{ background: 'linear-gradient(to left, transparent, var(--stat-deco))' }} />
-        </motion.div>
+          HUB en Números
+        </span>
+        <svg width="6" height="6" viewBox="0 0 6 6">
+          <rect x="3" y="0" width="4.24" height="4.24" transform="rotate(45 3 3)" fill="var(--stat-deco-strong)" />
+        </svg>
+        <div className="w-16 h-px" style={{ background: 'linear-gradient(to left, transparent, var(--stat-deco))' }} />
+      </motion.div>
+
+      {/* Contenido — z-10, stats centrados */}
+      <div className="relative z-10 flex flex-col items-center justify-center flex-1 px-5 sm:px-12 xl:px-16">
 
         {/* Grid de stats */}
         <div className="w-full max-w-[95vw] 3xl:max-w-[1700px] grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 lg:gap-0">
@@ -208,20 +193,14 @@ export default function Stats() {
           ))}
         </div>
 
-        {/* Divisor central ornamentado */}
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          whileInView={{ opacity: 1, scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-8 lg:mt-20 w-full max-w-[80vw] flex items-center gap-4 origin-center"
-        >
+        {/* Divisor mobile — en flujo, oculto en desktop */}
+        <div className="lg:hidden w-full max-w-[80vw] flex items-center gap-4 mt-8">
           <div className="flex-1 h-px" style={{ background: 'linear-gradient(to right, transparent, var(--stat-deco))' }} />
           <svg width="8" height="8" viewBox="0 0 8 8">
             <rect x="4" y="0" width="5.66" height="5.66" transform="rotate(45 4 4)" fill="none" stroke="var(--stat-deco-line)" strokeWidth="1" />
           </svg>
           <div className="flex-1 h-px" style={{ background: 'linear-gradient(to left, transparent, var(--stat-deco))' }} />
-        </motion.div>
+        </div>
 
         {/* Tagline */}
         <motion.p
@@ -229,7 +208,7 @@ export default function Stats() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.9 }}
-          className="font-condensed text-center mt-5 tracking-[0.15em] uppercase"
+          className="font-condensed text-center mt-4 lg:mt-14 tracking-[0.15em] uppercase"
           style={{ fontSize: '0.72rem', color: 'var(--stat-color)', opacity: 0.50, maxWidth: '50ch' }}
         >
           Red de infraestructura y servicios en los principales corredores industriales de Mendoza

@@ -164,6 +164,32 @@
 }
 
 /* ══════════════════════════════════════════════════════════════════════
+   Transición suave entre secciones — elimina el corte abrupto
+   ══════════════════════════════════════════════════════════════════════ */
+.section-fade-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--bg-secondary, #011823));
+  pointer-events: none;
+  z-index: 0;
+}
+.section-fade-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to top, transparent, var(--bg-secondary, #011823));
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
    Ghost "H" — marca de agua (ahora en Archivo, la tipografía de marca)
    ══════════════════════════════════════════════════════════════════════ */
 .hub-bg-h {

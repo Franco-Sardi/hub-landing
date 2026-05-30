@@ -172,11 +172,11 @@ export default function Projects() {
         </div>
 
         {/* ── Right: Preview + project list ───────────────── */}
-        <div className="flex flex-col flex-1 min-h-0 min-w-0 gap-2">
+        <div className="flex flex-col flex-1 min-w-0 gap-2">
 
           <div
             className="relative shrink-0 overflow-hidden border"
-            style={{ height: '35%', borderColor: 'var(--border-accent)' }}
+            style={{ height: 'clamp(140px, 26vh, 190px)', borderColor: 'var(--border-accent)' }}
           >
             <AnimatePresence mode="wait">
               <motion.img
@@ -236,7 +236,7 @@ export default function Projects() {
             </div>
           </div>
 
-          <div className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-1 no-scrollbar">
+          <div className="flex flex-col gap-1">
             {projects.map((project, i) => {
               const isActive = activeId === project.id
               const isLocked = lockedId === project.id

@@ -53,12 +53,12 @@ export const projects = [
     units: 'Nave de Almacenamiento · Área Operativa y Muelles',
     status: 'En desarrollo',
     statusColor: 'ink',
-    description: 'Sobre Ruta 7 en el corredor este, con salida directa hacia Buenos Aires y el Mercosur. Nave de almacenamiento con área operativa, muelles y estacionamientos segregados.',
+    description: 'Con salida a la Ruta 7 en el corredor este, acceso directo hacia Buenos Aires y el Mercosur. Nave de almacenamiento con área operativa, muelles y playas de estacionamiento diferenciado.',
     features: [
       'Nave de Almacenamiento',
       'Área Operativa y Muelles',
       'Playa de Maniobras',
-      'Estacionamientos Segregados',
+      'Playas de Estacionamiento Diferenciado',
       'Área Administrativa y Servicios',
     ],
     image: sfdmEsteImg,
@@ -132,7 +132,7 @@ export const projects = [
     units: 'Nave de Almacenamiento · Área Operativa y Muelles',
     status: 'En desarrollo',
     statusColor: 'ink',
-    description: 'Nave de gran capacidad sobre Ruta 7 con área operativa, muelles y estacionamientos segregados. Acceso directo al corredor bioceánico.',
+    description: 'Nave de gran capacidad con salida a la Ruta 7, área operativa, muelles y playas de estacionamiento diferenciado. Acceso directo al corredor bioceánico.',
     features: [
       'Nave de Almacenamiento',
       'Área Operativa y Muelles',

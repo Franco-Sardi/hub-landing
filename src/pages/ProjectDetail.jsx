@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { motion, AnimatePresence } from 'framer-motion'
 import { projects } from '../data/projects'
 import ProjectMap from '../components/ui/ProjectMap'
@@ -152,7 +153,6 @@ export default function ProjectDetail() {
   const { slug } = useParams()
   const project = projects.find((p) => p.slug === slug)
 
-  // Allow scrolling on detail pages (overrides Landing's overflow:hidden)
   useEffect(() => {
     document.body.style.overflow = 'auto'
     document.documentElement.style.overflow = 'auto'
@@ -199,6 +199,13 @@ export default function ProjectDetail() {
 
   return (
     <div className="bg-theme min-h-screen font-body overflow-x-hidden">
+      <Helmet>
+        <title>{project.name} — HUB Parques Industriales · Mendoza</title>
+        <meta name="description" content={`HUB ${project.name}: ${project.area} m² de terreno en ${project.location}. ${project.description}`} />
+        <meta property="og:title" content={`${project.name} — HUB Parques Industriales`} />
+        <meta property="og:description" content={`${project.area} m² · ${project.location} · ${project.status}`} />
+        <link rel="canonical" href={`https://hubmza.com.ar/proyecto/${project.slug}`} />
+      </Helmet>
 
       {/* ── Hero ──────────────────────────────────────────────────── */}
       <div className="relative h-[50vh] sm:h-[70vh] overflow-hidden">
