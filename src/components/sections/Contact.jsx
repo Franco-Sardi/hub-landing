@@ -36,7 +36,6 @@ export default function Contact() {
         body: JSON.stringify({
           nombre: data.name,
           email: data.email,
-          telefono: data.phone || '—',
           interes: data.interest,
           mensaje: data.message || '—',
         }),
@@ -129,16 +128,13 @@ export default function Contact() {
                   <Field label="Email *" type="email" error={errors.email && 'Email inválido'}
                     {...register('email', { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })} />
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <Field label="Teléfono" type="tel" {...register('phone')} />
-                  <Field label="Me interesa…" as="select" error={errors.interest && 'Requerido'}
-                    {...register('interest', { required: true })}>
-                    <option value="" />
-                    <option value="participate">Participar como inversor</option>
-                    <option value="company">Espacio logístico</option>
-                    <option value="both">Ambas opciones</option>
-                  </Field>
-                </div>
+                <Field label="Me interesa…" as="select" error={errors.interest && 'Requerido'}
+                  {...register('interest', { required: true })}>
+                  <option value="" />
+                  <option value="participate">Participar como inversor</option>
+                  <option value="company">Espacio logístico</option>
+                  <option value="both">Ambas opciones</option>
+                </Field>
                 <Field label="Mensaje (opcional)" as="textarea" rows={4} {...register('message')} />
                 {submitError && <p className="text-red-400/80 text-xs -mb-1">{submitError}</p>}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-1">

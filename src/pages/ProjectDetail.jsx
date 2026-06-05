@@ -113,8 +113,8 @@ import malabiaCentro2 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIA
 
 const PROJECT_GALLERY = {
   1: [anchorenaMain, anchorenaCoworking, anchorenaPlanimetria],
-  2: [sfdmPlantaVer01, sfdmEsteWide, sfdmConcepto],
-  3: [sfdmOesteDetalle, sfdmRender, sfdmPlanta],
+  2: [sfdmOesteDetalle, sfdmRender, sfdmPlanta],
+  3: [sfdmPlantaVer01, sfdmEsteWide, sfdmConcepto],
   4: [crpPng, crpAereo, crpZonificacion],
   5: [malabiaAereo, malabiaCentro1, malabiaCentro2],
 }
@@ -127,13 +127,13 @@ const PROJECT_DIFFERENTIAL = {
     desc: 'Espacios de trabajo profesional integrados al parque, disponibles para empresas inquilinas e inversores.',
   },
   2: {
-    image: sfdmEsteDetalle,
+    image: sfdmOesteDetalle,
     tag: 'Hub Logístico',
     label: 'NAVE LOGÍSTICA TRIPLE A',
     desc: '20.000 m² de espacio cubierto con área operativa, muelles de carga y estacionamientos diferenciados para tráfico pesado y liviano.',
   },
   3: {
-    image: sfdmOesteDetalle,
+    image: sfdmEsteDetalle,
     tag: 'Hub Logístico',
     label: 'NAVE LOGÍSTICA TRIPLE A',
     desc: '40.000 m² de espacio cubierto — la nave de mayor escala de la red HUB. Módulos adaptables desde 1.000 m² con muelles de carga dedicados.',

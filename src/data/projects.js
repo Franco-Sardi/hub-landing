@@ -1,6 +1,6 @@
 import anchorenaImg from '../assets/anchorena-planimetria-watercolor.png'
-import sfdmEsteImg from '../assets/hubzip/__MACOSX/Links/Vista aerea SFDM Oeste.jpg'
-import sfdmOesteImg from '../assets/hubzip/__MACOSX/Links/Vista aerea SFDM Este.jpg'
+import sfdmEsteImg from '../assets/hubzip/__MACOSX/Links/Vista aerea SFDM Este.jpg'
+import sfdmOesteImg from '../assets/hubzip/__MACOSX/Links/Vista aerea SFDM Oeste.jpg'
 import rodriguezPenaImg from '../assets/rodriguez-pena-aerial.jpg'
 import malabiaImg from '../assets/malabia.png'
 

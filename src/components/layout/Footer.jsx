@@ -21,24 +21,11 @@ export default function Footer() {
         <div className="lg:hidden py-8">
           <div className="flex items-center justify-between mb-6">
             <Logo size="sm" />
-            <div className="flex gap-2">
-              {['LinkedIn', 'Instagram'].map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  className="text-[9px] text-theme-muted border px-3 py-1.5 tracking-widest uppercase font-condensed hover:text-theme-accent transition-colors"
-                  style={{ borderColor: 'var(--border)' }}
-                >
-                  {s}
-                </a>
-              ))}
-            </div>
           </div>
 
           <div className="flex flex-col gap-0 border-t" style={{ borderColor: 'var(--border)' }}>
             {[
               { label: 'Email',    value: 'contacto@hubmza.com.ar' },
-              { label: 'Tel',      value: '+54 261 000-0000' },
               { label: 'Sede',     value: 'Mendoza, Argentina' },
             ].map((item) => (
               <div key={item.label} className="flex items-center justify-between py-3 border-b" style={{ borderColor: 'var(--border)' }}>
@@ -97,21 +84,8 @@ export default function Footer() {
               <h4 className="text-theme-muted text-[10px] font-semibold tracking-widest uppercase mb-3 font-condensed">Contacto</h4>
               <ul className="space-y-1.5 text-theme-muted/80 text-xs">
                 <li>contacto@hubmza.com.ar</li>
-                <li>+54 261 000-0000</li>
                 <li>Mendoza, Argentina</li>
               </ul>
-              <div className="flex gap-2 mt-3">
-                {['LinkedIn', 'Instagram'].map((social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="text-[10px] text-theme-muted/60 border px-2.5 py-1 tracking-widest uppercase hover:text-theme-accent transition-all duration-200 font-condensed"
-                    style={{ borderColor: 'var(--border)' }}
-                  >
-                    {social}
-                  </a>
-                ))}
-              </div>
             </div>
           </div>
 
