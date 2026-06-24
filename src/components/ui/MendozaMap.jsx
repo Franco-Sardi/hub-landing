@@ -8,10 +8,10 @@ const MARKER_COLOR = '#C7C8CA'
 // Posiciones como % de la imagen original (se recalculan al llenar el contenedor)
 const PARK_POS = {
   1: { left: 38.8, top: 61.5, label: 'ANCHORENA',        lx:  58, ly: -2 },
-  2: { left: 68.8, top: 62.3, label: 'SFDM ESTE',        lx: -82, ly: -2 },
+  2: { left: 77.7, top: 67.3, label: 'SFDM ESTE',        lx: -82, ly: -2 },
   3: { left: 39.8, top: 52.1, label: 'MALABIA',          lx:  58, ly: -2 },
   4: { left: 58.1, top: 59.2, label: 'RODRÍGUEZ PEÑA',   lx:  58, ly: -2 },
-  5: { left: 77.7, top: 67.3, label: 'SFDM OESTE',       lx: -82, ly: -2 },
+  5: { left: 68.8, top: 62.3, label: 'SFDM OESTE',       lx: -82, ly: -2 },
 }
 
 // Dimensiones naturales de la imagen recortada

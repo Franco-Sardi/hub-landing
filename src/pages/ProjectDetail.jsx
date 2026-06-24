@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async'
 import { motion, AnimatePresence } from 'framer-motion'
 import { projects } from '../data/projects'
 import ProjectMap from '../components/ui/ProjectMap'
+import WhatsAppFab from '../components/ui/WhatsAppFab'
 
 function Lightbox({ images, index, onClose, onPrev, onNext }) {
   useEffect(() => {
@@ -519,6 +520,8 @@ export default function ProjectDetail() {
           />
         )}
       </AnimatePresence>
+
+      <WhatsAppFab />
     </div>
   )
 }

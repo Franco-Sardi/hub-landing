@@ -14,6 +14,7 @@ import ForCompanies from './components/sections/ForCompanies'
 import ForInvestors from './components/sections/ForInvestors'
 import Contact from './components/sections/Contact'
 import ProjectDetail from './pages/ProjectDetail'
+import WhatsAppFab from './components/ui/WhatsAppFab'
 
 const SECTIONS = [
   { id: 'intro',     label: '' },
@@ -135,6 +136,8 @@ function Landing() {
       ))}
 
       <Footer />
+
+      {!onIntro && <WhatsAppFab />}
     </div>
   )
 }
