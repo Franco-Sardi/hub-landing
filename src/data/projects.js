@@ -1,8 +1,16 @@
-import anchorenaImg from '../assets/anchorena-planimetria-watercolor.png'
-import sfdmEsteImg from '../assets/hubzip/__MACOSX/Links/Vista aerea SFDM Este.jpg'
-import sfdmOesteImg from '../assets/hubzip/__MACOSX/Links/Vista aerea SFDM Oeste.jpg'
-import rodriguezPenaImg from '../assets/rodriguez-pena-aerial.jpg'
-import malabiaImg from '../assets/malabia.png'
+import anchorenaImg from '../assets/opt/anchorena-planimetria-watercolor.webp'
+import sfdmEsteImg from '../assets/opt/sfdm-este-aerial.webp'
+import sfdmOesteImg from '../assets/opt/sfdm-oeste-aerial.webp'
+import rodriguezPenaImg from '../assets/opt/rodriguez-pena-aerial.webp'
+import malabiaImg from '../assets/opt/malabia-plano.webp'
+
+// Thumbs 900w — las cards de la landing muestran esto en h-44 (176px).
+// Sin esto se bajaba el aereo completo (hasta 3,4 MB) para un recuadro chico.
+import anchorenaThumb from '../assets/opt/anchorena-thumb.webp'
+import sfdmEsteThumb from '../assets/opt/sfdm-este-thumb.webp'
+import sfdmOesteThumb from '../assets/opt/sfdm-oeste-thumb.webp'
+import rodriguezPenaThumb from '../assets/opt/rodriguez-pena-thumb.webp'
+import malabiaThumb from '../assets/opt/malabia-thumb.webp'
 
 // ══════════════════════════════════════════════════════════════════════════
 // Datos oficiales — extraídos del Brochure 10 HUB 2026.
@@ -37,6 +45,7 @@ export const projects = [
       'Tránsito Liviano diferenciado',
     ],
     image: anchorenaImg,
+    thumb: anchorenaThumb,
   },
   {
     id: 2,
@@ -62,6 +71,7 @@ export const projects = [
       'Área Administrativa y Servicios',
     ],
     image: sfdmEsteImg,
+    thumb: sfdmEsteThumb,
   },
   {
     id: 3,
@@ -89,6 +99,7 @@ export const projects = [
       'Tránsito Liviano diferenciado',
     ],
     image: malabiaImg,
+    thumb: malabiaThumb,
   },
   {
     id: 4,
@@ -116,6 +127,7 @@ export const projects = [
       'Oficinas y Servicios',
     ],
     image: rodriguezPenaImg,
+    thumb: rodriguezPenaThumb,
   },
   {
     id: 5,
@@ -141,6 +153,7 @@ export const projects = [
       'Área Administrativa y Servicios',
     ],
     image: sfdmOesteImg,
+    thumb: sfdmOesteThumb,
   },
 ]
 

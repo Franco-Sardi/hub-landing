@@ -182,6 +182,8 @@ export default function About() {
                   >
                     <img
                       src={f.logo}
+                      loading="lazy"
+                      decoding="async"
                       alt={f.name}
                       className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
                     />
@@ -228,6 +230,8 @@ export default function About() {
                   <>
                     <img
                       src={p.logo}
+                      loading="lazy"
+                      decoding="async"
                       alt={p.name}
                       className="max-h-8 max-w-[80px] object-contain opacity-70 group-hover:opacity-100 transition-opacity"
                       style={{ filter: 'brightness(1.2) grayscale(0.3)' }}

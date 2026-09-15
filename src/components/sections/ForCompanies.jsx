@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import SectionFrame from '../ui/SectionFrame'
 import AnimatedIcon from '../ui/AnimatedIcon'
-import malabiaImg from '../../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 01.webp'
+import malabiaImg from '../../assets/opt/malabia-centro-comercial-01.webp'
 
 // Grilla unificada: infra (0-3) + sustain (4-7), separadas por divider en el render
 const FEATURES = [
@@ -185,6 +185,8 @@ export default function ForCompanies() {
           <div className="relative h-52 lg:h-56 overflow-hidden">
             <img
               src={malabiaImg}
+              loading="lazy"
+              decoding="async"
               alt="HUB Nave Industrial — Centro de Servicios"
               className="w-full h-full object-cover"
               style={{ filter: 'brightness(0.55) saturate(0.85)' }}

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import mapDark from '../../assets/mapa-dark-v2.png'
-import mapLight from '../../assets/mapa-acuarela.png'
+import mapLight from '../../assets/opt/mapa-acuarela.webp'
 
 const MARKER_COLOR = '#C7C8CA'
 
@@ -294,6 +294,8 @@ export default function MendozaMap({ projects, activeId, onHover, onSelect, onNa
       <img
         src={mapImg}
         alt="Mapa red HUB Mendoza"
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 w-full h-full"
         style={{ objectFit: 'cover', objectPosition: 'center', userSelect: 'none', pointerEvents: 'none' }}
         draggable={false}

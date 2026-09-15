@@ -5,6 +5,8 @@ export default function Footer() {
     <img
       src="/hub-logo-oficial.png"
       alt="HUB"
+      loading="lazy"
+      decoding="async"
       style={{
         height: size === 'lg' ? '2rem' : '1.4rem',
         width: 'auto',

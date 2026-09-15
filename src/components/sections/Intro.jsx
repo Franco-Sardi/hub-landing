@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import presentacionImg from '../../assets/HUB MZA - Anchorena - 02.png'
-
-const FRAME_BG = presentacionImg
+// Vive en /public (no en assets) para que index.html pueda precargarlo con una
+// ruta estable, antes de que baje el bundle. Ver <link rel="preload"> en index.html.
+const FRAME_BG = '/intro-anchorena.webp'
 // El logo oficial (navy sobre transparente) → invertido a silver para fondo oscuro
 const LOGO_FILTER = 'brightness(0) invert(79%)'
 
@@ -33,31 +33,31 @@ export default function Intro() {
       style={{ backgroundColor: '#022A3A' }}
     >
       {/* ── Fondo foto parque ─────────────────────────────────────── */}
-      <AnimatePresence>
-        {showBg && (
-          <motion.div
-            key="bg"
-            className="absolute inset-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2.2, ease: 'easeInOut' }}
-          >
-            <img
-              src={FRAME_BG}
-              alt=""
-              className="w-full h-full object-cover"
-              style={{ filter: 'brightness(0.32)', objectPosition: 'center top' }}
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  'radial-gradient(ellipse 110% 95% at 50% 50%, transparent 35%, rgba(2,42,58,0.78) 100%)',
-              }}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <motion.div
+        className="absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showBg ? 1 : 0 }}
+        transition={{ duration: 2.2, ease: 'easeInOut' }}
+      >
+        {/* El brightness(0.32) viene horneado en el asset: un filter CSS sobre una imagen
+            a pantalla completa obliga al compositor a refiltrar el bitmap entero mientras
+            el contenedor anima su opacidad. */}
+        <img
+          src={FRAME_BG}
+          alt=""
+          fetchPriority="high"
+          decoding="async"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: 'center top' }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 110% 95% at 50% 50%, transparent 35%, rgba(2,42,58,0.78) 100%)',
+          }}
+        />
+      </motion.div>
 
       {/* ── Logo oficial + tagline ────────────────────────────────── */}
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10">

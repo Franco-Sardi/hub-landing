@@ -87,7 +87,7 @@ export default function Projects() {
               }}
             >
               <div className="relative h-44 overflow-hidden">
-                <img src={project.image} alt={project.name} className="w-full h-full object-cover" />
+                <img src={project.thumb || project.image} alt={project.name} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-gradient-to-t from-hub-ink-deep/95 via-hub-ink-deep/40 to-transparent" />
                 <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2">
                   <div>
@@ -181,7 +181,7 @@ export default function Projects() {
             <AnimatePresence mode="wait">
               <motion.img
                 key={active.id}
-                src={active.image}
+                src={active.thumb || active.image}
                 alt={active.name}
                 className="absolute inset-0 w-full h-full object-cover bg-hub-dark"
                 initial={{ opacity: 0, scale: 1.04 }}

@@ -2,8 +2,13 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import SectionFrame from '../ui/SectionFrame'
 import { useForm } from 'react-hook-form'
+import { track } from '../../lib/analytics'
 
 const ENDPOINT = 'https://formspree.io/f/mzdyjerz'
+
+// El value del select -> sufijo del evento. Va crudo al nombre del evento; el
+// tablero traduce. Si se cambia el copy de una <option>, esto no se toca.
+const INTERES_EVENTO = { participate: 'inversor', company: 'empresa', both: 'ambas' }
 
 function Field({ label, error, as: Tag = 'input', children, ...props }) {
   return (
@@ -40,7 +45,11 @@ export default function Contact() {
           mensaje: data.message || '—',
         }),
       })
-      if (res.ok) { setSent(true); reset() }
+      if (res.ok) {
+        setSent(true)
+        reset()
+        track(`consulta:${INTERES_EVENTO[data.interest] || 'otra'}`)
+      }
       else setSubmitError('Error al enviar. Escribinos a contacto@hubmza.com.ar')
     } catch {
       setSubmitError('Error de red. Intentá de nuevo.')

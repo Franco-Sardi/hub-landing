@@ -23,3 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+
+# Claude Code — contexto local, no compartir en repo
+CLAUDE.local.md
+.claude/
+docs/PENDIENTES.md
+docs/SOP.md

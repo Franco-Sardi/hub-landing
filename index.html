@@ -72,6 +72,21 @@
          · Roboto / Roboto Condensed — tipografía 02 (Google Fonts, idéntica).
          · Archivo — sustituto libre de Trade Gothic LT Std Bold Extended (tipo. 01).
          · Space Grotesk — sustituto libre de PP Neue Montreal (tipo. 03). -->
+    <!-- Fondo del intro: es el LCP de la landing. Se precarga durante el parseo del
+         HTML (antes que el bundle) en vez de esperar a que React monte la seccion.
+         Solo en "/": en /proyecto/:slug el intro no existe y seria 500 KB al pedo. -->
+    <script>
+      if (location.pathname === '/') {
+        var l = document.createElement('link')
+        l.rel = 'preload'; l.as = 'image'; l.fetchPriority = 'high'
+        l.href = '/intro-anchorena.webp'
+        document.head.appendChild(l)
+      }
+    </script>
+    <!-- Umami autoalojado. El data-website-id es publico por diseno: viaja en el HTML
+         de todos los sitios de la agencia, no es un secreto y no va en un .env. -->
+    <script defer src="https://stats.sbflows.com/script.js"
+            data-website-id="7e16c460-f2e9-49bd-b26f-dbfb0095e9dd"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Roboto+Condensed:wght@300;400;500;700&family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />

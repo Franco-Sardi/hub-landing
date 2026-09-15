@@ -95,22 +95,23 @@ const statusStyle = {
 }
 
 // Per-project gallery images — Anchorena
-import anchorenaCoworking from '../assets/anchorena-coworking-watercolor.png'
-import anchorenaPlanimetria from '../assets/anchorena-planimetria-watercolor.png'
-import anchorenaMain from '../assets/anchorena.png'
-import sfdmEsteDetalle from '../assets/SanFranciscoEste.png'
-import sfdmEsteWide from '../assets/SanFranciscoEste-wide.png'
-import sfdmOesteDetalle from '../assets/SanFranciscoOeste.png'
-import sfdmRender from '../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B - RENDER.webp'
-import sfdmPlantaVer01 from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS PLANTA.webp'
-import sfdmPlanta from '../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B.webp'
-import sfdmConcepto from '../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS CONCEPTO - 2.webp'
-import crpAereo from '../assets/CRP - PROYECTO NAVE LOGÍSTICA - RENDER AEREO.webp'
-import crpZonificacion from '../assets/CRP - PROYECTO NAVE LOGÍSTICA - ZONIFICACIÓN- tipo D.webp'
-import crpPng from '../assets/rodriguezpena.png'
-import malabiaAereo from '../assets/HUB MZA - MALABIA - RENDER AEREO.webp'
-import malabiaCentro1 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 01.webp'
-import malabiaCentro2 from '../assets/HUB MZA - MALABIA - RENDER CENTRO COMERCIAL 02.webp'
+import anchorenaCoworking from '../assets/opt/anchorena-coworking-watercolor.webp'
+import anchorenaPlanimetria from '../assets/opt/anchorena-planimetria-watercolor.webp'
+import anchorenaMain from '../assets/opt/anchorena-plano.webp'
+import sfdmEsteDetalle from '../assets/opt/SanFranciscoEste-plano.webp'
+import sfdmEsteWide from '../assets/opt/SanFranciscoEste-wide.webp'
+import sfdmOesteDetalle from '../assets/opt/SanFranciscoOeste-plano.webp'
+import sfdmRender from '../assets/opt/sfdm-terreno-02-render.webp'
+import sfdmPlantaVer01 from '../assets/opt/sfdm-renders-planta.webp'
+import sfdmPlanta from '../assets/opt/sfdm-terreno-02.webp'
+import sfdmConcepto from '../assets/opt/sfdm-render-concepto-2.webp'
+import crpAereo from '../assets/opt/crp-render-aereo.webp'
+import crpZonificacion from '../assets/opt/crp-zonificacion-tipo-d.webp'
+import crpPng from '../assets/opt/rodriguezpena-plano.webp'
+import malabiaAereo from '../assets/opt/malabia-render-aereo.webp'
+import malabiaCentro1 from '../assets/opt/malabia-centro-comercial-01.webp'
+import malabiaCentro2 from '../assets/opt/malabia-centro-comercial-02.webp'
+import { track } from '../lib/analytics'
 
 const PROJECT_GALLERY = {
   1: [anchorenaMain, anchorenaCoworking, anchorenaPlanimetria],
@@ -216,6 +217,8 @@ export default function ProjectDetail() {
         <motion.img
           src={project.image}
           alt={project.name}
+          fetchPriority="high"
+          decoding="async"
           className="w-full h-full object-cover"
           style={{ objectPosition: project.heroPosition || 'center' }}
           initial={{ scale: 1.08 }}
@@ -307,6 +310,8 @@ export default function ProjectDetail() {
                   <div className="relative overflow-hidden" style={{ maxHeight: '340px' }}>
                     <img
                       src={differential.image}
+                      loading="lazy"
+                      decoding="async"
                       alt={differential.label}
                       className="w-full object-cover"
                     />
@@ -358,6 +363,7 @@ export default function ProjectDetail() {
             <div className="flex flex-col gap-2">
               <Link
                 to="/#contact"
+                onClick={() => track(`parque-cta:${project.slug}`)}
                 className="py-3 text-center text-xs font-semibold tracking-widest uppercase transition-opacity duration-200 block hover:opacity-90 font-condensed"
                 style={{ backgroundColor: 'var(--text-accent)', color: 'var(--bg-primary)' }}
               >
@@ -450,6 +456,8 @@ export default function ProjectDetail() {
                   <img
                     src={src}
                     alt={`Vista ${i + 1}`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   {i === 3 && gallery.length > 4 && (
@@ -505,7 +513,7 @@ export default function ProjectDetail() {
           </div>
           <div className="flex items-center gap-4">
             <Link to="/" className="text-theme-subtle text-xs hover:text-theme-muted transition-colors">← Inicio</Link>
-            <a href="/#contact" className="text-hub-electric text-xs hover:underline">Contacto</a>
+            <a href="/#contact" onClick={() => track(`parque-cta:${project.slug}`)} className="text-hub-electric text-xs hover:underline">Contacto</a>
           </div>
         </div>
       </footer>

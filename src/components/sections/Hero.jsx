@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import anchorenaImg from '../../assets/WhatsApp Image 2026-05-06 at 7.50.21 PM (1).jpeg'
-import sfdmEsteImg from '../../assets/HUB MZA - SFDM - Ante proyecto - TERRENO 02 - render conceptual - Ver 01-B - RENDER.webp'
-import sfdmOesteImg from '../../assets/HUB MZA - SFDM - Ante proyecto - ver 01 - RENDERS CONCEPTO - 2.webp'
-import rodriguezPenaImg from '../../assets/CRP - PROYECTO NAVE LOGÍSTICA - RENDER AEREO.webp'
-import malabiaImg from '../../assets/HUB MZA - MALABIA - RENDER AEREO.webp'
+import sfdmEsteImg from '../../assets/opt/sfdm-terreno-02-render.webp'
+import sfdmOesteImg from '../../assets/opt/sfdm-render-concepto-2.webp'
+import rodriguezPenaImg from '../../assets/opt/crp-render-aereo.webp'
+import malabiaImg from '../../assets/opt/malabia-render-aereo.webp'
 
 const slides = [
   { id: 0, image: anchorenaImg,      location: 'HUB 01 · Anchorena',                    area: '84.025 m² terreno', position: 'center top' },

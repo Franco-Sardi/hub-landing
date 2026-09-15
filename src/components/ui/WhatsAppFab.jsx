@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import { track } from '../../lib/analytics'
 
 const PHONE = '5492617697640'
 const MESSAGE = 'Hola! Vengo desde el sitio web de HUB y quiero más información.'
@@ -16,6 +18,9 @@ function WhatsAppIcon({ className }) {
 export default function WhatsAppFab() {
   const [hidden, setHidden] = useState(false)
   const [hovered, setHovered] = useState(false)
+  // El FAB se monta en la landing y en la ficha de parque; el origen sale de la ruta.
+  const { pathname } = useLocation()
+  const origen = pathname.startsWith('/proyecto/') ? pathname.split('/')[2] || 'home' : 'home'
 
   return (
     <AnimatePresence>
@@ -40,8 +45,11 @@ export default function WhatsAppFab() {
             ✕
           </button>
 
+          {/* Umami usa sendBeacon: el evento sobrevive a la navegacion, no hace falta
+              preventDefault ni esperar la promesa. */}
           <a
             href={WA_URL}
+            onClick={() => track(`whatsapp:${origen}`)}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Escribinos por WhatsApp"

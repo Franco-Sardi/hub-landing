@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, lazy, Suspense } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { ThemeProvider } from './context/theme'
 import AuthGate from './components/auth/AuthGate'
@@ -13,8 +13,9 @@ import Projects from './components/sections/Projects'
 import ForCompanies from './components/sections/ForCompanies'
 import ForInvestors from './components/sections/ForInvestors'
 import Contact from './components/sections/Contact'
-import ProjectDetail from './pages/ProjectDetail'
+const ProjectDetail = lazy(() => import('./pages/ProjectDetail'))
 import WhatsAppFab from './components/ui/WhatsAppFab'
+import { track } from './lib/analytics'
 
 const SECTIONS = [
   { id: 'intro',     label: '' },
@@ -30,22 +31,50 @@ const SECTIONS = [
 
 const PAGES = [Intro, Hero, About, Stats, ForCompanies, Projects, ForInvestors, Model, Contact]
 
+// Secciones que se reportan a Umami. Van con el id crudo en ingles a proposito: el
+// tablero traduce, asi un retoque de copy no rompe el panel del cliente. Fuera quedan
+// intro, hero y contact — son el 100% de las visitas o no informan nada.
+const SECCIONES_MEDIDAS = new Set(['about', 'companies', 'projects', 'investors', 'model'])
+const DWELL_MS = 3000
+
 // Detecta sección activa por IntersectionObserver sobre el viewport (scroll normal)
 function useActiveSection() {
   const [active, setActive] = useState(0)
 
   useEffect(() => {
+    const emitidas = new Set()   // una vez por carga: el modulo se remonta en cada visita
+    const pendientes = new Map() // dwell en curso, por id de seccion
+
     const observers = SECTIONS.map((s, index) => {
       const el = document.getElementById(s.id)
       if (!el) return null
       const observer = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setActive(index) },
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActive(index)
+            // Sin el dwell, alguien que scrollea hasta el pie dispara las nueve
+            // secciones de una y el numero no significa nada.
+            if (SECCIONES_MEDIDAS.has(s.id) && !emitidas.has(s.id) && !pendientes.has(s.id)) {
+              pendientes.set(s.id, setTimeout(() => {
+                pendientes.delete(s.id)
+                emitidas.add(s.id)
+                track(`seccion:${s.id}`)
+              }, DWELL_MS))
+            }
+          } else if (pendientes.has(s.id)) {
+            clearTimeout(pendientes.get(s.id))
+            pendientes.delete(s.id)
+          }
+        },
         { threshold: 0.3, rootMargin: '-10% 0px -10% 0px' }
       )
       observer.observe(el)
       return observer
     })
-    return () => observers.forEach((o) => o?.disconnect())
+    return () => {
+      observers.forEach((o) => o?.disconnect())
+      pendientes.forEach(clearTimeout)
+    }
   }, [])
 
   return active
@@ -147,7 +176,14 @@ export default function App() {
     <ThemeProvider>
       <AuthGate>
         <Routes>
-          <Route path="/proyecto/:slug" element={<ProjectDetail />} />
+          <Route
+            path="/proyecto/:slug"
+            element={
+              <Suspense fallback={<div className="min-h-svh" style={{ backgroundColor: '#022A3A' }} />}>
+                <ProjectDetail />
+              </Suspense>
+            }
+          />
           <Route path="*" element={<Landing />} />
         </Routes>
       </AuthGate>

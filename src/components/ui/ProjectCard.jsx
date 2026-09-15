@@ -18,7 +18,9 @@ export default function ProjectCard({ project, index }) {
       <div className="relative h-44 bg-hub-black/60 overflow-hidden">
         {project.image ? (
           <img
-            src={project.image}
+            src={project.thumb || project.image}
+            loading="lazy"
+            decoding="async"
             alt={project.name}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             style={{ filter: 'brightness(0.55) saturate(0.7)' }}
