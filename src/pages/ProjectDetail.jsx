@@ -205,7 +205,10 @@ export default function ProjectDetail() {
   return (
     <div className="bg-theme min-h-screen font-body overflow-x-hidden">
       <Helmet>
-        <title>{project.name} — HUB Parques Industriales · Mendoza</title>
+        {/* Un solo hijo string, a proposito: React 19 solo llena un <title> hoisteado
+            si su children es un string unico. Partido en expresion + texto literal
+            llegan dos children y React emite el <title> VACIO. */}
+        <title>{`${project.name} — HUB Parques Industriales · Mendoza`}</title>
         <meta name="description" content={`HUB ${project.name}: ${project.area} m² de terreno en ${project.location}. ${project.description}`} />
         <meta property="og:title" content={`${project.name} — HUB Parques Industriales`} />
         <meta property="og:description" content={`${project.area} m² · ${project.location} · ${project.status}`} />
