@@ -16,6 +16,7 @@ import Contact from './components/sections/Contact'
 const ProjectDetail = lazy(() => import('./pages/ProjectDetail'))
 import WhatsAppFab from './components/ui/WhatsAppFab'
 import { track } from './lib/analytics'
+import Privacidad from './pages/Privacidad'
 
 const SECTIONS = [
   { id: 'intro',     label: '' },
@@ -184,6 +185,7 @@ export default function App() {
               </Suspense>
             }
           />
+          <Route path="/privacidad" element={<Privacidad />} />
           <Route path="*" element={<Landing />} />
         </Routes>
       </AuthGate>

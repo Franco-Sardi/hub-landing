@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 export default function Footer() {
   const year = new Date().getFullYear()
 
@@ -41,7 +42,7 @@ export default function Footer() {
             <span className="text-theme-muted/50 text-[10px]">© {year} HUB · Mendoza</span>
             <div className="flex gap-4">
               <a href="#" className="text-theme-muted/60 text-[10px] hover:text-theme-accent transition-colors">Términos</a>
-              <a href="#" className="text-theme-muted/60 text-[10px] hover:text-theme-accent transition-colors">Privacidad</a>
+              <Link to="/privacidad" className="text-theme-muted/60 text-[10px] hover:text-theme-accent transition-colors">Privacidad</Link>
             </div>
           </div>
         </div>
@@ -100,7 +101,7 @@ export default function Footer() {
             </div>
             <div className="flex gap-5">
               <a href="#" className="text-theme-muted text-[10px] hover:text-theme-accent transition-colors">Términos</a>
-              <a href="#" className="text-theme-muted text-[10px] hover:text-theme-accent transition-colors">Privacidad</a>
+              <Link to="/privacidad" className="text-theme-muted text-[10px] hover:text-theme-accent transition-colors">Privacidad</Link>
             </div>
           </div>
         </div>
