@@ -2,15 +2,16 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 
-// Casilla oficial para pedidos de acceso/rectificación/supresión (confirmada por
-// Franco el 16-sep-2026). Meta exige que sea un canal VÁLIDO y vigente: si rebota,
-// es causal de rechazo en App Review.
-const EMAIL_PRIVACIDAD = 'contacto@hubmza.com'
+// Casilla oficial para pedidos de acceso/rectificación/supresión. Meta exige que sea
+// un canal VÁLIDO: si rebota, es causal de rechazo en App Review.
+// Va con .com.ar: `hubmza.com` (sin .ar) NO tiene MX ni A — todo lo que se le manda
+// rebota. El MX real de hubmza.com.ar es smtp.google.com. Verificado el 17-sep-2026.
+const EMAIL_PRIVACIDAD = 'contacto@hubmza.com.ar'
 
 const RAZON_SOCIAL = 'HUB MENDOZA S.A.S.'
 const CUIT = '30-71925510-4'
 const DOMICILIO = 'Liniers 1045, Chacras de Coria (M5505), Mendoza, Argentina'
-const ACTUALIZADO = '16 de septiembre de 2026'
+const ACTUALIZADO = '17 de septiembre de 2026'
 
 function Seccion({ titulo, children }) {
   return (
