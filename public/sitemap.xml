@@ -37,4 +37,16 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://hubmza.com.ar/privacidad</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://hubmza.com.ar/terminos</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>

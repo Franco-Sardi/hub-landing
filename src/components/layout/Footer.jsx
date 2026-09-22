@@ -41,7 +41,7 @@ export default function Footer() {
           <div className="pt-4 flex items-center justify-between">
             <span className="text-theme-muted/50 text-[10px]">© {year} HUB · Mendoza</span>
             <div className="flex gap-4">
-              <a href="#" className="text-theme-muted/60 text-[10px] hover:text-theme-accent transition-colors">Términos</a>
+              <Link to="/terminos" className="text-theme-muted/60 text-[10px] hover:text-theme-accent transition-colors">Términos</Link>
               <Link to="/privacidad" className="text-theme-muted/60 text-[10px] hover:text-theme-accent transition-colors">Privacidad</Link>
             </div>
           </div>
@@ -100,7 +100,7 @@ export default function Footer() {
               <span className="text-theme-muted text-[10px]">© {year} HUB · Mendoza</span>
             </div>
             <div className="flex gap-5">
-              <a href="#" className="text-theme-muted text-[10px] hover:text-theme-accent transition-colors">Términos</a>
+              <Link to="/terminos" className="text-theme-muted text-[10px] hover:text-theme-accent transition-colors">Términos</Link>
               <Link to="/privacidad" className="text-theme-muted text-[10px] hover:text-theme-accent transition-colors">Privacidad</Link>
             </div>
           </div>
