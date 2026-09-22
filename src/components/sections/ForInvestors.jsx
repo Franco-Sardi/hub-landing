@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import SectionFrame from '../ui/SectionFrame'
 
 const investorBenefits = [
-  { val: 'Retorno en USD',  desc: 'Retorno garantizado en dólares desde tu primer aporte, independiente de la inflación' },
+  { val: 'Retorno en USD',  desc: 'Retorno estimado en dólares desde tu primer aporte, independiente de la inflación' },
   { val: 'Cuota parte',     desc: 'Ingreso accesible con participación mínima y posibilidad de escalar tu inversión' },
   { val: 'Liquidez',        desc: 'Posibilidad de escalar o reinvertir tu participación a medida que avanza el proyecto' },
   { val: 'Fideicomiso',     desc: 'Estructura fiduciaria que protege tu inversión durante todo el proceso de desarrollo' },
@@ -88,7 +88,7 @@ export default function ForInvestors() {
                 <span className="text-theme-muted text-[10px] font-condensed mt-0.5">rentabilidad real desde tu primer aporte</span>
               </div>
               <p className="text-theme-muted text-xs leading-relaxed">
-                La modalidad inversores te permite <span className="text-theme font-semibold">participar con cuotas partes</span> y generar un retorno garantizado en dólares desde tu primer aporte. Tu inversión está respaldada por activos inmobiliarios industriales reales.
+                La modalidad inversores te permite <span className="text-theme font-semibold">participar con cuotas partes</span> y generar un retorno estimado en dólares desde tu primer aporte. Tu inversión está respaldada por activos inmobiliarios industriales reales.
               </p>
             </div>
 
