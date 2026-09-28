@@ -272,13 +272,27 @@ function ModeloHub() {
 
         <RecorridoHub pasos={PASOS} />
 
-        <div className="business-bottom" data-reveal>
-          <p>La información pública es general y no constituye una oferta, una cotización, una recomendación de inversión ni una garantía de resultados. La documentación ampliada y las condiciones de participación se presentan en el área de inversores.</p>
-          <div className="actions">
-            <Link className="btn btn--white" to="/inversores">Acceder a información para inversores</Link>
-            <button className="btn btn--orange" type="button" onClick={() => abrirLead({ recurso: 'dossier-inversion', perfil: 'inversor', bloque: 'home-modelo' })}>Solicitar dossier</button>
+        {/* Cierre en dos niveles: tarjeta de acción + aviso legal aparte (antes compartían fila). */}
+        <div className="business-cta" data-reveal>
+          <div className="bc-copy">
+            <div className="eyebrow">Área de inversores</div>
+            <p className="bc-title">Condiciones de ingreso, documentación ampliada y escenarios, en un solo lugar.</p>
+          </div>
+          <div className="bc-actions">
+            <Link className="btn btn--white bc-btn" to="/inversores">
+              Acceder a información para inversores
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg>
+            </Link>
+            <button className="btn btn--orange bc-btn" type="button" onClick={() => abrirLead({ recurso: 'dossier-inversion', perfil: 'inversor', bloque: 'home-modelo' })}>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" /></svg>
+              Solicitar dossier
+            </button>
           </div>
         </div>
+        <p className="bc-legal" data-reveal>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></svg>
+          <span>La información pública es general y no constituye una oferta, una cotización, una recomendación de inversión ni una garantía de resultados. La documentación ampliada y las condiciones de participación se presentan en el área de inversores.</span>
+        </p>
       </div>
     </section>
   )
