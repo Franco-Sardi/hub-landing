@@ -1,0 +1,358 @@
+import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
+import Layout from '../components/site/Layout'
+import MapaRed from '../components/site/MapaRed'
+import { useSite } from '../components/site/SiteContext'
+import { desarrollos, desarrolloPorSlug } from '../data/desarrollos'
+// En public/ (no importado) para que coincida con el preload de index.html.
+const heroImg = '/hub-hero.webp'
+import '../styles/home.css'
+
+// Hero: un solo componente, cinco escenas (handoff §6). Fondos en el orden de la maqueta V3.
+const ESCENAS = [
+  { fondo: heroImg, kicker: 'HUB · Activos Reales', titulo: ['Cinco HUB.', 'Una misma red.'], desc: 'Cinco desarrollos en Mendoza, pensados como una red de infraestructura industrial, logística y urbana.', cta: 'Conocer la red', href: '#desarrollos' },
+  { fondo: desarrolloPorSlug.anchorena.render, kicker: 'Escala', titulo: ['335.000 m²', 'para crecer.'], desc: 'Una red que reúne 335.000 m² de terreno y proyecta 178.000 m² de naves para distintas escalas de operación.', cta: 'Ver HUB en números', href: '#numeros' },
+  { fondo: desarrolloPorSlug['san-francisco-oeste'].render, kicker: 'Territorio', titulo: ['En el corredor', 'Atlántico–Pacífico.'], desc: 'Desarrollos sobre los ejes que conectan Mendoza con sus principales corredores productivos.', cta: 'Ver ubicaciones', href: '#desarrollos' },
+  { fondo: desarrolloPorSlug['san-francisco-este'].render, kicker: 'Infraestructura', titulo: ['Estándar', 'Triple A.'], desc: 'Naves, docks, playas de maniobra, energía trifásica, fibra óptica, oficinas y servicios integrados para operar con otra escala.', cta: 'Ver infraestructura', href: '#empresas' },
+  { fondo: desarrolloPorSlug.malabia.render, kicker: 'Concepto rector', titulo: ['HUB.', 'Activos Reales.'], desc: 'Una red que conecta capital, infraestructura y empresas para acompañar el crecimiento productivo de Mendoza.', cta: 'Conocer HUB', href: '#nosotros' },
+]
+const DURACION = 6500
+
+function Hero() {
+  const [idx, setIdx] = useState(0)
+  const [pausado, setPausado] = useState(false)
+  // Sube en cada navegación manual o al salir del hover: reinicia timer y barra de progreso.
+  const [ciclo, setCiclo] = useState(0)
+  const [reducido] = useState(() => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)
+  // Fondos que ya se pidieron: cada escena baja el suyo cuando le toca o es la siguiente,
+  // en vez de pedir los 5 renders (~1,6 MB) apenas carga la home.
+  const [pedidos, setPedidos] = useState(() => new Set([0, 1]))
+
+  const mostrar = (i) => {
+    const n = (i + ESCENAS.length) % ESCENAS.length
+    setIdx(n)
+    setPedidos((prev) => (prev.has(n) && prev.has((n + 1) % ESCENAS.length) ? prev : new Set([...prev, n, (n + 1) % ESCENAS.length])))
+  }
+
+  useEffect(() => {
+    if (pausado || reducido) return
+    const t = setTimeout(() => mostrar(idx + 1), DURACION)
+    return () => clearTimeout(t)
+  }, [idx, pausado, reducido, ciclo])
+
+  const ir = (i) => {
+    mostrar(i)
+    setCiclo((c) => c + 1)
+  }
+  // Pausa al hover solo en desktop: en touch el mouseenter queda pegado tras el primer tap.
+  const hover = window.matchMedia?.('(hover: hover)').matches
+  const onEnter = hover ? () => setPausado(true) : undefined
+  const onLeave = hover ? () => { setPausado(false); setCiclo((c) => c + 1) } : undefined
+
+  return (
+    <section className={`hero${pausado ? ' is-paused' : ''}`} id="inicio" aria-label="HUB en una mirada" onMouseEnter={onEnter} onMouseLeave={onLeave}>
+      <div className="hero-media" aria-hidden="true">
+        {ESCENAS.map((e, i) => (
+          <div key={i} className={`hero-frame${i === idx ? ' is-active' : ''}`}>
+            {pedidos.has(i) && <img src={e.fondo} alt="" fetchPriority={i === 0 ? 'high' : 'low'} decoding="async" />}
+          </div>
+        ))}
+      </div>
+      <div className="hero-shade" />
+
+      <div className="container hero-inner">
+        <div className="hero-copy">
+          {ESCENAS.map((e, i) => (
+            <article key={i} className={`hero-slide${i === idx ? ' is-active' : ''}`} aria-hidden={i !== idx}>
+              <div className="hero-kicker">{e.kicker}</div>
+              {/* Un solo h1 por página: las otras escenas llevan el mismo estilo en un <p>. */}
+              {i === 0
+                ? <h1 className="hero-title">{e.titulo[0]}<br />{e.titulo[1]}</h1>
+                : <p className="hero-title">{e.titulo[0]}<br />{e.titulo[1]}</p>}
+              <p className="hero-desc">{e.desc}</p>
+              <div className="hero-actions">
+                <a className="btn btn--white" href={e.href} tabIndex={i === idx ? 0 : -1}>{e.cta}</a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="hero-nav">
+          <button className="hero-arrow" type="button" aria-label="Anterior" onClick={() => ir(idx - 1)}>←</button>
+          <div className="hero-dots" aria-label="Escenas del hero">
+            {ESCENAS.map((_, i) => (
+              <button key={i === idx ? `activo-${ciclo}-${i}` : i} type="button" className={`hero-dot${i === idx ? ' is-active' : ''}`} aria-label={`Ir al contenido ${i + 1}`} aria-current={i === idx} onClick={() => ir(i)} />
+            ))}
+          </div>
+          <button className="hero-arrow" type="button" aria-label="Siguiente" onClick={() => ir(idx + 1)}>→</button>
+        </div>
+
+        <div className="hero-summary">
+          <div className="hero-summary-item"><strong>5</strong><span>desarrollos HUB</span></div>
+          <div className="hero-summary-item"><strong>335.000 m²</strong><span>superficie total de terreno</span></div>
+          <div className="hero-summary-item"><strong>178.000 m²</strong><span>naves proyectadas</span></div>
+          <div className="hero-summary-item"><strong>3 ejes</strong><span>Acceso Sur · Rodríguez Peña · San Francisco del Monte</span></div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+const fmt = new Intl.NumberFormat('es-AR')
+
+// Contador de 1,25 s; el valor final ya está en el HTML como fallback (handoff §4).
+function Contador({ valor }) {
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el || !('IntersectionObserver' in window) || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
+    let raf
+    const obs = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      obs.disconnect()
+      const inicio = performance.now()
+      const tick = (now) => {
+        const p = Math.min(1, (now - inicio) / 1250)
+        el.textContent = fmt.format(Math.round(valor * (1 - Math.pow(1 - p, 3))))
+        if (p < 1) raf = requestAnimationFrame(tick)
+      }
+      raf = requestAnimationFrame(tick)
+    }, { threshold: 0.5 })
+    obs.observe(el)
+    return () => { obs.disconnect(); cancelAnimationFrame(raf) }
+  }, [valor])
+  return <span ref={ref}>{fmt.format(valor)}</span>
+}
+
+function Nosotros() {
+  return (
+    <section className="section about" id="nosotros">
+      <div className="container">
+        <div className="about-top">
+          <div className="about-title" data-reveal="left">
+            <div className="eyebrow">Nosotros</div>
+            <h2>Infraestructura que conecta crecimiento.</h2>
+          </div>
+          <div className="about-copy" data-reveal="right">
+            <p>HUB es una red de cinco parques industriales Triple A en Mendoza. Conecta capital, infraestructura y empresas para impulsar tu crecimiento productivo.</p>
+          </div>
+        </div>
+
+        <div className="people" data-reveal>
+          <div className="people-row">
+            <h3>Empresas fundadoras</h3>
+            <div className="wordmarks">
+              {['Oscar David', 'Carnes de mi Campo', 'Terrandes'].map((n) => <span key={n} className="wordmark">{n}</span>)}
+            </div>
+          </div>
+          <div className="people-row">
+            <h3>Partners</h3>
+            <div className="wordmarks partners">
+              {['Grupo LTN', 'Hormi-Serv', 'Rogiro Aceros', 'Logmetal', 'Saldaña', 'Inducret', 'Prear'].map((n) => <span key={n} className="wordmark">{n}</span>)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Numeros() {
+  return (
+    <section className="section numbers" id="numeros">
+      <div className="container">
+        <div className="numbers-head">
+          <div data-reveal="left">
+            <div className="eyebrow" style={{ color: 'var(--hub-silver)', marginBottom: 20 }}>HUB en números</div>
+            <h2>HUB, una red en una mirada</h2>
+          </div>
+          <p data-reveal="right">La escala de HUB está en la relación entre territorio, infraestructura y una red de desarrollos para distintos perfiles de negocio.</p>
+        </div>
+
+        <div className="numbers-layout">
+          <div className="number-primary" data-reveal>
+            <div className="value"><Contador valor={5} /></div>
+            <div>
+              <h3>desarrollos estratégicamente conectados</h3>
+              <p>Malabia, Anchorena, San Francisco del Monte Oeste, San Francisco del Monte Este y Rodríguez Peña.</p>
+            </div>
+          </div>
+
+          <div className="number-stack">
+            <div className="number-row" data-reveal>
+              <div className="value"><Contador valor={335000} /> <small>m²</small></div>
+              <div><h3>de superficie total de terreno</h3><p>Escala territorial distribuida entre los cinco desarrollos.</p></div>
+            </div>
+            <div className="number-row" data-reveal>
+              <div className="value"><Contador valor={178000} /> <small>m²</small></div>
+              <div><h3>de naves proyectadas</h3><p>Infraestructura industrial y logística integrada al sistema HUB.</p></div>
+            </div>
+            <div className="number-row" data-reveal>
+              <div className="value"><Contador valor={4} /></div>
+              <div><h3>ejes estratégicos</h3><p>Que conectan la red con los principales corredores productivos regionales y el bioceánico.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Empresas() {
+  const { abrirLead } = useSite()
+  return (
+    <section className="section enterprise" id="empresas">
+      <div className="container">
+        <div className="enterprise-grid">
+          <div className="enterprise-media" data-reveal="fade">
+            <img src={desarrolloPorSlug.anchorena.render} alt="Render HUB Anchorena" loading="lazy" decoding="async" />
+          </div>
+          <div className="enterprise-content" data-reveal="right">
+            <div className="eyebrow">HUB · Para empresas</div>
+            <h2>Infraestructura en red para que tu operación funcione mejor.</h2>
+            <p className="lead">HUB integra naves, servicios logísticos y conectividad en cinco ubicaciones sobre los principales corredores productivos de Mendoza.</p>
+
+            <div className="key-question">HUB es todo lo que necesitás.</div>
+
+            <div className="capabilities">
+              <div className="capability"><span className="idx">01</span><strong>Espacio</strong><span>Módulos flexibles desde 1.000 m² y configuraciones adaptables según desarrollo y disponibilidad.</span></div>
+              <div className="capability"><span className="idx">02</span><strong>Operación</strong><span>Docks, playas de maniobra, pavimentos industriales y circulación diferenciada.</span></div>
+              <div className="capability"><span className="idx">03</span><strong>Servicios</strong><span>Energía trifásica, fibra óptica, oficinas integradas y soluciones de eficiencia.</span></div>
+            </div>
+
+            <div className="actions">
+              <Link className="btn btn--blue" to="/espacios">Conocer espacios para operar</Link>
+              <button className="btn" type="button" onClick={() => abrirLead({ recurso: 'brochure-empresas', perfil: 'usuarios', bloque: 'home-empresas' })}>Recibir brochure</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Desarrollos() {
+  const { abrirLead } = useSite()
+  const [activo, setActivoState] = useState('anchorena')
+  // Solo se piden los renders ya elegidos o con hover/foco (precarga): evita bajar los cinco al entrar.
+  const [pedidos, setPedidos] = useState(() => new Set(['anchorena']))
+  const pedir = (slug) => setPedidos((prev) => (prev.has(slug) ? prev : new Set([...prev, slug])))
+  const setActivo = (slug) => { pedir(slug); setActivoState(slug) }
+  const d = desarrolloPorSlug[activo]
+
+  return (
+    <section className="section developments" id="desarrollos">
+      <div className="container">
+        <div className="section-head">
+          <div data-reveal="left">
+            <div className="eyebrow" style={{ marginBottom: 20 }}>Desarrollos</div>
+            <h2>Una red, cinco perfiles de desarrollo</h2>
+          </div>
+          <p data-reveal="right">Desde espacios con mayor vocación urbana hasta naves industriales y centros de almacenamiento. Cada desarrollo combina ubicación, infraestructura y un perfil propio.</p>
+        </div>
+
+        <div className="dev-shell" data-reveal>
+          <div className="dev-visual" aria-live="polite">
+            {desarrollos.map((x) => (
+              <div key={x.slug} className={`dev-image${x.slug === activo ? ' is-active' : ''}`} style={pedidos.has(x.slug) ? { backgroundImage: `url(${x.render})` } : undefined} role="img" aria-label={`Render ${x.label}`} aria-hidden={x.slug !== activo} />
+            ))}
+            <div className="dev-visual-overlay">
+              <img src={d.logo} alt={d.label} width="230" height="112" />
+              <strong>{d.titulo}</strong>
+            </div>
+          </div>
+
+          <div className="dev-panel">
+            <div className="dev-list">
+              {desarrollos.map((x, i) => (
+                <button key={x.slug} type="button" className={`dev-btn${x.slug === activo ? ' is-active' : ''}`} aria-pressed={x.slug === activo} onClick={() => setActivo(x.slug)} onMouseEnter={() => pedir(x.slug)} onFocus={() => pedir(x.slug)}>
+                  <span className="idx">{String(i + 1).padStart(2, '0')}</span>
+                  <span><strong>{x.nombre}</strong><small>{x.descriptor}</small></span>
+                  <span className="area">{x.area}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="dev-map">
+              <div className="dev-map-title"><span>Red HUB · Mendoza</span><span>Corredores productivos</span></div>
+              <div className="dev-map-box"><MapaRed activo={activo} onSelect={setActivo} /></div>
+            </div>
+
+            <div className="dev-meta">
+              <p>{d.textoHome}</p>
+              <div className="actions">
+                <button className="btn btn--blue" type="button" onClick={() => abrirLead({ recurso: d.recurso, perfil: 'usuarios', desarrollo: d.nombre, bloque: 'home-desarrollos' })}>Recibir ficha técnica</button>
+                <Link className="text-link" to={`/desarrollos/${d.slug}`}>Ver {d.label} →</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p className="render-note">Las imágenes y renders son ilustrativos. Superficies, servicios, plazos y características pueden ajustarse durante el desarrollo y deben confirmarse en la documentación y disponibilidad vigentes.</p>
+      </div>
+    </section>
+  )
+}
+
+const PASOS = [
+  ['Tu capital financia la red.', 'La participación se instrumenta mediante la estructura fiduciaria.'],
+  ['HUB desarrolla y gestiona infraestructura.', 'Los recursos se transforman en infraestructura industrial y logística en cada desarrollo.'],
+  ['Empresas ocupan y operan.', 'La actividad de las empresas usuarias genera los flujos del negocio.'],
+  ['HUB administra y distribuye ganancias.', 'Nos encargamos de todo el proceso. Vos invertís, nosotros administramos.'],
+]
+
+function ModeloHub() {
+  const { abrirLead } = useSite()
+  return (
+    <section className="section business" id="inversion">
+      <div className="container">
+        <div className="section-head">
+          <div data-reveal="left">
+            <div className="eyebrow" style={{ color: 'var(--hub-silver)', marginBottom: 20 }}>Invertí en HUB</div>
+            <h2>Invertís, administramos, rentás.</h2>
+          </div>
+          <p data-reveal="right">El capital se vincula a una estructura fiduciaria que desarrolla infraestructura industrial. La participación se explica desde el funcionamiento, la documentación y los activos que respaldan el proyecto.</p>
+        </div>
+
+        <div className="business-flow" data-reveal>
+          <div className="business-line" />
+          <div className="business-steps">
+            {PASOS.map(([t, p], i) => (
+              <article key={t} className="business-step">
+                <div className="dot" /><div className="num">{String(i + 1).padStart(2, '0')}</div>
+                <h3>{t}</h3>
+                <p>{p}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="business-bottom" data-reveal>
+          <p>La información pública es general y no constituye una oferta, una cotización, una recomendación de inversión ni una garantía de resultados. La documentación ampliada y las condiciones de participación se presentan en el área de inversores.</p>
+          <div className="actions">
+            <Link className="btn btn--white" to="/inversores">Acceder a información para inversores</Link>
+            <button className="btn btn--orange" type="button" onClick={() => abrirLead({ recurso: 'dossier-inversion', perfil: 'inversor', bloque: 'home-modelo' })}>Solicitar dossier</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default function Home() {
+  return (
+    <Layout variant="home">
+      <Helmet>
+        <title>HUB · Activos Reales | Parques industriales Triple A en Mendoza</title>
+        <link rel="canonical" href="https://hubmza.com.ar/" />
+      </Helmet>
+      <Hero />
+      <Nosotros />
+      <Numeros />
+      <Empresas />
+      <Desarrollos />
+      <ModeloHub />
+    </Layout>
+  )
+}

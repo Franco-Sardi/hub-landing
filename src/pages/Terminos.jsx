@@ -28,7 +28,7 @@ export default function Terminos() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
 
   return (
-    <div className="min-h-svh theme-alt" style={{ backgroundColor: '#022A3A' }}>
+    <div className="min-h-svh theme-alt" style={{ backgroundColor: '#0B202A' }}>
       <Helmet>
         <title>Términos del Servicio | HUB</title>
         <meta
