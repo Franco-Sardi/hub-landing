@@ -37,10 +37,11 @@ export default function RecorridoHub({ pasos }) {
     let raf = 0
     let posiciones = []
     let ultimoEncendido = -1
+    let vivo = true
 
     const medir = () => {
       const base = flow.getBoundingClientRect()
-      posiciones = puntosRef.current.map((p) => {
+      posiciones = puntosRef.current.filter(Boolean).map((p) => {
         const r = p.getBoundingClientRect()
         return vertical.matches ? r.top + r.height / 2 - base.top : r.left + r.width / 2 - base.left
       })
@@ -95,6 +96,8 @@ export default function RecorridoHub({ pasos }) {
     }
 
     const alRedimensionar = () => {
+      // fonts.ready puede resolver después de salir de la home: sin esto, mide nodos ya desmontados.
+      if (!vivo) return
       medir()
       alScroll()
       pintar()
@@ -111,6 +114,7 @@ export default function RecorridoHub({ pasos }) {
     vertical.addEventListener('change', alRedimensionar)
     reducido.addEventListener('change', alRedimensionar)
     return () => {
+      vivo = false
       cancelAnimationFrame(raf)
       ro.disconnect()
       window.removeEventListener('scroll', alScroll)

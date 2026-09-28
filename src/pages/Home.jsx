@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import Layout from '../components/site/Layout'
-import MapaRed from '../components/site/MapaRed'
+import RedProyectos from '../components/site/RedProyectos'
 import RecorridoHub from '../components/site/RecorridoHub'
 import { useSite } from '../components/site/SiteContext'
 import { desarrollos, desarrolloPorSlug } from '../data/desarrollos'
@@ -240,93 +240,6 @@ function Empresas() {
   )
 }
 
-// Planteo del sitio anterior (pedido de Franco, 28-09): mapa grande a la izquierda y, a la derecha,
-// la tarjeta del parque + la lista compacta. Hover previsualiza; clic fija. En pantallas chicas:
-// mapa arriba y una tarjeta por parque que lleva a su página (nada se re-renderiza en otro lugar).
-function Desarrollos() {
-  const { abrirLead } = useSite()
-  const [fijado, setFijado] = useState('anchorena')
-  const [hover, setHover] = useState(null)
-  // Solo se piden los renders ya vistos o con hover: evita bajar los cinco al entrar.
-  const [pedidos, setPedidos] = useState(() => new Set(['anchorena']))
-  const pedir = (slug) => slug && setPedidos((prev) => (prev.has(slug) ? prev : new Set([...prev, slug])))
-  const previsualizar = (slug) => { pedir(slug); setHover(slug) }
-  const fijar = (slug) => { pedir(slug); setFijado(slug) }
-  const activo = hover || fijado
-  const d = desarrolloPorSlug[activo]
-
-  return (
-    <section className="section developments" id="desarrollos">
-      <div className="container">
-        <div className="section-head">
-          <div data-reveal="left">
-            <div className="eyebrow" style={{ marginBottom: 20 }}>Desarrollos</div>
-            <h2>Una red, cinco perfiles de desarrollo</h2>
-          </div>
-          <p data-reveal="right">Desde espacios con mayor vocación urbana hasta naves industriales y centros de almacenamiento. Cada desarrollo combina ubicación, infraestructura y un perfil propio.</p>
-        </div>
-
-        <div className="red" data-reveal>
-          <div className="red-mapa">
-            <div className="red-mapa-title"><span>Red HUB · Mendoza</span><span>Corredores productivos</span></div>
-            <div className="red-mapa-box red-solo-desktop"><MapaRed activo={activo} onSelect={fijar} onHover={(slug) => (slug ? previsualizar(slug) : setHover(null))} /></div>
-            <div className="red-mapa-box red-solo-mobile"><MapaRed linkear /></div>
-          </div>
-
-          <div className="red-panel red-solo-desktop">
-            <article className="red-preview" aria-live="polite">
-              {desarrollos.map((x) => (
-                <div key={x.slug} className={`red-preview-img${x.slug === activo ? ' is-active' : ''}`} style={pedidos.has(x.slug) ? { backgroundImage: `url(${x.render})` } : undefined} role="img" aria-label={`Render ${x.label}`} aria-hidden={x.slug !== activo} />
-              ))}
-              <div className="red-preview-info">
-                <img className="red-preview-logo" src={d.logo} alt={d.label} width="120" height="58" />
-                <div className="red-preview-text">
-                  <span className="red-preview-perfil">{d.titulo}</span>
-                  <span className="red-preview-area">{d.area} de terreno</span>
-                </div>
-              </div>
-              <div className="red-preview-actions">
-                <button className="btn btn--orange" type="button" onClick={() => abrirLead({ recurso: d.recurso, perfil: 'usuarios', desarrollo: d.nombre, bloque: 'home-desarrollos' })}>Recibir ficha técnica</button>
-                <Link className="btn btn--white" to={`/desarrollos/${d.slug}`}>Ver desarrollo</Link>
-              </div>
-            </article>
-
-            <ul className="red-lista" onMouseLeave={() => setHover(null)}>
-              {desarrollos.map((x, i) => (
-                <li key={x.slug} className={`red-item${x.slug === activo ? ' is-active' : ''}${x.slug === fijado ? ' is-fijado' : ''}`} onMouseEnter={() => previsualizar(x.slug)}>
-                  <button type="button" className="red-item-btn" aria-pressed={x.slug === fijado} onClick={() => fijar(x.slug)} onFocus={() => previsualizar(x.slug)}>
-                    <span className="idx">{String(i + 1).padStart(2, '0')}</span>
-                    <span className="red-item-txt"><strong>{x.nombre}</strong><small>{x.descriptor} · {x.area}</small></span>
-                  </button>
-                  <Link className="red-item-ver" to={`/desarrollos/${x.slug}`} aria-label={`Ver ${x.label}`}>Ver →</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <ul className="red-cards red-solo-mobile">
-            {desarrollos.map((x, i) => (
-              <li key={x.slug}>
-                <Link className="red-card" to={`/desarrollos/${x.slug}`}>
-                  <img className="red-card-img" src={x.render} alt="" loading="lazy" decoding="async" />
-                  <span className="red-card-body">
-                    <span className="idx">{String(i + 1).padStart(2, '0')}</span>
-                    <strong>{x.nombre}</strong>
-                    <small>{x.descriptor} · {x.area}</small>
-                  </span>
-                  <span className="red-card-ver" aria-hidden="true">→</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <p className="render-note">Las imágenes y renders son ilustrativos. Superficies, servicios, plazos y características pueden ajustarse durante el desarrollo y deben confirmarse en la documentación y disponibilidad vigentes.</p>
-      </div>
-    </section>
-  )
-}
-
 const PASOS = [
   ['Tu capital financia la red.', 'La participación se instrumenta mediante la estructura fiduciaria.'],
   ['HUB desarrolla y gestiona infraestructura.', 'Los recursos se transforman en infraestructura industrial y logística en cada desarrollo.'],
@@ -372,7 +285,7 @@ export default function Home() {
       <Nosotros />
       <Numeros />
       <Empresas />
-      <Desarrollos />
+      <RedProyectos />
       <ModeloHub />
     </Layout>
   )

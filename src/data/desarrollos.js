@@ -14,6 +14,7 @@ import rodriguezLogo from '../assets/v3/logo-rodriguez-pena.png'
 export const desarrollos = [
   {
     slug: 'malabia',
+    ubicacion: 'Luján de Cuyo, Mendoza',
     nombre: 'Malabia',
     label: 'HUB Malabia',
     descriptor: 'espacio y comunidad',
@@ -30,6 +31,7 @@ export const desarrollos = [
   },
   {
     slug: 'anchorena',
+    ubicacion: 'Luján de Cuyo, Mendoza',
     nombre: 'Anchorena',
     label: 'HUB Anchorena',
     descriptor: 'centro de almacenamiento',
@@ -46,6 +48,7 @@ export const desarrollos = [
   },
   {
     slug: 'san-francisco-oeste',
+    ubicacion: 'San Francisco del Monte, Mendoza',
     nombre: 'San Francisco del Monte Oeste',
     label: 'HUB San Francisco del Monte Oeste',
     descriptor: 'naves industriales',
@@ -62,6 +65,7 @@ export const desarrollos = [
   },
   {
     slug: 'san-francisco-este',
+    ubicacion: 'San Francisco del Monte, Mendoza',
     nombre: 'San Francisco del Monte Este',
     label: 'HUB San Francisco del Monte Este',
     descriptor: 'naves y logística',
@@ -78,6 +82,7 @@ export const desarrollos = [
   },
   {
     slug: 'rodriguez-pena',
+    ubicacion: 'Rodríguez Peña, Mendoza',
     nombre: 'Rodríguez Peña',
     label: 'HUB Rodríguez Peña',
     descriptor: 'naves industriales',
