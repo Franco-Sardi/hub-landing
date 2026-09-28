@@ -203,7 +203,15 @@
   font-family:var(--utility);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;text-decoration:none;
   border:0;background:none;padding:0;cursor:pointer;
 }
-.pg-home .rp-preview-links button{color:var(--hub-orange)}
+/* "Ficha técnica" como botón con fondo (pedido de Franco); "Ver →" queda como link al lado. */
+.pg-home .rp-preview-links{align-items:center}
+.pg-home .rp-preview-links button{
+  background:var(--hub-orange);color:var(--hub-blue);padding:8px 14px;min-height:32px;
+  transition:background-color .2s ease,transform .2s cubic-bezier(.23,1,.32,1);
+}
+@media(hover:hover) and (pointer:fine){.pg-home .rp-preview-links button:hover{background:#ff9670}}
+.pg-home .rp-preview-links button:active{transform:scale(.97)}
+.pg-home .rp-preview-links button:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .pg-home .rp-lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;flex:1}
 .pg-home .rp-item{flex:1}
 .pg-home .rp-item{position:relative;display:flex;align-items:center;gap:8px;border:1px solid rgba(199,203,202,.16);background:rgba(255,255,255,.03);transition:border-color .2s,background-color .2s}
