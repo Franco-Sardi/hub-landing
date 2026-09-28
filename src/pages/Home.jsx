@@ -51,9 +51,19 @@ function Hero() {
   const hover = window.matchMedia?.('(hover: hover)').matches
   const onEnter = hover ? () => setPausado(true) : undefined
   const onLeave = hover ? () => { setPausado(false); setCiclo((c) => c + 1) } : undefined
+  // En celular se cambia de escena deslizando con el dedo.
+  const toque = useRef(null)
+  const onTouchStart = (e) => { toque.current = [e.touches[0].clientX, e.touches[0].clientY] }
+  const onTouchEnd = (e) => {
+    if (!toque.current) return
+    const dx = e.changedTouches[0].clientX - toque.current[0]
+    const dy = e.changedTouches[0].clientY - toque.current[1]
+    toque.current = null
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) ir(idx + (dx < 0 ? 1 : -1))
+  }
 
   return (
-    <section className={`hero${pausado ? ' is-paused' : ''}`} id="inicio" aria-label="HUB en una mirada" onMouseEnter={onEnter} onMouseLeave={onLeave}>
+    <section className={`hero${pausado ? ' is-paused' : ''}`} id="inicio" aria-label="HUB en una mirada" onMouseEnter={onEnter} onMouseLeave={onLeave} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
       <div className="hero-media" aria-hidden="true">
         {ESCENAS.map((e, i) => (
           <div key={i} className={`hero-frame${i === idx ? ' is-active' : ''}`}>

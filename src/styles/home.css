@@ -138,7 +138,7 @@
   border-bottom:1px solid rgba(255,255,255,.22);
 }
 .pg-home .numbers .value{font-family:var(--title);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
-.pg-home .numbers .value small{font-size:.34em;font-weight:500;letter-spacing:0;margin-left:.3em;opacity:.55}
+.pg-home .numbers .value small{font-size:max(.34em,12px);font-weight:500;letter-spacing:0;margin-left:.3em;opacity:.55}
 .pg-home .number-primary{
   padding:28px 48px 28px 0;border-right:1px solid rgba(255,255,255,.20);
   display:flex;flex-direction:column;justify-content:space-between;gap:28px;
@@ -210,7 +210,7 @@
 .pg-home .rp-preview::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(1,24,35,.95) 0%,rgba(1,24,35,.4) 55%,transparent 100%);pointer-events:none}
 .pg-home .rp-preview-info{position:absolute;z-index:2;left:14px;right:14px;bottom:12px}
 .pg-home .rp-badge{
-  display:inline-block;font-family:var(--utility);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  display:inline-block;font-family:var(--utility);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
   padding:3px 7px;background:rgba(2,42,58,.85);color:var(--hub-silver);border:1px solid rgba(199,203,202,.45);
 }
 .pg-home .rp-preview h3{margin:6px 0 4px;font-size:clamp(20px,1.9vw,28px);line-height:1.05;text-transform:uppercase;color:#fff}
@@ -256,19 +256,20 @@
 .pg-home .rp-pdf svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .pg-home .rp-item:hover .rp-pdf,.pg-home .rp-pdf:focus-visible{opacity:1}
 .pg-home .rp-nota{font-size:11px;color:rgba(255,255,255,.45);margin:16px 0 0}
-.pg-home .rp-cards{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.pg-home .rp-cards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:14px;width:100%;min-width:0}
 .pg-home .rp-card{display:block;text-decoration:none;color:#fff;border:1px solid rgba(199,203,202,.28);background:rgba(255,255,255,.03)}
 .pg-home .rp-card-img{position:relative;height:176px;overflow:hidden}
 .pg-home .rp-card-img img{width:100%;height:100%;object-fit:cover}
 .pg-home .rp-card-img::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(1,24,35,.95),rgba(1,24,35,.35) 55%,transparent)}
 .pg-home .rp-card-over{position:absolute;z-index:2;left:12px;right:12px;bottom:12px}
 .pg-home .rp-card-row{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-top:6px}
-.pg-home .rp-card-row h3{margin:0;font-size:20px;line-height:1.1;text-transform:uppercase;color:#fff}
+.pg-home .rp-card-row h3{margin:0;min-width:0;font-size:20px;line-height:1.1;text-transform:uppercase;color:#fff}
 .pg-home .rp-card-row span{font-size:13px;font-weight:600;color:var(--hub-silver);white-space:nowrap}
 .pg-home .rp-card-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 12px;font-size:12px;color:rgba(255,255,255,.62)}
 .pg-home .rp-card-foot > span:first-child{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pg-home .rp-card-ver{flex:0 0 auto;white-space:nowrap;font-family:var(--utility);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#fff}
 .pg-home .rp-solo-mobile{display:none}
+.pg-home .rp-cards-hint{display:none;justify-content:space-between;align-items:center;margin:-4px 0 0;font-family:var(--utility);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
 @media(max-width:1023px){
   .pg-home .rp-head{grid-template-columns:1fr;gap:16px}
   .pg-home .rp-grid{flex-direction:column}
@@ -277,7 +278,22 @@
   .pg-home .rp-solo-mobile{display:block}
   .pg-home ul.rp-solo-mobile{display:grid}
 }
-@media(min-width:640px) and (max-width:1023px){.pg-home ul.rp-cards{grid-template-columns:1fr 1fr}}
+@media(min-width:640px) and (max-width:1023px){.pg-home ul.rp-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Celular: las tarjetas pasan a carrusel horizontal (se asoma la siguiente e invita a deslizar). */
+@media(max-width:639px){
+  .pg-home ul.rp-cards{
+    display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;
+    margin-inline:-16px;padding:0 16px 6px;scroll-padding-inline:16px;scrollbar-width:none;width:auto;
+  }
+  .pg-home ul.rp-cards::-webkit-scrollbar{display:none}
+  .pg-home .rp-cards li{flex:0 0 82%;scroll-snap-align:start}
+  .pg-home .rp-card{height:100%;display:flex;flex-direction:column}
+  .pg-home .rp-card-img{height:200px}
+  .pg-home .rp-card-row h3{font-size:18px}
+  .pg-home .rp-card-foot{margin-top:auto}
+  .pg-home .rp-grid{gap:18px}
+  .pg-home .rp-cards-hint{display:flex}
+}
 
 /* MODELO HUB */
 .pg-home .business{background:var(--hub-blue);color:#fff}
@@ -342,20 +358,30 @@
 }
 
 @media(max-width:1100px){
+  .pg-home .hero-nav{position:static;margin-top:28px}
   .pg-home .about-top,.pg-home .numbers-head,.pg-home .section-head{grid-template-columns:1fr;gap:26px}
   .pg-home .enterprise-grid{grid-template-columns:1fr}
   .pg-home .enterprise-media{height:min(460px,60vw)}
   .pg-home .enterprise-content{padding:40px 0 0}
 }
 @media(max-width:760px){
-  .pg-home .hero{min-height:680px;max-height:none}
-  .pg-home .hero-inner{padding:100px 0 24px}
-  .pg-home .hero-copy{min-height:330px}
+  /* Portada en celular: foto y mensaje al frente. Las 4 cifras salen de acá (las muestra la
+     sección siguiente) y los controles quedan en una fila compacta al pie. */
+  .pg-home .hero{min-height:560px;max-height:none}
+  .pg-home .hero-inner{padding:96px 0 28px}
+  .pg-home .hero-copy{min-height:310px}
+  .pg-home .hero-summary{display:none}
+  .pg-home .hero-kicker{font-size:11px;margin-bottom:14px}
+  .pg-home .hero-actions{margin-top:22px}
+  .pg-home .hero-actions .btn{min-height:48px}
+  .pg-home .hero-nav{margin-top:26px;padding-top:18px;border-top:1px solid rgba(255,255,255,.2)}
+  .pg-home .hero-arrow{width:44px;height:44px}
+  .pg-home .hero-ring{inset:-3px;width:50px!important;height:50px!important}
+  .pg-home .hero-count-now{font-size:22px}
   /* 64px de la maqueta partía "Cinco HUB." en dos líneas a 390px: se escala con el ancho. */
-  .pg-home .hero .hero-title{font-size:clamp(40px,11.5vw,56px);line-height:.95}
-  .pg-home .hero-desc{font-size:17px}
+  .pg-home .hero .hero-title{font-size:clamp(40px,11.5vw,52px);line-height:.96}
+  .pg-home .hero-desc{font-size:16px;margin-top:16px;max-width:34ch}
   /* En la maqueta los controles quedaban absolutos encima del resumen: van al flujo. */
-  .pg-home .hero-nav{position:static;margin-top:28px}
   .pg-home .hero-count{margin-right:auto}
   .pg-home .hero-summary{grid-template-columns:1fr 1fr;margin-top:24px}
   .pg-home .hero-summary-item{padding-top:14px}
@@ -369,14 +395,27 @@
   .pg-home .partners-track .logos--partners{padding-right:26px}
   .pg-home .partners-track{animation-duration:28s}
   .pg-home .numbers-layout{grid-template-columns:1fr}
-  .pg-home .number-primary{border-right:0;border-bottom:1px solid rgba(255,255,255,.18);padding-right:0}
-  .pg-home .number-primary .value{font-size:96px}
-  .pg-home .number-row .value{font-size:44px}
-  .pg-home .number-primary{padding:28px 0 24px;gap:16px}
-  .pg-home .number-row{padding:18px 0}
+  /* Números en celular: el 5 al lado de su texto, desarrollos como etiquetas y cada cifra en una
+     fila compacta (cifra | qué es). Las descripciones largas se ocultan solo acá. */
+  .pg-home .numbers-head{margin-bottom:28px}
+  .pg-home .number-primary{border-right:0;border-bottom:1px solid rgba(255,255,255,.18);padding:22px 0;gap:16px;
+    display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:18px}
+  .pg-home .number-primary .value{font-size:84px;line-height:.8}
+  .pg-home .number-primary h3{font-size:19px;margin:0}
+  .pg-home .number-primary > div{display:contents}
+  .pg-home .number-devs{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;border:0}
+  .pg-home .number-devs li{border:1px solid rgba(255,255,255,.22);padding:6px 10px;font-size:11px}
+  .pg-home .number-row{grid-template-columns:auto 1fr;padding:16px 0;gap:16px;align-items:center}
   .pg-home .number-row::before{display:none}
-  .pg-home .number-row{grid-template-columns:1fr;padding-left:0;gap:8px}
-  .pg-home .enterprise-media{height:300px}
-  .pg-home .enterprise-content{padding:32px 0 0}
-  .pg-home .capability{grid-template-columns:38px 1fr}.pg-home .capability span:last-child{grid-column:2}
+  .pg-home .number-row .value{font-size:32px;min-width:0}
+  .pg-home .number-row h3{font-size:15px;margin:0;color:rgba(255,255,255,.8)}
+  .pg-home .number-row p{display:none}
+  /* Empresas en celular: imagen más baja, capacidades apiladas y botones a lo ancho. */
+  .pg-home .enterprise-media{height:220px}
+  .pg-home .enterprise-content{padding:28px 0 0}
+  .pg-home .key-question{font-size:19px;margin:20px 0 18px;padding:12px 0}
+  .pg-home .capability{grid-template-columns:30px 1fr;gap:4px 10px;padding:12px 0}
+  .pg-home .capability span:last-child{grid-column:2;font-size:13px}
+  .pg-home .enterprise-content .actions{flex-direction:column;align-items:stretch}
+  .pg-home .enterprise-content .actions .btn{width:100%}
 }

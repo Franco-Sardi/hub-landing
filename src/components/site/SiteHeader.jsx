@@ -17,6 +17,12 @@ export default function SiteHeader() {
   }, [])
 
   const cerrar = () => setAbierto(false)
+
+  // Con el menú de celular abierto (pantalla completa) no se scrollea lo de atrás.
+  useEffect(() => {
+    document.body.classList.toggle('no-scroll', abierto)
+    return () => document.body.classList.remove('no-scroll')
+  }, [abierto])
   const cls = ['header', solido && 'is-solid', abierto && 'mobile-open'].filter(Boolean).join(' ')
 
   return (
@@ -35,7 +41,7 @@ export default function SiteHeader() {
           </button>
         </nav>
         <button className="menu-toggle" type="button" aria-label={abierto ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={abierto} onClick={() => setAbierto((v) => !v)}>
-          Menú
+          {abierto ? 'Cerrar' : 'Menú'}
         </button>
       </div>
     </header>

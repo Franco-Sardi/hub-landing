@@ -71,7 +71,7 @@
 .pg-landing .sim-fields{padding:28px 30px;display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
 .pg-landing .sim-fields.two{padding:12px 0 22px;grid-template-columns:repeat(2,1fr)}
 .pg-landing .field{margin-bottom:0}
-.pg-landing .field label{font-family:var(--utility);font-size:10px;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:7px}
+.pg-landing .field label{font-family:var(--utility);font-size:11px;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:7px}
 .pg-landing .field input,.pg-landing .field select{width:100%;height:48px;border:1px solid #b6c0c4;background:#fff;padding:0 12px;color:var(--hub-blue)}
 .pg-landing .sim-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
 .pg-landing .metric{background:#fff;padding:22px}
@@ -111,9 +111,9 @@
 .pg-landing .red-inv-totales{display:grid;grid-template-columns:repeat(3,1fr);margin:0;border-bottom:1px solid var(--line)}
 .pg-landing .red-inv-totales div{padding:18px 16px;border-right:1px solid var(--line)}
 .pg-landing .red-inv-totales div:last-child{border-right:0}
-.pg-landing .red-inv-totales dt{font-family:var(--utility);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.pg-landing .red-inv-totales dt{font-family:var(--utility);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .pg-landing .red-inv-totales dd{margin:0;font-family:var(--title);font-weight:600;font-size:clamp(18px,1.6vw,22px);line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
-.pg-landing .red-inv-totales small{font-size:.55em;font-weight:500;color:var(--muted)}
+.pg-landing .red-inv-totales small{font-size:max(.55em,11px);font-weight:500;color:var(--muted)}
 .pg-landing .red-inv-lista{list-style:none;margin:0;padding:0;flex:1;display:flex;flex-direction:column}
 .pg-landing .red-inv-lista li{flex:1;border-bottom:1px solid var(--line)}
 .pg-landing .red-inv-lista li:last-child{border-bottom:0}
@@ -185,6 +185,12 @@
   .pg-landing .red-inv-totales dd{font-size:17px}
   .pg-landing .red-inv-lista a{padding:12px 14px}
   .pg-landing .hero{min-height:auto}.pg-landing .hero-inner{padding:112px 0 32px}
+  /* Portada de landings en celular: botones a lo ancho y cifras en una grilla compacta. */
+  .pg-landing .hero-copy .actions{flex-direction:column;align-items:stretch}
+  .pg-landing .hero-copy .actions .btn{width:100%;min-height:50px}
+  .pg-landing .hero-stats{margin-top:28px;gap:0 12px}
+  .pg-landing .hero-stat{padding:14px 0 0}
+  .pg-landing .dev-hero-logo{width:150px;margin-bottom:18px}
   .pg-landing h1{font-size:clamp(34px,9.6vw,46px)}.pg-landing h2{font-size:clamp(28px,8vw,36px)}
   .pg-landing .hero-stats{grid-template-columns:1fr 1fr}
   .pg-landing .hero-stat strong{font-size:22px}
@@ -200,7 +206,7 @@
   .pg-landing .service{grid-template-columns:38px 1fr}.pg-landing .service span:last-child{grid-column:2}
   .pg-landing .cta{padding:34px 24px}
   .pg-landing .cta h2{font-size:clamp(26px,7.4vw,32px)}
-  .pg-landing .media-frame{min-height:280px}
-  .pg-landing .hero-copy p{font-size:17px}
+  .pg-landing .media-frame{min-height:240px}
+  .pg-landing .hero-copy p{font-size:16px;margin-bottom:22px}
   .pg-landing .gate-copy,.pg-landing .gate-form{padding:28px 22px}
 }

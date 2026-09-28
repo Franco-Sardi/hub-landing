@@ -71,6 +71,7 @@ export default function RedProyectos() {
 
           </div>
 
+          <p className="rp-cards-hint" aria-hidden="true"><span>5 desarrollos</span><span>Deslizá →</span></p>
           <ul className="rp-cards rp-solo-mobile">
             {desarrollos.map((x) => (
               <li key={x.slug}>
