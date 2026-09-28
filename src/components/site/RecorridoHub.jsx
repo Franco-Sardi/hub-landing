@@ -17,9 +17,16 @@ function Camion() {
   )
 }
 
-// El camión recorre la línea a medida que se scrollea y enciende cada paso al pasar por su punto.
-// La posición se escribe directo en el transform del camión y del relleno (sin re-render por frame);
+// Loop por tiempo (pedido de Franco: con el scroll "funcionaba mal"): el camión se detiene en cada
+// paso y lo enciende, avanza al siguiente, y al final se desvanece y arranca de nuevo. Solo corre con
+// la sección a la vista. La posición se escribe directo en el transform del camión y del relleno;
 // React solo se entera cuando cambia la cantidad de pasos encendidos.
+const PAUSA = 900 // ms detenido en cada paso
+const TRAMO = 1400 // ms entre un paso y el siguiente
+const CIERRE = 1800 // ms al final (incluye el desvanecido)
+const FUNDIDO = 450
+const easeInOut = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2)
+
 export default function RecorridoHub({ pasos }) {
   const flowRef = useRef(null)
   const camionRef = useRef(null)
@@ -32,10 +39,10 @@ export default function RecorridoHub({ pasos }) {
     if (!flow) return
     const reducido = window.matchMedia('(prefers-reduced-motion: reduce)')
     const vertical = window.matchMedia('(max-width: 1100px)')
-    let actual = 0
-    let objetivo = 0
-    let raf = 0
     let posiciones = []
+    let raf = 0
+    let visible = false
+    let inicio = 0
     let ultimoEncendido = -1
     let vivo = true
 
@@ -47,22 +54,10 @@ export default function RecorridoHub({ pasos }) {
       })
     }
 
-    const leerScroll = () => {
-      const r = flow.getBoundingClientRect()
-      const vh = window.innerHeight
-      // Horizontal: el recorrido ocurre mientras la línea sube del 78% al 33% de la pantalla.
-      // Vertical: acompaña al lector a lo largo de la lista.
-      const t = vertical.matches ? (vh * 0.7 - r.top) / (r.height * 0.85) : (vh * 0.78 - r.top) / (vh * 0.45)
-      objetivo = Math.min(1, Math.max(0, t))
-    }
-
-    const pintar = () => {
-      if (posiciones.length < 2) return
-      const ini = posiciones[0]
-      const fin = posiciones[posiciones.length - 1]
-      const pos = ini + actual * (fin - ini)
+    const pintar = (pos, opacidad, n) => {
       const camion = camionRef.current
       const relleno = rellenoRef.current
+      if (!camion || !relleno) return
       if (vertical.matches) {
         camion.style.transform = `translate3d(-29px, ${pos - 15}px, 0) rotate(90deg)`
         relleno.style.transform = `scaleY(${pos / flow.offsetHeight})`
@@ -70,57 +65,84 @@ export default function RecorridoHub({ pasos }) {
         camion.style.transform = `translate3d(${pos - 36}px, 0, 0)`
         relleno.style.transform = `scaleX(${pos / flow.offsetWidth})`
       }
-      const n = posiciones.filter((p) => p <= pos + 6).length
+      camion.style.opacity = opacidad
+      relleno.style.opacity = opacidad
       if (n !== ultimoEncendido) {
         ultimoEncendido = n
         setEncendidos(n)
       }
     }
 
-    const frame = () => {
-      // Suavizado: el camión "rueda" hacia la posición del scroll en vez de saltar con la rueda del mouse.
-      actual += (objetivo - actual) * 0.12
-      if (Math.abs(objetivo - actual) < 0.001) actual = objetivo
-      pintar()
-      raf = actual === objetivo ? 0 : requestAnimationFrame(frame)
+    // Dado el tiempo dentro del ciclo, devuelve [posición, opacidad, pasos encendidos].
+    const estado = (e) => {
+      const P = posiciones
+      for (let i = 0; i < P.length; i++) {
+        if (e < PAUSA) return [P[i], 1, i + 1]
+        e -= PAUSA
+        if (i < P.length - 1) {
+          if (e < TRAMO) return [P[i] + (P[i + 1] - P[i]) * easeInOut(e / TRAMO), 1, i + 1]
+          e -= TRAMO
+        }
+      }
+      const fin = P[P.length - 1]
+      const resta = CIERRE - e
+      return [fin, resta < FUNDIDO ? Math.max(0, resta / FUNDIDO) : 1, P.length]
     }
 
-    const alScroll = () => {
-      leerScroll()
+    const ciclo = () => PAUSA * posiciones.length + TRAMO * (posiciones.length - 1) + CIERRE
+
+    const frame = (ahora) => {
+      if (posiciones.length < 2) return
+      if (!inicio) inicio = ahora
+      const [pos, op, n] = estado((ahora - inicio) % ciclo())
+      pintar(pos, op, n)
+      raf = requestAnimationFrame(frame)
+    }
+
+    const arrancar = () => {
+      if (!vivo || raf || !visible || document.hidden) return
       if (reducido.matches) {
-        actual = objetivo = 1
-        pintar()
-      } else if (!raf) {
-        raf = requestAnimationFrame(frame)
+        const fin = posiciones[posiciones.length - 1]
+        if (fin != null) pintar(fin, 1, posiciones.length)
+        return
       }
+      inicio = 0
+      raf = requestAnimationFrame(frame)
+    }
+    const parar = () => {
+      cancelAnimationFrame(raf)
+      raf = 0
     }
 
     const alRedimensionar = () => {
-      // fonts.ready puede resolver después de salir de la home: sin esto, mide nodos ya desmontados.
       if (!vivo) return
       medir()
-      alScroll()
-      pintar()
+      if (!raf && posiciones.length) pintar(posiciones[0], 1, reducido.matches ? posiciones.length : 1)
     }
 
     alRedimensionar()
-    // Las fuentes web y el reveal cambian el alto del texto después del primer render:
-    // sin volver a medir, el camión termina corrido del último punto.
     const ro = new ResizeObserver(alRedimensionar)
     ro.observe(flow)
     document.fonts?.ready.then(alRedimensionar)
-    window.addEventListener('scroll', alScroll, { passive: true })
-    window.addEventListener('resize', alRedimensionar)
-    vertical.addEventListener('change', alRedimensionar)
-    reducido.addEventListener('change', alRedimensionar)
+    const io = new IntersectionObserver(([en]) => {
+      visible = en.isIntersecting
+      if (visible) arrancar()
+      else parar()
+    }, { threshold: 0.25 })
+    io.observe(flow)
+    const alVisibilidad = () => (document.hidden ? parar() : arrancar())
+    document.addEventListener('visibilitychange', alVisibilidad)
+    const alCambiar = () => { parar(); alRedimensionar(); arrancar() }
+    vertical.addEventListener('change', alCambiar)
+    reducido.addEventListener('change', alCambiar)
     return () => {
       vivo = false
-      cancelAnimationFrame(raf)
+      parar()
       ro.disconnect()
-      window.removeEventListener('scroll', alScroll)
-      window.removeEventListener('resize', alRedimensionar)
-      vertical.removeEventListener('change', alRedimensionar)
-      reducido.removeEventListener('change', alRedimensionar)
+      io.disconnect()
+      document.removeEventListener('visibilitychange', alVisibilidad)
+      vertical.removeEventListener('change', alCambiar)
+      reducido.removeEventListener('change', alCambiar)
     }
   }, [])
 

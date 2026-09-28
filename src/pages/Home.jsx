@@ -80,14 +80,24 @@ function Hero() {
           ))}
         </div>
 
+        {/* Contador + flechas circulares; el avance automático es un anillo alrededor de "siguiente". */}
         <div className="hero-nav">
-          <button className="hero-arrow" type="button" aria-label="Anterior" onClick={() => ir(idx - 1)}>←</button>
-          <div className="hero-dots" aria-label="Escenas del hero">
-            {ESCENAS.map((_, i) => (
-              <button key={i === idx ? `activo-${ciclo}-${i}` : i} type="button" className={`hero-dot${i === idx ? ' is-active' : ''}`} aria-label={`Ir al contenido ${i + 1}`} aria-current={i === idx} onClick={() => ir(i)} />
-            ))}
+          <div className="hero-count" aria-live="polite">
+            <span className="hero-count-now">{String(idx + 1).padStart(2, '0')}</span>
+            <span className="hero-count-line" aria-hidden="true" />
+            <span className="hero-count-total">{String(ESCENAS.length).padStart(2, '0')}</span>
           </div>
-          <button className="hero-arrow" type="button" aria-label="Siguiente" onClick={() => ir(idx + 1)}>→</button>
+          <button className="hero-arrow" type="button" aria-label="Escena anterior" onClick={() => ir(idx - 1)}>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+          </button>
+          <button className="hero-arrow hero-arrow--next" type="button" aria-label="Escena siguiente" onClick={() => ir(idx + 1)}>
+            {!reducido && (
+              <svg className="hero-ring" viewBox="0 0 56 56" aria-hidden="true">
+                <circle key={`${idx}-${ciclo}`} cx="28" cy="28" r="26.5" />
+              </svg>
+            )}
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+          </button>
         </div>
 
         <div className="hero-summary">

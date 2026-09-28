@@ -54,21 +54,24 @@
 .pg-home .hero-desc{max-width:680px;margin:22px 0 0;font-size:19px;line-height:1.45;color:rgba(255,255,255,.82)}
 .pg-home .hero-actions{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
 .pg-home .hero-nav{position:absolute;right:0;bottom:150px;display:flex;align-items:center;gap:12px}
+.pg-home .hero-count{display:flex;align-items:center;gap:12px;margin-right:14px;font-family:var(--title);font-variant-numeric:tabular-nums}
+.pg-home .hero-count-now{font-size:26px;font-weight:600;line-height:1;color:#fff}
+.pg-home .hero-count-line{width:36px;height:1px;background:rgba(255,255,255,.45)}
+.pg-home .hero-count-total{font-size:13px;font-weight:500;color:rgba(255,255,255,.55)}
 .pg-home .hero-arrow{
-  width:50px;height:50px;border:1px solid rgba(255,255,255,.38);
-  background:rgba(10,30,38,.12);color:#fff;cursor:pointer;font-size:20px;
-  transition:background .25s;
+  position:relative;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;
+  border:1px solid rgba(255,255,255,.35);background:rgba(10,30,38,.25);backdrop-filter:blur(6px);color:#fff;
+  transition:background-color .2s ease,border-color .2s ease;
 }
-.pg-home .hero-arrow:hover{background:rgba(255,255,255,.12)}
-.pg-home .hero-dots{display:flex;gap:8px}
-.pg-home .hero-dot{
-  position:relative;width:54px;height:3px;border:0;padding:0;
-  background:rgba(255,255,255,.28);cursor:pointer;overflow:hidden;
-}
-.pg-home .hero-dot::after{content:"";position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left}
-.pg-home .hero-dot.is-active::after{animation:heroProgress 6.5s linear forwards}
-.pg-home .hero.is-paused .hero-dot.is-active::after{animation-play-state:paused}
-@keyframes heroProgress{to{transform:scaleX(1)}}
+.pg-home .hero-arrow svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+@media(hover:hover) and (pointer:fine){.pg-home .hero-arrow:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.7)}}
+.pg-home .hero-arrow:focus-visible{outline:2px solid var(--hub-orange);outline-offset:3px}
+.pg-home .hero-arrow--next{border-color:rgba(255,255,255,.18)}
+/* Anillo de avance: se dibuja en 6,5 s (duración de la escena, handoff §6) y se pausa en hover. */
+.pg-home .hero-ring{position:absolute;inset:-3px;width:56px!important;height:56px!important;transform:rotate(-90deg);pointer-events:none}
+.pg-home .hero-ring circle{fill:none;stroke:#fff;stroke-width:1.5;stroke-dasharray:166.5;stroke-dashoffset:166.5;animation:heroRing 6.5s linear forwards}
+.pg-home .hero.is-paused .hero-ring circle{animation-play-state:paused}
+@keyframes heroRing{to{stroke-dashoffset:0}}
 .pg-home .hero-summary{
   margin-top:36px;border-top:1px solid rgba(255,255,255,.26);
   display:grid;grid-template-columns:1fr 1.45fr 1.45fr 1fr;
@@ -299,9 +302,7 @@
   .pg-home .hero-desc{font-size:17px}
   /* En la maqueta los controles quedaban absolutos encima del resumen: van al flujo. */
   .pg-home .hero-nav{position:static;margin-top:28px}
-  .pg-home .hero-arrow{width:44px;height:44px;flex:0 0 auto}
-  .pg-home .hero-dots{flex:1 1 auto}
-  .pg-home .hero-dot{flex:1 1 0;width:auto}
+  .pg-home .hero-count{margin-right:auto}
   .pg-home .hero-summary{grid-template-columns:1fr 1fr;margin-top:24px}
   .pg-home .hero-summary-item{padding-top:14px}
   .pg-home .hero-summary-item strong{font-size:23px}
