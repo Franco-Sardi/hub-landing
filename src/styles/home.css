@@ -96,9 +96,12 @@
   margin:0;font-family:var(--utility);font-size:12px;letter-spacing:.12em;
   text-transform:uppercase;font-weight:600;
 }
-.pg-home .wordmarks{display:flex;flex-wrap:wrap;gap:22px 46px;align-items:center}
-.pg-home .wordmark{color:var(--hub-blue);opacity:.82;font-size:21px;font-weight:500;letter-spacing:-.02em}
-.pg-home .wordmarks.partners .wordmark{font-size:16px;color:#66757b;letter-spacing:0}
+.pg-home .logos{display:flex;flex-wrap:wrap;align-items:center;gap:20px 52px;list-style:none;margin:0;padding:0}
+.pg-home .logos img{width:auto;max-width:none;display:block}
+/* Partners en segunda jerarquía (handoff §7): mismo tratamiento, menos contraste. */
+.pg-home .logos--partners{gap:18px 40px}
+.pg-home .logos--partners img{opacity:.62;transition:opacity .25s}
+.pg-home .logos--partners li:hover img{opacity:1}
 
 /* NÚMEROS — editorial, no grilla de cards */
 .pg-home .numbers{background:var(--hub-blue);color:#fff}
@@ -284,6 +287,8 @@
   .pg-home .about-top{gap:16px}.pg-home .about-copy{padding-top:0}
   .pg-home .about-copy p{font-size:17px}
   .pg-home .people-row{grid-template-columns:1fr;gap:14px}
+  .pg-home .logos{gap:16px 30px}
+  .pg-home .logos--partners{gap:14px 26px}
   .pg-home .numbers-layout{grid-template-columns:1fr}
   .pg-home .number-primary{border-right:0;border-bottom:1px solid rgba(255,255,255,.18);padding-right:0}
   .pg-home .number-primary .value{font-size:110px}

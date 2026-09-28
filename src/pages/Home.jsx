@@ -5,6 +5,7 @@ import Layout from '../components/site/Layout'
 import MapaRed from '../components/site/MapaRed'
 import { useSite } from '../components/site/SiteContext'
 import { desarrollos, desarrolloPorSlug } from '../data/desarrollos'
+import { fundadoras, partners, altoLogo } from '../data/empresas'
 // En public/ (no importado) para que coincida con el preload de index.html.
 const heroImg = '/hub-hero.webp'
 import '../styles/home.css'
@@ -142,15 +143,19 @@ function Nosotros() {
         <div className="people" data-reveal>
           <div className="people-row">
             <h3>Empresas fundadoras</h3>
-            <div className="wordmarks">
-              {['Oscar David', 'Carnes de mi Campo', 'Terrandes'].map((n) => <span key={n} className="wordmark">{n}</span>)}
-            </div>
+            <ul className="logos logos--fundadoras">
+              {fundadoras.map((e) => (
+                <li key={e.nombre}><img src={e.logo} alt={e.nombre} height={altoLogo(e.r, 5600, 34, 74)} style={{ height: altoLogo(e.r, 5600, 34, 74) }} loading="lazy" /></li>
+              ))}
+            </ul>
           </div>
           <div className="people-row">
             <h3>Partners</h3>
-            <div className="wordmarks partners">
-              {['Grupo LTN', 'Hormi-Serv', 'Rogiro Aceros', 'Logmetal', 'Saldaña', 'Inducret', 'Prear'].map((n) => <span key={n} className="wordmark">{n}</span>)}
-            </div>
+            <ul className="logos logos--partners">
+              {partners.map((e) => (
+                <li key={e.nombre}><img src={e.logo} alt={e.nombre} height={altoLogo(e.r, 2600, 22, 44)} style={{ height: altoLogo(e.r, 2600, 22, 44) }} loading="lazy" /></li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
