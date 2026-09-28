@@ -222,9 +222,11 @@ body.no-scroll{overflow:hidden}
 .mo-mapa{position:relative;overflow:hidden;background:#022130;border:1px solid rgba(199,203,202,.28)}
 .mo-mapa img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;user-select:none;pointer-events:none}
 .mo-mapa--home{height:clamp(420px,calc(100vh - 190px),760px)}
-/* Landings: el mapa entero (sin recorte), acotado al alto de pantalla y centrado sobre una franja
-   del mismo azul del borde de la imagen (#022130), así no se nota dónde termina. */
-.mo-mapa--landing{aspect-ratio:1104/975;width:min(100%,calc((100vh - 140px) * 1.132));margin-inline:auto;border:0}
+/* Landings: ancho completo del contenido en 3:2. Recorta solo los márgenes de arriba y abajo
+   (flecha a San Juan, leyenda de Neuquén); ciudades, rutas y los 5 desarrollos quedan enteros.
+   Antes se acotaba al alto de pantalla y en notebook ocupaba el 56% del ancho. */
+.mo-mapa--landing{aspect-ratio:3/2;width:100%;border:0}
+@media(max-width:760px){.mo-mapa--landing{aspect-ratio:1104/975}}
 .mo-mapa--entero{aspect-ratio:1104/975}
 .mo-punto{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center;z-index:2}
 span.mo-punto{cursor:default}
