@@ -182,27 +182,37 @@ body.no-scroll{overflow:hidden}
 .cookie .btn{min-height:44px;padding:0 16px;font-size:12px}
 .cookie .btn:not(.btn--blue){color:var(--hub-blue)}
 
-/* MAPA — imagen original aprobada + nodos clickeables */
+/* MAPA — imagen original aprobada + nodos interactivos */
 .mapa-red{position:relative}
 .mapa-red img{width:100%;height:auto;display:block}
 .mapa-nodo{
-  position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;padding:0;
-  border:0;border-radius:50%;background:transparent;cursor:pointer;
+  position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;padding:0;
+  border:0;border-radius:50%;background:transparent;cursor:pointer;text-decoration:none;
 }
 .mapa-nodo::before{
-  content:"";position:absolute;inset:8px;border-radius:50%;
+  content:"";position:absolute;inset:9px;border-radius:50%;
   background:var(--hub-blue);opacity:0;transform:scale(.6);transition:transform .3s var(--ease),opacity .3s;
 }
 span.mapa-nodo{cursor:default}
 /* El mapa ya dibuja los puntos: la capa solo aparece en hover y en el nodo activo. */
-.mapa-nodo:hover::before{opacity:.5;transform:scale(1)}
-.mapa-nodo.is-active::before{opacity:1;transform:scale(1.15)}
+.mapa-nodo:hover::before,.mapa-nodo:focus-visible::before{opacity:.55;transform:scale(1)}
+.mapa-nodo.is-active::before{opacity:1;transform:scale(1.2)}
 .mapa-nodo.is-active::after{
   content:"";position:absolute;inset:0;border-radius:50%;
   border:2px solid var(--hub-blue);animation:mapaHalo 1.8s var(--ease) infinite;
 }
-@keyframes mapaHalo{from{transform:scale(.5);opacity:.9}to{transform:scale(1.7);opacity:0}}
+@keyframes mapaHalo{from{transform:scale(.5);opacity:.9}to{transform:scale(1.8);opacity:0}}
 .mapa-nodo:focus-visible{outline:2px solid var(--hub-orange);outline-offset:2px}
+.mapa-label{
+  position:absolute;top:50%;left:calc(100% + 4px);transform:translate(-4px,-50%);
+  background:var(--hub-blue);color:#fff;white-space:nowrap;pointer-events:none;
+  font-family:var(--utility);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 9px;opacity:0;transition:opacity .25s,transform .25s var(--ease);
+}
+.mapa-nodo--izq .mapa-label{left:auto;right:calc(100% + 4px);transform:translate(4px,-50%)}
+.mapa-nodo:hover .mapa-label,.mapa-nodo:focus-visible .mapa-label,.mapa-nodo.is-active .mapa-label{opacity:1;transform:translate(0,-50%)}
+/* Con otro nodo en hover, la etiqueta del activo se corre para no pisarse. */
+.mapa-red:has(.mapa-nodo:not(.is-active):hover) .mapa-nodo.is-active .mapa-label{opacity:0}
 
 @media(max-width:1100px){
   .container{width:min(var(--content),calc(100% - 48px))}

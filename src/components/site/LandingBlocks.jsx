@@ -48,8 +48,9 @@ export function RedDesarrollos() {
   )
 }
 
+// Los nodos llevan a la ficha de cada desarrollo; el activo (si hay) queda marcado.
 export function MapaBox({ activo }) {
-  return <div className="map-box" data-reveal><MapaRed activo={activo} /></div>
+  return <div className="map-box" data-reveal><MapaRed activo={activo} linkear /></div>
 }
 
 // Bloque de cierre: en la maqueta era un formulario; la minuta del 23-09 los reemplaza

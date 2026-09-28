@@ -274,18 +274,29 @@ function Desarrollos() {
               ))}
             </div>
 
-            <div className="dev-map">
-              <div className="dev-map-title"><span>Red HUB · Mendoza</span><span>Corredores productivos</span></div>
-              <div className="dev-map-box"><MapaRed activo={activo} onSelect={setActivo} /></div>
-            </div>
+          </div>
+        </div>
 
-            <div className="dev-meta">
-              <p>{d.textoHome}</p>
-              <div className="actions">
-                <button className="btn btn--blue" type="button" onClick={() => abrirLead({ recurso: d.recurso, perfil: 'usuarios', desarrollo: d.nombre, bloque: 'home-desarrollos' })}>Recibir ficha técnica</button>
-                <Link className="text-link" to={`/desarrollos/${d.slug}`}>Ver {d.label} →</Link>
-              </div>
+        {/* El mapa sale de la columna angosta: en la maqueta medía ~330 px y no se leía. */}
+        <div className="dev-red" data-reveal>
+          <div className="dev-map">
+            <div className="dev-map-title"><span>Red HUB · Mendoza</span><span>Corredores productivos</span></div>
+            <div className="dev-map-box"><MapaRed activo={activo} onSelect={setActivo} onHover={pedir} /></div>
+          </div>
+
+          <div className="dev-meta">
+            <div className="eyebrow">Desarrollo seleccionado</div>
+            <h3>{d.label}</h3>
+            <dl className="dev-facts">
+              <div><dt>Perfil</dt><dd>{d.titulo}</dd></div>
+              <div><dt>Terreno</dt><dd>{d.area}</dd></div>
+            </dl>
+            <p>{d.textoHome}</p>
+            <div className="actions">
+              <button className="btn btn--blue" type="button" onClick={() => abrirLead({ recurso: d.recurso, perfil: 'usuarios', desarrollo: d.nombre, bloque: 'home-desarrollos' })}>Recibir ficha técnica</button>
+              <Link className="text-link" to={`/desarrollos/${d.slug}`}>Ver {d.label} →</Link>
             </div>
+            <p className="dev-map-hint">Elegí un punto del mapa o un desarrollo de la lista para verlo.</p>
           </div>
         </div>
 

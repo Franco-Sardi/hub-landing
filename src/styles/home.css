@@ -2,7 +2,8 @@
    que tienen su propia escala (títulos Montserrat 600). */
 .pg-home .section{padding:128px 0;position:relative;overflow:hidden}
 .pg-home h1,.pg-home h2,.pg-home h3{font-family:var(--title);font-weight:800;letter-spacing:-.01em}
-.pg-home h2{font-size:clamp(54px,5.25vw,82px);line-height:1;margin-bottom:24px;letter-spacing:-.012em}
+/* 54–82px del handoff: a 1366 px partía títulos en 5-6 líneas en las columnas angostas. */
+.pg-home h2{font-size:clamp(44px,4.5vw,76px);line-height:1.02;margin-bottom:24px;letter-spacing:-.012em;text-wrap:balance}
 .pg-home h3{font-size:30px;line-height:1.06;letter-spacing:-.005em}
 .pg-home .lead{font-size:20px;line-height:1.5;color:var(--muted);max-width:760px}
 
@@ -121,7 +122,7 @@
 .pg-home .number-primary p{margin:0;color:rgba(255,255,255,.62);max-width:420px}
 .pg-home .number-stack{display:grid;grid-template-rows:repeat(3,1fr)}
 .pg-home .number-row{
-  display:grid;grid-template-columns:.52fr 1fr;gap:36px;align-items:center;
+  display:grid;grid-template-columns:minmax(0,46%) 1fr;gap:32px;align-items:center;
   min-height:173px;padding:30px 0 30px 50px;
   border-bottom:1px solid rgba(255,255,255,.18);
   position:relative;overflow:hidden;
@@ -132,20 +133,20 @@
   transform:scaleY(0);transform-origin:top;transition:transform .75s var(--ease);
 }
 .pg-home .number-row.is-visible::before{transform:scaleY(1)}
-.pg-home .number-row .value{font-size:clamp(48px,5vw,74px);line-height:.9;font-weight:400;letter-spacing:-.05em;white-space:nowrap}
+.pg-home .number-row .value{font-size:clamp(44px,4.4vw,70px);line-height:.9;font-weight:400;letter-spacing:-.05em;white-space:nowrap}
 .pg-home .number-row .value small{font-size:.38em;letter-spacing:0;vertical-align:baseline}
 .pg-home .number-row h3{font-size:23px;margin:0 0 6px;font-weight:500}
 .pg-home .number-row p{margin:0;color:rgba(255,255,255,.60);font-size:14px;max-width:430px}
 
 /* EMPRESAS */
 .pg-home .enterprise{background:var(--paper)}
-.pg-home .enterprise-grid{display:grid;grid-template-columns:1.08fr .92fr;min-height:820px}
+.pg-home .enterprise-grid{display:grid;grid-template-columns:1.08fr .92fr;min-height:720px}
 .pg-home .enterprise-media{position:relative;overflow:hidden}
 .pg-home .enterprise-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.4s var(--ease)}
 .pg-home .enterprise-media.is-visible img{transform:scale(1)}
-.pg-home .enterprise-content{padding:78px 0 70px 76px;display:flex;flex-direction:column;justify-content:center}
+.pg-home .enterprise-content{padding:64px 0 56px 64px;display:flex;flex-direction:column;justify-content:center}
 .pg-home .enterprise-content .eyebrow{margin-bottom:20px}
-.pg-home .enterprise-content h2{max-width:610px}
+.pg-home .enterprise-content h2{max-width:620px;font-size:clamp(40px,3.7vw,64px)}
 .pg-home .enterprise-content .lead{max-width:610px}
 .pg-home .key-question{
   margin:38px 0 36px;padding:23px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
@@ -167,8 +168,8 @@
 .pg-home .section-head h2{margin:0}
 .pg-home .section-head p{font-size:19px;color:var(--muted);max-width:650px;margin:0}
 .pg-home .dev-shell{
-  display:grid;grid-template-columns:minmax(0,1.35fr) minmax(420px,.65fr);
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line);min-height:780px;
+  display:grid;grid-template-columns:minmax(0,1.35fr) minmax(400px,.65fr);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);min-height:600px;
 }
 .pg-home .dev-visual{position:relative;overflow:hidden;background:#e6e3de}
 .pg-home .dev-image{
@@ -183,7 +184,7 @@
 .pg-home .dev-visual-overlay img{display:block;width:230px;max-width:100%;height:auto}
 .pg-home .dev-visual-overlay strong{display:block;margin-top:13px;font-family:var(--title);font-size:20px;line-height:1.1;font-weight:700;letter-spacing:-.005em}
 .pg-home .dev-panel{padding:0 0 0 46px;display:flex;flex-direction:column}
-.pg-home .dev-list{border-top:1px solid var(--line)}
+.pg-home .dev-list{flex:1;display:grid;grid-auto-rows:1fr}
 .pg-home .dev-btn{
   position:relative;width:100%;display:grid;grid-template-columns:42px minmax(0,1fr) 110px;
   gap:16px;align-items:center;text-align:left;padding:22px 0;
@@ -203,19 +204,30 @@
 .pg-home .dev-btn .area{font-size:13px;color:#65747b;text-align:right;white-space:nowrap}
 /* Mismo tamaño: el estado activo se marca con filete y color, nunca agrandando la tipografía. */
 .pg-home .dev-btn.is-active strong{color:#000}
-.pg-home .dev-map{margin-top:auto;padding-top:30px}
-.pg-home .dev-map-title{display:flex;justify-content:space-between;gap:20px;margin-bottom:12px}
+.pg-home .dev-red{
+  display:grid;grid-template-columns:minmax(0,1.35fr) minmax(400px,.65fr);
+  border-bottom:1px solid var(--line);
+}
+.pg-home .dev-map{padding:32px 0 36px}
+.pg-home .dev-map-title{display:flex;justify-content:space-between;gap:20px;margin:0 auto 12px;max-width:760px}
 .pg-home .dev-map-title span{font-family:var(--utility);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#718086}
-.pg-home .dev-map-box img{width:100%;height:auto;display:block}
-.pg-home .dev-meta{padding:26px 0 0}
-.pg-home .dev-meta p{font-size:14px;color:var(--muted);max-width:540px;margin-bottom:18px}
+.pg-home .dev-map-box{max-width:760px;margin-inline:auto}
+.pg-home .dev-meta{padding:64px 0 36px 46px;display:flex;flex-direction:column}
+.pg-home .dev-meta .eyebrow{color:#718086;margin-bottom:16px}
+.pg-home .dev-meta h3{font-size:30px;margin:0 0 22px}
+.pg-home .dev-facts{margin:0 0 22px;border-top:1px solid var(--line)}
+.pg-home .dev-facts div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.pg-home .dev-facts dt{font-family:var(--utility);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#718086}
+.pg-home .dev-facts dd{margin:0;font-weight:500;text-align:right}
+.pg-home .dev-meta p{font-size:15px;color:var(--muted);max-width:540px;margin-bottom:22px}
+.pg-home .dev-meta .dev-map-hint{margin:auto 0 0;padding-top:28px;font-size:12px;color:#8a969b}
 .pg-home .render-note{font-size:11px;color:#738188;margin-top:18px}
 
 /* MODELO HUB */
 .pg-home .business{background:var(--hub-blue);color:#fff}
 .pg-home .business .section-head p{color:rgba(255,255,255,.64)}
 .pg-home .business-flow{position:relative;margin-top:62px}
-.pg-home .business-line{position:absolute;left:0;right:0;top:28px;height:1px;background:rgba(255,255,255,.18)}
+.pg-home .business-line{position:absolute;left:0;right:0;top:7px;height:1px;background:rgba(255,255,255,.18)}
 .pg-home .business-line::after{
   content:"";position:absolute;left:0;top:0;height:1px;width:100%;background:var(--hub-silver);
   transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--ease);
@@ -242,8 +254,9 @@
   .pg-home .enterprise-grid{grid-template-columns:1fr}
   .pg-home .enterprise-media{height:620px}
   .pg-home .enterprise-content{padding:70px 0}
-  .pg-home .dev-shell{grid-template-columns:1fr}
-  .pg-home .dev-visual{height:680px}
+  .pg-home .dev-shell,.pg-home .dev-red{grid-template-columns:1fr}
+  .pg-home .dev-visual{height:min(560px,70vw)}
+  .pg-home .dev-meta{padding:8px 0 40px}
   .pg-home .dev-panel{padding:36px 0 0}
   .pg-home .dev-btn::before{left:0}
   .pg-home .dev-btn{padding-left:16px}
@@ -277,10 +290,15 @@
   .pg-home .enterprise-media{height:500px}
   .pg-home .enterprise-content{padding:58px 0}
   .pg-home .capability{grid-template-columns:38px 1fr}.pg-home .capability span:last-child{grid-column:2}
-  .pg-home .dev-visual{height:520px}
+  .pg-home .dev-visual{height:360px}
   .pg-home .dev-visual-overlay{left:18px;right:18px;bottom:18px;min-width:0}
-  .pg-home .dev-btn{grid-template-columns:32px 1fr}
+  .pg-home .dev-list{grid-auto-rows:auto}
+  .pg-home .dev-btn{grid-template-columns:32px 1fr;row-gap:4px;padding:16px 0}
+  .pg-home .dev-btn strong{font-size:19px}
   .pg-home .dev-btn .area{grid-column:2;text-align:left}
+  .pg-home .dev-visual-overlay{padding:12px 14px}
+  .pg-home .dev-visual-overlay img{width:150px}
+  .pg-home .dev-visual-overlay strong{font-size:16px;margin-top:8px}
   .pg-home .business-steps{grid-template-columns:1fr;gap:36px}
   .pg-home .business-step,.pg-home .business-step:not(:first-child){padding:0;min-height:0}
   .pg-home .business-step .dot{display:none}
