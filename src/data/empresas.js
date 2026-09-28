@@ -1,9 +1,10 @@
 // Logos del set de Branding (brochure), pasados a monocromo azul HUB con fondo transparente
-// (handoff §7: fundadoras una sola vez y en monocromo; partners en segunda jerarquía).
+// (handoff §7: partners en monocromo y segunda jerarquía). Las fundadoras van a color.
 // `r` = ancho/alto del archivo: se usa para darles el mismo peso visual (área), no el mismo alto.
-import oscarDavid from '../assets/v3/empresas/oscar-david.webp'
-import carnes from '../assets/v3/empresas/carnes-de-mi-campo.webp'
-import terrandes from '../assets/v3/empresas/terrandes.webp'
+// Fundadoras en sus colores de marca (pedido de Franco, 28-09); Terrandes es negro en su marca.
+import oscarDavid from '../assets/v3/empresas/oscar-david-color.webp'
+import carnes from '../assets/v3/empresas/carnes-de-mi-campo-color.webp'
+import terrandes from '../assets/v3/empresas/terrandes-color.webp'
 import ltn from '../assets/v3/empresas/grupo-ltn.webp'
 import hormiServ from '../assets/v3/empresas/hormi-serv.webp'
 import rogiro from '../assets/v3/empresas/rogiro-aceros.webp'
