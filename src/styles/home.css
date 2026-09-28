@@ -105,6 +105,24 @@
 .pg-home .logos--partners{gap:18px 40px}
 .pg-home .logos--partners img{opacity:.62;transition:opacity .25s}
 .pg-home .logos--partners li:hover img{opacity:1}
+/* Carrusel de partners: dos copias de la lista en fila; el track se corre exactamente una copia
+   (-50%) en loop lineal, así el salto de vuelta no se ve. */
+.pg-home .people-row{min-width:0}
+.pg-home .partners-marquee{
+  min-width:0;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.pg-home .partners-track{display:flex;width:max-content;animation:partnersLoop 38s linear infinite}
+.pg-home .partners-track .logos--partners{flex-wrap:nowrap;padding-right:40px}
+@media(hover:hover) and (pointer:fine){.pg-home .partners-marquee:hover .partners-track{animation-play-state:paused}}
+@keyframes partnersLoop{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){
+  .pg-home .partners-marquee{-webkit-mask-image:none;mask-image:none}
+  .pg-home .partners-track{animation:none;width:auto}
+  .pg-home .partners-track .logos--partners{flex-wrap:wrap;padding-right:0}
+  .pg-home .partners-track .logos--partners[aria-hidden]{display:none}
+}
 
 /* NÚMEROS — editorial, no grilla de cards */
 .pg-home .numbers{background:var(--hub-blue);color:#fff}
@@ -348,6 +366,8 @@
   .pg-home .people-row{grid-template-columns:1fr;gap:14px}
   .pg-home .logos{gap:16px 30px}
   .pg-home .logos--partners{gap:14px 26px}
+  .pg-home .partners-track .logos--partners{padding-right:26px}
+  .pg-home .partners-track{animation-duration:28s}
   .pg-home .numbers-layout{grid-template-columns:1fr}
   .pg-home .number-primary{border-right:0;border-bottom:1px solid rgba(255,255,255,.18);padding-right:0}
   .pg-home .number-primary .value{font-size:96px}

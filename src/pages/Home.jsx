@@ -162,11 +162,18 @@ function Nosotros() {
           </div>
           <div className="people-row">
             <h3>Partners</h3>
-            <ul className="logos logos--partners">
-              {partners.map((e) => (
-                <li key={e.nombre}><img src={e.logo} alt={e.nombre} height={altoLogo(e.r, 2600, 22, 44)} style={{ height: altoLogo(e.r, 2600, 22, 44) }} loading="lazy" /></li>
-              ))}
-            </ul>
+            {/* Carrusel continuo: la lista va duplicada (copia oculta a lectores) para el loop sin corte. */}
+            <div className="partners-marquee">
+              <div className="partners-track">
+                {[0, 1].map((copia) => (
+                  <ul key={copia} className="logos logos--partners" aria-hidden={copia === 1 || undefined}>
+                    {partners.map((e) => (
+                      <li key={e.nombre}><img src={e.logo} alt={copia === 0 ? e.nombre : ''} height={altoLogo(e.r, 2600, 22, 44)} style={{ height: altoLogo(e.r, 2600, 22, 44) }} loading="lazy" /></li>
+                    ))}
+                  </ul>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
