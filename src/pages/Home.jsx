@@ -163,6 +163,12 @@ function Nosotros() {
   )
 }
 
+const CIFRAS = [
+  { valor: 335000, unidad: 'm²', titulo: 'de superficie total de terreno', texto: 'Escala territorial distribuida entre los cinco desarrollos.' },
+  { valor: 178000, unidad: 'm²', titulo: 'de naves proyectadas', texto: 'Infraestructura industrial y logística integrada al sistema HUB.' },
+  { valor: 4, titulo: 'ejes estratégicos', texto: 'Que conectan la red con los principales corredores productivos regionales y el bioceánico.' },
+]
+
 function Numeros() {
   return (
     <section className="section numbers" id="numeros">
@@ -180,23 +186,19 @@ function Numeros() {
             <div className="value"><Contador valor={5} /></div>
             <div>
               <h3>desarrollos estratégicamente conectados</h3>
-              <p>Malabia, Anchorena, San Francisco del Monte Oeste, San Francisco del Monte Este y Rodríguez Peña.</p>
+              <ol className="number-devs">
+                {desarrollos.map((d) => <li key={d.slug}>{d.nombre}</li>)}
+              </ol>
             </div>
           </div>
 
           <div className="number-stack">
-            <div className="number-row" data-reveal>
-              <div className="value"><Contador valor={335000} /> <small>m²</small></div>
-              <div><h3>de superficie total de terreno</h3><p>Escala territorial distribuida entre los cinco desarrollos.</p></div>
-            </div>
-            <div className="number-row" data-reveal>
-              <div className="value"><Contador valor={178000} /> <small>m²</small></div>
-              <div><h3>de naves proyectadas</h3><p>Infraestructura industrial y logística integrada al sistema HUB.</p></div>
-            </div>
-            <div className="number-row" data-reveal>
-              <div className="value"><Contador valor={4} /></div>
-              <div><h3>ejes estratégicos</h3><p>Que conectan la red con los principales corredores productivos regionales y el bioceánico.</p></div>
-            </div>
+            {CIFRAS.map((c) => (
+              <div key={c.titulo} className="number-row" data-reveal>
+                <div className="value"><Contador valor={c.valor} />{c.unidad && <small>{c.unidad}</small>}</div>
+                <div><h3>{c.titulo}</h3><p>{c.texto}</p></div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -108,28 +108,31 @@
 .pg-home .numbers-head{display:grid;grid-template-columns:.75fr 1.25fr;gap:64px;margin-bottom:44px;align-items:end}
 .pg-home .numbers-head h2{margin:0;max-width:580px}
 .pg-home .numbers-head p{margin:0;color:rgba(255,255,255,.65);font-size:17px;max-width:650px}
+/* Proporciones: todas las cifras en el mismo peso y con dígitos tabulares; el 5 manda, pero
+   en ~2,5:1 (la maqueta iba a 4:1 y en peso 300 contra 400). Unidad chica y tenue, como en
+   la sección de números del sitio anterior. */
 .pg-home .numbers-layout{
-  display:grid;grid-template-columns:.86fr 1.14fr;gap:0;
+  display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);
   border-top:1px solid rgba(255,255,255,.22);
   border-bottom:1px solid rgba(255,255,255,.22);
 }
+.pg-home .numbers .value{font-family:var(--title);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pg-home .numbers .value small{font-size:.34em;font-weight:500;letter-spacing:0;margin-left:.3em;opacity:.55}
 .pg-home .number-primary{
-  min-height:0;padding:40px 48px 36px 0;gap:28px;
-  border-right:1px solid rgba(255,255,255,.20);
-  display:flex;flex-direction:column;justify-content:space-between;
+  padding:28px 48px 28px 0;border-right:1px solid rgba(255,255,255,.20);
+  display:flex;flex-direction:column;justify-content:space-between;gap:28px;
 }
-.pg-home .number-primary .value{
-  font-size:clamp(130px,13vw,220px);font-weight:300;line-height:.72;
-  letter-spacing:-.08em;color:var(--hub-silver);
+.pg-home .number-primary .value{font-size:clamp(96px,9.4vw,152px);line-height:.82;letter-spacing:-.045em;color:var(--hub-silver)}
+.pg-home .number-primary h3{margin:0 0 16px;font-size:22px;font-weight:500;line-height:1.2;max-width:320px}
+.pg-home .number-devs{list-style:none;margin:0;padding:0;border-top:1px solid rgba(255,255,255,.14)}
+.pg-home .number-devs li{
+  padding:7px 0;border-bottom:1px solid rgba(255,255,255,.14);
+  font-family:var(--utility);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.66);
 }
-.pg-home .number-primary h3{margin:0 0 8px;font-size:26px;font-weight:500}
-.pg-home .number-primary p{margin:0;color:rgba(255,255,255,.62);max-width:420px}
 .pg-home .number-stack{display:grid;grid-template-rows:repeat(3,1fr)}
 .pg-home .number-row{
-  display:grid;grid-template-columns:minmax(0,46%) 1fr;gap:32px;align-items:center;
-  min-height:0;padding:24px 0 24px 44px;
-  border-bottom:1px solid rgba(255,255,255,.18);
-  position:relative;overflow:hidden;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:center;
+  padding:20px 0 20px 44px;border-bottom:1px solid rgba(255,255,255,.18);position:relative;overflow:hidden;
 }
 .pg-home .number-row:last-child{border-bottom:0}
 .pg-home .number-row::before{
@@ -137,10 +140,9 @@
   transform:scaleY(0);transform-origin:top;transition:transform .75s var(--ease);
 }
 .pg-home .number-row.is-visible::before{transform:scaleY(1)}
-.pg-home .number-row .value{font-size:clamp(38px,3.4vw,58px);line-height:.9;font-weight:400;letter-spacing:-.05em;white-space:nowrap}
-.pg-home .number-row .value small{font-size:.38em;letter-spacing:0;vertical-align:baseline}
-.pg-home .number-row h3{font-size:20px;margin:0 0 6px;font-weight:500}
-.pg-home .number-row p{margin:0;color:rgba(255,255,255,.60);font-size:14px;max-width:430px}
+.pg-home .number-row .value{font-size:clamp(40px,3.9vw,62px);line-height:1;letter-spacing:-.035em}
+.pg-home .number-row h3{font-size:18px;margin:0 0 6px;font-weight:500;line-height:1.25}
+.pg-home .number-row p{margin:0;color:rgba(255,255,255,.60);font-size:14px;max-width:360px}
 
 /* EMPRESAS */
 .pg-home .enterprise{background:var(--paper)}
@@ -291,7 +293,8 @@
   .pg-home .logos--partners{gap:14px 26px}
   .pg-home .numbers-layout{grid-template-columns:1fr}
   .pg-home .number-primary{border-right:0;border-bottom:1px solid rgba(255,255,255,.18);padding-right:0}
-  .pg-home .number-primary .value{font-size:110px}
+  .pg-home .number-primary .value{font-size:96px}
+  .pg-home .number-row .value{font-size:44px}
   .pg-home .number-primary{padding:28px 0 24px;gap:16px}
   .pg-home .number-row{padding:18px 0}
   .pg-home .number-row::before{display:none}
