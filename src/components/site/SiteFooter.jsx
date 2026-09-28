@@ -33,29 +33,41 @@ export default function SiteFooter() {
     <footer className="footer">
       <div className="container">
         <div className="newsletter">
-          <div className="newsletter-grid">
-            <div>
-              <h2>Recibí novedades de HUB.</h2>
-            </div>
-            <div>
-              <p>Elegí qué información querés recibir y dejá tu correo. Te enviamos novedades vinculadas a tu interés.</p>
-              <form className="newsletter-form" onSubmit={suscribir}>
-                <input name="email" type="email" required placeholder="Tu correo" aria-label="Tu correo" autoComplete="email" />
-                <select name="interes" required aria-label="Me interesa" defaultValue="">
-                  <option value="" disabled>Me interesa…</option>
-                  {INTERESES.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
-                </select>
-                <button className="btn btn--orange" type="submit" disabled={estado === 'enviando'}>
-                  {estado === 'ok' ? 'Listo. Revisá tu correo.' : 'Suscribirme'}
-                </button>
-                <label className="consent">
-                  <input type="checkbox" required />
-                  <span>Acepto el tratamiento de mis datos para recibir novedades de HUB. <Link to="/privacidad">Política de Privacidad</Link>.</span>
-                </label>
-                {estado === 'error' && <p className="form-status">No pudimos registrarte. Probá de nuevo en un momento.</p>}
-              </form>
-            </div>
+          <div className="nl-copy">
+            <div className="eyebrow">Novedades</div>
+            <h2>Recibí novedades de HUB.</h2>
+            <p>Elegí qué información querés recibir y dejá tu correo. Te enviamos novedades vinculadas a tu interés.</p>
           </div>
+
+          {estado === 'ok' ? (
+            <div className="nl-ok" role="status">
+              <strong>Listo, ya estás suscripto.</strong>
+              <span>Te vamos a escribir solo con novedades vinculadas a lo que elegiste.</span>
+            </div>
+          ) : (
+            <form className="nl-form" onSubmit={suscribir}>
+              <fieldset className="nl-intereses">
+                <legend>Me interesa</legend>
+                {INTERESES.map(([v, l], i) => (
+                  <label key={v} className="nl-chip">
+                    <input type="radio" name="interes" value={v} required={i === 0} />
+                    <span>{l}</span>
+                  </label>
+                ))}
+              </fieldset>
+              <div className="nl-campo">
+                <input name="email" type="email" required placeholder="nombre@empresa.com" aria-label="Tu correo" autoComplete="email" />
+                <button className="btn btn--orange" type="submit" disabled={estado === 'enviando'}>
+                  {estado === 'enviando' ? 'Enviando…' : 'Suscribirme'}
+                </button>
+              </div>
+              <label className="nl-consent">
+                <input type="checkbox" required />
+                <span>Acepto el tratamiento de mis datos para recibir novedades de HUB. <Link to="/privacidad">Política de Privacidad</Link>.</span>
+              </label>
+              {estado === 'error' && <p className="form-status">No pudimos registrarte. Probá de nuevo en un momento.</p>}
+            </form>
+          )}
         </div>
 
         <div className="footer-grid">

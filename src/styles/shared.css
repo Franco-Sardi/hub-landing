@@ -101,21 +101,54 @@ body.no-scroll{overflow:hidden}
 
 /* FOOTER */
 .footer{background:var(--hub-blue-deep);color:#fff;padding:64px 0 28px}
-.newsletter{padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.16)}
-.newsletter-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
+/* Newsletter: tarjeta con texto a la izquierda y formulario a la derecha; el interés se elige con
+   chips (radio) en vez de un select nativo, y correo + botón van unidos. */
+.newsletter{
+  display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center;
+  padding:40px 44px;border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+}
+.nl-copy .eyebrow{color:var(--hub-orange);margin-bottom:14px}
 .newsletter h2{
-  font-family:var(--title);font-weight:800;font-size:clamp(30px,2.8vw,44px);line-height:1.04;
-  letter-spacing:-.012em;max-width:490px;margin:0;
+  font-family:var(--title);font-weight:800;font-size:clamp(28px,2.5vw,40px);line-height:1.05;
+  letter-spacing:-.012em;margin:0 0 12px;
 }
-.newsletter p{color:rgba(255,255,255,.62);max-width:520px}
-.newsletter-form{display:grid;grid-template-columns:1fr 220px auto;gap:10px}
-.newsletter-form input[type="email"],.newsletter-form select{
-  height:54px;background:transparent;border:1px solid rgba(255,255,255,.32);color:#fff;padding:0 14px
+.nl-copy p{color:rgba(255,255,255,.62);max-width:440px;margin:0;font-size:15px}
+.nl-form{display:flex;flex-direction:column;gap:14px}
+.nl-intereses{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.nl-intereses legend{
+  width:100%;margin-bottom:10px;padding:0;
+  font-family:var(--utility);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);
 }
-.newsletter-form select option{color:#111}
-.consent{grid-column:1/-1;display:flex;gap:10px;align-items:flex-start;font-size:11px;color:rgba(255,255,255,.57);margin-top:5px}
-.consent input{margin-top:1px;flex:0 0 auto}
-.form-status{grid-column:1/-1;font-size:12px;margin:4px 0 0}
+.nl-chip{position:relative;cursor:pointer}
+.nl-chip input{position:absolute;opacity:0;width:1px;height:1px}
+.nl-chip span{
+  display:inline-flex;align-items:center;min-height:38px;padding:0 16px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.28);font-size:13px;color:rgba(255,255,255,.82);
+  transition:background-color .2s ease,border-color .2s ease,color .2s ease;
+}
+@media(hover:hover) and (pointer:fine){.nl-chip:hover span{border-color:rgba(255,255,255,.6)}}
+.nl-chip input:checked + span{background:#fff;border-color:#fff;color:var(--hub-blue);font-weight:500}
+.nl-chip input:focus-visible + span{outline:2px solid var(--hub-orange);outline-offset:2px}
+.nl-campo{display:flex;border:1px solid rgba(255,255,255,.3);transition:border-color .2s ease}
+.nl-campo:focus-within{border-color:#fff}
+.nl-campo input{flex:1;min-width:0;height:54px;border:0;background:transparent;color:#fff;padding:0 16px;outline:0}
+.nl-campo input::placeholder{color:rgba(255,255,255,.45)}
+.nl-campo .btn{min-height:54px;border:0;flex:0 0 auto}
+.nl-consent{display:flex;gap:10px;align-items:flex-start;font-size:12px;line-height:1.45;color:rgba(255,255,255,.55);cursor:pointer}
+.nl-consent input{
+  appearance:none;-webkit-appearance:none;flex:0 0 auto;width:16px;height:16px;margin:1px 0 0;
+  border:1px solid rgba(255,255,255,.45);background:transparent;cursor:pointer;display:grid;place-items:center;
+  transition:background-color .15s ease,border-color .15s ease;
+}
+.nl-consent input:checked{background:var(--hub-orange);border-color:var(--hub-orange)}
+.nl-consent input:checked::after{content:"";width:8px;height:4px;border:solid var(--hub-blue);border-width:0 0 2px 2px;transform:translateY(-1px) rotate(-45deg)}
+.nl-consent input:focus-visible{outline:2px solid var(--hub-orange);outline-offset:2px}
+.nl-consent a{color:rgba(255,255,255,.8)}
+.nl-ok{padding:24px;border-left:2px solid var(--hub-orange);background:rgba(255,255,255,.04)}
+.nl-ok strong{display:block;font-size:20px;margin-bottom:6px}
+.nl-ok span{color:rgba(255,255,255,.66);font-size:14px}
+.form-status{font-size:12px;margin:0;color:#ffb39a}
 .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:64px;padding:36px 0}
 .footer-grid h3{
   font-family:var(--utility);font-size:11px;font-weight:600;letter-spacing:.12em;
@@ -214,16 +247,18 @@ span.mo-punto{cursor:default}
   .header.mobile-open{background:var(--hub-blue-deep)}
   .header.mobile-open .nav{height:auto;min-height:82px;align-items:flex-start;padding:24px 0;flex-wrap:wrap}
   .header.mobile-open .menu{display:flex;flex:0 0 100%;flex-direction:column;align-items:flex-start;padding:18px 0 4px}
-  .newsletter-grid{grid-template-columns:1fr;gap:26px}
+  .newsletter{grid-template-columns:1fr;gap:28px}
 }
 @media(max-width:760px){
   .container{width:calc(100% - 32px)}
   .nav{height:78px}
   .brand img{width:94px}.brand span{display:none}
-  .newsletter-form{grid-template-columns:1fr}
+  .newsletter{padding:28px 20px}
+  .nl-campo{flex-direction:column}
+  .nl-campo input{flex:none}
+  .nl-campo .btn{width:100%}
   /* Navegación y legales lado a lado: apiladas, el footer ocupaba 1,5 pantallas. */
   .footer{padding:48px 0 24px}
-  .newsletter{padding-bottom:32px}
   .footer-grid{grid-template-columns:1fr 1fr;gap:28px 20px;padding:28px 0}
   .footer-grid > div:nth-child(2){grid-column:1/-1;order:3}
   .footer-bottom{flex-direction:column;align-items:flex-start}
