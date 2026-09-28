@@ -185,7 +185,7 @@ body.no-scroll{overflow:hidden}
 .cookie .btn:not(.btn--blue){color:var(--hub-blue)}
 
 /* MAPA — imagen original aprobada + zonas interactivas sobre los recuadros que ya dibuja */
-.mapa-red{position:relative;background:#F9F5EA}
+.mapa-red{position:relative;background:#F8F4EA}
 .mapa-red img{width:100%;height:auto;display:block}
 .mapa-zona{
   position:absolute;display:block;padding:0;margin:0;background:transparent;cursor:pointer;

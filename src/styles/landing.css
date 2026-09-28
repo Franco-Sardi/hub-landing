@@ -106,7 +106,7 @@
 .pg-landing .service span{color:var(--muted);font-size:14px}
 
 /* mapa */
-.pg-landing .map-box{background:#F9F5EA;border:1px solid var(--line);padding:16px;margin-top:28px}
+.pg-landing .map-box{background:#F8F4EA;border:1px solid var(--line);padding:16px;margin-top:28px}
 .pg-landing .map-box img{width:100%;height:auto}
 /* A ancho completo el mapa pasa los 1.100 px de alto: se acota y se centra dentro del recuadro. */
 .pg-landing .map-box .mapa-red{max-width:560px;margin-inline:auto}

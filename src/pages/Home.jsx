@@ -239,13 +239,19 @@ function Empresas() {
   )
 }
 
+// Planteo del sitio anterior (pedido de Franco, 28-09): mapa grande a la izquierda y, a la derecha,
+// la tarjeta del parque + la lista compacta. Hover previsualiza; clic fija. En pantallas chicas:
+// mapa arriba y una tarjeta por parque que lleva a su página (nada se re-renderiza en otro lugar).
 function Desarrollos() {
   const { abrirLead } = useSite()
-  const [activo, setActivoState] = useState('anchorena')
-  // Solo se piden los renders ya elegidos o con hover/foco (precarga): evita bajar los cinco al entrar.
+  const [fijado, setFijado] = useState('anchorena')
+  const [hover, setHover] = useState(null)
+  // Solo se piden los renders ya vistos o con hover: evita bajar los cinco al entrar.
   const [pedidos, setPedidos] = useState(() => new Set(['anchorena']))
-  const pedir = (slug) => setPedidos((prev) => (prev.has(slug) ? prev : new Set([...prev, slug])))
-  const setActivo = (slug) => { pedir(slug); setActivoState(slug) }
+  const pedir = (slug) => slug && setPedidos((prev) => (prev.has(slug) ? prev : new Set([...prev, slug])))
+  const previsualizar = (slug) => { pedir(slug); setHover(slug) }
+  const fijar = (slug) => { pedir(slug); setFijado(slug) }
+  const activo = hover || fijado
   const d = desarrolloPorSlug[activo]
 
   return (
@@ -259,52 +265,59 @@ function Desarrollos() {
           <p data-reveal="right">Desde espacios con mayor vocación urbana hasta naves industriales y centros de almacenamiento. Cada desarrollo combina ubicación, infraestructura y un perfil propio.</p>
         </div>
 
-        <div className="dev-shell" data-reveal>
-          <div className="dev-visual" aria-live="polite">
-            {desarrollos.map((x) => (
-              <div key={x.slug} className={`dev-image${x.slug === activo ? ' is-active' : ''}`} style={pedidos.has(x.slug) ? { backgroundImage: `url(${x.render})` } : undefined} role="img" aria-label={`Render ${x.label}`} aria-hidden={x.slug !== activo} />
-            ))}
-            <div className="dev-visual-overlay">
-              <img src={d.logo} alt={d.label} width="230" height="112" />
-              <strong>{d.titulo}</strong>
-            </div>
+        <div className="red" data-reveal>
+          <div className="red-mapa">
+            <div className="red-mapa-title"><span>Red HUB · Mendoza</span><span>Corredores productivos</span></div>
+            <div className="red-mapa-box red-solo-desktop"><MapaRed activo={activo} onSelect={fijar} onHover={(slug) => (slug ? previsualizar(slug) : setHover(null))} /></div>
+            <div className="red-mapa-box red-solo-mobile"><MapaRed linkear /></div>
           </div>
 
-          <div className="dev-panel">
-            <div className="dev-list">
-              {desarrollos.map((x, i) => (
-                <button key={x.slug} type="button" className={`dev-btn${x.slug === activo ? ' is-active' : ''}`} aria-pressed={x.slug === activo} onClick={() => setActivo(x.slug)} onMouseEnter={() => pedir(x.slug)} onFocus={() => pedir(x.slug)}>
-                  <span className="idx">{String(i + 1).padStart(2, '0')}</span>
-                  <span><strong>{x.nombre}</strong><small>{x.descriptor}</small></span>
-                  <span className="area">{x.area}</span>
-                </button>
+          <div className="red-panel red-solo-desktop">
+            <article className="red-preview" aria-live="polite">
+              {desarrollos.map((x) => (
+                <div key={x.slug} className={`red-preview-img${x.slug === activo ? ' is-active' : ''}`} style={pedidos.has(x.slug) ? { backgroundImage: `url(${x.render})` } : undefined} role="img" aria-label={`Render ${x.label}`} aria-hidden={x.slug !== activo} />
               ))}
-            </div>
+              <div className="red-preview-info">
+                <img className="red-preview-logo" src={d.logo} alt={d.label} width="120" height="58" />
+                <div className="red-preview-text">
+                  <span className="red-preview-perfil">{d.titulo}</span>
+                  <span className="red-preview-area">{d.area} de terreno</span>
+                </div>
+              </div>
+              <div className="red-preview-actions">
+                <button className="btn btn--orange" type="button" onClick={() => abrirLead({ recurso: d.recurso, perfil: 'usuarios', desarrollo: d.nombre, bloque: 'home-desarrollos' })}>Recibir ficha técnica</button>
+                <Link className="btn btn--white" to={`/desarrollos/${d.slug}`}>Ver desarrollo</Link>
+              </div>
+            </article>
 
+            <ul className="red-lista" onMouseLeave={() => setHover(null)}>
+              {desarrollos.map((x, i) => (
+                <li key={x.slug} className={`red-item${x.slug === activo ? ' is-active' : ''}${x.slug === fijado ? ' is-fijado' : ''}`} onMouseEnter={() => previsualizar(x.slug)}>
+                  <button type="button" className="red-item-btn" aria-pressed={x.slug === fijado} onClick={() => fijar(x.slug)} onFocus={() => previsualizar(x.slug)}>
+                    <span className="idx">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="red-item-txt"><strong>{x.nombre}</strong><small>{x.descriptor} · {x.area}</small></span>
+                  </button>
+                  <Link className="red-item-ver" to={`/desarrollos/${x.slug}`} aria-label={`Ver ${x.label}`}>Ver →</Link>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
 
-        {/* El mapa sale de la columna angosta: en la maqueta medía ~330 px y no se leía. */}
-        <div className="dev-red" data-reveal>
-          <div className="dev-map">
-            <div className="dev-map-title"><span>Red HUB · Mendoza</span><span>Corredores productivos</span></div>
-            <div className="dev-map-box"><MapaRed activo={activo} onSelect={setActivo} onHover={pedir} /></div>
-          </div>
-
-          <div className="dev-meta">
-            <div className="eyebrow">Desarrollo seleccionado</div>
-            <h3>{d.label}</h3>
-            <dl className="dev-facts">
-              <div><dt>Perfil</dt><dd>{d.titulo}</dd></div>
-              <div><dt>Terreno</dt><dd>{d.area}</dd></div>
-            </dl>
-            <p>{d.textoHome}</p>
-            <div className="actions">
-              <button className="btn btn--blue" type="button" onClick={() => abrirLead({ recurso: d.recurso, perfil: 'usuarios', desarrollo: d.nombre, bloque: 'home-desarrollos' })}>Recibir ficha técnica</button>
-              <Link className="text-link" to={`/desarrollos/${d.slug}`}>Ver {d.label} →</Link>
-            </div>
-            <p className="dev-map-hint">Elegí un punto del mapa o un desarrollo de la lista para verlo.</p>
-          </div>
+          <ul className="red-cards red-solo-mobile">
+            {desarrollos.map((x, i) => (
+              <li key={x.slug}>
+                <Link className="red-card" to={`/desarrollos/${x.slug}`}>
+                  <img className="red-card-img" src={x.render} alt="" loading="lazy" decoding="async" />
+                  <span className="red-card-body">
+                    <span className="idx">{String(i + 1).padStart(2, '0')}</span>
+                    <strong>{x.nombre}</strong>
+                    <small>{x.descriptor} · {x.area}</small>
+                  </span>
+                  <span className="red-card-ver" aria-hidden="true">→</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <p className="render-note">Las imágenes y renders son ilustrativos. Superficies, servicios, plazos y características pueden ajustarse durante el desarrollo y deben confirmarse en la documentación y disponibilidad vigentes.</p>
