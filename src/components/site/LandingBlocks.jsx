@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSite } from './SiteContext'
 import MapaOscuro from './MapaOscuro'
 import { desarrollos } from '../../data/desarrollos'
@@ -52,6 +53,36 @@ export function RedDesarrollos() {
 // (en la página de un desarrollo) queda marcado.
 export function MapaBox({ activo }) {
   return <div className="map-box" data-reveal><MapaOscuro className="mo-mapa--landing" activo={activo} navegar /></div>
+}
+
+// La red para inversores: mapa + totales + lista de los cinco desarrollos, conectados (hover en uno
+// ilumina el otro); clic en el mapa o en la lista lleva a la página del desarrollo.
+export function RedConLista() {
+  const [hover, setHover] = useState(null)
+  const navigate = useNavigate()
+  return (
+    <div className="red-inv" data-reveal>
+      <MapaOscuro className="mo-mapa--inv" activo={hover} onHover={setHover} onSelect={(slug) => navigate(`/desarrollos/${slug}`)} />
+      <aside className="red-inv-panel">
+        <dl className="red-inv-totales">
+          <div><dt>Desarrollos</dt><dd>5</dd></div>
+          <div><dt>Terreno</dt><dd>335.000 <small>m²</small></dd></div>
+          <div><dt>Naves proyectadas</dt><dd>178.000 <small>m²</small></dd></div>
+        </dl>
+        <ul className="red-inv-lista" onMouseLeave={() => setHover(null)}>
+          {desarrollos.map((d, i) => (
+            <li key={d.slug}>
+              <Link to={`/desarrollos/${d.slug}`} className={d.slug === hover ? 'is-active' : ''} onMouseEnter={() => setHover(d.slug)} onFocus={() => setHover(d.slug)} onBlur={() => setHover(null)}>
+                <span className="idx">{String(i + 1).padStart(2, '0')}</span>
+                <span className="txt"><strong>{d.nombre}</strong><small>{d.titulo} · {d.area}</small></span>
+                <span className="flecha" aria-hidden="true">→</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    </div>
+  )
 }
 
 // Bloque de cierre: en la maqueta era un formulario; la minuta del 23-09 los reemplaza

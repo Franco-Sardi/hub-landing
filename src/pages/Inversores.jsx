@@ -2,7 +2,7 @@ import { lazy, Suspense, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Layout from '../components/site/Layout'
 import { useSite } from '../components/site/SiteContext'
-import { LandingHero, Faq, MapaBox, CtaBlock } from '../components/site/LandingBlocks'
+import { LandingHero, Faq, RedConLista, CtaBlock } from '../components/site/LandingBlocks'
 // En public/ (no importado) para que coincida con el preload de index.html.
 const heroImg = '/hub-hero.webp'
 import '../styles/landing.css'
@@ -53,7 +53,7 @@ function AreaPrivada() {
           <div className="eyebrow">La red</div>
           <h2>Cinco desarrollos que forman una red</h2>
           <p className="lead">La inversión se vincula con una red de infraestructura productiva distribuida en cinco desarrollos de perfiles diferentes.</p>
-          <MapaBox />
+          <RedConLista />
         </div>
       </section>
 
