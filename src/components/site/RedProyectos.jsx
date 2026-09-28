@@ -1,73 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from './SiteContext'
+import MapaOscuro from './MapaOscuro'
 import { desarrollos, desarrolloPorSlug } from '../../data/desarrollos'
-import mapaOscuro from '../../assets/v3/mapa-red-oscuro.webp'
 
 // Sección "Desarrollos" portada del sitio en producción (pedido de Franco, 28-09): mapa grande a la
 // izquierda, tarjeta + lista a la derecha; en celular, mapa arriba y una tarjeta por parque.
-// El mapa es el de producción (mapa-dark-v2), que tiene corregidos SFDM Este/Oeste (commit 98cd8c4,
-// jun-2026); el MAPA-OK de la entrega V3 los trae invertidos.
-
-const IMG_W = 1104
-const IMG_H = 975
-// Posición de cada parque en % de la imagen (calibrado en producción).
-const PUNTOS = {
-  anchorena: [38.8, 61.5],
-  'san-francisco-este': [77.7, 67.3],
-  malabia: [39.8, 52.1],
-  'rodriguez-pena': [58.1, 59.2],
-  'san-francisco-oeste': [68.8, 62.3],
-}
-
-// El mapa llena su recuadro con object-fit: cover; esto traduce % de imagen a % del recuadro.
-function useCover(ref) {
-  const [f, setF] = useState(() => (l, t) => [l, t])
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const calc = () => {
-      const cw = el.offsetWidth
-      const ch = el.offsetHeight
-      if (!cw || !ch) return
-      const r = IMG_W / IMG_H
-      const [rw, rh] = cw / ch > r ? [cw, cw / r] : [ch * r, ch]
-      const ox = (rw - cw) / 2
-      const oy = (rh - ch) / 2
-      setF(() => (l, t) => [((l / 100) * rw - ox) / cw * 100, ((t / 100) * rh - oy) / ch * 100])
-    }
-    calc()
-    const ro = new ResizeObserver(calc)
-    ro.observe(el)
-    return () => ro.disconnect()
-  }, [ref])
-  return f
-}
-
-function Mapa({ activo, onHover, onSelect, navegar }) {
-  const ref = useRef(null)
-  const aContenedor = useCover(ref)
-  return (
-    <div className="rp-mapa" ref={ref}>
-      <img src={mapaOscuro} alt="Mapa de la red HUB en Mendoza" loading="lazy" decoding="async" draggable="false" />
-      {desarrollos.map((d) => {
-        const [l, t] = aContenedor(...PUNTOS[d.slug])
-        const props = {
-          className: `rp-punto${d.slug === activo ? ' is-active' : ''}`,
-          style: { left: `${l}%`, top: `${t}%` },
-          'aria-label': `${navegar ? 'Ir a' : 'Ver'} ${d.label}`,
-        }
-        return navegar ? (
-          <Link key={d.slug} to={`/desarrollos/${d.slug}`} {...props}><span /></Link>
-        ) : (
-          <button key={d.slug} type="button" {...props} aria-pressed={d.slug === activo}
-            onMouseEnter={() => onHover(d.slug)} onMouseLeave={() => onHover(null)}
-            onFocus={() => onHover(d.slug)} onBlur={() => onHover(null)} onClick={() => onSelect(d.slug)}><span /></button>
-        )
-      })}
-    </div>
-  )
-}
 
 export default function RedProyectos() {
   const { abrirLead } = useSite()
@@ -94,8 +32,8 @@ export default function RedProyectos() {
 
         <div className="rp-grid" data-reveal>
           <div className="rp-mapa-wrap">
-            <div className="rp-solo-desktop"><Mapa activo={activo} onHover={(s) => (s ? previsualizar(s) : setHover(null))} onSelect={fijar} /></div>
-            <div className="rp-solo-mobile"><Mapa navegar /></div>
+            <div className="rp-solo-desktop"><MapaOscuro className="mo-mapa--home" activo={activo} onHover={(s) => (s ? previsualizar(s) : setHover(null))} onSelect={fijar} /></div>
+            <div className="rp-solo-mobile"><MapaOscuro className="mo-mapa--entero" navegar /></div>
           </div>
 
           <div className="rp-panel rp-solo-desktop">

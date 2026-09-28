@@ -106,10 +106,7 @@
 .pg-landing .service span{color:var(--muted);font-size:14px}
 
 /* mapa */
-.pg-landing .map-box{background:#F8F4EA;border:1px solid var(--line);padding:16px;margin-top:28px}
-.pg-landing .map-box img{width:100%;height:auto}
-/* A ancho completo el mapa pasa los 1.100 px de alto: se acota y se centra dentro del recuadro. */
-.pg-landing .map-box .mapa-red{max-width:560px;margin-inline:auto}
+.pg-landing .map-box{margin-top:28px;background:#022130;border:1px solid rgba(19,44,58,.25)}
 
 /* acceso inversores */
 .pg-landing .gate{background:#fff;border:1px solid var(--line);display:grid;grid-template-columns:.9fr 1.1fr;margin-top:32px}
@@ -169,7 +166,6 @@
   .pg-landing .dev-body{padding:12px}
   .pg-landing .dev-logo{height:34px;margin-bottom:10px}
   .pg-landing .dev-body h3{font-size:15px}
-  .pg-landing .map-box{padding:10px}
   .pg-landing .steps,.pg-landing .sim-fields,.pg-landing .sim-summary,.pg-landing .fact-row{grid-template-columns:1fr}
   .pg-landing .sim-head{flex-direction:column}
   .pg-landing .bar-row{grid-template-columns:1fr}.pg-landing .bar-value{text-align:left}

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useSite } from './SiteContext'
-import MapaRed from './MapaRed'
+import MapaOscuro from './MapaOscuro'
 import { desarrollos } from '../../data/desarrollos'
 
 // Piezas repetidas entre las landings de la entrega V4.
@@ -48,9 +48,10 @@ export function RedDesarrollos() {
   )
 }
 
-// Los nodos llevan a la ficha de cada desarrollo; el activo (si hay) queda marcado.
+// Mismo mapa oscuro que la home; los puntos llevan a la ficha de cada desarrollo y el activo
+// (en la página de un desarrollo) queda marcado.
 export function MapaBox({ activo }) {
-  return <div className="map-box" data-reveal><MapaRed activo={activo} linkear /></div>
+  return <div className="map-box" data-reveal><MapaOscuro className="mo-mapa--landing" activo={activo} navegar /></div>
 }
 
 // Bloque de cierre: en la maqueta era un formulario; la minuta del 23-09 los reemplaza
