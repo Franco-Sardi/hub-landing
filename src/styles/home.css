@@ -229,6 +229,10 @@
   font-family:var(--utility);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;text-decoration:none;opacity:.55;transition:opacity .2s;
 }
 .pg-home .rp-item:hover .rp-ver,.pg-home .rp-ver:focus-visible{opacity:1}
+/* "PDF" hace lo mismo que "Ficha técnica" (abre el panel con la ficha del parque de esa fila). */
+.pg-home .rp-ver{background:none;cursor:pointer;line-height:1.2}
+.pg-home .rp-ver + .rp-pdf{margin-left:-2px;background:var(--hub-orange);border-color:var(--hub-orange);color:var(--hub-blue);opacity:.8}
+.pg-home .rp-item:hover .rp-pdf,.pg-home .rp-pdf:focus-visible{opacity:1}
 .pg-home .rp-nota{font-size:11px;color:rgba(255,255,255,.45);margin:16px 0 0}
 .pg-home .rp-cards{list-style:none;margin:0;padding:0;display:grid;gap:14px}
 .pg-home .rp-card{display:block;text-decoration:none;color:#fff;border:1px solid rgba(199,203,202,.28);background:rgba(255,255,255,.03)}
