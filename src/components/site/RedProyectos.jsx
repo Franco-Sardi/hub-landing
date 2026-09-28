@@ -62,7 +62,9 @@ export default function RedProyectos() {
                     <span className="rp-item-txt"><strong>{x.nombre}</strong><small>{x.ubicacion} · {x.area}</small></span>
                   </button>
                   <Link className="rp-ver" to={`/desarrollos/${x.slug}`} aria-label={`Ver ${x.label}`}>Ver →</Link>
-                  <button className="rp-ver rp-pdf" type="button" aria-label={`Recibir la ficha técnica en PDF de ${x.label}`} onClick={() => abrirLead({ recurso: x.recurso, perfil: 'usuarios', desarrollo: x.nombre, bloque: 'home-desarrollos-pdf' })}>PDF</button>
+                  <button className="rp-ver rp-pdf" type="button" aria-label={`Descargar la ficha técnica de ${x.label}`} title="Descargar ficha técnica (PDF)" onClick={() => abrirLead({ recurso: x.recurso, perfil: 'usuarios', desarrollo: x.nombre, bloque: 'home-desarrollos-pdf' })}>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14" /></svg>
+                  </button>
                 </li>
               ))}
             </ul>
