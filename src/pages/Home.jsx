@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import Layout from '../components/site/Layout'
 import MapaRed from '../components/site/MapaRed'
+import RecorridoHub from '../components/site/RecorridoHub'
 import { useSite } from '../components/site/SiteContext'
 import { desarrollos, desarrolloPorSlug } from '../data/desarrollos'
 import { fundadoras, partners, altoLogo } from '../data/empresas'
@@ -346,18 +347,7 @@ function ModeloHub() {
           <p data-reveal="right">El capital se vincula a una estructura fiduciaria que desarrolla infraestructura industrial. La participación se explica desde el funcionamiento, la documentación y los activos que respaldan el proyecto.</p>
         </div>
 
-        <div className="business-flow" data-reveal>
-          <div className="business-line" />
-          <div className="business-steps">
-            {PASOS.map(([t, p], i) => (
-              <article key={t} className="business-step">
-                <div className="dot" /><div className="num">{String(i + 1).padStart(2, '0')}</div>
-                <h3>{t}</h3>
-                <p>{p}</p>
-              </article>
-            ))}
-          </div>
-        </div>
+        <RecorridoHub pasos={PASOS} />
 
         <div className="business-bottom" data-reveal>
           <p>La información pública es general y no constituye una oferta, una cotización, una recomendación de inversión ni una garantía de resultados. La documentación ampliada y las condiciones de participación se presentan en el área de inversores.</p>

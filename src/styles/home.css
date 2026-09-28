@@ -226,36 +226,50 @@
 /* MODELO HUB */
 .pg-home .business{background:var(--hub-blue);color:#fff}
 .pg-home .business .section-head p{color:rgba(255,255,255,.64)}
-.pg-home .business-flow{position:relative;margin-top:40px}
-.pg-home .business-line{position:absolute;left:0;right:0;top:7px;height:1px;background:rgba(255,255,255,.18)}
-.pg-home .business-line::after{
-  content:"";position:absolute;left:0;top:0;height:1px;width:100%;background:var(--hub-silver);
-  transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--ease);
-}
-.pg-home .business-flow.is-visible .business-line::after{transform:scaleX(1)}
-.pg-home .business-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+/* Recorrido: el camión avanza con el scroll (RecorridoHub.jsx) y enciende cada paso al pasar. */
+.pg-home .business-flow{position:relative;margin-top:40px;padding-top:44px}
+.pg-home .business-line{position:absolute;left:0;right:0;top:51px;height:1px;background:rgba(255,255,255,.16)}
+.pg-home .business-fill{position:absolute;inset:0;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--hub-silver),var(--hub-orange))}
+.pg-home .business-truck{position:absolute;left:0;top:13px;width:72px;height:30px;z-index:3;will-change:transform;filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
+.pg-home .business-truck svg{display:block}
+.pg-home .business-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;list-style:none;margin:0;padding:0}
 .pg-home .business-step{padding:0 30px 0 0}
 .pg-home .business-step:not(:first-child){padding-left:30px}
 .pg-home .business-step .dot{
-  width:14px;height:14px;border-radius:50%;background:var(--hub-blue);border:2px solid var(--hub-silver);
+  width:14px;height:14px;border-radius:50%;background:var(--hub-blue);border:2px solid rgba(199,203,202,.45);
   margin-bottom:32px;position:relative;z-index:2;
+  transition:background-color .25s cubic-bezier(.23,1,.32,1),border-color .25s cubic-bezier(.23,1,.32,1),box-shadow .25s cubic-bezier(.23,1,.32,1);
 }
-.pg-home .business-step .num{font-size:12px;font-family:var(--utility);letter-spacing:.12em;color:var(--hub-silver)}
-.pg-home .business-step h3{font-size:22px;margin:14px 0 10px;color:#fff}
-.pg-home .business-step p{font-size:14px;color:rgba(255,255,255,.62);margin:0;max-width:260px}
+.pg-home .business-step .num{font-size:12px;font-family:var(--utility);letter-spacing:.12em;color:rgba(199,203,202,.55);transition:color .25s cubic-bezier(.23,1,.32,1)}
+.pg-home .business-step h3{font-size:22px;margin:14px 0 10px;color:rgba(255,255,255,.4);transition:color .25s cubic-bezier(.23,1,.32,1)}
+.pg-home .business-step p{font-size:14px;color:rgba(255,255,255,.3);margin:0;max-width:260px;transition:color .25s cubic-bezier(.23,1,.32,1)}
+.pg-home .business-step.is-on .dot{background:var(--hub-orange);border-color:var(--hub-orange);box-shadow:0 0 0 6px rgba(255,125,77,.16),0 0 22px rgba(255,125,77,.55)}
+.pg-home .business-step.is-on .num{color:var(--hub-orange)}
+.pg-home .business-step.is-on h3{color:#fff}
+.pg-home .business-step.is-on p{color:rgba(255,255,255,.66)}
 .pg-home .business-bottom{
   margin-top:44px;padding-top:26px;border-top:1px solid rgba(255,255,255,.18);
   display:flex;justify-content:space-between;gap:56px;align-items:flex-end;
 }
 .pg-home .business-bottom p{font-size:12px;line-height:1.5;color:rgba(255,255,255,.55);max-width:700px;margin:0}
+/* Recorrido vertical: la línea baja por la izquierda y el camión va girado 90°. */
+@media(max-width:1100px){
+  .pg-home .business-flow{padding-top:0}
+  .pg-home .business-line{left:6px;right:auto;top:0;bottom:0;width:1px;height:auto}
+  .pg-home .business-fill{transform-origin:top;transform:scaleY(0);background:linear-gradient(180deg,var(--hub-silver),var(--hub-orange))}
+  .pg-home .business-truck{top:0}
+  .pg-home .business-steps{grid-template-columns:1fr;gap:34px}
+  .pg-home .business-step,.pg-home .business-step:not(:first-child){position:relative;padding:0 0 0 44px}
+  .pg-home .business-step .dot{position:absolute;left:0;top:2px;margin:0}
+  .pg-home .business-step h3{margin-top:8px}
+  .pg-home .business-step p{max-width:520px}
+}
 
 @media(max-width:1100px){
   .pg-home .about-top,.pg-home .numbers-head,.pg-home .section-head{grid-template-columns:1fr;gap:26px}
   .pg-home .enterprise-grid{grid-template-columns:1fr}
   .pg-home .enterprise-media{height:min(460px,60vw)}
   .pg-home .enterprise-content{padding:40px 0 0}
-  .pg-home .business-steps{grid-template-columns:1fr 1fr;gap:52px 0}
-  .pg-home .business-line{display:none}
 }
 @media(max-width:760px){
   .pg-home .hero{min-height:680px;max-height:none}
@@ -289,8 +303,5 @@
   .pg-home .enterprise-media{height:300px}
   .pg-home .enterprise-content{padding:32px 0 0}
   .pg-home .capability{grid-template-columns:38px 1fr}.pg-home .capability span:last-child{grid-column:2}
-  .pg-home .business-steps{grid-template-columns:1fr;gap:36px}
-  .pg-home .business-step,.pg-home .business-step:not(:first-child){padding:0;min-height:0}
-  .pg-home .business-step .dot{display:none}
   .pg-home .business-bottom{flex-direction:column;align-items:flex-start}
 }
