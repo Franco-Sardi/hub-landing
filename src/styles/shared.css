@@ -252,7 +252,9 @@ span.mo-punto{cursor:default}
   .menu{display:none}
   .menu-toggle{display:block}
   /* Menú de celular/tablet: panel a pantalla completa; logo y "Cerrar" quedan arriba. */
-  .header.mobile-open{background:var(--hub-blue-deep)}
+  /* Sin backdrop-filter con el menú abierto: esa propiedad convierte al header en el contenedor de
+     los position:fixed y el panel quedaba encerrado en la barra (136 px) al abrirlo tras scrollear. */
+  .header.mobile-open{background:var(--hub-blue-deep);backdrop-filter:none;-webkit-backdrop-filter:none}
   .header .brand,.header .menu-toggle{position:relative;z-index:2}
   .header.mobile-open .menu{
     display:flex;position:fixed;inset:0;z-index:1;flex-direction:column;align-items:stretch;gap:0;
