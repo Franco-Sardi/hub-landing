@@ -391,6 +391,14 @@
   .pg-home .about-copy p{font-size:17px}
   .pg-home .people-row{grid-template-columns:1fr;gap:14px}
   .pg-home .logos{gap:16px 30px}
+  /* Fundadoras en celular: grilla de celdas iguales con el logo centrado; Terrandes (muy
+     apaisado) ocupa la fila de abajo entera. Pisa el alto calculado por área del escritorio. */
+  .pg-home .logos--fundadoras{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  .pg-home .logos--fundadoras li{display:grid;place-items:center;height:96px;padding:14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pg-home .logos--fundadoras li:last-child{grid-column:1/-1;height:80px}
+  .pg-home .logos--fundadoras img{height:auto!important;width:auto;max-width:84%;max-height:52px;object-fit:contain}
+  .pg-home .logos--fundadoras li:nth-child(2) img{max-height:66px}
+  .pg-home .logos--fundadoras li:last-child img{max-width:64%;max-height:40px}
   .pg-home .logos--partners{gap:14px 26px}
   .pg-home .partners-track .logos--partners{padding-right:26px}
   .pg-home .partners-track{animation-duration:28s}
