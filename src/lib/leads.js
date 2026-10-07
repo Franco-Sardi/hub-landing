@@ -1,8 +1,12 @@
 import { track } from './analytics'
 
-// Formspree es el destino provisorio hasta que se elija el CRM (minuta 23-09). Se mandan
-// todos los campos que pide el handoff §12 para que el paso al CRM sea cambiar el endpoint.
-const ENDPOINT = 'https://formspree.io/f/mzdyjerz'
+// Workflow "HUB - Leads web" del n8n de SbFlows (repo Hub-Agente-Crm, 07-oct): registra el
+// pedido, manda el PDF desde contacto@ por la bandeja de mail de Chatwoot y arma la tarjeta
+// en el tablero. Reemplaza a Formspree.
+const ENDPOINT = 'https://n8n.sbflows.com/webhook/hub-leads-web'
+
+// Recursos sin PDF automático: al lead le llega una confirmación y lo contacta el equipo.
+export const SIN_ADJUNTO = new Set(['asesor', 'disponibilidad', 'solicitud-acceso', 'dossier-inversion'])
 
 // Subir la versión cada vez que cambie el texto de cualquier casilla de consentimiento.
 export const CONSENT_VERSION = '2026-09-v1'
@@ -45,7 +49,8 @@ export const RECURSOS = {
   'asesor': ['Coordiná una conversación con un asesor.', 'Dejanos tu correo y un asesor de HUB se comunica con vos.'],
 }
 
-export async function enviarLead({ email, nombre, telefono, mensaje, recurso, perfil, desarrollo, bloque }) {
+// _gotcha es el honeypot: un campo oculto que solo llena un bot (el workflow lo descarta).
+export async function enviarLead({ email, nombre, telefono, mensaje, recurso, perfil, desarrollo, bloque, _gotcha }) {
   const res = await fetch(ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -63,9 +68,9 @@ export async function enviarLead({ email, nombre, telefono, mensaje, recurso, pe
       ...leerUtm(),
       fecha: new Date().toISOString(),
       consentimiento: CONSENT_VERSION,
-      _subject: `HUB · ${recurso} · ${email}`,
+      _gotcha: _gotcha || '',
     }),
   })
-  if (!res.ok) throw new Error(`Formspree ${res.status}`)
+  if (!res.ok) throw new Error(`Leads ${res.status}`)
   track(`lead:${recurso}`)
 }

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from './SiteContext'
-import { RECURSOS, enviarLead } from '../../lib/leads'
+import { RECURSOS, SIN_ADJUNTO, enviarLead } from '../../lib/leads'
 
 function LeadForm({ lead, cerrarLead, emailRef }) {
   const [estado, setEstado] = useState('form') // form | enviando | ok | error
@@ -12,7 +12,7 @@ function LeadForm({ lead, cerrarLead, emailRef }) {
     const f = new FormData(form)
     setEstado('enviando')
     try {
-      await enviarLead({ ...lead, email: f.get('email'), nombre: f.get('nombre') })
+      await enviarLead({ ...lead, email: f.get('email'), nombre: f.get('nombre'), _gotcha: f.get('_gotcha') })
       setEstado('ok')
     } catch {
       setEstado('error')
@@ -23,8 +23,12 @@ function LeadForm({ lead, cerrarLead, emailRef }) {
   if (estado === 'ok') {
     return (
       <div className="lead-success">
-        <strong>Revisá tu correo.</strong>
-        <span>Te enviamos el material solicitado para que lo tengas en tu bandeja.</span>
+        <strong>{SIN_ADJUNTO.has(lead.recurso) ? 'Recibimos tu pedido.' : 'Revisá tu correo.'}</strong>
+        <span>
+          {SIN_ADJUNTO.has(lead.recurso)
+            ? 'Te enviamos un correo de confirmación y una persona del equipo se comunica con vos.'
+            : 'Te enviamos el material solicitado para que lo tengas en tu bandeja.'}
+        </span>
       </div>
     )
   }
@@ -39,6 +43,7 @@ function LeadForm({ lead, cerrarLead, emailRef }) {
         <label htmlFor="leadName">Nombre <span style={{ textTransform: 'none', fontWeight: 400 }}>(opcional)</span></label>
         <input id="leadName" name="nombre" type="text" placeholder="Tu nombre" autoComplete="name" />
       </div>
+      <input name="_gotcha" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hp" />
       <label className="check">
         <input type="checkbox" required />
         <span>

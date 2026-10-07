@@ -298,3 +298,7 @@ span.mo-punto{cursor:default}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   [data-reveal]{opacity:1!important;transform:none!important}
 }
+
+/* Honeypot de los formularios (leads.js -> _gotcha): fuera de pantalla, no display:none,
+   porque algunos bots saltean los campos ocultos con display. */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }

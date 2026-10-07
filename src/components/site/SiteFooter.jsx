@@ -21,7 +21,7 @@ export default function SiteFooter() {
     const f = new FormData(form)
     setEstado('enviando')
     try {
-      await enviarLead({ email: f.get('email'), recurso: 'newsletter', perfil: f.get('interes'), bloque: 'footer' })
+      await enviarLead({ email: f.get('email'), recurso: 'newsletter', perfil: f.get('interes'), bloque: 'footer', _gotcha: f.get('_gotcha') })
       setEstado('ok')
       form.reset()
     } catch {
@@ -61,6 +61,7 @@ export default function SiteFooter() {
                   {estado === 'enviando' ? 'Enviando…' : 'Suscribirme'}
                 </button>
               </div>
+              <input name="_gotcha" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hp" />
               <label className="nl-consent">
                 <input type="checkbox" required />
                 <span>Acepto el tratamiento de mis datos para recibir novedades de HUB. <Link to="/privacidad">Política de Privacidad</Link>.</span>
