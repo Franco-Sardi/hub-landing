@@ -228,19 +228,15 @@ body.no-scroll{overflow:hidden}
 .mo-mapa--landing{aspect-ratio:3/2;width:100%;border:0}
 @media(max-width:760px){.mo-mapa--landing{aspect-ratio:1104/975}}
 .mo-mapa--entero{aspect-ratio:1104/975}
-/* Inversores: mapa a la altura de la pantalla, acompañado por el panel de la red. */
-.mo-mapa--inv{height:clamp(420px,calc(100vh - 200px),640px)}
-@media(max-width:1050px){.mo-mapa--inv{height:auto;aspect-ratio:1104/975}}
 .mo-punto{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center;z-index:2}
-span.mo-punto{cursor:default}
 .mo-punto > span{
-  width:15px;height:15px;border-radius:50%;background:#fff;
+  width:9px;height:9px;border-radius:50%;background:#fff;
   transition:transform .2s cubic-bezier(.23,1,.32,1),box-shadow .2s cubic-bezier(.23,1,.32,1);
 }
-.mo-punto::before{content:"";position:absolute;inset:9px;border-radius:50%;border:1px solid #fff;animation:moLatido 2s cubic-bezier(.23,1,.32,1) infinite}
-.mo-punto:hover > span{transform:scale(1.2)}
+.mo-punto::before{content:"";position:absolute;inset:13px;border-radius:50%;border:1px solid #fff;animation:moLatido 2s cubic-bezier(.23,1,.32,1) infinite}
+.mo-punto:hover > span{transform:scale(1.5)}
 .mo-punto.is-active{z-index:3}
-.mo-punto.is-active > span{transform:scale(1.35);box-shadow:0 0 10px 2px rgba(255,255,255,.55)}
+.mo-punto.is-active > span{transform:scale(2.2);box-shadow:0 0 10px 2px rgba(255,255,255,.55)}
 .mo-punto.is-active::before{animation-duration:1.2s}
 .mo-punto:focus-visible{outline:2px solid var(--hub-orange);outline-offset:2px;border-radius:50%}
 @keyframes moLatido{from{transform:scale(.6);opacity:.6}to{transform:scale(1.9);opacity:0}}

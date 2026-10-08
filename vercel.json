@@ -1,23 +1,13 @@
 {
   "redirects": [
     {
-      "source": "/proyecto/san-francisco-del-monte-este",
-      "destination": "/desarrollos/san-francisco-este",
+      "source": "/proyecto/:path*",
+      "destination": "/espacios",
       "permanent": true
     },
     {
-      "source": "/proyecto/san-francisco-del-monte-oeste",
-      "destination": "/desarrollos/san-francisco-oeste",
-      "permanent": true
-    },
-    {
-      "source": "/proyecto/rodriguez-pena-este",
-      "destination": "/desarrollos/rodriguez-pena",
-      "permanent": true
-    },
-    {
-      "source": "/proyecto/:slug",
-      "destination": "/desarrollos/:slug",
+      "source": "/desarrollos/:path*",
+      "destination": "/espacios",
       "permanent": true
     }
   ],

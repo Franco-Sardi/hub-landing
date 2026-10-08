@@ -1,0 +1,99 @@
+/* Simulador del área privada (Simulador.jsx). Colores de las series validados con el script de
+   dataviz contra fondo blanco: #E8612C (naranja de marca oscurecido para contraste). El capital es
+   una referencia, no una serie: gris punteado. */
+.pg-home .sim-cabecera{padding-bottom:56px}
+.pg-home .sim-cabecera .section-head{margin-bottom:0}
+.pg-home .sim-aviso{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-bottom:40px;padding:12px 16px;border:1px dashed rgba(255,125,77,.6);font-size:13px;color:rgba(255,255,255,.75)}
+.pg-home .sim-aviso strong{font-family:var(--utility);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--hub-orange)}
+.pg-home .sim-seccion{background:#fff;--sim-hub:#E8612C}
+.pg-home .sim-demo-link{margin:18px 0 0;font-size:13px;color:rgba(255,255,255,.7)}
+.pg-home .sim-demo-link a{color:var(--hub-orange)}
+
+.pg-home .sim{display:grid;grid-template-columns:minmax(300px,380px) minmax(0,1fr);gap:40px;align-items:start}
+.pg-home .sim-panel{display:flex;flex-direction:column;gap:28px;padding:28px;background:var(--paper);border:1px solid var(--line)}
+.pg-home .sim-bloque h3{margin:0 0 16px;font-size:13px;font-family:var(--utility);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--hub-blue)}
+.pg-home .sim-bloque{display:flex;flex-direction:column;gap:16px}
+.pg-home .sim-dos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pg-home .sim-campo{display:flex;flex-direction:column;gap:6px;min-width:0}
+.pg-home .sim-campo label{font-size:12px;font-weight:600;color:var(--hub-blue)}
+.pg-home .sim-campo small{font-size:12px;color:var(--muted);line-height:1.4}
+.pg-home .sim-input{display:flex;align-items:center;height:44px;border:1px solid rgba(19,44,58,.28);background:#fff;transition:border-color .2s}
+.pg-home .sim-input:focus-within{border-color:var(--hub-blue);box-shadow:0 0 0 3px rgba(19,44,58,.1)}
+.pg-home .sim-input span{padding:0 10px;font-family:var(--utility);font-size:11px;letter-spacing:.06em;color:var(--muted);white-space:nowrap}
+.pg-home .sim-input input{flex:1;min-width:0;height:100%;border:0;background:none;padding:0 10px;font-size:16px;font-weight:600;color:var(--hub-blue);font-variant-numeric:tabular-nums;outline:none}
+.pg-home .sim-input span + input{padding-left:0}
+.pg-home .sim-rango{width:100%;accent-color:var(--hub-orange);margin:2px 0 0}
+.pg-home .sim-escenarios{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(19,44,58,.28)}
+.pg-home .sim-escenarios button{height:38px;border:0;border-right:1px solid rgba(19,44,58,.28);background:#fff;font-size:13px;font-weight:500;color:var(--hub-blue);cursor:pointer;transition:background-color .2s,color .2s}
+.pg-home .sim-escenarios button:last-child{border-right:0}
+.pg-home .sim-escenarios button[aria-pressed="true"]{background:var(--hub-blue);color:#fff}
+
+.pg-home .sim-resultados{min-width:0;display:flex;flex-direction:column;gap:20px}
+.pg-home .sim-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.pg-home .sim-tile{background:#fff;padding:18px 18px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.pg-home .sim-tile span{font-family:var(--utility);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.pg-home .sim-tile strong{font-family:var(--title);font-weight:700;font-size:clamp(18px,1.7vw,24px);color:var(--hub-blue);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pg-home .sim-tile small{font-size:12px;color:var(--muted)}
+.pg-home .sim-comparacion{display:grid;grid-template-columns:repeat(3,1fr);background:var(--hub-blue);color:#fff}
+.pg-home .sim-comparacion > div{padding:18px 20px;display:flex;flex-direction:column;gap:4px;border-right:1px solid rgba(255,255,255,.12)}
+.pg-home .sim-comparacion > div:last-child{border-right:0}
+.pg-home .sim-comparacion span{font-family:var(--utility);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.pg-home .sim-comparacion strong{font-family:var(--title);font-weight:800;font-size:clamp(20px,2vw,28px);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pg-home .sim-comparacion .is-pos strong{color:var(--hub-orange)}
+
+.pg-home .sim-grafico{margin:0;border:1px solid var(--line);padding:18px 18px 8px}
+.pg-home .sim-grafico figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;margin-bottom:10px}
+.pg-home .sim-grafico figcaption strong{font-family:var(--title);font-weight:700;font-size:15px;color:var(--hub-blue)}
+.pg-home .sim-leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--muted)}
+.pg-home .sim-leyenda span{display:inline-flex;align-items:center;gap:6px}
+.pg-home .sim i{display:inline-block;width:16px;height:2px;border-radius:1px}
+.pg-home .sim i.k-hub{background:var(--sim-hub)}
+.pg-home .sim i.k-cap{height:0;border-top:2px dashed #8A9599;background:none}
+.pg-home .sim-plot{position:relative}
+.pg-home .sim-plot svg{display:block;max-width:100%;outline:none;touch-action:pan-y}
+.pg-home .sim-plot svg:focus-visible{outline:2px solid var(--hub-orange);outline-offset:2px}
+.pg-home .sim-eje line{stroke:rgba(19,44,58,.08)}
+.pg-home .sim-eje text,.pg-home .sim-eje-x{font-size:11px;fill:#6B7880;font-variant-numeric:tabular-nums}
+.pg-home .sim-obra rect{fill:rgba(19,44,58,.04)}
+.pg-home .sim-obra text{font-family:var(--utility);font-size:10px;letter-spacing:.12em;text-transform:uppercase;fill:#6B7880}
+.pg-home .sim-capital{stroke:#8A9599;stroke-width:1.5;stroke-dasharray:5 4}
+.pg-home .sim-l-hub{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.pg-home .sim-l-hub{stroke:var(--sim-hub)}
+.pg-home .sim-etq{font-size:12px;font-weight:600;fill:var(--hub-blue)}
+.pg-home .sim-cruz line{stroke:rgba(19,44,58,.35);stroke-width:1}
+.pg-home .sim-cruz circle{stroke:#fff;stroke-width:2}
+.pg-home .sim-cruz .p-hub{fill:var(--sim-hub)}
+.pg-home .sim-tip{position:absolute;transform:translateX(-50%);pointer-events:none;display:flex;flex-direction:column;gap:3px;padding:10px 12px;background:#fff;border:1px solid var(--line);box-shadow:0 8px 24px rgba(11,32,42,.12);font-size:12px;color:var(--muted);white-space:nowrap}
+.pg-home .sim-tip span{display:flex;align-items:center;gap:6px}
+.pg-home .sim-tip strong{color:var(--hub-blue);font-variant-numeric:tabular-nums}
+.pg-home .sim-tip-t{font-family:var(--utility);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+
+.pg-home .sim-recupero{margin:-8px 0 0;font-size:14px;color:var(--hub-blue)}
+.pg-home .sim-ver-tabla{align-self:flex-start;border:0;background:none;padding:0;font-size:13px;font-weight:600;color:var(--hub-blue);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.pg-home .sim-tabla{overflow-x:auto;border:1px solid var(--line)}
+.pg-home .sim-tabla table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+.pg-home .sim-tabla th{font-family:var(--utility);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:right;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--paper)}
+.pg-home .sim-tabla td{text-align:right;padding:8px 14px;border-bottom:1px solid var(--line);color:var(--hub-blue)}
+.pg-home .sim-tabla th:nth-child(-n+2),.pg-home .sim-tabla td:nth-child(-n+2){text-align:left}
+.pg-home .sim-tabla-fin td{font-weight:700;background:var(--paper)}
+.pg-home .sim-tabla-fin td + td{text-align:right}
+.pg-home .sim-disclaimer{display:flex;gap:10px;margin:0;padding:14px 16px;background:var(--paper);font-size:12px;line-height:1.55;color:var(--muted)}
+.pg-home .sim-disclaimer svg{width:16px;height:16px;flex:0 0 auto;margin-top:1px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+
+.pg-home .sim-cierre{margin-top:48px;padding-top:28px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+.pg-home .sim-cierre p{margin:0;font-family:var(--title);font-weight:700;font-size:20px;color:var(--hub-blue)}
+.pg-home .sim-cierre-btns{display:flex;gap:10px;flex-wrap:wrap}
+
+@media(max-width:1100px){
+  .pg-home .sim{grid-template-columns:1fr}
+  .pg-home .sim-tiles{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .pg-home .sim-panel{padding:20px 16px}
+  .pg-home .sim-comparacion{grid-template-columns:1fr}
+  .pg-home .sim-comparacion > div{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}
+  .pg-home .sim-comparacion > div:last-child{border-bottom:0}
+  .pg-home .sim-grafico{padding:14px 10px 6px}
+  .pg-home .sim-cierre-btns{width:100%;flex-direction:column}
+  .pg-home .sim-cierre-btns .btn{width:100%}
+}

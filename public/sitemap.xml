@@ -16,31 +16,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hubmza.com.ar/desarrollos/malabia</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://hubmza.com.ar/desarrollos/anchorena</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://hubmza.com.ar/desarrollos/san-francisco-oeste</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://hubmza.com.ar/desarrollos/san-francisco-este</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://hubmza.com.ar/desarrollos/rodriguez-pena</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://hubmza.com.ar/privacidad</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

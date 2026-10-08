@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useSite } from './SiteContext'
-import { MENU } from './menu'
+import { MENU, irAContacto } from './menu'
 import logoBlanco from '../../assets/v3/HUB-blanco-positivo.svg'
 
 export default function SiteHeader() {
-  const { abrirLead } = useSite()
   const [solido, setSolido] = useState(false)
   const [abierto, setAbierto] = useState(false)
 
@@ -36,7 +34,7 @@ export default function SiteHeader() {
           {MENU.map((m) => (
             <Link key={m.to} to={m.to} onClick={cerrar}>{m.label}</Link>
           ))}
-          <button type="button" onClick={() => { cerrar(); abrirLead({ recurso: 'brochure-general', perfil: 'general', bloque: 'header' }) }}>
+          <button type="button" onClick={() => { cerrar(); irAContacto() }}>
             Contacto
           </button>
         </nav>

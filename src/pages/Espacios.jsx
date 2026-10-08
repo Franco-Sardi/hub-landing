@@ -52,7 +52,7 @@ export default function Espacios() {
         <div className="container">
           <div className="split">
             <div data-reveal><div className="eyebrow">HUB · Para empresas</div><h2>Infraestructura en red para que tu operación funcione mejor</h2></div>
-            <div data-reveal><p className="lead">HUB integra naves, servicios logísticos y conectividad en cinco ubicaciones sobre los principales corredores productivos de Mendoza</p><div className="statement">HUB es todo lo que necesitás</div></div>
+            <div data-reveal><p className="lead">HUB integra naves, servicios logísticos y conectividad en cinco ubicaciones sobre los principales corredores productivos de Mendoza</p><div className="statement">HUB te acompaña en tu operación</div></div>
           </div>
           <div className="grid3" data-reveal>
             <article className="card"><span className="index">01 · ESPACIO</span><h3>Superficie flexible</h3><p>Módulos desde 1.000 m² y configuraciones adaptables según desarrollo y disponibilidad.</p></article>

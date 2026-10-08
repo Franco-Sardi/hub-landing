@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { desarrollos } from '../../data/desarrollos'
 import mapaOscuro from '../../assets/v3/mapa-red-oscuro.webp'
 
 // Mapa de la red del sitio en producción (mapa-dark-v2): tiene corregidos SFDM Este/Oeste
+// (hoy «1» y «2»; sellos con el logo nuevo y rótulos retocados sobre el raster el 08-oct)
 // (commit 98cd8c4, jun-2026); el MAPA-OK de la entrega V3 los trae invertidos. Se usa en la home
 // y en las landings, así todo el sitio muestra el mismo mapa.
 
@@ -42,9 +42,9 @@ function useCover(ref) {
   return f
 }
 
-// Con `onSelect` los puntos cambian el desarrollo activo (y `onHover` recibe slug o null);
-// con `navegar`, cada punto lleva a su ficha (el activo queda marcado y sin link).
-export default function MapaOscuro({ activo, onHover, onSelect, navegar = false, className = '' }) {
+// Cada punto es un botón: `onSelect` recibe el slug (fijar el activo o pedir la ficha técnica) y
+// `onHover` recibe slug o null.
+export default function MapaOscuro({ activo, onHover, onSelect, className = '' }) {
   const ref = useRef(null)
   const aContenedor = useCover(ref)
   return (
@@ -54,11 +54,6 @@ export default function MapaOscuro({ activo, onHover, onSelect, navegar = false,
         const [l, t] = aContenedor(...PUNTOS[d.slug])
         const esActivo = d.slug === activo
         const props = { className: `mo-punto${esActivo ? ' is-active' : ''}`, style: { left: `${l}%`, top: `${t}%` } }
-        if (navegar) {
-          return esActivo
-            ? <span key={d.slug} {...props} aria-label={d.label} role="img"><span /></span>
-            : <Link key={d.slug} to={`/desarrollos/${d.slug}`} {...props} aria-label={`Ir a ${d.label}`}><span /></Link>
-        }
         return (
           <button key={d.slug} type="button" {...props} aria-label={`Ver ${d.label}`} aria-pressed={esActivo}
             onMouseEnter={() => onHover?.(d.slug)} onMouseLeave={() => onHover?.(null)}

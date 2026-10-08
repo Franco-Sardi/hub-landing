@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet-async'
 import Layout from '../components/site/Layout'
 import RedProyectos from '../components/site/RedProyectos'
 import RecorridoHub from '../components/site/RecorridoHub'
+import LogoFlip from '../components/site/LogoFlip'
+import { faBuildingUser, faCoins, faMoneyBillTransfer, faWarehouse } from '@fortawesome/free-solid-svg-icons'
 import { useSite } from '../components/site/SiteContext'
 import { desarrollos, desarrolloPorSlug } from '../data/desarrollos'
 import { fundadoras, partners, altoLogo } from '../data/empresas'
@@ -13,18 +15,18 @@ import '../styles/home.css'
 
 // Hero: un solo componente, cinco escenas (handoff §6). Fondos en el orden de la maqueta V3.
 const ESCENAS = [
-  { fondo: heroImg, kicker: 'HUB · Activos Reales', titulo: ['Cinco HUB.', 'Una misma red.'], desc: 'Cinco desarrollos en Mendoza, pensados como una red de infraestructura industrial, logística y urbana.', cta: 'Conocer la red', href: '#desarrollos' },
-  { fondo: desarrolloPorSlug.anchorena.render, kicker: 'Escala', titulo: ['335.000 m²', 'para crecer.'], desc: 'Una red que reúne 335.000 m² de terreno y proyecta 178.000 m² de naves para distintas escalas de operación.', cta: 'Ver HUB en números', href: '#numeros' },
-  { fondo: desarrolloPorSlug['san-francisco-oeste'].render, kicker: 'Territorio', titulo: ['En el corredor', 'Atlántico–Pacífico.'], desc: 'Desarrollos sobre los ejes que conectan Mendoza con sus principales corredores productivos.', cta: 'Ver ubicaciones', href: '#desarrollos' },
-  { fondo: desarrolloPorSlug['san-francisco-este'].render, kicker: 'Infraestructura', titulo: ['Estándar', 'Triple A.'], desc: 'Naves, docks, playas de maniobra, energía trifásica, fibra óptica, oficinas y servicios integrados para operar con otra escala.', cta: 'Ver infraestructura', href: '#empresas' },
-  { fondo: desarrolloPorSlug.malabia.render, kicker: 'Concepto rector', titulo: ['HUB.', 'Activos Reales.'], desc: 'Una red que conecta capital, infraestructura y empresas para acompañar el crecimiento productivo de Mendoza.', cta: 'Conocer HUB', href: '#nosotros' },
+  { fondo: heroImg, kicker: 'HUB · Activos Reales', titulo: ['Cinco HUB', 'Una misma red'], desc: 'Cinco desarrollos en Mendoza, pensados como una red de infraestructura industrial, logística y urbana.', cta: 'Conocer la red', href: '#desarrollos' },
+  { fondo: desarrolloPorSlug.anchorena.render, kicker: 'Escala', titulo: ['335.000 m²', 'para crecer'], desc: 'Una red que reúne 335.000 m² de terreno y proyecta 178.000 m² de naves para distintas escalas de operación.', cta: 'Ver HUB en números', href: '#numeros' },
+  { fondo: desarrolloPorSlug['san-francisco-oeste'].render, kicker: 'Territorio', titulo: ['En el corredor', 'Atlántico–Pacífico'], desc: 'Desarrollos sobre los ejes que conectan Mendoza con sus principales corredores productivos.', cta: 'Ver ubicaciones', href: '#desarrollos' },
+  { fondo: desarrolloPorSlug['san-francisco-este'].render, kicker: 'Infraestructura', titulo: ['Estándar', 'Triple A'], desc: 'Naves, docks, playas de maniobra, energía trifásica, fibra óptica, oficinas y servicios integrados para operar con otra escala.', cta: 'Ver infraestructura', href: '#empresas' },
+  { fondo: desarrolloPorSlug.malabia.render, kicker: 'Concepto rector', titulo: ['HUB', 'Activos Reales'], desc: 'Una red que conecta capital, infraestructura y empresas para acompañar el crecimiento productivo de Mendoza.', cta: 'Conocer HUB', href: '#nosotros' },
 ]
 const DURACION = 6500
 
 function Hero() {
   const [idx, setIdx] = useState(0)
-  const [pausado, setPausado] = useState(false)
-  // Sube en cada navegación manual o al salir del hover: reinicia timer y barra de progreso.
+  // Sube en cada navegación manual: reinicia timer y barra de progreso. Sin pausa por hover
+  // (pedido de Franco, 08-oct): con el hero a pantalla completa el mouse siempre queda encima.
   const [ciclo, setCiclo] = useState(0)
   const [reducido] = useState(() => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)
   // Fondos que ya se pidieron: cada escena baja el suyo cuando le toca o es la siguiente,
@@ -38,19 +40,15 @@ function Hero() {
   }
 
   useEffect(() => {
-    if (pausado || reducido) return
+    if (reducido) return
     const t = setTimeout(() => mostrar(idx + 1), DURACION)
     return () => clearTimeout(t)
-  }, [idx, pausado, reducido, ciclo])
+  }, [idx, reducido, ciclo])
 
   const ir = (i) => {
     mostrar(i)
     setCiclo((c) => c + 1)
   }
-  // Pausa al hover solo en desktop: en touch el mouseenter queda pegado tras el primer tap.
-  const hover = window.matchMedia?.('(hover: hover)').matches
-  const onEnter = hover ? () => setPausado(true) : undefined
-  const onLeave = hover ? () => { setPausado(false); setCiclo((c) => c + 1) } : undefined
   // En celular se cambia de escena deslizando con el dedo.
   const toque = useRef(null)
   const onTouchStart = (e) => { toque.current = [e.touches[0].clientX, e.touches[0].clientY] }
@@ -63,7 +61,7 @@ function Hero() {
   }
 
   return (
-    <section className={`hero${pausado ? ' is-paused' : ''}`} id="inicio" aria-label="HUB en una mirada" onMouseEnter={onEnter} onMouseLeave={onLeave} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+    <section className="hero" id="inicio" aria-label="HUB en una mirada" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
       <div className="hero-media" aria-hidden="true">
         {ESCENAS.map((e, i) => (
           <div key={i} className={`hero-frame${i === idx ? ' is-active' : ''}`}>
@@ -165,9 +163,7 @@ function Nosotros() {
           <div className="people-row">
             <h3>Empresas fundadoras</h3>
             <ul className="logos logos--fundadoras">
-              {fundadoras.map((e) => (
-                <li key={e.nombre}><img src={e.logo} alt={e.nombre} height={altoLogo(e.r, 5600, 34, 74)} style={{ height: altoLogo(e.r, 5600, 34, 74) }} loading="lazy" /></li>
-              ))}
+              {fundadoras.map((e) => <LogoFlip key={e.nombre} empresa={e} alto={altoLogo(e.r, 5600, 34, 74)} />)}
             </ul>
           </div>
           <div className="people-row">
@@ -177,9 +173,7 @@ function Nosotros() {
               <div className="partners-track">
                 {[0, 1].map((copia) => (
                   <ul key={copia} className="logos logos--partners" aria-hidden={copia === 1 || undefined}>
-                    {partners.map((e) => (
-                      <li key={e.nombre}><img src={e.logo} alt={copia === 0 ? e.nombre : ''} height={altoLogo(e.r, 2600, 22, 44)} style={{ height: altoLogo(e.r, 2600, 22, 44) }} loading="lazy" /></li>
-                    ))}
+                    {partners.map((e) => <LogoFlip key={e.nombre} empresa={e} alto={altoLogo(e.r, 2600, 22, 44)} oculto={copia === 1} ansioso />)}
                   </ul>
                 ))}
               </div>
@@ -248,7 +242,7 @@ function Empresas() {
             <h2>Infraestructura en red para que tu operación funcione mejor.</h2>
             <p className="lead">HUB integra naves, servicios logísticos y conectividad en cinco ubicaciones sobre los principales corredores productivos de Mendoza.</p>
 
-            <div className="key-question">HUB es todo lo que necesitás.</div>
+            <div className="key-question">HUB te acompaña en tu operación.</div>
 
             <div className="capabilities">
               <div className="capability"><span className="idx">01</span><strong>Espacio</strong><span>Módulos flexibles desde 1.000 m² y configuraciones adaptables según desarrollo y disponibilidad.</span></div>
@@ -258,7 +252,7 @@ function Empresas() {
 
             <div className="actions">
               <Link className="btn btn--blue" to="/espacios">Conocer espacios para operar</Link>
-              <button className="btn" type="button" onClick={() => abrirLead({ recurso: 'brochure-empresas', perfil: 'usuarios', bloque: 'home-empresas' })}>Recibir brochure</button>
+              <button className="btn" type="button" onClick={() => abrirLead({ recurso: 'dossier-empresas', perfil: 'usuarios', bloque: 'home-empresas' })}>Recibir dossier</button>
             </div>
           </div>
         </div>
@@ -268,10 +262,10 @@ function Empresas() {
 }
 
 const PASOS = [
-  ['Tu capital financia la red.', 'La participación se instrumenta mediante la estructura fiduciaria.'],
-  ['HUB desarrolla y gestiona infraestructura.', 'Los recursos se transforman en infraestructura industrial y logística en cada desarrollo.'],
-  ['Empresas ocupan y operan.', 'La actividad de las empresas usuarias genera los flujos del negocio.'],
-  ['HUB administra y distribuye ganancias.', 'Nos encargamos de todo el proceso. Vos invertís, nosotros administramos.'],
+  ['Tu inversión financia infraestructura', 'Participás a través de una estructura fiduciaria', faCoins],
+  ['HUB desarrolla y administra los activos', 'El capital se transforma en infraestructura industrial y logística', faWarehouse],
+  ['Las empresas ocupan y operan', 'Las empresas utilizan los espacios y generan los ingresos del modelo', faBuildingUser],
+  ['HUB gestiona y distribuye los resultados', 'HUB administra la operación y distribuye los resultados según la estructura fiduciaria', faMoneyBillTransfer],
 ]
 
 function ModeloHub() {
@@ -284,7 +278,7 @@ function ModeloHub() {
             <div className="eyebrow" style={{ color: 'var(--hub-silver)', marginBottom: 20 }}>Invertí en HUB</div>
             <h2>Invertís, administramos, rentás.</h2>
           </div>
-          <p data-reveal="right">El capital se vincula a una estructura fiduciaria que desarrolla infraestructura industrial. La participación se explica desde el funcionamiento, la documentación y los activos que respaldan el proyecto.</p>
+          <p data-reveal="right">Un circuito simple: tu inversión se transforma en infraestructura real, las empresas la utilizan y HUB administra el proceso.</p>
         </div>
 
         <RecorridoHub pasos={PASOS} />
@@ -300,9 +294,9 @@ function ModeloHub() {
               Acceder a información para inversores
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg>
             </Link>
-            <button className="btn btn--orange bc-btn" type="button" onClick={() => abrirLead({ recurso: 'dossier-inversion', perfil: 'inversor', bloque: 'home-modelo' })}>
+            <button className="btn btn--orange bc-btn" type="button" onClick={() => abrirLead({ recurso: 'brochure-inversion', perfil: 'inversor', bloque: 'home-modelo' })}>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" /></svg>
-              Solicitar dossier
+              Solicitar brochure
             </button>
           </div>
         </div>

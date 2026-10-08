@@ -1,25 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 
-// Camión de perfil, mirando a la derecha: tráiler plata, cabina azul con filete naranja.
-function Camion() {
-  return (
-    <svg viewBox="0 0 72 30" width="72" height="30" aria-hidden="true">
-      <rect x="1" y="3" width="42" height="18" rx="1.5" fill="#C7CBCA" />
-      <rect x="5" y="7" width="18" height="2" fill="#132C3A" opacity=".55" />
-      <path d="M45 8h13.5l7.5 6.5V21H45z" fill="#FFFFFF" />
-      <path d="M49 10.5h8.2l4.3 4H49z" fill="#132C3A" opacity=".75" />
-      <rect x="45" y="18.2" width="21" height="2.4" fill="#FF7D4D" />
-      <rect x="43" y="19.5" width="3" height="1.5" fill="#C7CBCA" />
-      <g fill="#0B202A" stroke="#C7CBCA" strokeWidth="1.6">
-        <circle cx="11" cy="24" r="4" /><circle cx="21" cy="24" r="4" /><circle cx="56" cy="24" r="4" />
-      </g>
-    </svg>
-  )
+function Icono({ icon }) {
+  const [w, h, , , d] = icon.icon
+  return <svg viewBox={`0 0 ${w} ${h}`} aria-hidden="true"><path d={d} /></svg>
 }
 
-// Loop por tiempo (pedido de Franco: con el scroll "funcionaba mal"): el camión se detiene en cada
+// Loop por tiempo (pedido de Franco: con el scroll "funcionaba mal"): la línea se detiene en cada
 // paso y lo enciende, avanza al siguiente, y al final se desvanece y arranca de nuevo. Solo corre con
-// la sección a la vista. La posición se escribe directo en el transform del camión y del relleno;
+// la sección a la vista. La posición se escribe directo en el transform del relleno;
 // React solo se entera cuando cambia la cantidad de pasos encendidos.
 const PAUSA = 900 // ms detenido en cada paso
 const TRAMO = 1400 // ms entre un paso y el siguiente
@@ -29,7 +17,6 @@ const easeInOut = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) 
 
 export default function RecorridoHub({ pasos }) {
   const flowRef = useRef(null)
-  const camionRef = useRef(null)
   const rellenoRef = useRef(null)
   const puntosRef = useRef([])
   const [encendidos, setEncendidos] = useState(0)
@@ -55,17 +42,11 @@ export default function RecorridoHub({ pasos }) {
     }
 
     const pintar = (pos, opacidad, n) => {
-      const camion = camionRef.current
       const relleno = rellenoRef.current
-      if (!camion || !relleno) return
-      if (vertical.matches) {
-        camion.style.transform = `translate3d(-29px, ${pos - 15}px, 0) rotate(90deg)`
-        relleno.style.transform = `scaleY(${pos / flow.offsetHeight})`
-      } else {
-        camion.style.transform = `translate3d(${pos - 36}px, 0, 0)`
-        relleno.style.transform = `scaleX(${pos / flow.offsetWidth})`
-      }
-      camion.style.opacity = opacidad
+      if (!relleno) return
+      relleno.style.transform = vertical.matches
+        ? `scaleY(${pos / flow.offsetHeight})`
+        : `scaleX(${pos / flow.offsetWidth})`
       relleno.style.opacity = opacidad
       if (n !== ultimoEncendido) {
         ultimoEncendido = n
@@ -149,11 +130,10 @@ export default function RecorridoHub({ pasos }) {
   return (
     <div className="business-flow" ref={flowRef}>
       <div className="business-line"><div className="business-fill" ref={rellenoRef} /></div>
-      <div className="business-truck" ref={camionRef}><Camion /></div>
-      <ol className="business-steps">
-        {pasos.map(([t, p], i) => (
+      <ol className="business-steps" style={{ '--pasos': pasos.length }}>
+        {pasos.map(([t, p, icon], i) => (
           <li key={t} className={`business-step${i < encendidos ? ' is-on' : ''}`}>
-            <div className="dot" ref={(el) => { puntosRef.current[i] = el }} />
+            <div className="dot" ref={(el) => { puntosRef.current[i] = el }}><Icono icon={icon} /></div>
             <div className="num">{String(i + 1).padStart(2, '0')}</div>
             <h3>{t}</h3>
             <p>{p}</p>

@@ -6,7 +6,7 @@ import { track } from './analytics'
 const ENDPOINT = 'https://n8n.sbflows.com/webhook/hub-leads-web'
 
 // Recursos sin PDF automático: al lead le llega una confirmación y lo contacta el equipo.
-export const SIN_ADJUNTO = new Set(['asesor', 'disponibilidad', 'solicitud-acceso', 'dossier-inversion'])
+export const SIN_ADJUNTO = new Set(['asesor', 'disponibilidad', 'solicitud-acceso', 'brochure-inversion'])
 
 // Subir la versión cada vez que cambie el texto de cualquier casilla de consentimiento.
 export const CONSENT_VERSION = '2026-09-v1'
@@ -37,12 +37,13 @@ function leerUtm() {
 // [título del modal, bajada]. Home V3 + landings V4.
 export const RECURSOS = {
   'brochure-general': ['Te enviamos el brochure de HUB.', 'Una presentación general de la red, sus desarrollos y las formas de vincularse con HUB.'],
-  'brochure-empresas': ['Te enviamos el brochure para empresas.', 'Infraestructura, servicios y desarrollos para evaluar dónde puede operar tu empresa.'],
-  'dossier-inversion': ['Te enviamos el dossier de inversión.', 'Información ampliada para conocer la estructura, el proyecto y la documentación disponible.'],
+  // Brochure = inversores, dossier = empresas (corrección de HUB, 07-oct).
+  'dossier-empresas': ['Te enviamos el dossier para empresas.', 'Infraestructura, servicios y desarrollos para evaluar dónde puede operar tu empresa.'],
+  'brochure-inversion': ['Te enviamos el brochure de inversión.', 'Información para conocer la estructura, el proyecto y la documentación disponible.'],
   'ficha-malabia': ['Te enviamos la ficha de HUB Malabia.', 'Datos del desarrollo y su perfil.'],
   'ficha-anchorena': ['Te enviamos la ficha de HUB Anchorena.', 'Datos del desarrollo y su perfil.'],
-  'ficha-sf-oeste': ['Te enviamos la ficha de San Francisco del Monte Oeste.', 'Datos del desarrollo y su perfil.'],
-  'ficha-sf-este': ['Te enviamos la ficha de San Francisco del Monte Este.', 'Datos del desarrollo y su perfil.'],
+  'ficha-sf-oeste': ['Te enviamos la ficha de San Francisco del Monte 2.', 'Datos del desarrollo y su perfil.'],
+  'ficha-sf-este': ['Te enviamos la ficha de San Francisco del Monte 1.', 'Datos del desarrollo y su perfil.'],
   'ficha-rodriguez': ['Te enviamos la ficha de HUB Rodríguez Peña.', 'Datos del desarrollo y su perfil.'],
   'disponibilidad': ['Consultá disponibilidad.', 'Dejanos tu correo y te enviamos la información vigente de espacios y disponibilidad.'],
   'solicitud-acceso': ['Solicitá acceso al área de inversores.', 'Dejanos tu correo y te contactamos para habilitar tu cuenta.'],

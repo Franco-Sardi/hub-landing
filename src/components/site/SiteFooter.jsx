@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from './SiteContext'
-import { MENU } from './menu'
+import { MENU, irAContacto } from './menu'
 import { enviarLead } from '../../lib/leads'
 import logoBlanco from '../../assets/v3/HUB-blanco-positivo.svg'
 
@@ -12,7 +12,7 @@ const INTERESES = [
 ]
 
 export default function SiteFooter() {
-  const { abrirLead, setCookiesAbiertas } = useSite()
+  const { setCookiesAbiertas } = useSite()
   const [estado, setEstado] = useState('form') // form | enviando | ok | error
 
   async function suscribir(e) {
@@ -30,7 +30,7 @@ export default function SiteFooter() {
   }
 
   return (
-    <footer className="footer">
+    <footer className="footer" id="contacto">
       <div className="container">
         <div className="newsletter">
           <div className="nl-copy">
@@ -75,7 +75,7 @@ export default function SiteFooter() {
           <div>
             <h3>Navegación</h3>
             {MENU.map((m) => <Link key={m.to} to={m.to}>{m.label}</Link>)}
-            <button type="button" onClick={() => abrirLead({ recurso: 'brochure-general', perfil: 'general', bloque: 'footer' })}>Contacto</button>
+            <button type="button" onClick={irAContacto}>Contacto</button>
           </div>
           <div>
             <h3>Contacto</h3>

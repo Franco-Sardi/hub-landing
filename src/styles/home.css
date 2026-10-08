@@ -70,7 +70,6 @@
 /* Anillo de avance: se dibuja en 6,5 s (duración de la escena, handoff §6) y se pausa en hover. */
 .pg-home .hero-ring{position:absolute;inset:-3px;width:56px!important;height:56px!important;transform:rotate(-90deg);pointer-events:none}
 .pg-home .hero-ring circle{fill:none;stroke:#fff;stroke-width:1.5;stroke-dasharray:166.5;stroke-dashoffset:166.5;animation:heroRing 6.5s linear forwards}
-.pg-home .hero.is-paused .hero-ring circle{animation-play-state:paused}
 @keyframes heroRing{to{stroke-dashoffset:0}}
 .pg-home .hero-summary{
   margin-top:36px;border-top:1px solid rgba(255,255,255,.26);
@@ -103,25 +102,46 @@
 .pg-home .logos img{width:auto;max-width:none;display:block}
 /* Partners en segunda jerarquía (handoff §7): mismo tratamiento, menos contraste. */
 .pg-home .logos--partners{gap:18px 40px}
-.pg-home .logos--partners img{opacity:.62;transition:opacity .25s}
-.pg-home .logos--partners li:hover img{opacity:1}
-/* Carrusel de partners: dos copias de la lista en fila; el track se corre exactamente una copia
-   (-50%) en loop lineal, así el salto de vuelta no se ve. */
-.pg-home .people-row{min-width:0}
-.pg-home .partners-marquee{
-  min-width:0;overflow:hidden;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+.pg-home .logos--partners .logo-flip-front img{opacity:.62;transition:opacity .25s}
+.pg-home .logos--partners .logo-flip:hover .logo-flip-front img{opacity:1}
+/* Logos que giran (LogoFlip.jsx): al frente el logo, atrás nombre + web. El dorso es absoluto,
+   así cada celda conserva el ancho de su logo. */
+.pg-home .logo-flip{position:relative;perspective:700px;cursor:pointer;outline:none}
+.pg-home .logo-flip-inner{position:relative;transition:transform .55s cubic-bezier(.23,1,.32,1);transform-style:preserve-3d}
+.pg-home .logo-flip-front,.pg-home .logo-flip-back{-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.pg-home .logo-flip-back{
+  position:absolute;inset:-8px -10px;transform:rotateY(180deg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;
+  background:var(--hub-blue);color:#fff;padding:6px 10px;
 }
-.pg-home .partners-track{display:flex;width:max-content;animation:partnersLoop 38s linear infinite}
+.pg-home .logo-flip-back strong{font-family:var(--title);font-weight:700;font-size:12px;line-height:1.15}
+.pg-home .logo-flip-back a{font-family:var(--utility);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--hub-orange);text-decoration:none;white-space:nowrap}
+.pg-home .logo-flip-back a:hover{text-decoration:underline}
+.pg-home .logo-flip.is-flipped .logo-flip-inner,.pg-home .logo-flip:focus-visible .logo-flip-inner,.pg-home .logo-flip:focus-within .logo-flip-inner{transform:rotateY(180deg)}
+@media(hover:hover) and (pointer:fine){.pg-home .logo-flip:hover .logo-flip-inner{transform:rotateY(180deg)}}
+.pg-home .logo-flip:focus-visible .logo-flip-back{outline:2px solid var(--hub-orange);outline-offset:2px}
+/* Carrusel de partners: dos copias de la lista en fila; el track se corre exactamente una copia
+   (-50%) en loop lineal, así el salto de vuelta no se ve. Los bordes se funden con dos degradés
+   encima (no con mask-image: en Safari la máscara sobre algo que se mueve repinta cada cuadro). */
+.pg-home .people-row{min-width:0}
+.pg-home .partners-marquee{position:relative;min-width:0;overflow:hidden;padding:10px 0}
+.pg-home .partners-marquee::before,.pg-home .partners-marquee::after{content:"";position:absolute;top:0;bottom:0;width:8%;z-index:2;pointer-events:none}
+.pg-home .partners-marquee::before{left:0;background:linear-gradient(90deg,#fff,rgba(255,255,255,0))}
+.pg-home .partners-marquee::after{right:0;background:linear-gradient(270deg,#fff,rgba(255,255,255,0))}
+.pg-home .partners-track{display:flex;width:max-content;animation:partnersLoop 38s linear infinite;will-change:transform}
 .pg-home .partners-track .logos--partners{flex-wrap:nowrap;padding-right:40px}
+.pg-home .partners-marquee:has(.is-flipped) .partners-track,.pg-home .partners-marquee:focus-within .partners-track{animation-play-state:paused}
 @media(hover:hover) and (pointer:fine){.pg-home .partners-marquee:hover .partners-track{animation-play-state:paused}}
-@keyframes partnersLoop{to{transform:translateX(-50%)}}
+@keyframes partnersLoop{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+/* Con «Reducir movimiento» (iPhone): sin animación, una sola fila que se desliza con el dedo
+   (antes se apilaba en dos renglones y rompía el bloque). */
 @media(prefers-reduced-motion:reduce){
-  .pg-home .partners-marquee{-webkit-mask-image:none;mask-image:none}
-  .pg-home .partners-track{animation:none;width:auto}
-  .pg-home .partners-track .logos--partners{flex-wrap:wrap;padding-right:0}
+  .pg-home .partners-marquee{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .pg-home .partners-marquee::-webkit-scrollbar{display:none}
+  .pg-home .partners-marquee::before,.pg-home .partners-marquee::after{display:none}
+  .pg-home .partners-track{animation:none}
   .pg-home .partners-track .logos--partners[aria-hidden]{display:none}
+  .pg-home .logo-flip-inner{transition:none}
 }
 
 /* NÚMEROS — editorial, no grilla de cards */
@@ -221,7 +241,7 @@
   font-family:var(--utility);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;text-decoration:none;
   border:0;background:none;padding:0;cursor:pointer;
 }
-/* "Ficha técnica" como botón con fondo (pedido de Franco); "Ver →" queda como link al lado. */
+/* "Ficha técnica" como botón con fondo (pedido de Franco). */
 .pg-home .rp-preview-links{align-items:center}
 .pg-home .rp-preview-links button{
   background:var(--hub-orange);color:var(--hub-blue);padding:8px 14px;min-height:32px;
@@ -249,15 +269,15 @@
 .pg-home .rp-item:hover .rp-ver,.pg-home .rp-ver:focus-visible{opacity:1}
 /* "PDF" hace lo mismo que "Ficha técnica" (abre el panel con la ficha del parque de esa fila). */
 .pg-home .rp-ver{background:none;cursor:pointer;line-height:1.2}
-.pg-home .rp-ver + .rp-pdf{
-  margin-left:-2px;width:30px;height:26px;padding:0;display:grid;place-items:center;
+.pg-home .rp-ver.rp-pdf{
+  width:30px;height:26px;padding:0;display:grid;place-items:center;
   background:var(--hub-orange);border-color:var(--hub-orange);color:var(--hub-blue);opacity:.8;
 }
 .pg-home .rp-pdf svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .pg-home .rp-item:hover .rp-pdf,.pg-home .rp-pdf:focus-visible{opacity:1}
 .pg-home .rp-nota{font-size:11px;color:rgba(255,255,255,.45);margin:16px 0 0}
 .pg-home .rp-cards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:14px;width:100%;min-width:0}
-.pg-home .rp-card{display:block;text-decoration:none;color:#fff;border:1px solid rgba(199,203,202,.28);background:rgba(255,255,255,.03)}
+.pg-home .rp-card{display:block;width:100%;padding:0;text-align:left;cursor:pointer;text-decoration:none;color:#fff;border:1px solid rgba(199,203,202,.28);background:rgba(255,255,255,.03)}
 .pg-home .rp-card-img{position:relative;height:176px;overflow:hidden}
 .pg-home .rp-card-img img{width:100%;height:100%;object-fit:cover}
 .pg-home .rp-card-img::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(1,24,35,.95),rgba(1,24,35,.35) 55%,transparent)}
@@ -298,24 +318,24 @@
 /* MODELO HUB */
 .pg-home .business{background:var(--hub-blue);color:#fff}
 .pg-home .business .section-head p{color:rgba(255,255,255,.64)}
-/* Recorrido: el camión avanza con el scroll (RecorridoHub.jsx) y enciende cada paso al pasar. */
-.pg-home .business-flow{position:relative;margin-top:40px;padding-top:44px}
-.pg-home .business-line{position:absolute;left:0;right:0;top:51px;height:1px;background:rgba(255,255,255,.16)}
+/* Recorrido: la línea avanza en loop (RecorridoHub.jsx) y enciende el ícono de cada paso al pasar. */
+.pg-home .business-flow{position:relative;margin-top:40px}
+.pg-home .business-line{position:absolute;left:0;right:0;top:32px;height:1px;background:rgba(255,255,255,.16)}
 .pg-home .business-fill{position:absolute;inset:0;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--hub-silver),var(--hub-orange))}
-.pg-home .business-truck{position:absolute;left:0;top:13px;width:72px;height:30px;z-index:3;will-change:transform;filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
-.pg-home .business-truck svg{display:block}
-.pg-home .business-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;list-style:none;margin:0;padding:0}
+.pg-home .business-steps{display:grid;grid-template-columns:repeat(var(--pasos,4),1fr);gap:0;position:relative;list-style:none;margin:0;padding:0}
 .pg-home .business-step{padding:0 30px 0 0}
 .pg-home .business-step:not(:first-child){padding-left:30px}
 .pg-home .business-step .dot{
-  width:14px;height:14px;border-radius:50%;background:var(--hub-blue);border:2px solid rgba(199,203,202,.45);
-  margin-bottom:32px;position:relative;z-index:2;
+  width:64px;height:64px;border-radius:50%;background:var(--hub-blue);border:1.5px solid rgba(199,203,202,.45);
+  display:grid;place-items:center;margin-bottom:24px;position:relative;z-index:2;
   transition:background-color .25s cubic-bezier(.23,1,.32,1),border-color .25s cubic-bezier(.23,1,.32,1),box-shadow .25s cubic-bezier(.23,1,.32,1);
 }
+.pg-home .business-step .dot svg{width:26px;height:26px;fill:rgba(199,203,202,.55);transition:fill .25s cubic-bezier(.23,1,.32,1)}
+.pg-home .business-step.is-on .dot svg{fill:#fff}
 .pg-home .business-step .num{font-size:12px;font-family:var(--utility);letter-spacing:.12em;color:rgba(199,203,202,.55);transition:color .25s cubic-bezier(.23,1,.32,1)}
 .pg-home .business-step h3{font-size:22px;margin:14px 0 10px;color:rgba(255,255,255,.4);transition:color .25s cubic-bezier(.23,1,.32,1)}
 .pg-home .business-step p{font-size:14px;color:rgba(255,255,255,.3);margin:0;max-width:260px;transition:color .25s cubic-bezier(.23,1,.32,1)}
-.pg-home .business-step.is-on .dot{background:var(--hub-orange);border-color:var(--hub-orange);box-shadow:0 0 0 6px rgba(255,125,77,.16),0 0 22px rgba(255,125,77,.55)}
+.pg-home .business-step.is-on .dot{background:var(--hub-orange);border-color:var(--hub-orange);box-shadow:0 0 0 6px rgba(255,125,77,.16),0 0 26px rgba(255,125,77,.45)}
 .pg-home .business-step.is-on .num{color:var(--hub-orange)}
 .pg-home .business-step.is-on h3{color:#fff}
 .pg-home .business-step.is-on p{color:rgba(255,255,255,.66)}
@@ -343,16 +363,15 @@
   .pg-home .bc-btn{width:100%;white-space:normal;text-align:center}
 }
 .pg-home .bc-legal svg{width:16px;height:16px;flex:0 0 auto;margin-top:1px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
-/* Recorrido vertical: la línea baja por la izquierda y el camión va girado 90°. */
+/* Recorrido vertical: la línea baja por la izquierda, por el centro de los íconos. */
 @media(max-width:1100px){
-  .pg-home .business-flow{padding-top:0}
-  .pg-home .business-line{left:6px;right:auto;top:0;bottom:0;width:1px;height:auto}
+  .pg-home .business-line{left:24px;right:auto;top:0;bottom:0;width:1px;height:auto}
   .pg-home .business-fill{transform-origin:top;transform:scaleY(0);background:linear-gradient(180deg,var(--hub-silver),var(--hub-orange))}
-  .pg-home .business-truck{top:0}
   .pg-home .business-steps{grid-template-columns:1fr;gap:34px}
   .pg-home .business-cta{grid-template-columns:1fr;gap:22px}
-  .pg-home .business-step,.pg-home .business-step:not(:first-child){position:relative;padding:0 0 0 44px}
-  .pg-home .business-step .dot{position:absolute;left:0;top:2px;margin:0}
+  .pg-home .business-step,.pg-home .business-step:not(:first-child){position:relative;padding:0 0 0 72px}
+  .pg-home .business-step .dot{position:absolute;left:0;top:0;margin:0;width:48px;height:48px}
+  .pg-home .business-step .dot svg{width:20px;height:20px}
   .pg-home .business-step h3{margin-top:8px}
   .pg-home .business-step p{max-width:520px}
 }
@@ -399,6 +418,10 @@
   .pg-home .logos--fundadoras img{height:auto!important;width:auto;max-width:84%;max-height:52px;object-fit:contain}
   .pg-home .logos--fundadoras li:nth-child(2) img{max-height:66px}
   .pg-home .logos--fundadoras li:last-child img{max-width:64%;max-height:40px}
+  .pg-home .logos--fundadoras .logo-flip{padding:0}
+  .pg-home .logos--fundadoras .logo-flip-inner{width:100%;height:100%}
+  .pg-home .logos--fundadoras .logo-flip-front{width:100%;height:100%;display:grid;place-items:center}
+  .pg-home .logos--fundadoras .logo-flip-back{inset:0}
   .pg-home .logos--partners{gap:14px 26px}
   .pg-home .partners-track .logos--partners{padding-right:26px}
   .pg-home .partners-track{animation-duration:28s}

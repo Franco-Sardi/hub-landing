@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useSite } from './SiteContext'
 import MapaOscuro from './MapaOscuro'
 import { desarrollos, desarrolloPorSlug } from '../../data/desarrollos'
@@ -18,6 +17,8 @@ export default function RedProyectos() {
   const fijar = (slug) => { pedir(slug); setFijado(slug) }
   const activo = hover || fijado
   const d = desarrolloPorSlug[activo]
+  // Sin páginas por desarrollo (decisión de HUB, 08-oct): todo lleva a la ficha técnica en PDF.
+  const pedirFicha = (x, bloque) => abrirLead({ recurso: x.recurso, perfil: 'usuarios', desarrollo: x.nombre, bloque })
 
   return (
     <section className="section rp" id="desarrollos">
@@ -33,7 +34,7 @@ export default function RedProyectos() {
         <div className="rp-grid" data-reveal>
           <div className="rp-mapa-wrap">
             <div className="rp-solo-desktop"><MapaOscuro className="mo-mapa--home" activo={activo} onHover={(s) => (s ? previsualizar(s) : setHover(null))} onSelect={fijar} /></div>
-            <div className="rp-solo-mobile"><MapaOscuro className="mo-mapa--entero" navegar /></div>
+            <div className="rp-solo-mobile"><MapaOscuro className="mo-mapa--entero" onSelect={(slug) => pedirFicha(desarrolloPorSlug[slug], 'home-desarrollos-mapa')} /></div>
           </div>
 
           <div className="rp-panel rp-solo-desktop">
@@ -47,8 +48,7 @@ export default function RedProyectos() {
                 <div className="rp-preview-meta">
                   <span>{d.ubicacion} · {d.area}</span>
                   <span className="rp-preview-links">
-                    <button type="button" onClick={() => abrirLead({ recurso: d.recurso, perfil: 'usuarios', desarrollo: d.nombre, bloque: 'home-desarrollos' })}>Ficha técnica</button>
-                    <Link to={`/desarrollos/${d.slug}`}>Ver →</Link>
+                    <button type="button" onClick={() => pedirFicha(d, 'home-desarrollos')}>Ficha técnica</button>
                   </span>
                 </div>
               </div>
@@ -61,8 +61,7 @@ export default function RedProyectos() {
                     <span className="rp-num">{String(i + 1).padStart(2, '0')}</span>
                     <span className="rp-item-txt"><strong>{x.nombre}</strong><small>{x.ubicacion} · {x.area}</small></span>
                   </button>
-                  <Link className="rp-ver" to={`/desarrollos/${x.slug}`} aria-label={`Ver ${x.label}`}>Ver →</Link>
-                  <button className="rp-ver rp-pdf" type="button" aria-label={`Descargar la ficha técnica de ${x.label}`} title="Descargar ficha técnica (PDF)" onClick={() => abrirLead({ recurso: x.recurso, perfil: 'usuarios', desarrollo: x.nombre, bloque: 'home-desarrollos-pdf' })}>
+                  <button className="rp-ver rp-pdf" type="button" aria-label={`Descargar la ficha técnica de ${x.label}`} title="Descargar ficha técnica (PDF)" onClick={() => pedirFicha(x, 'home-desarrollos-pdf')}>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14" /></svg>
                   </button>
                 </li>
@@ -75,7 +74,7 @@ export default function RedProyectos() {
           <ul className="rp-cards rp-solo-mobile">
             {desarrollos.map((x) => (
               <li key={x.slug}>
-                <Link className="rp-card" to={`/desarrollos/${x.slug}`}>
+                <button className="rp-card" type="button" onClick={() => pedirFicha(x, 'home-desarrollos-card')}>
                   <div className="rp-card-img">
                     <img src={x.render} alt="" loading="lazy" decoding="async" />
                     <div className="rp-card-over">
@@ -83,8 +82,8 @@ export default function RedProyectos() {
                       <div className="rp-card-row"><h3>{x.label}</h3><span>{x.area}</span></div>
                     </div>
                   </div>
-                  <div className="rp-card-foot"><span>{x.ubicacion}</span><span className="rp-card-ver">Ver desarrollo →</span></div>
-                </Link>
+                  <div className="rp-card-foot"><span>{x.ubicacion}</span><span className="rp-card-ver">Ficha técnica ↓</span></div>
+                </button>
               </li>
             ))}
           </ul>
