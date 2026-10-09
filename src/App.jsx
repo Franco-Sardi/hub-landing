@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { SiteProvider } from './components/site/SiteContext'
 import LeadModal from './components/site/LeadModal'
 import CookieBanner from './components/site/CookieBanner'
+import WhatsappBoton from './components/site/WhatsappBoton'
 import Home from './pages/Home'
 
 const Espacios = lazy(() => import('./pages/Espacios'))
@@ -36,6 +37,7 @@ export default function App() {
       </Suspense>
       <LeadModal />
       <CookieBanner />
+      <WhatsappBoton />
     </SiteProvider>
   )
 }

@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSite } from './SiteContext'
-import { RECURSOS, SIN_ADJUNTO, enviarLead } from '../../lib/leads'
+import { RECURSOS, SIN_ADJUNTO, enviarLead, urlWhatsapp } from '../../lib/leads'
+import { track } from '../../lib/analytics'
 
 function LeadForm({ lead, cerrarLead, emailRef }) {
   const [estado, setEstado] = useState('form') // form | enviando | ok | error
@@ -12,7 +13,7 @@ function LeadForm({ lead, cerrarLead, emailRef }) {
     const f = new FormData(form)
     setEstado('enviando')
     try {
-      await enviarLead({ ...lead, email: f.get('email'), nombre: f.get('nombre'), _gotcha: f.get('_gotcha') })
+      await enviarLead({ ...lead, email: f.get('email'), nombre: f.get('nombre'), telefono: f.get('telefono'), _gotcha: f.get('_gotcha') })
       setEstado('ok')
     } catch {
       setEstado('error')
@@ -43,6 +44,10 @@ function LeadForm({ lead, cerrarLead, emailRef }) {
         <label htmlFor="leadName">Nombre <span style={{ textTransform: 'none', fontWeight: 400 }}>(opcional)</span></label>
         <input id="leadName" name="nombre" type="text" placeholder="Tu nombre" autoComplete="name" />
       </div>
+      <div className="field">
+        <label htmlFor="leadTel">WhatsApp <span style={{ textTransform: 'none', fontWeight: 400 }}>(opcional)</span></label>
+        <input id="leadTel" name="telefono" type="tel" placeholder="261 555 1234" autoComplete="tel" inputMode="tel" />
+      </div>
       <input name="_gotcha" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hp" />
       <label className="check">
         <input type="checkbox" required />
@@ -57,6 +62,57 @@ function LeadForm({ lead, cerrarLead, emailRef }) {
       {estado === 'error' && (
         <p className="lead-error">No pudimos enviar tu pedido. Probá de nuevo o escribinos a contacto@hubmza.com.ar</p>
       )}
+    </form>
+  )
+}
+
+// Paso previo opcional al WhatsApp (minuta con Paula Brandi, 07-oct): sin campos obligatorios ni
+// espera. El que completa algo queda como contacto en Chatwoot con mail y teléfono, así el agente
+// lo reconoce al escribir; el que no, pasa igual. El link abre WhatsApp en otra pestaña en el
+// mismo click (un window.open después de un await lo bloquea el navegador) y el pedido sale en
+// paralelo, sin esperarlo: esta pestaña queda abierta, así que termina igual.
+function WhatsappForm({ lead, cerrarLead, emailRef }) {
+  const [datos, setDatos] = useState({ nombre: '', apellido: '', telefono: '', email: '', _gotcha: '' })
+  const set = (k) => (e) => setDatos((d) => ({ ...d, [k]: e.target.value }))
+  const nombre = [datos.nombre, datos.apellido].map((x) => x.trim()).filter(Boolean).join(' ')
+
+  function onContinuar() {
+    const completo = datos.telefono.trim() || datos.email.trim()
+    track(`whatsapp:${completo ? 'con-datos' : 'directo'}`)
+    if (completo) {
+      enviarLead({ ...lead, nombre, telefono: datos.telefono.trim(), email: datos.email.trim(), _gotcha: datos._gotcha }).catch(() => {})
+    }
+    cerrarLead()
+  }
+
+  return (
+    <form onSubmit={(e) => e.preventDefault()} style={{ marginTop: 24 }}>
+      <div className="field-row">
+        <div className="field">
+          <label htmlFor="waNombre">Nombre</label>
+          <input ref={emailRef} id="waNombre" type="text" value={datos.nombre} onChange={set('nombre')} autoComplete="given-name" />
+        </div>
+        <div className="field">
+          <label htmlFor="waApellido">Apellido</label>
+          <input id="waApellido" type="text" value={datos.apellido} onChange={set('apellido')} autoComplete="family-name" />
+        </div>
+      </div>
+      <div className="field">
+        <label htmlFor="waTel">WhatsApp</label>
+        <input id="waTel" type="tel" inputMode="tel" placeholder="261 555 1234" value={datos.telefono} onChange={set('telefono')} autoComplete="tel" />
+      </div>
+      <div className="field">
+        <label htmlFor="waEmail">Email</label>
+        <input id="waEmail" type="email" placeholder="nombre@empresa.com" value={datos.email} onChange={set('email')} autoComplete="email" />
+      </div>
+      <input type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hp" value={datos._gotcha} onChange={set('_gotcha')} />
+      <a className="btn btn--whatsapp" href={urlWhatsapp(datos.nombre.trim())} target="_blank" rel="noopener noreferrer" onClick={onContinuar} style={{ width: '100%', marginTop: 8 }}>
+        Continuar a WhatsApp
+      </a>
+      <p className="wa-legal">
+        Si dejás tus datos, aceptás que HUB los use para responder tu consulta y hacerle seguimiento.{' '}
+        <Link to="/privacidad" onClick={cerrarLead}>Política de Privacidad</Link>.
+      </p>
     </form>
   )
 }
@@ -86,10 +142,12 @@ export default function LeadModal() {
       <div className="modal-backdrop" onClick={cerrarLead} />
       <div className="modal-card">
         <button className="modal-close" type="button" onClick={cerrarLead} aria-label="Cerrar">×</button>
-        <div className="eyebrow">HUB · Información</div>
+        <div className="eyebrow">{lead.recurso === 'whatsapp' ? 'HUB · WhatsApp' : 'HUB · Información'}</div>
         <h2 id="modalTitle">{titulo}</h2>
         <p>{bajada}</p>
-        <LeadForm key={aperturas} lead={lead} cerrarLead={cerrarLead} emailRef={emailRef} />
+        {lead.recurso === 'whatsapp'
+          ? <WhatsappForm key={aperturas} lead={lead} cerrarLead={cerrarLead} emailRef={emailRef} />
+          : <LeadForm key={aperturas} lead={lead} cerrarLead={cerrarLead} emailRef={emailRef} />}
       </div>
     </div>
   )

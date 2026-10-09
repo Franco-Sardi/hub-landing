@@ -8,6 +8,14 @@ const ENDPOINT = 'https://n8n.sbflows.com/webhook/hub-leads-web'
 // Recursos sin PDF automático: al lead le llega una confirmación y lo contacta el equipo.
 export const SIN_ADJUNTO = new Set(['asesor', 'disponibilidad', 'solicitud-acceso', 'brochure-inversion'])
 
+// El número que atiende el agente de IA (Chatwoot, bandeja de producción).
+export const WHATSAPP = '5492617007460'
+// "Vengo desde la web de HUB" marca el origen de la conversación: no cambiar sin avisar al agente.
+export function urlWhatsapp(nombre) {
+  const saludo = nombre ? `Hola, soy ${nombre}.` : 'Hola!'
+  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`${saludo} Vengo desde la web de HUB y quiero más información.`)}`
+}
+
 // Subir la versión cada vez que cambie el texto de cualquier casilla de consentimiento.
 export const CONSENT_VERSION = '2026-09-v1'
 
@@ -48,6 +56,7 @@ export const RECURSOS = {
   'disponibilidad': ['Consultá disponibilidad', 'Dejanos tu correo y te enviamos la información vigente de espacios y disponibilidad.'],
   'solicitud-acceso': ['Solicitá acceso al área de inversores', 'Dejanos tu correo y te contactamos para habilitar tu cuenta.'],
   'asesor': ['Coordiná una conversación con un asesor', 'Dejanos tu correo y un asesor de HUB se comunica con vos.'],
+  'whatsapp': ['Hablemos por WhatsApp', 'Si nos dejás tus datos, te reconocemos cuando escribas y no tenés que repetirlos. Todos los campos son opcionales.'],
 }
 
 // _gotcha es el honeypot: un campo oculto que solo llena un bot (el workflow lo descarta).
@@ -56,7 +65,7 @@ export async function enviarLead({ email, nombre, telefono, mensaje, recurso, pe
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify({
-      email,
+      email: email || '',
       nombre: nombre || '',
       telefono: telefono || '',
       mensaje: mensaje || '',
