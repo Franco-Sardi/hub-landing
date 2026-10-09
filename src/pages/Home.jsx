@@ -112,7 +112,7 @@ function Hero() {
           <div className="hero-summary-item"><strong>5</strong><span>desarrollos HUB</span></div>
           <div className="hero-summary-item"><strong>335.000 m²</strong><span>superficie total de terreno</span></div>
           <div className="hero-summary-item"><strong>178.000 m²</strong><span>naves proyectadas</span></div>
-          <div className="hero-summary-item"><strong>3 ejes</strong><span>Acceso Sur · Rodríguez Peña · San Francisco del Monte</span></div>
+          <div className="hero-summary-item"><strong>4 ejes</strong><span>estratégicos de conectividad</span></div>
         </div>
       </div>
     </section>
@@ -152,7 +152,7 @@ function Nosotros() {
         <div className="about-top">
           <div className="about-title" data-reveal="left">
             <div className="eyebrow">Nosotros</div>
-            <h2>Infraestructura que conecta crecimiento.</h2>
+            <h2>Infraestructura que conecta crecimiento</h2>
           </div>
           <div className="about-copy" data-reveal="right">
             <p>HUB es una red de cinco parques industriales Triple A en Mendoza. Conecta capital, infraestructura y empresas para impulsar tu crecimiento productivo.</p>
@@ -239,10 +239,10 @@ function Empresas() {
           </div>
           <div className="enterprise-content" data-reveal="right">
             <div className="eyebrow">HUB · Para empresas</div>
-            <h2>Infraestructura en red para que tu operación funcione mejor.</h2>
+            <h2>Infraestructura en red para que tu operación funcione mejor</h2>
             <p className="lead">HUB integra naves, servicios logísticos y conectividad en cinco ubicaciones sobre los principales corredores productivos de Mendoza.</p>
 
-            <div className="key-question">HUB te acompaña en tu operación.</div>
+            <div className="key-question">HUB te acompaña en tu operación</div>
 
             <div className="capabilities">
               <div className="capability"><span className="idx">01</span><strong>Espacio</strong><span>Módulos flexibles desde 1.000 m² y configuraciones adaptables según desarrollo y disponibilidad.</span></div>
@@ -276,7 +276,7 @@ function ModeloHub() {
         <div className="section-head">
           <div data-reveal="left">
             <div className="eyebrow" style={{ color: 'var(--hub-silver)', marginBottom: 20 }}>Invertí en HUB</div>
-            <h2>Invertís, administramos, rentás.</h2>
+            <h2>Invertís, administramos, rentás</h2>
           </div>
           <p data-reveal="right">Un circuito simple: tu inversión se transforma en infraestructura real, las empresas la utilizan y HUB administra el proceso.</p>
         </div>
@@ -287,7 +287,7 @@ function ModeloHub() {
         <div className="business-cta" data-reveal>
           <div className="bc-copy">
             <div className="eyebrow">Área de inversores</div>
-            <p className="bc-title">Condiciones de ingreso, documentación ampliada y escenarios, en un solo lugar.</p>
+            <p className="bc-title">Condiciones de ingreso, documentación ampliada y escenarios, en un solo lugar</p>
           </div>
           <div className="bc-actions">
             <Link className="btn btn--white bc-btn" to="/inversores">

@@ -35,7 +35,7 @@ export default function SiteFooter() {
         <div className="newsletter">
           <div className="nl-copy">
             <div className="eyebrow">Novedades</div>
-            <h2>Recibí novedades de HUB.</h2>
+            <h2>Recibí novedades de HUB</h2>
             <p>Elegí qué información querés recibir y dejá tu correo. Te enviamos novedades vinculadas a tu interés.</p>
           </div>
 

@@ -23,7 +23,7 @@ function LeadForm({ lead, cerrarLead, emailRef }) {
   if (estado === 'ok') {
     return (
       <div className="lead-success">
-        <strong>{SIN_ADJUNTO.has(lead.recurso) ? 'Recibimos tu pedido.' : 'Revisá tu correo.'}</strong>
+        <strong>{SIN_ADJUNTO.has(lead.recurso) ? 'Recibimos tu pedido' : 'Revisá tu correo'}</strong>
         <span>
           {SIN_ADJUNTO.has(lead.recurso)
             ? 'Te enviamos un correo de confirmación y una persona del equipo se comunica con vos.'

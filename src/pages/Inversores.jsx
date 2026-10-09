@@ -73,7 +73,7 @@ export default function Inversores() {
           <div className="business-cta" data-reveal>
             <div className="bc-copy">
               <div className="eyebrow">Solicitud de acceso</div>
-              <p className="bc-title">Dejanos tu correo y un asesor de HUB se comunica con vos para habilitar tu cuenta.</p>
+              <p className="bc-title">Dejanos tu correo y un asesor de HUB se comunica con vos para habilitar tu cuenta</p>
             </div>
             <div className="bc-actions">
               <button className="btn btn--white bc-btn" type="button" onClick={() => pedirBrochure('inversores-acceso')}>
