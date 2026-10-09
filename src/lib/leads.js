@@ -8,8 +8,9 @@ const ENDPOINT = 'https://n8n.sbflows.com/webhook/hub-leads-web'
 // Recursos sin PDF automático: al lead le llega una confirmación y lo contacta el equipo.
 export const SIN_ADJUNTO = new Set(['asesor', 'disponibilidad', 'solicitud-acceso', 'brochure-inversion'])
 
-// El número que atiende el agente de IA (Chatwoot, bandeja de producción).
-export const WHATSAPP = '5492617007460'
+// Número del equipo, el mismo del sitio actual. Cuando HUB confirme que el bot está listo para
+// la web, pasa al del agente de IA: 5492617007460 (ver docs/PENDIENTES.md).
+export const WHATSAPP = '5492617697640'
 // "Vengo desde la web de HUB" marca el origen de la conversación: no cambiar sin avisar al agente.
 export function urlWhatsapp(nombre) {
   const saludo = nombre ? `Hola, soy ${nombre}.` : 'Hola!'
