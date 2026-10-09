@@ -8,10 +8,10 @@ import Home from './pages/Home'
 
 const Espacios = lazy(() => import('./pages/Espacios'))
 const Inversores = lazy(() => import('./pages/Inversores'))
-const SimuladorInversores = lazy(() => import('./pages/SimuladorInversores'))
-
 // Maqueta del simulador (área privada) solo en desarrollo y en la preview con VITE_DEMO_INVERSORES=1.
+// En producción la constante es false y el chunk ni se genera (ver vite.config.js).
 const DEMO_INVERSORES = import.meta.env.DEV || import.meta.env.VITE_DEMO_INVERSORES === '1'
+const SimuladorInversores = DEMO_INVERSORES ? lazy(() => import('./pages/SimuladorInversores')) : null
 const Privacidad = lazy(() => import('./pages/Privacidad'))
 const Terminos = lazy(() => import('./pages/Terminos'))
 

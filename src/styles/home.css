@@ -394,6 +394,8 @@
   .pg-home .hero-actions{margin-top:22px}
   .pg-home .hero-actions .btn{min-height:48px}
   .pg-home .hero-nav{margin-top:26px;padding-top:18px;border-top:1px solid rgba(255,255,255,.2)}
+  /* Lugar para el botón flotante de WhatsApp (52 px + 14 px de margen): si no, tapa «siguiente». */
+  .pg-home .hero-nav{padding-right:62px}
   .pg-home .hero-arrow{width:44px;height:44px}
   .pg-home .hero-ring{inset:-3px;width:50px!important;height:50px!important}
   .pg-home .hero-count-now{font-size:22px}

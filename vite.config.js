@@ -1,9 +1,15 @@
+import process from 'node:process'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  // El simulador del área privada (sin aprobar) nunca entra en el build de producción de Vercel,
+  // aunque VITE_DEMO_INVERSORES quede puesta ahí por error: solo dev y previews.
+  define: process.env.VERCEL_ENV === 'production'
+    ? { 'import.meta.env.VITE_DEMO_INVERSORES': JSON.stringify('') }
+    : {},
   build: {
     rollupOptions: {
       output: {
