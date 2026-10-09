@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
+import Descripcion from '../components/site/Descripcion'
 import { faEnvelopeOpenText, faHeadset, faKey } from '@fortawesome/free-solid-svg-icons'
 import Layout from '../components/site/Layout'
 import { useSite } from '../components/site/SiteContext'
@@ -28,9 +29,9 @@ export default function Inversores() {
     <Layout variant="home">
       <Helmet>
         <title>Inversión en infraestructura industrial real | HUB Mendoza</title>
-        <meta name="description" content="HUB es una red de cinco parques industriales Triple A en Mendoza, con participación por fideicomiso. Solicitá acceso al área de inversores." />
         <link rel="canonical" href="https://hubmza.com.ar/inversores" />
       </Helmet>
+      <Descripcion texto="HUB es una red de cinco parques industriales Triple A en Mendoza, con participación por fideicomiso. Solicitá acceso al área de inversores." />
 
       <section className="hero hero--fijo" aria-label="HUB para inversores">
         <div className="hero-media" aria-hidden="true">

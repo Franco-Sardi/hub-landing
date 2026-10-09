@@ -73,11 +73,14 @@ function LeadForm({ lead, cerrarLead, emailRef }) {
 // paralelo, sin esperarlo: esta pestaña queda abierta, así que termina igual.
 function WhatsappForm({ lead, cerrarLead, emailRef }) {
   const [datos, setDatos] = useState({ nombre: '', apellido: '', telefono: '', email: '', _gotcha: '' })
+  // Consentimiento explícito y sin premarcar (reglas del sitio): sin la casilla, sigue a WhatsApp
+  // igual pero no se guarda nada.
+  const [acepta, setAcepta] = useState(false)
   const set = (k) => (e) => setDatos((d) => ({ ...d, [k]: e.target.value }))
   const nombre = [datos.nombre, datos.apellido].map((x) => x.trim()).filter(Boolean).join(' ')
 
   function onContinuar() {
-    const completo = datos.telefono.trim() || datos.email.trim()
+    const completo = acepta && (datos.telefono.trim() || datos.email.trim())
     track(`whatsapp:${completo ? 'con-datos' : 'directo'}`)
     if (completo) {
       enviarLead({ ...lead, nombre, telefono: datos.telefono.trim(), email: datos.email.trim(), _gotcha: datos._gotcha }).catch(() => {})
@@ -106,13 +109,17 @@ function WhatsappForm({ lead, cerrarLead, emailRef }) {
         <input id="waEmail" type="email" placeholder="nombre@empresa.com" value={datos.email} onChange={set('email')} autoComplete="email" />
       </div>
       <input type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hp" value={datos._gotcha} onChange={set('_gotcha')} />
+      <label className="check">
+        <input type="checkbox" checked={acepta} onChange={(e) => setAcepta(e.target.checked)} />
+        <span>
+          Acepto que HUB guarde estos datos para responder mi consulta y hacerle seguimiento.{' '}
+          <Link to="/privacidad" onClick={cerrarLead}>Política de Privacidad</Link>.
+        </span>
+      </label>
       <a className="btn btn--whatsapp" href={urlWhatsapp(datos.nombre.trim())} target="_blank" rel="noopener noreferrer" onClick={onContinuar} style={{ width: '100%', marginTop: 8 }}>
         Continuar a WhatsApp
       </a>
-      <p className="wa-legal">
-        Si dejás tus datos, aceptás que HUB los use para responder tu consulta y hacerle seguimiento.{' '}
-        <Link to="/privacidad" onClick={cerrarLead}>Política de Privacidad</Link>.
-      </p>
+      <p className="wa-legal">Si preferís no dejar datos, seguí directo: no guardamos nada.</p>
     </form>
   )
 }

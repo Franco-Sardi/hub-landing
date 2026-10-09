@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
+import Descripcion from '../components/site/Descripcion'
 
 // Meta pide una URL de Términos del Servicio para pasar la app de WhatsApp a Live
 // (junto con la de privacidad y la de eliminación de datos). Tiene que ser pública:
@@ -31,11 +32,8 @@ export default function Terminos() {
     <div className="min-h-svh theme-alt" style={{ backgroundColor: '#0B202A' }}>
       <Helmet>
         <title>Términos del Servicio | HUB</title>
-        <meta
-          name="description"
-          content="Condiciones de uso del sitio de HUB y de nuestros canales de contacto, incluido WhatsApp."
-        />
       </Helmet>
+      <Descripcion texto="Condiciones de uso del sitio de HUB y de nuestros canales de contacto, incluido WhatsApp." />
 
       <div className="mx-auto max-w-3xl px-5 sm:px-8 py-16 sm:py-24">
         <Link

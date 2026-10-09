@@ -14,6 +14,7 @@ const DEMO_INVERSORES = import.meta.env.DEV || import.meta.env.VITE_DEMO_INVERSO
 const SimuladorInversores = DEMO_INVERSORES ? lazy(() => import('./pages/SimuladorInversores')) : null
 const Privacidad = lazy(() => import('./pages/Privacidad'))
 const Terminos = lazy(() => import('./pages/Terminos'))
+const NoEncontrada = lazy(() => import('./pages/NoEncontrada'))
 
 // Sin páginas por desarrollo desde el 08-oct (todo va a la ficha técnica en PDF). Las URLs viejas
 // (/proyecto/* del sitio anterior, indexadas, y /desarrollos/*) van a /espacios: en Vercel con 301
@@ -32,7 +33,7 @@ export default function App() {
           <Route path="/privacidad" element={<Privacidad />} />
           <Route path="/terminos" element={<Terminos />} />
           <Route path="/proyecto/*" element={<Navigate to="/espacios" replace />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NoEncontrada />} />
         </Routes>
       </Suspense>
       <LeadModal />

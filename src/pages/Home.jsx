@@ -313,7 +313,7 @@ export default function Home() {
   return (
     <Layout variant="home">
       <Helmet>
-        <title>HUB · Activos Reales | Parques industriales Triple A en Mendoza</title>
+        <title>HUB · Parques industriales Triple A en Mendoza</title>
         <link rel="canonical" href="https://hubmza.com.ar/" />
       </Helmet>
       <Hero />

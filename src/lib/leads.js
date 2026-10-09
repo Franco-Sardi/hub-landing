@@ -18,7 +18,7 @@ export function urlWhatsapp(nombre) {
 }
 
 // Subir la versión cada vez que cambie el texto de cualquier casilla de consentimiento.
-export const CONSENT_VERSION = '2026-09-v1'
+export const CONSENT_VERSION = '2026-10-v1'
 
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']
 const UTM_STORAGE = 'hub-utm'

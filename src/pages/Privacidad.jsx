@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
+import Descripcion from '../components/site/Descripcion'
 
 // Casilla oficial para pedidos de acceso/rectificación/supresión. Meta exige que sea
 // un canal VÁLIDO: si rebota, es causal de rechazo en App Review.
@@ -31,11 +32,8 @@ export default function Privacidad() {
     <div className="min-h-svh theme-alt" style={{ backgroundColor: '#0B202A' }}>
       <Helmet>
         <title>Política de Privacidad | HUB</title>
-        <meta
-          name="description"
-          content="Cómo HUB recolecta, usa y protege los datos personales de quienes nos contactan, incluido WhatsApp."
-        />
       </Helmet>
+      <Descripcion texto="Cómo HUB recolecta, usa y protege los datos personales de quienes nos contactan, incluido WhatsApp." />
 
       <div className="mx-auto max-w-3xl px-5 sm:px-8 py-16 sm:py-24">
         <Link

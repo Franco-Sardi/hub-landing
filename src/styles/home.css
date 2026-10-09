@@ -452,3 +452,9 @@
   .pg-home .enterprise-content .actions{flex-direction:column;align-items:stretch}
   .pg-home .enterprise-content .actions .btn{width:100%}
 }
+
+/* 404 (NoEncontrada.jsx) */
+.pg-home .no-encontrada{min-height:calc(100svh - 120px);display:flex;align-items:center;padding-top:140px}
+.pg-home .no-encontrada h1{font-size:clamp(38px,5vw,64px);margin:0 0 18px}
+.pg-home .no-encontrada p{max-width:560px;color:rgba(255,255,255,.66);font-size:18px;margin:0 0 32px}
+.pg-home .no-encontrada-links{display:flex;flex-wrap:wrap;gap:10px}

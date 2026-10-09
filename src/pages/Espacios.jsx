@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import Descripcion from '../components/site/Descripcion'
 import Layout from '../components/site/Layout'
 import { useSite } from '../components/site/SiteContext'
 import { LandingHero, Faq, RedDesarrollos, MapaBox, CtaBlock } from '../components/site/LandingBlocks'
@@ -31,9 +32,9 @@ export default function Espacios() {
     <Layout variant="landing">
       <Helmet>
         <title>Alquiler de naves industriales en Mendoza | HUB</title>
-        <meta name="description" content="Naves industriales Triple A en Mendoza para almacenamiento, logística y operación industrial. Cinco desarrollos conectados con los principales corredores productivos, con módulos desde 1.000 m²." />
         <link rel="canonical" href="https://hubmza.com.ar/espacios" />
       </Helmet>
+      <Descripcion texto="Naves industriales Triple A en Mendoza para almacenamiento, logística y operación. Cinco desarrollos conectados, con módulos desde 1.000 m²." />
 
       <LandingHero
         fondo={desarrolloPorSlug.anchorena.render}
